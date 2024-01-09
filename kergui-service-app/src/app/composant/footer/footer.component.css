@@ -1,0 +1,27 @@
+.footerleft  img{
+    height: 70px;
+}
+.footercontainer{
+    height: auto;
+    padding: 40px 36px;
+}
+.footercontainer li{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    list-style-type: none;
+}
+.footerright{
+    margin: 0 auto;
+  
+}
+.footercontainer a{
+   text-decoration: none;
+}
+hr{
+    /* color: red; */
+    border: 2px solid #14A800;
+    font-weight: bold;
+    width: 80%;
+    margin: 30px auto;
+}
