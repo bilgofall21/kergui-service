@@ -4,3 +4,10 @@
 body {
     font-family: 'Poppins', sans-serif;
   }
+
+  
+:root{
+  --kergui-blue: #003668;
+  
+  --kergui-green: #14A800;
+}
