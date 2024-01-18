@@ -62,24 +62,7 @@ export class DashbordAdminComponent{
         description : " Ces hackers poursuivent des objectifs politiques ou sociaux en utilisant des techniques de piratage. Leur motivation est souvent liée à des convictions idéologiques,",
         imageArticle : "https://img.freepik.com/vecteurs-libre/voler-concept-cyberattaque-donnees_23-2148535004.jpg?size=626&ext=jpg&ga=GA1.1.2145246215.1689776414&semt=sph"
       },
-      {
-        id :2,
-        titreArticle: "Les Hackeurs deviennent incontrolable",
-        Domaine : " Cyber Securité",
-        auteurArticle : "Astou diouf",
-        dateArticle : "08/12/2023",
-        description : " Ces hackers poursuivent des objectifs politiques ou sociaux en utilisant des techniques de piratage. Leur motivation est souvent liée à des convictions idéologiques,",
-        imageArticle : "https://img.freepik.com/vecteurs-libre/voler-concept-cyberattaque-donnees_23-2148535004.jpg?size=626&ext=jpg&ga=GA1.1.2145246215.1689776414&semt=sph"
-      },
-      {
-        id :2,
-        titreArticle: "Les Hackeurs deviennent incontrolable",
-        Domaine : " Cyber Securité",
-        auteurArticle : "Astou diouf",
-        dateArticle : "08/12/2023",
-        description : " Ces hackers poursuivent des objectifs politiques ou sociaux en utilisant des techniques de piratage. Leur motivation est souvent liée à des convictions idéologiques,",
-        imageArticle : "https://img.freepik.com/vecteurs-libre/voler-concept-cyberattaque-donnees_23-2148535004.jpg?size=626&ext=jpg&ga=GA1.1.2145246215.1689776414&semt=sph"
-      },
+     
   
     ];
   constructor() { }

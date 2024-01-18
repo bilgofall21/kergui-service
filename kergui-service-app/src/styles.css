@@ -11,3 +11,54 @@ body {
   
   --kergui-green: #14A800;
 }
+
+
+.gotopbtn {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background: var(--kergui-blue);
+  bottom: 50px;
+  right: 50px;
+  text-align: center;
+  line-height: 54px;
+  color: #fff;
+  font-size: 19px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 4px 4px 0px var(--kergui-green);
+  text-decoration: none;
+}
+.gotopbtn i{
+  animation: spin 2s infinite;
+  font-size: 24px;
+}
+
+@-webkit-keyframes spin {
+  0%{
+      margin-top: 40px;
+  }
+  16%{
+      margin-top: 50px;
+  }
+  33%{
+      margin-top: 60px;
+  }
+  50%{
+      margin-top: 70px;
+  }
+} 
+@keyframes spin {
+  0%{
+      margin-top: 40px;
+  }
+  16%{
+      margin-top: 50px;
+  }
+  33%{
+      margin-top: 60px;
+  }
+  50%{
+      margin-top: 70px;
+  }
+}

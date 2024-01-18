@@ -10,6 +10,8 @@
     font-weight: bold;
     font-size: 16px;
     list-style-type: none;
+   
+    padding-top: 12px;
 }
 .footerright{
     margin: 0 auto;
@@ -18,9 +20,14 @@
 .footercontainer a{
    text-decoration: none;
 }
+a:hover{
+   text-decoration: none;
+   color: #ffc3f7;
+ 
+}
 hr{
     /* color: red; */
-    border: 2px solid #14A800;
+    border: 2px solid #ffffff;
     font-weight: bold;
     width: 80%;
     margin: 30px auto;

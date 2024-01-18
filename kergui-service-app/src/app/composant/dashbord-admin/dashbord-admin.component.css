@@ -29,6 +29,22 @@
     height: 80px;
     margin-left: 20px ;
 }
+#profildash img{
+    height: 35px;
+    width: 35px;
+    border-radius : 50px;
+    
+}
+.navbar{
+    border-bottom : 2px solid  var(--kergui-blue);
+} 
+
+
+/* .contain{
+display: grid;
+grid-template-columns: 1% 70% 15%;
+} */
+
 
 hr {
   margin: 1rem 0;
