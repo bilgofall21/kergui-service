@@ -16,6 +16,7 @@ import { BluefontDirective } from './bluefont.directive';
 import { BlueFontDirective } from './directive/blue-font.directive';
 import { GreenFontDirective } from './directive/green-font.directive';
 import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admin.component';
+import { FonctionnementComponent } from './composant/fonctionnement/fonctionnement.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admi
     BlueFontDirective,
     GreenFontDirective,
     DashbordAdminComponent,
+    FonctionnementComponent,
    
   ],
   imports: [

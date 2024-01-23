@@ -6,7 +6,7 @@ import { Directive, HostBinding } from '@angular/core';
 export class BlueFontDirective {
 @HostBinding('style.backgroundColor') backgroundColor : string ;
   constructor() {
-    this.backgroundColor = "#003668";
+    this.backgroundColor = "#3A6A7E";
    }
 
 }
