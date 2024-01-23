@@ -89,26 +89,24 @@ border-radius: 50%;
 
   /* style fonctionnement employé debut*/
 
-    .left h4{
-         
-    }
-    .left ul li{
+  
+    .fonctionnementemployécontainer   .left ul li{
          list-style-type: none;
          color: white;
          font-size:  17px;
          padding-top: 14px;
     }
-    .left{
+   .fonctionnementemployécontainer .left{
         border-radius: 20px 0px 0px 20px;
         background: var(--kergui-blue); 
         padding: 60px;       
     }
-    .right{
+  .fonctionnementemployécontainer  .right{
         border-radius: 0px 20px 20px 0px;
         padding: 0px;
         
     }
-    .right img{
+  .fonctionnementemployécontainer  .right img{
         border-radius: 0px 20px 20px 0px;
         width: 100%;
 
@@ -123,14 +121,51 @@ border-radius: 50%;
 .choicecontainer .topimage{
     border-radius: 150px 600px 195px 200px;
     /* border: 2px solid gold; */
-    width: 357px;
-    height: 267px;
+    width: 307px;
+    height: 217px;
+    margin: 0 auto;
 }
 .choicecontainer .topimage img{
     border-radius: 150px 600px 195px 200px;
     box-shadow: 2px 2px 2px 0px #3A6A7E, -2px -2px 2px 0px #3A6A7E;
-    width: 357px;
-    height: 267px;
+    width: 307px;
+    height: 217px;
+}
+.choicecontainer  h6{
+    color: var(--kergui-green);
+    font-weight: bold;
+    font-size: 18px;
+}
+.choicecontainer  p{
+   font-size: 16px;
 }
 
   /* style choice ker gui service fin */
+   
+  /* style section employeur fonctionnement debut*/
+
+.fonctionnementemployeurcontainer .left{
+    border-radius: 20px 0px 0px 20px;
+    padding: 0px;
+}
+.fonctionnementemployeurcontainer .left img{
+    border-radius: 20px 0px 0px 20px;
+    width: 100%;
+}
+
+.fonctionnementemployeurcontainer .right{
+background-color: var(--kergui-blue);
+color: white;
+padding: 20px;
+border-radius: 0px 20px 20px 0px;
+}
+
+.fonctionnementemployeurcontainer .right h6{
+font-size: 18px;
+}
+.fonctionnementemployeurcontainer .right p{
+font-size: 15px;
+
+}
+
+  /* style section employeur fonctionnemnt fin */
