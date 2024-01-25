@@ -11,29 +11,29 @@
             
             <ul class="navbar-nav d-flex w-75">
               <li class="nav-item">
-                <a class="nav-link active  fw-bold" aria-current="page" href="#">Accueil</a>
+                <a class="nav-link active  fw-bold" aria-current="page" [routerLink]="['/accueil']" >Accueil</a>
               </li>
               
               <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">A propos</a>
+                <a class="nav-link  fw-bold" [routerLink]="['/a-propos']" >A propos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">Services</a>
+                <a class="nav-link  fw-bold" [routerLink]="['/page-service']"   >Services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">Annonces</a>
+                <a class="nav-link  fw-bold" [routerLink]="['/annonce']"  >Annonces</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link  fw-bold" href="#">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">Fonctionnement</a>
+                <a class="nav-link  fw-bold" [routerLink]="['/fonctionnement']" >Fonctionnement</a>
               </li>
               
             </ul>
             <div class="d-flex justify-content-around w-25" id="navright">
                 <a href="" class="d-flex align-items-center"> S'inscrire</a>
-                <button class="btn text-white fw-bold">Se connecter</button>
+                <button class="btn text-white fw-bold" [routerLink]="['/login']">Se connecter</button>
             </div>
         </div>
       </div>

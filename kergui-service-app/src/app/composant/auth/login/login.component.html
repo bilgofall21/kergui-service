@@ -1,0 +1,215 @@
+<app-header></app-header>
+
+<div class="logincontainer">
+    
+
+<!-- section connexion debut -->
+<section class="connexionuser" *ngIf="showConnexion">
+    <div class="connexion">
+    <div class="form signup">
+      <header class="text-white mb-2">Connectez-vous</header>
+      <form action="#">
+        <div class="row row-gap-4">
+      
+            <div class="">
+                <input class="col-12" type="text" placeholder="Email" required />
+            </div>
+           
+            <div class="">
+                <input class=" col-12" type="password" placeholder="Mot de pass" required />
+            </div>
+            <div>
+                <p class="text-white">mot de pass oublié ?</p>
+            </div>
+            <div>
+              <button class="col-12"> Connexion</button>
+            </div>
+            <p class="text-center text-white"> Vous n'avez pas de compte ?</p>
+          
+    </div>
+    
+      </form>
+    </div>
+    <div class="footerform">
+        <header><a href=""  class="text-decoration-none" (click)="afficherSection('presentationlogin', $event)"> S'inscrire</a></header>
+    </div>
+</div>
+</section>
+<!-- section connexion fin -->
+
+
+<!-- section authentification employeur debut -->
+<section class="inscriptionemployeur" *ngIf="showAuthEmployeur">
+    <div class=" inscription">
+    <div class="form signup">
+      <header class="text-white mb-2">Inscrivez-vous</header>
+      <form action="#">
+        <div class="row row-gap-4 column-gap-2">
+          
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="prenom" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="nom" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="Email" required />
+            </div>
+            <div class="col-md-5">
+                <input type="tel" id="typePhone" placeholder="Telephone"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="password" placeholder="Mot de pass" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="password" placeholder="Confirmer mot de pass" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="Adresse" required />
+            </div>
+            <div class="col-md-5">
+                <input class="form-control" type="file" > 
+            <button  class="btn btn-outline-light mt-2"> <span class="lnr lnr-upload"></span></button>
+            </div>
+            <!-- <div class="form-group mt-3">
+                <label class="mr-2">Upload your CV:</label>
+                <input type="file" name="file">
+              </div> -->
+            
+            
+            <div class="d-flex justify-content-center">
+                <input class="col-6 " type="submit" value="Signup" />
+            </div>
+    </div>
+    
+      </form>
+    </div>
+    <div class="footerform">
+        <header><a href=""  class="text-decoration-none" (click)="afficherSection('connexionuser', $event)"> Se connecter</a></header>
+    </div>
+</div>
+</section>
+<!-- section authentification employeur fin -->
+
+
+<!-- section authentification employé debut -->
+<section class="inscritionemploye" *ngIf="showAuthEmploye">
+    <div class="inscription">
+    <div class="form signup">
+      <header class="text-white mb-2">Incrivez-vous</header>
+      <form action="#">
+        <div class="row row-gap-4 column-gap-4">
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="prenom" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="nom" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="Email" required />
+            </div>
+            <div class="col-md-5">
+                <input type="tel" id="typePhone" placeholder="Telephone"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="password" placeholder="Mot de pass" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="password" placeholder="Confirmer mot de pass" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" placeholder="Adresse" required />
+            </div>
+            <div class="col-md-8">
+                <input class="form-control" type="file" > 
+            <button  class="btn "> Telecharger </button>
+            </div>
+            <input class=" col-6" type="submit" value="Signup" />
+    </div>
+    
+      </form>
+    </div>
+    <div class="footerform">
+        <header><a href=""  class="text-decoration-none" (click)="afficherSection('connexionuser', $event)"> Se connecter</a></header>
+    </div>
+</div>
+</section>
+<!-- section authentification employé fin -->
+
+
+
+<!-- section presentation connexion debut -->
+<section class="presentationlogin" *ngIf="showPresentation">
+    <div class="container">
+    <div class="presentationlogincontainer">
+        <div class="container">
+            <h4 class="text-center text-white">Vous êtes un employeur ou a la recherche d’un emploi <br>
+                Rejoignez nous</h4>
+            <div class="row column-gap-0 mt-5">
+                <div class="item col-lg-5 ">
+                    <h6 class="text-center"> Je suis propriétaire à la recherche d’un employer</h6>
+                    <a href="" class="d-flex justify-content-center mt-4" (click)="afficherSection('inscriptionemployeur', $event)"> <span class="lnr lnr-pointer-up me-3"></span> Cliquez ici</a>
+                </div>
+                <div class="item col-lg-5 " >
+                    <h6 class="text-center"> Je suis un professionnel  à la recherche d’un emploi</h6>
+                    <a href=""  class="d-flex justify-content-center mt-4" (click)="afficherSection('inscritionemploye', $event)"> <span class="lnr lnr-pointer-up me-3"></span> Cliquez ici</a>
+                </div>
+            
+                
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+
+                <a href="" class="btn btn-light"> Créer un compte</a>
+            </div>
+            <h5 class="text-center text-white mt-4">Vous avez déjà un compte? <a href="" class="text-white fw-bold text-decoration-none">Connectez-vous</a></h5>
+        </div>
+    </div>
+</div>
+</section>
+<!-- section presentation connexion fin -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="form lo>
+  <header class="text-">Login</header>
+  <form action="#">
+    <input type="text" placeholder="Email address" required />
+    <input type="password" placeholder="Password" required />
+    <a href="#">Forgot password?</a>
+    <input type="submit" value="Login" />
+  </form>
+</div> -->
+<!-- <script>
+  const wrapper = document.querySelector(".wrapper"),
+    signupHeader = document.querySelector(".signup header"),
+    loginHeader = document.querySelector(".login header");
+  loginHeader.addEventListener("click", () => {
+    wrapper.classList.add("active");
+  });
+  signupHeader.addEventListener("click", () => {
+    wrapper.classList.remove("active");
+  });
+</script> -->
+  

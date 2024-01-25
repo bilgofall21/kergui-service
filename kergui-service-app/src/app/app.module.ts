@@ -17,6 +17,8 @@ import { BlueFontDirective } from './directive/blue-font.directive';
 import { GreenFontDirective } from './directive/green-font.directive';
 import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admin.component';
 import { FonctionnementComponent } from './composant/fonctionnement/fonctionnement.component';
+import { LoginComponent } from './composant/auth/login/login.component';
+import { AnnonceComponent } from './composant/annonce/annonce.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { FonctionnementComponent } from './composant/fonctionnement/fonctionneme
     GreenFontDirective,
     DashbordAdminComponent,
     FonctionnementComponent,
+    LoginComponent,
+    AnnonceComponent,
    
   ],
   imports: [

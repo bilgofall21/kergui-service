@@ -13,21 +13,21 @@
     <!-- section baniere fin -->
     <!-- section carte service debut -->
 
-    <section class="carteservice mt-3 mb-4">
+    <section class="carteservice mt-5">
         <div class="carteservicecontainer">
             <div class="container">
-                <div class="title text-center mb-3">
-                    <h4 class="fw-bold"> Comment fonctionne Ker gui service</h4>
-                    <hr class="border-3 opacity-100">
-                  </div>
-                  <div class="searchbar mb-5">
-                    <div class="d-flex justify-content-end">
-                        <div class="input-group w-50 ">
-                            <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" />
-                            <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
-                          </div>
+              <div class="searchbar mb-5">
+                <div class="d-flex justify-content-end">
+                    <div class="input-group w-50 ">
+                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" />
+                        <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+                      </div>
 
-                    </div>
+                </div>
+              </div>
+                <div class="title text-center mb-3">
+                    <h4 class="fw-bold"> Les service</h4>
+                    <hr class="border-3 opacity-100">
                   </div>
                 <div class="row row-gap-4">
                     <div class="col-lg-3 col-sm-6 ">
@@ -40,7 +40,7 @@
                           </div>
                           <div class="card-body">
                             <p class="card-text">Des femmes de ménage expérimenté et dévouées à leur travail, pour votre satisfaction</p>
-                            <a href="#" class=" text-decoration-none me-4 d-flex justify-content-center">  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
+                            <a  class=" text-decoration-none me-4 d-flex justify-content-center" [routerLink]="['/detail-service']">  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
                           </div>
                           <div class="cardfooter"></div>
                         </div>
