@@ -8,6 +8,7 @@ import { LoginComponent } from './composant/auth/login/login.component';
 import { AnnonceComponent } from './composant/annonce/annonce.component';
 import { DetailServiceComponent } from './composant/detail-service/detail-service.component';
 import { DetailEmployerComponent } from './composant/detail-employer/detail-employer.component';
+import { PageContactComponent } from './composant/page-contact/page-contact.component';
 
 const routes: Routes = [
   {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path : 'accueil' , component : AccueilComponent,},
   {path : 'a-propos' , component : AProposComponent},
   {path : 'annonce', component : AnnonceComponent,},
+  {path : 'page-contact', component : PageContactComponent,},
   {path : 'login', component : LoginComponent,},
  
 ];

@@ -1,123 +1,48 @@
-<!-- <!DOCTYPE html> -->
-<!-- Coding By CodingNepal - codingnepalweb.com -->
-<!-- <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Login & Signup Form</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body> -->
-    <section class="wrapper">
-        <div class="form signup">
-          <header>Signup</header>
-          <form action="#">
-            <input type="text" placeholder="Full name" required />
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
-            <div class="checkbox">
-              <input type="checkbox" id="signupCheck" />
-              <label for="signupCheck">I accept all terms & conditions</label>
+<app-header></app-header>
+
+<div class="contactcontainer">
+   <div class="container">
+      <div class="row">
+         <div class="col-8 w-50 text-center" id="contactinfo">
+            <h4>Nous Contacter</h4>
+            <form action="">
+               <div class="form-group col-8 mt-4">
+                  <input type="text" class="form-control p-2" placeholder="Nom">
+               </div>
+               <div class="form-group col-8 mt-4">
+                  <input type="email" class="form-control p-2" placeholder="Prénom">
+               </div>
+               
+<div class="form-group col-8 mt-4">
+  <textarea class="form-control p-4" id="id"></textarea>
+</div>              
+            </form>
+         </div>
+         <div class="col-4 text-center" id="contactcoordonnee">
+            <h6><i class="bi bi-phone-fill"></i> Appelez-nous</h6>
+            <p>+221778315292</p>
+            <h6><i class="bi bi-geo-alt-fill"></i> Adresse</h6>
+            <p>Rufique, Dakar</p>
+            <div>
+               <h6>Réseaux sociaux</h6>
+               <div class="d-flex justify-content-center ">
+                  <div class="iconecontact d-flex justify-content-center align-items-center">
+                     <i class="bi bi-instagram" style="font-size: 20px; color: white;"></i>
+                  </div>
+                  <div class="iconecontact d-flex justify-content-center align-items-center">
+                     <i class="bi bi-facebook" style="font-size: 20px; color: white;"></i>
+                  </div>
+                  <div class="iconecontact d-flex justify-content-center align-items-center">
+                     <i class="bi bi-twitter-x" style="font-size: 20px; color: white;"></i>
+                  </div>
+                  <div class="iconecontact d-flex justify-content-center align-items-center">
+                     <i class="bi bi-youtube"  style="font-size: 20px; color: white;"></i>
+                  </div>
+               </div>
             </div>
-            <input type="submit" value="Signup" />
-          </form>
-          
-        </div>
-  
-        <div class="form login">
-          <header>Login</header>
-          <form action="#">
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
-            <a href="#">Forgot password?</a>
-            <input type="submit" value="Login" />
-          </form>
-        </div>
-  
-        <script>
-          const wrapper = document.querySelector(".wrapper"),
-            signupHeader = document.querySelector(".signup header"),
-            loginHeader = document.querySelector(".login header");
-  
-          loginHeader.addEventListener("click", () => {
-            wrapper.classList.add("active");
-          });
-          signupHeader.addEventListener("click", () => {
-            wrapper.classList.remove("active");
-          });
-        </script>
-      </section>
-    <!-- </body>
-  </html> -->
-  
-  
-  
-  
-        <div class="container">
-           <div class="card">
-              <div class="img">
-                 <img src="#">
-              </div>
-              <div class="top-text">
-                 <div class="name">
-                    Annie Lea
-                 </div>
-                 <p>
-                    Apps Developer
-                 </p>
-              </div>
-              <div class="bottom-text">
-                 <div class="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem quaerat iusto adipisci reprehenderit quasi cum perspiciatis, minima reiciendis magni quam!
-                 </div>
-                 <div class="btn">
-                    <a href="#">Read more</a>
-                 </div>
-              </div>
-           </div>
-           <div class="card">
-              <div class="img">
-                 <img src="#">
-              </div>
-              <div class="top-text">
-                 <div class="name">
-                    Eliana Maia
-                 </div>
-                 <p>
-                    Website Developer
-                 </p>
-              </div>
-              <div class="bottom-text">
-                 <div class="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem quaerat iusto adipisci reprehenderit quasi cum perspiciatis, minima reiciendis magni quam!
-                 </div>
-                 <div class="btn">
-                    <a href="#">Read more</a>
-                 </div>
-              </div>
-           </div>
-           <div class="card">
-              <div class="img">
-                 <img src="#">
-              </div>
-              <div class="top-text">
-                 <div class="name">
-                    Harley Briana
-                 </div>
-                 <p>
-                    Graphic Developer
-                 </p>
-              </div>
-              <div class="bottom-text">
-                 <div class="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem quaerat iusto adipisci reprehenderit quasi cum perspiciatis, minima reiciendis magni quam!
-                 </div>
-                 <div class="btn">
-                    <a href="#">Read more</a>
-                 </div>
-              </div>
-           </div>
-        </div>
-     <!-- </body>
-  </html> -->
+         </div>
+      </div>
+   </div>
+</div>
+
+<app-footer></app-footer>

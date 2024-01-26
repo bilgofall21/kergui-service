@@ -24,7 +24,7 @@
                     <hr class="border-3 opacity-100">
                   </div>
                   <div class="row row-gap-3  mt-4">
-                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of employes">
+                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of  getArticlesPage()">
                       <div class="card shadow-lg" style="width: 19rem;">
                         <div class="" >
                           <img  [src]="element.imageUrl" class="card-img-top " alt="..." style="height: 15rem;">
@@ -61,6 +61,19 @@
         </div>
     </section>
 </div>
+
+<!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5" >
+      <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+        Précédent
+      </button>
+      <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+        {{ page }}
+      </button>
+      <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+        Suivant
+      </button>
+  </div>
 
 
 <app-footer></app-footer>

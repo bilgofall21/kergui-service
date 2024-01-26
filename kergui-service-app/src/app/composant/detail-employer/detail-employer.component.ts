@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class DetailEmployerComponent {
     constructor(){}
-
+// variable por pagination
+// Attribut pour la pagination
+articlesParPage = 3; // Nombre d'articles par page
+pageActuelle = 1; // Page actuelle
    
 }
