@@ -15,7 +15,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  color: #252930;
+  color:var(--kergui-blue);
   font-weight: 600;
 }
 a {
@@ -191,8 +191,8 @@ button.close:focus {
   position: relative;
 }
 .app-search-form {
-  position: relative;
-  max-width: 600px;
+  /* position: relative;
+  max-width: 600px; */
 }
 .app-search-form .search-input {
   font-size: 0.875rem;
@@ -397,7 +397,7 @@ button.close:focus {
   left: 0;
   top: 0;
   font-size: 15px;
-  border-right: 0px solid #0e43ae;
+  /* border-right: 0px solid #0e43ae; */
 }
 .app-sidepanel .panel-drop {
   display: none;
@@ -405,7 +405,7 @@ button.close:focus {
 .app-sidepanel .sidepanel-inner {
   position: relative;
   z-index: 10;
-  background: white;
+  background: var(--kergui-blue);
   box-shadow: #0036687a 4px 8px 15px;
   width: 250px;
   height: 100%;
@@ -438,22 +438,16 @@ button.close:focus {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
 }
-.app-branding {
+.logo-dashboard{
   height: 60px;
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
   padding-left: 1rem;
   margin-bottom: 1rem;
 }
-.app-branding .logo-dashboard {
- 
-  height: 60px;
+.logo-dashboard img{
+  height: 90px;
 }
-.app-branding .logo-text {
-  color: #252930;
-  font-size: 1.25rem;
-  font-weight: 600;
-  vertical-align: middle;
-}
+
 .app-nav {
   color: #5d6778;
   display: block;
@@ -466,12 +460,14 @@ button.close:focus {
 .app-nav .nav-item {
   display: block;
   color: #5d6778;
-  background: white;
+  background: var(--kergui-blue);
+  margin-top: 12px;
+  font-size: 18px;
 }
 .app-nav .nav-link {
   display: block;
   padding: 0.875rem 1rem;
-  color: var(--kergui-blue);
+  color: white;
   font-weight: bold;
   position: relative;
   display: block;
@@ -479,15 +475,15 @@ button.close:focus {
   /* border-left: 8px solid var(--kergui-blue); */
 }
 .app-nav .nav-link.active {
-  background-color: var(--kergui-blue);
+  background-color: var(--kergui-green);
   color: white;
-  background: var;
-  border-left: 3px solid var(--kergui-green);
+  /* border-left: 3px solid var(--kergui-green); */
   font-weight: bold;
 }
 
 .app-nav .nav-link:hover {
-  border-left: 4px solid var(--kergui-blue);
+  border-left: 4px solid var(--kergui-green);
+  color: var(--kergui-green);
 }
 .app-nav .nav-icon {
   position: absolute;

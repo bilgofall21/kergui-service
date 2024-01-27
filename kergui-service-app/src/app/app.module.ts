@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './composant/accueil/accueil.component';
@@ -20,6 +21,7 @@ import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admi
 import { FonctionnementComponent } from './composant/fonctionnement/fonctionnement.component';
 import { LoginComponent } from './composant/auth/login/login.component';
 import { AnnonceComponent } from './composant/annonce/annonce.component';
+import { ServiceDashboardComponent } from './composant/section-dash-admin/service-dashboard/service-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { AnnonceComponent } from './composant/annonce/annonce.component';
     FonctionnementComponent,
     LoginComponent,
     AnnonceComponent,
+    ServiceDashboardComponent,
    
   ],
   imports: [

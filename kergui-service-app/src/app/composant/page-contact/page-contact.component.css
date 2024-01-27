@@ -1,25 +1,127 @@
-.contactcontainer{
-  margin-top: 150px;
-  
+.contactcontainer {
+  margin-top: 100px;
+  margin-left: 220px;
+
 }
-.contactcontainer #contactinfo{
- background-color: var(--kergui-blue);
-  height: 450px;
+.contactcontainer #contactall{
+  margin-bottom: 150px;
+
+}
+
+.contactcontainer #contactinfo {
+  background-color: var(--kergui-blue);
+  height: 540px;
   border-radius: 10px;
   padding-top: 50px;
+  width: 50%;
 }
-.contactcontainer #contactinfo .form-group{
-margin: 0 auto;
+
+.contactcontainer #contactinfo h4{
+font-size: 30px;
+color: white;
 }
-.contactcontainer #contactcoordonnee{
+
+.contactcontainer #contactinfo .form-group {
+  margin: 0 auto;
+}
+.contactcontainer #contactinfo .boutoncontact{
+ padding: 10px 20px;
+ width: 25%;
+ background-color: white;
+ font-size: 18px;
+ color: var(--kergui-blue);
+ font-weight: bold;
+ margin-top: 20px;
+}
+
+.contactcontainer #contactcoordonnee {
   border-radius: 10px;
   background: #FFF;
   height: 450px;
-  box-shadow: 9px -4px 0px 0px #3A6A7E, 9px 4px 4px 0px #3A6A7E, 0px 4px 4px 0px #3A6A7E;
+  box-shadow: 4px -4px 0px 0px #3A6A7E, 4px 4px 4px 0px #3A6A7E, 0px 4px 4px 0px #3A6A7E;
+  padding: 80px;
+  position: absolute;
+  top: 280px;
+  left: 820px;
 }
-.iconecontact{
+.contactcontainer #contactcoordonnee h6{
+ font-size: 20px;
+}
+.contactcontainer #contactcoordonnee p{
+ font-size: 16px;
+}
+.contactcontainer #contactcoordonnee i{
+ font-size: 26px;
+ color: var(--kergui-green);
+}
+
+.iconecontact {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   background-color: var(--kergui-blue);
+  margin-left: 20px;
 }
+
+
+/* 
+
+media query*/
+@media (max-width:1390px){
+  .contactcontainer #contactcoordonnee {
+
+    padding: 80px;
+    position: absolute;
+    top: 280px;
+    left: 760px;
+  }
+      
+  }
+@media (max-width:1350px){
+  .contactcontainer #contactcoordonnee {
+
+    padding: 80px;
+    position: absolute;
+    top: 280px;
+    left: 720px;
+  }
+      
+  }
+@media (max-width:1260px){
+  .contactcontainer #contactcoordonnee {
+
+    padding: 80px;
+    position: absolute;
+    top: 280px;
+    left: 680px;
+  }
+      
+  }
+@media (max-width:1160px){
+  .contactcontainer #contactcoordonnee {
+
+    padding: 80px;
+    position: absolute;
+    top: 280px;
+    left: 640px;
+  }
+      
+  }
+@media (max-width:960px){
+  .contactcontainer #contactcoordonnee {
+    position: static;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%; */
+    width: 80%;
+    margin-top: 0px;
+    margin: 30px auto;
+  }
+  .contactcontainer #contactinfo {
+  width: 80%;
+  margin: 0 auto;
+
+  }
+  
+      
+  }

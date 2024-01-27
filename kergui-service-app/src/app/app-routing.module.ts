@@ -9,6 +9,9 @@ import { AnnonceComponent } from './composant/annonce/annonce.component';
 import { DetailServiceComponent } from './composant/detail-service/detail-service.component';
 import { DetailEmployerComponent } from './composant/detail-employer/detail-employer.component';
 import { PageContactComponent } from './composant/page-contact/page-contact.component';
+import { ServiceDashboardComponent } from './composant/section-dash-admin/service-dashboard/service-dashboard.component';
+import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admin.component';
+
 
 const routes: Routes = [
   {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
@@ -21,7 +24,9 @@ const routes: Routes = [
   {path : 'annonce', component : AnnonceComponent,},
   {path : 'page-contact', component : PageContactComponent,},
   {path : 'login', component : LoginComponent,},
- 
+  {path : 'service-dashboard', component : ServiceDashboardComponent,},
+  // {path : 'dashbord-admin',component : DashbordAdminComponent,},
+  { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)},
 ];
 
 @NgModule({
