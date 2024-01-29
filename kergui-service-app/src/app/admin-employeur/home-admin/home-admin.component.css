@@ -1,18 +1,5 @@
-/* style bouton action */
 
-.iconegestion {
-    /* margin: 0 auto; */
-   
-}
-.iconegestion a{
-    text-decoration: none;
-    color: var(--kergui-blue);
-    font-weight: bold;
-    font-size: 18px;
-}
-.iconegestion a:hover{
-   color: var(--kergui-green);
-}
+
 
 
 
@@ -816,15 +803,10 @@ body {
     font-size: 0.875rem;
   }
   .app-card-orders-table .table {
-    font-size: 1rem;
-  }
- 
-  .app-card-orders-table .table .cellhead {
-    background-color: var(--kergui-blue);
-    color: white;
+    font-size: 0.875rem;
   }
   .app-card-orders-table .table .cell {
-    border-color: var(--kergui-blue);
+    border-color: #e7e9ed;
     color: #5d6778;
     vertical-align: middle;
   }
@@ -849,7 +831,6 @@ body {
     white-space: nowrap;
   }
   .app-nav-tabs {
-  
     background: #fff;
     padding: 0;
   }
@@ -859,16 +840,15 @@ body {
     font-weight: bold;
   }
   .app-nav-tabs .nav-link.active {
-    color: white;
-    
-    background-color: var(--kergui-blue);
+    color: #15a362;
+    border-bottom: 2px solid #15a362;
   }
   .app-nav-tabs .nav-link.active:hover {
     background: none;
   }
   .app-nav-tabs .nav-link:hover {
     background: #edfdf6;
-    color: var(--kergui-blue);
+    color: #15a362;
   }
   .app-pagination .pagination {
     font-size: 0.875rem;

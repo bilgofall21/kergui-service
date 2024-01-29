@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+
+  constructor( private authentification : AuthService
+    , private router : Router     ){}
+  ngOnInit(): void {
+  }
 
   // variable pour cacher ou afficherles sections
   showConnexion = true;
@@ -22,19 +30,76 @@ export class LoginComponent {
     this.showPresentation= view === 'presentationlogin';
   }
 
+// variable pour recuperer input
 
-  imageUrl: string | ArrayBuffer = 'https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg';
+formData = {
+  email: '',
+  password: '',
+};
+userfoundid = '';
 
-  onFileSelected(event: { target: any; }): void {
-    const input = event.target;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
 
-      reader.onload = () => {
-        // this.imageUrl = reader.result;
-      };
+submitFunction(event: Event): void {
+  event.preventDefault();
 
-      reader.readAsDataURL(input.files[0]);
-    }
+  if (this.formData.email !== '' && this.formData.password !== '') {
+    // this.affichermessage('error', 'Oops', 'Login ou Mot de passe Incorrecte');
+    // Utilisez le service d'authentification pour vérifier les informations d'identification
+    // console.log("this.formData");
+    // console.log(this.formData);
+
+    const loginData = {
+      email: this.formData.email,
+      password: this.formData.password
+    };
+
+    this.authentification.loginUser(loginData).subscribe(
+      (user: any) => {
+        console.log("wouy", user);
+
+        // this.userfoundid = user.id;
+        // let useretat = user.role;
+
+        if (user.token) {
+          this.affichermessage('success', 'Bienvenu', user.email);
+          // alert(this.userfoundid);
+          if (user.role == "admin" && user.statut  == "activer") {
+            this.router.navigate(['/admin', this.userfoundid]);
+
+          this.authentification.setUserId(user.id);
+          }
+          else if (user.role == "candidat" && user.statut  == "activer") {
+            this.router.navigate(['/admin-candidat', this.userfoundid]);
+          }
+          else if (user.role_id == "employeur" && user.statut  == "activer") {
+            this.router.navigate(['/admin-employeur', this.userfoundid]);
+          }
+          else {
+            this.affichermessage('error', 'Ce compte a été desactive', 'error');
+          }
+        } else {
+          this.affichermessage('error', 'Oops', 'Login ou Mot de passe Incorrecte');
+        }
+      },
+      (error: any) => {
+        console.error('Erreur lors de la connexion :', error);
+        this.affichermessage('error', 'Oops', 'Une erreur s\'est produite lors de la connexion');
+      }
+    );
+
+  } else {
+    this.affichermessage('error', 'Oops', ' Les Informations que vous avez saisies sont incorrectes!');
   }
+}
+
+affichermessage(icone: any, message: string,user:string) {
+  Swal.fire({
+      position: 'center',
+      icon: icone,
+      title: message +"" +user,
+      showConfirmButton: true,
+      // timer: 1500
+  })
+}
+
 }

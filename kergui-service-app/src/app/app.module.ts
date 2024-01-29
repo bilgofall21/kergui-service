@@ -22,6 +22,10 @@ import { FonctionnementComponent } from './composant/fonctionnement/fonctionneme
 import { LoginComponent } from './composant/auth/login/login.component';
 import { AnnonceComponent } from './composant/annonce/annonce.component';
 import { ServiceDashboardComponent } from './composant/section-dash-admin/service-dashboard/service-dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -48,7 +52,10 @@ import { ServiceDashboardComponent } from './composant/section-dash-admin/servic
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    HttpClientModule,
+    FormsModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

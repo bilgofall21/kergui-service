@@ -8,15 +8,15 @@
     <div class="connexion">
     <div class="form signup">
       <header class="text-white mb-2">Connectez-vous</header>
-      <form action="#">
+      <form action="#" (ngSubmit)="submitFunction($event)" >
         <div class="row row-gap-4">
       
             <div class="">
-                <input class="col-12" type="text" placeholder="Email" required />
+                <input class="col-12" type="email" placeholder="Email" name="email" required [(ngModel)]="formData.email" />
             </div>
            
             <div class="">
-                <input class=" col-12" type="password" placeholder="Mot de pass" required />
+                <input class=" col-12" type="password" placeholder="Mot de pass" name="password" required  [(ngModel)]="formData.password" />
             </div>
             <div>
                 <p class="text-white">mot de pass oublié ?</p>
