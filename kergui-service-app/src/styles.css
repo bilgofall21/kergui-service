@@ -13,6 +13,12 @@ body {
   --kergui-bluelight: #ACE7D2;
 }
 
+.admingestioncontainer {
+  margin: 0 auto;
+  margin-left: 18%;
+  width: 80%;
+}
+
 
 .gotopbtn {
   position: fixed;

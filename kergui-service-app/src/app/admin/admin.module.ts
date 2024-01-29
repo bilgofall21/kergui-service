@@ -9,6 +9,7 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ServiceAdminComponent } from './service-admin/service-admin.component';
 import { UtilisateurAdminComponent } from './utilisateur-admin/utilisateur-admin.component';
 import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
+import { PublicationAdminComponent } from './publication-admin/publication-admin.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
     HomeAdminComponent,
     ServiceAdminComponent,
     UtilisateurAdminComponent,
-    ProfilAdminComponent
+    ProfilAdminComponent,
+    PublicationAdminComponent
   ],
   imports: [
     CommonModule,

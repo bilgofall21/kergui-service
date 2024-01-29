@@ -25,6 +25,7 @@ const routes: Routes = [
   {path : 'page-contact', component : PageContactComponent,},
   {path : 'login', component : LoginComponent,},
   {path : 'service-dashboard', component : ServiceDashboardComponent,},
+  
   // {path : 'dashbord-admin',component : DashbordAdminComponent,},
   { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)},
 ];
