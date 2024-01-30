@@ -57,21 +57,21 @@ submitFunction(event: Event): void {
       (user: any) => {
         console.log("wouy", user);
 
-        // this.userfoundid = user.id;
+        this.userfoundid = user.data.id;
         // let useretat = user.role;
 
         if (user.token) {
-          this.affichermessage('success', 'Bienvenu', user.email);
+          this.affichermessage('success', 'Bienvenu', user.data.prenom);
           // alert(this.userfoundid);
-          if (user.role == "admin" && user.statut  == "activer") {
+          if (user.data.role == "admin" && user.data.statut  == "activer") {
             this.router.navigate(['/admin', this.userfoundid]);
 
-          this.authentification.setUserId(user.id);
+          this.authentification.setUserId(user.data.id);
           }
-          else if (user.role == "candidat" && user.statut  == "activer") {
+          else if (user.data.role == "candidat" && user.data.statut  == "activer") {
             this.router.navigate(['/admin-candidat', this.userfoundid]);
           }
-          else if (user.role_id == "employeur" && user.statut  == "activer") {
+          else if (user.data.role == "employeur" && user.data.statut  == "activer") {
             this.router.navigate(['/admin-employeur', this.userfoundid]);
           }
           else {

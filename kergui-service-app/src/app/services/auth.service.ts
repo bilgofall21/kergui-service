@@ -6,8 +6,9 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class AuthService {
+  userID : string ='';
   setUserId(id: string) {
-    throw new Error('Method not implemented.');
+   this.userID = id;
   }
 
   constructor( private http : HttpClient) { }
