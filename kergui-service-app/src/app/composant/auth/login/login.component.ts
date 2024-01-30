@@ -43,11 +43,7 @@ submitFunction(event: Event): void {
   event.preventDefault();
 
   if (this.formData.email !== '' && this.formData.password !== '') {
-    // this.affichermessage('error', 'Oops', 'Login ou Mot de passe Incorrecte');
-    // Utilisez le service d'authentification pour vérifier les informations d'identification
-    // console.log("this.formData");
-    // console.log(this.formData);
-
+   
     const loginData = {
       email: this.formData.email,
       password: this.formData.password
@@ -64,15 +60,36 @@ submitFunction(event: Event): void {
           this.affichermessage('success', 'Bienvenu', user.data.prenom);
           // alert(this.userfoundid);
           if (user.data.role == "admin" && user.data.statut  == "activer") {
-            this.router.navigate(['/admin', this.userfoundid]);
+            // stocker notre les info de la requete dans notre localstorage
+            localStorage.setItem('userOnline', JSON.stringify(user));
+
+            //recuperer le userConnecter
+            const userOnline = JSON.parse(
+              localStorage.getItem('userOnline') || ''
+            );
+            this.router.navigate(['/admin']);
 
           this.authentification.setUserId(user.data.id);
           }
           else if (user.data.role == "candidat" && user.data.statut  == "activer") {
-            this.router.navigate(['/admin-candidat', this.userfoundid]);
+            // stocker notre les info de la requete dans notre localstorage
+            localStorage.setItem('userOnline', JSON.stringify(user));
+
+            //recuperer le userConnecter
+            const userOnline = JSON.parse(
+              localStorage.getItem('userOnline') || ''
+            );
+            this.router.navigate(['/admin-candidat']);
           }
           else if (user.data.role == "employeur" && user.data.statut  == "activer") {
-            this.router.navigate(['/admin-employeur', this.userfoundid]);
+            // stocker notre les info de la requete dans notre localstorage
+            localStorage.setItem('userOnline', JSON.stringify(user));
+
+            //recuperer le userConnecter
+            const userOnline = JSON.parse(
+              localStorage.getItem('userOnline') || ''
+            );
+            this.router.navigate(['/admin-employeur']);
           }
           else {
             this.affichermessage('error', 'Ce compte a été desactive', 'error');

@@ -12,8 +12,14 @@ export class AuthService {
   }
 
   constructor( private http : HttpClient) { }
+// methode pour login
   loginUser(user : any) : Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/login',user);
-   
+  }
+
+   // methode pour s'inscrire
+
+   registerUser(registrationData: any): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/login', registrationData);
   }
 }

@@ -4,7 +4,7 @@ import { MainComponent } from '../admin/main/main.component';
 
 const routes: Routes = [
   {path : '', component : MainComponent, children :[
-    {path : '', redirectTo : 'home-admin', pathMatch : 'full',},
+    // {path : '', redirectTo : 'home-admin', pathMatch : 'full',},
     
   ]}
 ];

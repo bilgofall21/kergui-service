@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 import { AdminRoutingModule } from './admin-routing.module';
 import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -10,6 +11,7 @@ import { ServiceAdminComponent } from './service-admin/service-admin.component';
 import { UtilisateurAdminComponent } from './utilisateur-admin/utilisateur-admin.component';
 import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
 import { PublicationAdminComponent } from './publication-admin/publication-admin.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { PublicationAdminComponent } from './publication-admin/publication-admin
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

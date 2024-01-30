@@ -8,7 +8,7 @@ export class User {
     presentation!:string;
     langueParler!:string;
     civilite!:string;
-    profession_id:number;
+    // profession_id:number;
     experienceProf!:string;
     dateNaissance!:Date;
     lieu!:string;

@@ -22,8 +22,10 @@ import { FonctionnementComponent } from './composant/fonctionnement/fonctionneme
 import { LoginComponent } from './composant/auth/login/login.component';
 import { AnnonceComponent } from './composant/annonce/annonce.component';
 import { ServiceDashboardComponent } from './composant/section-dash-admin/service-dashboard/service-dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
+import { AuthInterceptor } from './interceptors/intercepteur';
 
 
 
@@ -57,7 +59,14 @@ import { FormsModule } from '@angular/forms';
     FormsModule
    
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

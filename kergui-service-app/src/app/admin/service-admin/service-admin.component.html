@@ -4,16 +4,16 @@
     </div>
     <h4 class="mt-4">Listes des services</h4>
     <div class="row mt-4">
-        <div class="col-lg-3 col-sm-6 ">
-          <div class="card shadow-lg" style="width: 17rem;">
+        <div class="col-lg-3 col-sm-6 " *ngFor=" let element of dataProfession.data ">
+          <div class="card shadow-lg" style="width: 17rem;" >
             <div>
               <img  src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8=" class="card-img-top" alt="..." style="height: 12rem;">
               <div class="titleService">
-                <h5 class="text-center mt-2">Femme de ménage</h5>
+                <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
               </div>
             </div>
             <div class="card-body">
-              <p class="card-text">Des femmes de ménage expérimenté et dévouées à leur travail, pour votre satisfaction dans la maison</p>
+              <p class="card-text"> {{element.description}} </p>
             </div>
             <div class="iconegestion d-flex justify-content-around w-50 ">
                 <a href=""><i class="bi bi-eye"></i></a>
@@ -23,63 +23,7 @@
             <div class="cardfooter"></div>
           </div>
         </div>
-        <div class="col-lg-3 col-sm-6 ">
-          <div class="card" style="width: 17rem;">
-            <div>
-              <img src="https://media.istockphoto.com/id/1356380219/photo/portrait-of-a-young-man-choosing-new-car-in-car-dealership.jpg?s=612x612&w=0&k=20&c=yfwZslUfEzk4YKB4hZiCy3w1L4IvdwbkSc7YmrrHYfE=" class="card-img-top img-fluid" alt="..." style="height: 12rem;">
-              <div class="titleService">
-                <h5 class="text- mt-2 mt-2">Chauffeur</h5>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">A la recherche de chauffeur cheuvroné et professionnel pour votre maison, travail ou votre  famille.</p>
-            </div>
-            <div class="iconegestion d-flex justify-content-around w-50 ">
-                <a href=""><i class="bi bi-eye"></i></a>
-                <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><span class="lnr lnr-pencil"></span></a>
-                <a href=""> <span class="lnr lnr-trash"></span></a>
-            </div>
-            <div class="cardfooter"></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6 ">
-          <div class="card" style="width: 17rem;">
-            <div>
-              <img src="https://media.istockphoto.com/id/1363750899/photo/security-guard-at-live-festivale-event.jpg?s=612x612&w=0&k=20&c=0v290Xyw-UohXmzgULhc-8U6cYxkJZseZ5Bcvl7le8A=" class="card-img-top" alt="..." style="height: 12rem;">
-              <div class="titleService">
-                <h5 class="text-center mt-2">Sécurité</h5>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Votre sécurité et bien être est leur sasser dosse , il veille jour et nuit sur votre maison et votre famille</p>
-            </div>
-            <div class="iconegestion d-flex justify-content-around w-50 ">
-                <a href=""  ><i class="bi bi-eye"></i></a>
-                <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><span class="lnr lnr-pencil"></span></a>
-                <a href=""> <span class="lnr lnr-trash"></span></a>
-            </div>
-            <div class="cardfooter"></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6 ">
-          <div class="card" style="width: 17rem;">
-            <div>
-              <img src="https://media.istockphoto.com/id/1433849478/photo/mother-and-baby-love.jpg?s=612x612&w=0&k=20&c=obSlXYluI87Gy9CLsw8PSDqdb3j7UduTOeUsKbRWHUs=" class="card-img-top" alt="..." style="height: 12rem;">
-              <div class="titleService">
-                <h5 class="text-center mt-2">Nounou</h5>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Pour prendre soins de vos enfants et vous permettre de vaquer à vos obligations en toute quiétude</p>
-            </div>
-            <div class="iconegestion d-flex justify-content-around w-50 ">
-                <a href=""><i class="bi bi-eye"></i></a>
-                <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><span class="lnr lnr-pencil"></span></a>
-                <a href=""> <span class="lnr lnr-trash"></span></a>
-            </div>
-            <div class="cardfooter"></div>
-          </div>
-        </div>
+        
         
        
       </div>
@@ -105,15 +49,15 @@
         <div class="modal-body  ">
             <form action="">
                 <div class="mb-3">
-                    <label for="profession" class="form-label">Profession</label>
-                    <input type="text" class="form-control" id="profession" placeholder="profession">
+                    <label for="nom_prof" class="form-label">Profession</label>
+                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof">
                   </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" placeholder="description ici" rows="4"></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
                   </div>
                   <div class="validajout d-flex justify-content-end">
-                    <a href=""> Ajouter</a>
+                    <button type="submit" (click)="ajouterPofession()"> Ajouter</button>
                     <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
                   </div>
             </form>
