@@ -47,29 +47,29 @@
         <div class="row row-gap-4 column-gap-2">
           
             <div class="col-md-5">
-                <input class="" type="text" placeholder="prenom" required />
+                <input class="" type="text" name="prenom" placeholder="prenom" required  [(ngModel)]="registreData.prenom" />
             </div>
             <div class="col-md-5">
-                <input class="" type="text" placeholder="nom" required />
+                <input class="" type="text" name="nom" placeholder="nom" required [(ngModel)]="registreData.nom" />
             </div>
             <div class="col-md-5">
-                <input class="" type="text" placeholder="Email" required />
+                <input class="" type="text" name="email" placeholder="Email" required [(ngModel)]="registreData.email" />
             </div>
             <div class="col-md-5">
-                <input type="tel" id="typePhone" placeholder="Telephone"  required />
+                <input type="tel" id="typePhone" name ="telephone" placeholder="Telephone" [(ngModel)]="registreData.telephone"  required />
             </div>
             <div class="col-md-5">
-                <input class="" type="password" placeholder="Mot de pass" required />
+                <input class="" type="password" name ="password" placeholder="Mot de pass" [(ngModel)]="registreData.password" required />
             </div>
             <div class="col-md-5">
-                <input class="" type="password" placeholder="Confirmer mot de pass" required />
+                <input class="" type="password" name="password_confirmation " placeholder="Confirmer mot de pass" [(ngModel)]="registreData.password_confirmation" required />
             </div>
             <div class="col-md-5">
-                <input class="" type="text" placeholder="Adresse" required />
+                <input class="" type="text" name="presentation" placeholder="Adresse" [(ngModel)]="registreData.lieu" required />
             </div>
             <div class="col-md-5">
-                <input class="form-control" type="file" > 
-            <button  class="btn btn-outline-light mt-2"> <span class="lnr lnr-upload"></span></button>
+                <input class="form-control" type="file" (change)="getFile($event)" > 
+            <button  class="btn btn-outline-light mt-2"> <span class="lnr lnr-upload"  ></span></button>
             </div>
             <!-- <div class="form-group mt-3">
                 <label class="mr-2">Upload your CV:</label>
@@ -78,7 +78,7 @@
             
             
             <div class="d-flex justify-content-center">
-                <input class="col-6 " type="submit" value="Signup" />
+                <input class="col-6 " type="submit" (click)="registerUser()" value="Signup" />
             </div>
     </div>
     

@@ -19,7 +19,9 @@ export class AuthService {
 
    // methode pour s'inscrire
 
-   registerUser(registrationData: any): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/login', registrationData);
+   registerUser(registrationEmployeur: any): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/regiserEmployeur', registrationEmployeur);
   }
+
+ 
 }

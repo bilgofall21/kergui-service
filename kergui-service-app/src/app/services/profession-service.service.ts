@@ -21,4 +21,28 @@ export class ProfessionServiceService {
   addProfession(profession : Profession) {
     return this.http.post<Profession[]>(`${url}/AjoutProfession`, profession);
   }
+
+  // Dans votre service Angular
+// getProfessionById(id: number): Observable<any> {
+//   return this.http.get<Profession[]>(`${url}/Lister/${id}`);
+// }
+
+getProfessionById(id: number): Observable<any> {
+  return this.http.get<any>(`${url}/getProfessionById/${id}`);
+}
+  
+
+  // methode pour modifier donnée ves l'api
+  editProfession(id : any, profession:any){
+    return this.http.put(`${url}/profession/edit/ ${id}`, profession)
+  }
+
+
+  // methode pour supprimer les profesion
+    deleteProfession(id: any) {
+      return this.http.delete(`${url}/profession/delete/ ${id}`)
+    }
+
+ 
+ 
 }

@@ -190,13 +190,7 @@ body {
     background-color: var(--kergui-blue);
     
   }
-  .app-header-inner {
-    /* position: relative; */
-  }
-  .app-search-form {
-    /* position: relative;
-    max-width: 600px; */
-  }
+ 
   .app-search-form .search-input {
     font-size: 0.875rem;
     border-radius: 0.25rem;

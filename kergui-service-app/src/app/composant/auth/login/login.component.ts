@@ -38,7 +38,7 @@ formData = {
 };
 userfoundid = '';
 
-
+// connexion methode
 submitFunction(event: Event): void {
   event.preventDefault();
 
@@ -118,5 +118,57 @@ affichermessage(icone: any, message: string,user:string) {
       // timer: 1500
   })
 }
+
+// connecion fin
+public image:any;
+
+registreData = {
+  nom : "",
+  prenom : "",
+  email : "",
+  telephone : "",
+  lieu : "",
+  password : "",
+  password_confirmation : "",
+  imageDeProfil : "",
+}
+
+// inscription debut
+
+registerUser(): void {
+  // Perform additional validation if needed
+  console.log("voir info rentrer", this.registreData);
+  let formData=new FormData();
+  formData.append('nom', this.registreData.nom);
+  formData.append('prenom', this.registreData.prenom);
+  formData.append('email', this.registreData.email);
+  formData.append('telephone', this.registreData.telephone);
+  formData.append('lieu', this.registreData.lieu);
+  formData.append('password', this.registreData.password);
+  formData.append('password_confirmation', this.registreData.password_confirmation);
+  formData.append('imageDeProfil', this.image);
+
+  
+  // Call the registration method in your authentication service
+  this.authentification.registerUser(formData).subscribe(
+    (response: any) => {
+      console.log(  "inscription successfully", response);
+      // Handle successful registration, e.g., show a success message or navigate to another page
+    },
+    (error: any) => {
+      console.error('Erreur durant inscription:', error);
+      // Handle registration error, e.g., show an error message
+    }
+  );
+
+}
+
+
+
+getFile(event: any) {
+  console.warn(event.target.files[0]);
+  this.image= event.target.files[0] as File ;
+}
+
 
 }

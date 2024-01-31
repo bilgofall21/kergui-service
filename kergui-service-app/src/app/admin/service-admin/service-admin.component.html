@@ -3,8 +3,8 @@
         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
     </div>
     <h4 class="mt-4">Listes des services</h4>
-    <div class="row mt-4">
-        <div class="col-lg-3 col-sm-6 " *ngFor=" let element of dataProfession.data ">
+    <div class="row mt-4 row-gap-4" >
+        <div class="col-lg-3 col-sm-6 " *ngFor=" let element of dataProfession.data " >
           <div class="card shadow-lg" style="width: 17rem;" >
             <div>
               <img  src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8=" class="card-img-top" alt="..." style="height: 12rem;">
@@ -17,8 +17,8 @@
             </div>
             <div class="iconegestion d-flex justify-content-around w-50 ">
                 <a href=""><i class="bi bi-eye"></i></a>
-                <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><span class="lnr lnr-pencil"></span></a>
-                <a href=""> <span class="lnr lnr-trash"></span></a>
+                <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)= "chargerProfession(element)" ><span class="lnr lnr-pencil"></span></a>
+                <button href=""  (click)="supprimerProfession(element.id)"> <span class="lnr lnr-trash"></span></button>
             </div>
             <div class="cardfooter"></div>
           </div>
@@ -57,7 +57,7 @@
                     <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
                   </div>
                   <div class="validajout d-flex justify-content-end">
-                    <button type="submit" (click)="ajouterPofession()"> Ajouter</button>
+                    <button (click)="ajouterPofession ()"> Ajouter</button>
                     <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
                   </div>
             </form>
@@ -79,18 +79,18 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body  ">
-            <form action="">
+            <form action="" (ngSubmit)="modifierProfession()">
                 <div class="mb-3">
-                    <label for="profession" class="form-label">Profession</label>
-                    <input type="text" class="form-control" id="profession" placeholder="profession">
+                    <label for="nom_prof" class="form-label">Profession</label>
+                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof" >
                   </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" placeholder="description ici" rows="4"></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
                   </div>
                   <div class="validajout d-flex justify-content-end">
-                    <a href=""> Modifier</a>
-                    <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
+                    <button href="" type="submit"> Modifier</button>
+                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</button>
                   </div>
             </form>
         </div>

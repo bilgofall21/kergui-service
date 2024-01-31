@@ -28,6 +28,7 @@ const routes: Routes = [
   
   // {path : 'dashbord-admin',component : DashbordAdminComponent,},
   { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)},
+  {path : 'admin-employeur', loadChildren:() =>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule)},
   // {path : 'admin-employeur', loadChildren :()=>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule)},
   // { path: 'admin-employeur',loadChildren:()=>import('./admin-employeur/admin.module').then(m=>m.AdminModule)},
 ];
