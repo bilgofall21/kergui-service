@@ -156,17 +156,20 @@ body {
     border-color: #15a362;
   }
   .dropdown-menu {
-    border-color: #e7e9ed;
+    border-color: var(--kergui-blue);
+   
   }
   .dropdown-menu .dropdown-item {
     padding: 0.5rem 1rem;
+    color: black;
   }
   .dropdown-menu .dropdown-item:hover {
     color: #252930;
   }
   .dropdown-menu .dropdown-item:hover,
   .dropdown-menu .dropdown-item:focus {
-    background: #fafbff;
+    background-color: var(--kergui-blue);
+    color: var(--kergui-green)
   }
   .dropdown-menu .dropdown-item.active,
   .dropdown-menu .dropdown-item:active {
@@ -231,10 +234,10 @@ body {
     margin-right: 0;
   }
   .app-utility-item > a {
-    color: #5d6778;
+    color: white;
   }
   .app-utility-item > a:hover {
-    color: #252930;
+    color: var(--kergui-green);
   }
   .app-utility-item .dropdown-toggle {
     position: relative;
@@ -246,10 +249,14 @@ body {
   .app-utility-item .dropdown-menu.show {
     top: 23px !important;
   }
+  .app-utility-item img {
+ border-radius: 50%;
+  }
   .app-utility-item .icon {
     font-size: 1.25rem;
     width: 24px;
     height: 24px;
+    
   }
   .app-utility-item .icon-badge {
     display: inline-block;
@@ -266,7 +273,7 @@ body {
     text-align: center;
   }
   .app-utility-item .icon-badge.icon-badge {
-    background: #ec776c;
+    background: #04398e;
     border: 2px solid #fff;
   }
   .app-notifications-dropdown .dropdown-menu {

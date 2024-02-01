@@ -69,7 +69,7 @@ ajouterPofession (): void{
   }
   )
 }
-  // methode pour charger element a modifier
+  // methode pour charger element a modifier dans formulaire
 
 chargerProfession( formation : any){
 

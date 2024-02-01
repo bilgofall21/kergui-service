@@ -22,10 +22,7 @@ export class ProfessionServiceService {
     return this.http.post<Profession[]>(`${url}/AjoutProfession`, profession);
   }
 
-  // Dans votre service Angular
-// getProfessionById(id: number): Observable<any> {
-//   return this.http.get<Profession[]>(`${url}/Lister/${id}`);
-// }
+ 
 
 getProfessionById(id: number): Observable<any> {
   return this.http.get<any>(`${url}/getProfessionById/${id}`);

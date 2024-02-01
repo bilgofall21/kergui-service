@@ -9,6 +9,7 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ProfilCandidatComponent } from './profil-candidat/profil-candidat.component';
 import { OffrePostulerComponent } from './offre-postuler/offre-postuler.component';
 import { TemoignageComponent } from './temoignage/temoignage.component';
+import { HomeAdminEmployeurComponent } from './home-admin-employeur/home-admin-employeur.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TemoignageComponent } from './temoignage/temoignage.component';
     HomeAdminComponent,
     ProfilCandidatComponent,
     OffrePostulerComponent,
-    TemoignageComponent
+    TemoignageComponent,
+    HomeAdminEmployeurComponent
   ],
   imports: [
     CommonModule,

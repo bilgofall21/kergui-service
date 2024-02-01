@@ -1,0 +1,118 @@
+.ajoutservicebutton a{
+    padding: 8px 20px;
+    background-color: var(--kergui-blue);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+h4{
+    color: var(--kergui-blue);
+}
+h5{
+    color: var(--kergui-green);
+    font-weight: bold;
+}
+.iconegestion {
+    margin: 0 auto;
+   
+}
+.iconegestion a{
+    text-decoration: none;
+    color: var(--kergui-blue);
+    font-weight: bold;
+    font-size: 18px;
+}
+.iconegestion a:hover{
+   color: var(--kergui-green);
+}
+
+
+/* style formulaire */
+.validajout button{
+    padding: 8px 25px;
+    background-color: var(--kergui-blue);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 20px;
+   
+}
+.modal-header{
+    background-color: var(--kergui-blue);
+}
+.modal-body label {
+    color: var(--kergui-blue);
+    font-weight: bold;
+    font-size: 18px;
+}
+.modal-body input{
+    height: 45px;
+}
+.modal-title{
+    /* color: var(--kergui-green); */
+   
+}
+.validajout a{
+   
+}
+
+/* style carte */
+ .card-img-top{
+    height: 14rem;
+  }
+  .cardcontain {
+   
+      margin-bottom: 30px;
+      box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
+      transition: .5s ease;
+      border-radius: 6px;
+      padding: 45px;
+      /* background-color: red; */
+  }
+  
+   .cardannonce{
+   position: relative;
+   
+  }
+   .cardcontain:hover{
+    position: relative;
+      transform: translateY(-5px);
+      box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.16);
+   
+  }
+  
+  
+  
+   .annoncetitle{
+  background-color: var(--kergui-blue);
+  padding: 2px 2px; 
+  width: 50%;
+  border-radius: 8px;
+  position: relative;
+  bottom: 200px;
+  left: 20px;
+  }
+  .annoncetitle h5{
+    font-size: 15px;
+  }
+  .overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 14rem;
+    background-color: #3a6a7e57;
+  }
+   a{
+    color: white;
+    text-decoration: none;
+    padding: 4px 2px;
+    background-color: var(--kergui-green);
+   
+  }
+  /* style annonce fin */
+
+

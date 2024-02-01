@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainEmployeurComponent } from './main-employeur/main-employeur.component';
+import { HomeAdminEmployeureComponent } from './home-admin-employeure/home-admin-employeure.component';
+import { PublicationEmployeurComponent } from './publication-employeur/publication-employeur.component';
 
 const routes: Routes = [
   {path : '', component : MainEmployeurComponent, children :[
-    {path : '', redirectTo : 'home-admin', pathMatch : 'full',},
+    {path : '', redirectTo : 'home-admin-employeure', pathMatch : 'full',},
+    {path : 'home-admin-employeure', component : HomeAdminEmployeureComponent,},
+    {path : 'publication-employeur', component : PublicationEmployeurComponent,},
     
   ]}
 ];

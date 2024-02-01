@@ -14,23 +14,36 @@ h5{
     color: var(--kergui-green);
     font-weight: bold;
 }
+.card-body p{
+    height: 6.5rem;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-y: auto;
+    /* white-space: nowrap; */
+    /* max-height: 80px; */
+}
 .iconegestion {
     margin: 0 auto;
    
 }
-.iconegestion a{
+.iconegestion a , .iconegestion button{
     text-decoration: none;
     color: var(--kergui-blue);
     font-weight: bold;
     font-size: 18px;
+    border: none;
 }
 .iconegestion a:hover{
+   color: var(--kergui-green);
+}
+.iconegestion button:hover{
    color: var(--kergui-green);
 }
 
 
 /* style formulaire */
-.validajout a{
+.validajout a , .validajout button{
     padding: 8px 25px;
     background-color: var(--kergui-blue);
     color: white;
