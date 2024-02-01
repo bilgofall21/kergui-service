@@ -1,7 +1,14 @@
 <div class="admingestioncontainer mt-5">
+
+  <div class="d-flex justify-content-between">
+
     <div class="ajoutservicebutton">
         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
     </div>
+    <div class="ajoutservicebutton">
+        <a routerLink="/admin-employeur/liste-publication-employeur" > Suivie des publications <span class="lnr lnr-paperclip ms-2"></span></a>
+    </div>
+  </div>
     <h4 class="mt-4">Listes des publications</h4>
 
         <div class="row mt-4">
@@ -20,14 +27,19 @@
                     <p class="card-text text-center">{{element.description}}</p>
                   </div>
                   <div class="cardfooter d-flex justify-content-around">
-                    <div>
+                    <!-- <div>
                       <i class="bi bi-person-circle"></i> {{element.user_id}}
-                    </div>
-                    <div>
+                    </div> -->
+                    <div class="mt-2">
                       <i class="bi bi-clock"></i>{{element.created_at}}
                     </div>
                   </div>
-                  <a href="" class="text-center text-decoration-none me-2 pb-2 mt-3"> publier <span class="lnr lnr-arrow-right"></span></a>
+                  <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-2">
+                    <a href=""><i class="bi bi-eye"></i></a>
+                    <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" ><span class="lnr lnr-pencil"></span></a>
+                    <button class="bg-white" > <span class="lnr lnr-trash"></span></button>
+                </div>
+                  <button href="" class="text-center validpubli text-decoration-none py-1  mt-3"> publier <span class="lnr lnr-arrow-right ms-2"></span></button>
                 </div>
 
               </div>

@@ -24,8 +24,20 @@ import { AnnonceComponent } from './composant/annonce/annonce.component';
 import { ServiceDashboardComponent } from './composant/section-dash-admin/service-dashboard/service-dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+// import { AuthInterceptor } from './interceptors/intercepteur';
 import { AuthService } from './services/auth.service';
-import { AuthInterceptor } from './interceptors/intercepteur';
+import { AuthInterceptor, TokenInterceptorProvider } from './interceptors/interceptor';
+
+// import { AuthInterceptor } from './interceptors/interceptor';
+
+// import { AuthInterceptor } from './interceptors/intercepteur';
+
+
+
+
+
+
+// import { AuthInterceptor } from './interceptors/intercepteur';
 
 
 
@@ -60,12 +72,7 @@ import { AuthInterceptor } from './interceptors/intercepteur';
    
   ],
   providers: [
-    AuthService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+   TokenInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

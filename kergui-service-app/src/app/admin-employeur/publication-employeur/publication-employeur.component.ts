@@ -9,22 +9,24 @@ import { PublicationService } from 'src/app/services/publication.service';
 export class PublicationEmployeurComponent implements OnInit {
   constructor( private publicationservice : PublicationService) { }
   ngOnInit(): void {
-   this.afficherPublication();
+  this.afficherPublication();
   }
 
-  // variabl l'id de l'utulisateur connecte depuis le local storage
-  connecterUserId = localStorage.getItem('connexionId');
 
-  // tableau pour stocker publication filtrer
-  
-
-
+  userId = localStorage.getItem('userId');
   dataPublication : any;
   afficherPublication () : void{
     this.publicationservice.geyAllpublication().subscribe((data)=>{
       this.dataPublication = data;
       console.log("Tous les publication", this.dataPublication);
+      // stocker les annones dans local storage
+      // localStorage.setItem('annonce', JSON.stringify(data))
     })
   }
+
+  // methode pour afficher seulement les annonce de luser connecter
+  OffreByUser (): void {
+    
+  } 
 
 }

@@ -8,6 +8,7 @@ import { HeaderEmployeurComponent } from './layout/header-employeur/header-emplo
 import { SidebarEmployeurComponent } from './layout/sidebar-employeur/sidebar-employeur.component';
 import { MainEmployeurComponent } from './main-employeur/main-employeur.component';
 import { HomeAdminEmployeureComponent } from './home-admin-employeure/home-admin-employeure.component';
+import { ListePublicationEmployeurComponent } from './liste-publication-employeur/liste-publication-employeur.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HomeAdminEmployeureComponent } from './home-admin-employeure/home-admin
     HeaderEmployeurComponent,
     SidebarEmployeurComponent,
     MainEmployeurComponent,
-    HomeAdminEmployeureComponent
+    HomeAdminEmployeureComponent,
+    ListePublicationEmployeurComponent
   ],
   imports: [
     CommonModule,

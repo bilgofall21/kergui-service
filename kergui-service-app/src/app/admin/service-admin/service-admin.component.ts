@@ -45,7 +45,9 @@ export class ServiceAdminComponent implements OnInit {
    
  // methode pour recuperer profession depuis api
  recupAllProfession():  void{
+  
    this.professionService.getProfession().subscribe(data =>{
+    console.log("all profession",data);
      this.dataProfession = data;
      console.log("all profession",this.dataProfession);
    })

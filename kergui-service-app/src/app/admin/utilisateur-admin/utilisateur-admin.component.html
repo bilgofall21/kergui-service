@@ -27,11 +27,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="cell">Lobe</td>
-                                    <td class="cell">Dia</td>
-                                    <td class="cell">dia@gmail.com</td>
-                                    <td class="cell"> fass</td>
+                                <tr *ngFor="let element of userData.data ">
+                                    <td class="cell"> {{element.prenom}} </td>
+                                    <td class="cell">  {{element.nom}} </td>
+                                    <td class="cell"> {{element.email}} </td>
+                                    <td class="cell"> {{element.lieu}} </td>
         
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">

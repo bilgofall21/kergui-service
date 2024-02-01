@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Publication } from '../models/publication';
 import { url } from '../models/apiUrl';
 
@@ -15,6 +15,13 @@ export class PublicationService {
   geyAllpublication () : Observable<any>{
  return this.http.get<Publication[]>(`${url}/listeOffreEmploi`);
   }
+  // activeDeactiveEmploye(id: number): Observable<any>{
+  //   const accessToken = localStorage.getItem('access_token');
+
+  //   return accessToken ? this.http.put<any>(`${url}/employe/archive/${id}`, {}, {
+  //     headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
+  //   }) : of(null);
+  // }
 
  
 }

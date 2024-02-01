@@ -4,6 +4,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -13,11 +14,11 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const userOnline = JSON.parse(localStorage.getItem('userOnline') || '');
+    const userOnline = localStorage.getItem('access_Token') ;
 
     // Assurez-vous que userOnline et userOnline.authorization sont définis
-    if ( userOnline && userOnline.token) {
-      const token = userOnline.token;
+    if ( userOnline && userOnline) {
+      const token = userOnline;
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
@@ -27,4 +28,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request);
   }
+}
+export const TokenInterceptorProvider={
+  provide:HTTP_INTERCEPTORS,
+  useClass:AuthInterceptor,
+  multi:true
 }

@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Profession } from '../models/profession';
 import { url } from '../models/apiUrl';
 
@@ -14,7 +14,9 @@ export class ProfessionServiceService {
 
   // methode pour recuperer tous les professsion
   getProfession() : Observable<any>{
-    return this.http.get<Profession[]>(`${url}/listeProfession`);
+    // const accessToken = localStorage.getItem('access_token');
+    return this.http.get<any>(`${url}/listeProfession`)
+    
   }
 
   // methode pour ajouter donnée ves l'api
@@ -40,6 +42,12 @@ getProfessionById(id: number): Observable<any> {
       return this.http.delete(`${url}/profession/delete/ ${id}`)
     }
 
- 
+ activeDeactiveEmploye(id: number): Observable<any>{
+    const accessToken = localStorage.getItem('access_token');
+
+    return accessToken ? this.http.put<any>(`${url}/employe/archive/${id}`, {}, {
+      headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
+    }) : of(null);
+  }
  
 }

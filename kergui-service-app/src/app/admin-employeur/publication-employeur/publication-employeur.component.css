@@ -18,16 +18,24 @@ h5{
     margin: 0 auto;
    
 }
-.iconegestion a{
+.iconegestion a , .iconegestion button{
     text-decoration: none;
     color: var(--kergui-blue);
     font-weight: bold;
     font-size: 18px;
+    border: none;
 }
 .iconegestion a:hover{
    color: var(--kergui-green);
 }
 
+.card-body{
+    height: 7rem;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-y: auto;
+}
 
 /* style formulaire */
 .validajout button{
@@ -106,10 +114,17 @@ h5{
     height: 14rem;
     background-color: #3a6a7e57;
   }
-   a{
+   .validpubli{
     color: white;
     text-decoration: none;
-    padding: 4px 2px;
+    width: 50%;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    /* padding: 4px 2px; */
     background-color: var(--kergui-green);
    
   }
