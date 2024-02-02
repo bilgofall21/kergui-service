@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 
 @Component({
   selector: 'app-detail-service',
@@ -12,11 +13,12 @@ export class DetailServiceComponent {
      pageActuelle = 1; // Page actuelle
 
      
-  constructor() { }
+  constructor(private utilisateurservice : UtulisateurService) { }
 
 
 
   ngOnInit(): void {
+    this.afficherutilisteur();
   }
    // declaration tableau employe
    listeEmployes : any []= [
@@ -282,6 +284,22 @@ export class DetailServiceComponent {
       description : "Je suis une femme de ménage, je suis disponible pour vous faire le service de maison appleler moi",  
     },
   ]
+
+  dataUers : any;
+
+  afficherutilisteur(): void{
+    this.utilisateurservice.getAllUser().subscribe((repons)=>{
+      this.dataUers = repons;
+      console.log("voir utilisateur",this.dataUers);
+    })
+  }
+
+
+
+
+
+
+
 
 
 

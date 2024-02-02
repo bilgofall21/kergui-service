@@ -131,6 +131,14 @@ chargerProfession( formation : any){
       }
     );
   }
+
+  // methode pour voir detail
+
+  voirDetailProfession :  any ;
+
+  chargerDetailProfession (element : any) {
+    this.voirDetailProfession = element;
+  }
   
 
 

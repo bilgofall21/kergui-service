@@ -77,7 +77,7 @@ submitFunction(event: Event): void {
             // const access_Token = JSON.parse(
             //   localStorage.getItem('access_Token') || ''
             // );
-            this.router.navigate(['/admin-candidat']);
+            this.router.navigate(['/accueil']);
           }
           else if (user.data.role == "employeur" && user.data.statut  == "activer") {
             // stocker notre les info de la requete dans notre localstorage

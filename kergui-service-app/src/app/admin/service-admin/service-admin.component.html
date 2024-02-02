@@ -16,7 +16,7 @@
               <p class="card-text"> {{element.description}} </p>
             </div>
             <div class="iconegestion d-flex justify-content-around w-50 mb-1 ">
-                <a href=""><i class="bi bi-eye"></i></a>
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)= "chargerDetailProfession (element)"  ><i class="bi bi-eye"></i></a>
                 <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)= "chargerProfession(element)" ><span class="lnr lnr-pencil"></span></a>
                 <button class="bg-white" (click)="supprimerProfession(element.id)"> <span class="lnr lnr-trash"></span></button>
             </div>
@@ -99,3 +99,31 @@
     </div>
   </div>
 <!-- modal modification fin -->
+
+
+<!-- modal  detail  -->
+
+<div class="modal fade " id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title " id="exampleModalLabel">Detail profession</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+           
+              
+                  <div class="" *ngIf="voirDetailProfession">
+                    <h5> {{voirDetailProfession.nom_prof}} </h5>
+                    <p class="text-start mt-4">{{voirDetailProfession.description}} </p>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
+                  </div>
+           
+        </div>
+     
+      </div>
+    </div>
+  </div>
+<!-- modal fin -->

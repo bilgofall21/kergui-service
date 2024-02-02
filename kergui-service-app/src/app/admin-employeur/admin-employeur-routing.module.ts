@@ -4,6 +4,8 @@ import { MainEmployeurComponent } from './main-employeur/main-employeur.componen
 import { HomeAdminEmployeureComponent } from './home-admin-employeure/home-admin-employeure.component';
 import { PublicationEmployeurComponent } from './publication-employeur/publication-employeur.component';
 import { ListePublicationEmployeurComponent } from './liste-publication-employeur/liste-publication-employeur.component';
+import { DetailEmployerComponent } from '../composant/detail-employer/detail-employer.component';
+import { DetailListePublicationEmployeurComponent } from './detail-liste-publication-employeur/detail-liste-publication-employeur.component';
 
 const routes: Routes = [
   {path : '', component : MainEmployeurComponent, children :[
@@ -11,6 +13,7 @@ const routes: Routes = [
     {path : 'home-admin-employeure', component : HomeAdminEmployeureComponent,},
     {path : 'publication-employeur', component : PublicationEmployeurComponent,},
     {path : 'liste-publication-employeur',component : ListePublicationEmployeurComponent,},
+    {path : 'detail-liste-publication-employeur', component : DetailListePublicationEmployeurComponent,},
     
   ]}
 ];

@@ -26,8 +26,8 @@
                                     <th class="cell"></th> -->
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr *ngFor="let element of userData.data ">
+                            <tbody *ngFor="let element of userData ">
+                                <tr *ngIf="element.role == 'employeur'">
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
                                     <td class="cell"> {{element.email}} </td>
@@ -82,13 +82,12 @@
                                     <th class="cellhead"> Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cell">rokhaye</td>
-                                    <td class="cell">Ndiaye</td>
-                                    <td class="cell">778315292</td>
-                                    <td class="cell"> Thiaroye</td>
-                                    <td class="cell">Cuisiniere</td>
+                            <tbody *ngFor="let element of userData">
+                                <tr  *ngIf=" element.role == 'candidat' ">
+                                    <td class="cell"> {{element.prenom}} </td>
+                                    <td class="cell">  {{element.nom}} </td>
+                                    <td class="cell"> {{element.email}} </td>
+                                    <td class="cell"> {{element.lieu}} </td>
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
                                             <a href=""><i class="bi bi-eye"></i></a>

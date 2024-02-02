@@ -13,12 +13,15 @@ constructor(private utulisateurservice : UtulisateurService){}
   }
 
 // methode pour recupere tous les utulisaturs
-userData : any;
+userData : any []= [];
 afficherAllUser () : void {
   this.utulisateurservice.getAllUser().subscribe((repons)=>{
-this.userData = repons;
+this.userData = repons.data;
 console.log("voir les utilisateurs", this.userData);
   })
 }
+
+
+
 
 }

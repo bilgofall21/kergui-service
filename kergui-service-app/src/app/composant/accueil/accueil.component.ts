@@ -11,6 +11,8 @@ constructor( private publicationservice : PublicationService) {}
   ngOnInit(): void {
 this.affichepublication();
   }
+
+  // methode pour afficher 3 dernier publications au niveau de l'accueil
 dataHomepublication : any;
 affichepublication() : void {
   this.publicationservice.geyAllpublication().subscribe((homepublic)=>{
@@ -29,4 +31,5 @@ affichepublication() : void {
     }
   })
 }
+
 }

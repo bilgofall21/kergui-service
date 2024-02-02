@@ -9,6 +9,7 @@ import { SidebarEmployeurComponent } from './layout/sidebar-employeur/sidebar-em
 import { MainEmployeurComponent } from './main-employeur/main-employeur.component';
 import { HomeAdminEmployeureComponent } from './home-admin-employeure/home-admin-employeure.component';
 import { ListePublicationEmployeurComponent } from './liste-publication-employeur/liste-publication-employeur.component';
+import { DetailListePublicationEmployeurComponent } from './detail-liste-publication-employeur/detail-liste-publication-employeur.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ListePublicationEmployeurComponent } from './liste-publication-employeu
     SidebarEmployeurComponent,
     MainEmployeurComponent,
     HomeAdminEmployeureComponent,
-    ListePublicationEmployeurComponent
+    ListePublicationEmployeurComponent,
+    DetailListePublicationEmployeurComponent
   ],
   imports: [
     CommonModule,
