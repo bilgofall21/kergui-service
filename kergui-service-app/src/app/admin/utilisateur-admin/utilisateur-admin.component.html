@@ -35,8 +35,8 @@
         
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a href=""><i class="bi bi-eye"></i></a>
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><i class="bi bi-save-fill"></i></a>
+                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDeatailUser(element )" ><i class="bi bi-eye"></i></a>
+                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)" ><i class="bi bi-save-fill"></i></a>
                                            
                                         </div>
                                     </td>
@@ -74,12 +74,12 @@
                         <table class="table mb-0 text-left">
                             <thead >
                                 <tr>
-                                    <th class="cellhead" >Prenom</th>
+                                    <th class="cellhead">prenom</th>
                                     <th class="cellhead">Nom</th>
                                     <th class="cellhead">Telephone</th>
+                                    <th class="cellhead">Profession</th>
                                     <th class="cellhead">Adresse</th>
-                                    <th class="cellhead">Pofession</th>
-                                    <th class="cellhead"> Action</th>
+                                    <th class="cellhead">Action</th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let element of userData">
@@ -87,6 +87,7 @@
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
                                     <td class="cell"> {{element.email}} </td>
+                                    <td class="cell"> {{element.profession_id}} </td>
                                     <td class="cell"> {{element.lieu}} </td>
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
@@ -110,4 +111,39 @@
 
 </div>
 
-<!-- modal detail -->
+
+
+<!-- modal  detail  -->
+
+<div class="modal fade " id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+           
+              
+                  <div class="" *ngIf="utulisateurSelectionner ">
+                   <div class="row">
+                    <div class="col-4">
+                        <img src="" alt="">
+                    </div>
+                    <div class="col-8">
+
+                    </div>
+                   </div>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
+                  </div>
+
+                  
+           
+        </div>
+     
+      </div>
+    </div>
+  </div>
+<!-- modal fin -->

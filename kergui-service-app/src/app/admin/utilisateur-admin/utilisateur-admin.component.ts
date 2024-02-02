@@ -21,6 +21,21 @@ console.log("voir les utilisateurs", this.userData);
   })
 }
 
+// methode voir detail utulisateu
+ utulisateurSelectionner :  any;
+
+afficherDeatailUser(element : any){
+  this.utulisateurSelectionner = element;
+}
+
+// methode pour desactiver un utulisatur
+desactiverUser(id : number){
+  this.utulisateurservice.DesactiveUser(id.toString()).subscribe((repons)=>{
+    console.log(repons);
+    console.log("demna", repons);
+  })
+}
+
 
 
 

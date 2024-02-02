@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { error } from 'jquery';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-service-admin',
@@ -94,28 +95,45 @@ chargerProfession( formation : any){
 
 
   modifierProfession(): void {
-    if (this.selectedProfession) {
-      // Modification d'une profession existante
-      this.professionService.editProfession(this.selectedProfession, {
-        nom_prof: this.nom_prof,
-        description: this.description,
-      
-      }).subscribe(
-        (data: any) => {
-          console.log("Modification réussie :", data);
-          // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
-          // window.location.reload(); ou mieux, mettre à jour la liste localement
-          
-          this.recupAllProfession();  // mettre a jour la liste
-        },
-        error => {
-          console.error('Erreur lors de la modification :', error);
-        }
-      );
-    } else {
-      console.error("Erreur: Aucune profession sélectionnée pour la modification");
-      // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
-    }
+    
+    Swal.fire({
+      title: "Voulez vous vraiment modifié ce compte?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#FF9A00",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui modifier!"
+    }).then((result) => {
+      if (this.selectedProfession) {
+        // Modification d'une profession existante
+        this.professionService.editProfession(this.selectedProfession, {
+          nom_prof: this.nom_prof,
+          description: this.description,
+        
+        }).subscribe(
+          (data: any) => {
+            console.log("Modification réussie :", data);
+            // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
+            // window.location.reload(); ou mieux, mettre à jour la liste localement
+            
+            this.recupAllProfession();  // mettre a jour la liste
+          },
+          error => {
+            console.error('Erreur lors de la modification :', error);
+          }
+        );
+      } else {
+        console.error("Erreur: Aucune profession sélectionnée pour la modification");
+        // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
+        Swal.fire({
+          title: "service modifié!",
+          text: "Ce service a été modifié .",
+          icon: "success"
+          });
+      }
+      }
+    )
+    
   }
 
   // methode pour supprmer un element
@@ -139,8 +157,26 @@ chargerProfession( formation : any){
   chargerDetailProfession (element : any) {
     this.voirDetailProfession = element;
   }
-  
 
+
+  // sweet alert methode
+
+//   Swal.fire({
+//     title: "Voulez vous vraiment desactivé ce compte?",
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#3085d6",
+//     cancelButtonColor: "#d33",
+//     confirmButtonText: "Oui,j'approuve!"
+//   }).then((result) => {
+
+
+//   Swal.fire({
+//     title: "Compte desactivé!",
+//     text: "Ce Utilisateur a été desactivé .",
+//     icon: "success"
+//     });
+// }
 
 
 }
