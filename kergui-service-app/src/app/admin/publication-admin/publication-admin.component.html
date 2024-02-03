@@ -29,12 +29,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="cell">rokhaye</td>
-                                    <td class="cell">Ndiaye</td>
-                                    <td class="cell">778315292</td>
-                                    <td class="cell"> Thiaroye</td>
-                                    <td class="cell">Cuisiniere</td>
+                                <tr *ngFor=" let publication of dataPublictions.data">
+                                    <td class="cell"> {{publication.user_id}} </td>
+                                    <td class="cell">  {{publication.nom}} </td>
+                                    <td class="cell"> {{publication.profession_id}} </td>
+                                    <td class="cell">  {{publication.created_at}} </td>
+                            
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
                                             <a href=""><i class="bi bi-eye"></i></a>

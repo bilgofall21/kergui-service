@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-utilisateur-admin',
@@ -28,13 +30,40 @@ afficherDeatailUser(element : any){
   this.utulisateurSelectionner = element;
 }
 
-// methode pour desactiver un utulisatur
-desactiverUser(id : number){
-  this.utulisateurservice.DesactiveUser(id.toString()).subscribe((repons)=>{
-    console.log(repons);
-    console.log("demna", repons);
-  })
+// amethode desavtiver utulisateur
+
+desactiverUser(id : string): void {
+
+  Swal.fire({
+    title: "Voulez vous vraiment Desactiver ce compte?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#FF9A00",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Oui desactiver!"
+  }).then((result) => {
+
+    this.utulisateurservice.archiverUser(id).subscribe((repons)=>{
+      console.log("desactiver compte user", repons);
+       // Mettez à jour l'interface en recherchant l'utilisateur dans la liste
+       const utilisateurDesactive = this.userData.find((element) => element.id === id);
+       if (utilisateurDesactive) {
+         utilisateurDesactive.statut = 'deactive';
+       }
+
+      Swal.fire({
+        title: "Utulisateur desactiver!",
+        text: "Cet utulisateur a été desactivé .",
+        icon: "success"
+        });
+    })
+  }
+  )
+
+  
 }
+
+
 
 
 

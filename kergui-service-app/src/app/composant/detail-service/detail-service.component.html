@@ -23,33 +23,36 @@
                     <h4 class="fw-bold"> Les annonces</h4>
                     <hr class="border-3 opacity-100">
                   </div>
-                  <div class="row row-gap-3  mt-4">
-                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of dataUers.data">  
-                      <div class="card shadow-lg" style="width: 19rem;">
-                        <div class="" >
-                          <img  src="http://127.0.0.1:8000/storage/{{element.imageDeProfil }}" class="card-img-top " alt="..." style="height: 15rem;">
-                          <div class="nameprofil d-flex justify-content-between w-50 pt-2">
-                            <div>
-                                <h6> {{element.prenom}} </h6>
-                            </div>
-                            <div>
-                                <h6>  {{element.nom}}  </h6>
+                  <div class="row row-gap-3  mt-4" >
+                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of dataUers.data" >
+                      <div *ngIf=" element.role == 'candidat'">
+                        <div class="card shadow-lg" style="width: 19rem;">
+                          <div class="" >
+                            <img  src="http://127.0.0.1:8000/storage/{{element.imageDeProfil }}" class="card-img-top " alt="..." style="height: 15rem;">
+                            <div class="nameprofil d-flex justify-content-between w-50 pt-2">
+                              <div>
+                                  <h6> {{element.prenom}} </h6>
+                              </div>
+                              <div>
+                                  <h6>  {{element.nom}}  </h6>
+                              </div>
                             </div>
                           </div>
+                          <div class="card-body " id="bodydetail">
+                              <div class="profilinfo d-flex justify-content-around">
+                                  <div class="itemdetail">
+                                      <span class="lnr lnr-map-marker me-3"></span>  {{element.lieu}} 
+                                  </div>
+                                  <div class="itemdetail">
+                                      <i class="bi bi-calendar-event me-3"></i>  {{element.dateNaissance}} 
+                                  </div>
+                              </div>
+                            <a  class=" text-decoration-none me-4 d-flex justify-content-center mt-2" [routerLink]="['/detail-employer']">  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir profil</a>
+                          </div>
+                          <div class="cardfooter"></div>
                         </div>
-                        <div class="card-body " id="bodydetail">
-                            <div class="profilinfo d-flex justify-content-around">
-                                <div class="itemdetail">
-                                    <span class="lnr lnr-map-marker me-3"></span>  {{element.lieu}} 
-                                </div>
-                                <div class="itemdetail">
-                                    <i class="bi bi-calendar-event me-3"></i>  {{element.dateNaissance}} 
-                                </div>
-                            </div>
-                          <a  class=" text-decoration-none me-4 d-flex justify-content-center mt-2" [routerLink]="['/detail-employer']">  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir profil</a>
-                        </div>
-                        <div class="cardfooter"></div>
-                      </div>
+
+                      </div>  
                     </div>
                 
                     

@@ -288,7 +288,7 @@ export class DetailServiceComponent {
   dataUers : any;
 
   afficherutilisteur(): void{
-    this.utilisateurservice.getAllUser().subscribe((repons)=>{
+    this.utilisateurservice.getAllCandidat().subscribe((repons)=>{
       this.dataUers = repons;
       console.log("voir utilisateur",this.dataUers);
     })

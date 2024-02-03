@@ -21,6 +21,7 @@
                                     <th class="cellhead">Nom</th>
                                     <th class="cellhead">Email</th>
                                     <th class="cellhead">Adresse</th>
+                                    <th class="cellhead">Statut</th>
                                     <th class="cellhead">Action</th>
                                     <!-- <th class="cell">Total</th>
                                     <th class="cell"></th> -->
@@ -32,11 +33,13 @@
                                     <td class="cell">  {{element.nom}} </td>
                                     <td class="cell"> {{element.email}} </td>
                                     <td class="cell"> {{element.lieu}} </td>
-        
+                                    <td class="cell" [ngClass]="{'text-success': element.statut === 'activer', 'text-danger': element.statut === 'deactive'}">
+                                        {{element.statut}}
+                                      </td>
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
                                             <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDeatailUser(element )" ><i class="bi bi-eye"></i></a>
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)" ><i class="bi bi-save-fill"></i></a>
+                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)"  ><i class="bi bi-save-fill"></i></a>
                                            
                                         </div>
                                     </td>
@@ -79,6 +82,7 @@
                                     <th class="cellhead">Telephone</th>
                                     <th class="cellhead">Profession</th>
                                     <th class="cellhead">Adresse</th>
+                                    <th class="cellhead">Statut</th>
                                     <th class="cellhead">Action</th>
                                 </tr>
                             </thead>
@@ -89,10 +93,13 @@
                                     <td class="cell"> {{element.email}} </td>
                                     <td class="cell"> {{element.profession_id}} </td>
                                     <td class="cell"> {{element.lieu}} </td>
+                                    <td class="cell" [ngClass]="{'text-success': element.statut === 'activer', 'text-danger ': element.statut === 'deactive'}">
+                                        {{element.statut}}
+                                      </td>
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a href=""><i class="bi bi-eye"></i></a>
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><i class="bi bi-save-fill"></i></a>
+                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDeatailUser(element )" ><i class="bi bi-eye"></i></a>
+                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)"  ><i class="bi bi-save-fill"></i></a>
                                         </div>
                                     </td>
                                    

@@ -13,16 +13,13 @@ export class UtulisateurService {
 getAllUser () : Observable<any>{
   return this.http.get<User[]>(`${url}/user/VoirEnsembleUser`)
 }
+getAllCandidat () : Observable<any>{
+  return this.http.get<User[]>(`${url}/user/VoirEnsembleUser`)
+}
 
-// methode pour desactiver un utulisateur
-// Suppression
-// DesactiveUser(id: string) : Observable<any> {
-//   return this.http.put<User>(`${url}/user/deactivateCompteUser/` + id);
-// }
+// methode pour desactiver compte
+archiverUser(id: any): Observable<any>{
+return this.http.put<User>(`${url}/user/deactivateCompteUser/${id}`, {});
+}
 
-
-
-// geyAllpublication () : Observable<any>{
-//   return this.http.get<Publication[]>(`${url}/listeOffreEmploi`);
-//    }
 }

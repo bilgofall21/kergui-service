@@ -37,6 +37,11 @@
 .modal-body input{
     height: 45px;
 }
+/* classe apres desactivation */
+.user-desactivated{
+  color: var(--kergui-green);
+}
+
 
 
 
@@ -847,10 +852,14 @@ body {
     background-color: var(--kergui-blue);
     color: white;
   }
+
   .app-card-orders-table .table .cell {
     border-color: var(--kergui-blue);
     color: #5d6778;
     vertical-align: middle;
+  }
+  .app-card-orders-table .table .cell .user-desactivated {
+   background-color: var(--kergui-green);
   }
   .app-card-orders-table .cell span {
     display: inline-block;
