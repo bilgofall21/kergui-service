@@ -78,7 +78,7 @@
             
             
             <div class="d-flex justify-content-center">
-                <input class="col-6 " type="submit" (click)="registerUser()" value="Signup" />
+                <input class="col-6 " type="submit" (click)="registerUser()" value="S'inscrire" />
             </div>
     </div>
     
@@ -94,37 +94,62 @@
 
 <!-- section authentification employé debut -->
 <section class="inscritionemploye" *ngIf="showAuthEmploye">
-    <div class="inscription">
+    <div class="inscription" id="employesign">
     <div class="form signup">
       <header class="text-white mb-2">Incrivez-vous</header>
       <form action="#">
-        <div class="row row-gap-4 column-gap-4">
-            <div class="col-md-5">
-                <input class="" type="text" placeholder="prenom" required />
+        <div class="row row-gap-3 column-gap-0">
+            <div class="col-md-8 d-flex justify-content-around">
+                <i class="me-3"><span class="lnr lnr-camera"></span></i>
+                <input class="form-control" type="file" (change)="getFile($event)" > 
+            <button  class="btn btn-outline-light ms-3"> <span class="lnr lnr-upload"  ></span></button>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" placeholder="nom" required />
+                <input class="" type="text" name="prenom" placeholder="prenom" required [(ngModel)]="registreEmploye .prenom" />
             </div>
             <div class="col-md-5">
-                <input class="" type="text" placeholder="Email" required />
+                <input class="" type="text" name="nom" placeholder="nom" required [(ngModel)]="registreEmploye .nom"  />
             </div>
             <div class="col-md-5">
-                <input type="tel" id="typePhone" placeholder="Telephone"  required />
+                <input class="" type="text" name="email" placeholder="Email" required [(ngModel)]="registreEmploye .email"  />
             </div>
             <div class="col-md-5">
-                <input class="" type="password" placeholder="Mot de pass" required />
+                <input type="tel" id="telephone" name="telephone" placeholder="Telephone" [(ngModel)]="registreEmploye .telephone"  required />
             </div>
             <div class="col-md-5">
-                <input class="" type="password" placeholder="Confirmer mot de pass" required />
+                <input type="text" id="lieu" placeholder="Adresse"  name="lieu" required [(ngModel)]="registreEmploye .lieu"  />
             </div>
             <div class="col-md-5">
-                <input class="" type="text" placeholder="Adresse" required />
+                <input class="" type="date" placeholder="Date de naissance" name="dateNaissance" [(ngModel)]="registreEmploye .dateNaissance"  required />
             </div>
-            <div class="col-md-8">
-                <input class="form-control" type="file" > 
-            <button  class="btn "> Telecharger </button>
+         
+            <div class="col-md-5">
+                <input class="" type="text" name="civilite" placeholder="Votre civilite" [(ngModel)]="registreEmploye .civilite"  required />
             </div>
-            <input class=" col-6" type="submit" value="Signup" />
+            <div class="col-md-5">
+                <input class="" type="text" name="langueParler" placeholder="Langue parler" [(ngModel)]="registreEmploye .langueParler"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="experienceProf" placeholder="experience prpfessionnelle" [(ngModel)]="registreEmploye .experienceProf"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="number" name="profession_id" placeholder="profession" [(ngModel)]="registreEmploye .profession_id"  required />
+            </div>
+           
+            <div class="col-md-5">
+                <input class="" type="password" name="password" placeholder="Mot de pass" [(ngModel)]="registreEmploye .password"  required />
+            </div>
+            <div></div>
+            <div class="col-md-5">
+                <input class="" type="password" name="password_confirmation" placeholder="Confirmer mot de pass" [(ngModel)]="registreEmploye .password_confirmation"  required />
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="registreEmploye .presentation" ></textarea>
+              </div>
+          
+            <input class=" col-md-8" type="submit" (click)="registerUserEmploye()" value="S'inscrire" />
     </div>
     
       </form>

@@ -62,7 +62,7 @@ nav{
     color: var(--kergui-green);
 }
 #navright{
-    width: 20%;
+    width: 30%;
 }
 ul{
     margin-left: 180px;
@@ -77,6 +77,11 @@ ul{
 #navright button{
    background-color: var(--kergui-green);
 
+}
+#navright img{
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
 }
 
 

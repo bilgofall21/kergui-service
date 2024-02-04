@@ -20,12 +20,12 @@
                     </div>
                   </div>
                   <div class="title text-center mb-3">
-                    <h4 class="fw-bold"> Les annonces</h4>
+                    <h4 class="fw-bold"> Les profils disponibles</h4>
                     <hr class="border-3 opacity-100">
                   </div>
                   <div class="row row-gap-3  mt-4" >
-                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of dataUers.data" >
-                      <div *ngIf=" element.role == 'candidat'">
+                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of getArticlesPage()" >
+                      <div>
                         <div class="card shadow-lg" style="width: 19rem;">
                           <div class="" >
                             <img  src="http://127.0.0.1:8000/storage/{{element.imageDeProfil }}" class="card-img-top " alt="..." style="height: 15rem;">

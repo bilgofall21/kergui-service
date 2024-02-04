@@ -28,6 +28,19 @@ margin-top: 150px;
     overflow: hidden;
     margin: 0 auto;
 }
+#employesign {
+    position: relative;
+    max-width: 570px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 20px 20px 100px;
+    background: var(--kergui-blue);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    margin-left: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+}
 .inscription form input {
     height: 40px;
     outline: none;
@@ -36,11 +49,11 @@ margin-top: 150px;
     font-size: 16px;
     font-weight: 400;
     color: #333;
-    border-radius: 10px;
+    border-radius: 5px;
     background: #ffffff;
     
 }
-.inscription form .col-md-5  {
+.inscription form .col-md-5, .inscription form .col-md-8 {
    margin: 0 auto;
     
 }
@@ -56,9 +69,21 @@ margin-top: 150px;
     background: #fff;
     transition: all 0.6s ease;
 }
+#employesign  .footerform{
+    position: absolute;
+    left: 50%;
+    bottom: -90%;
+    transform: translateX(-50%);
+    width: calc(100% + 220px);
+    padding: 20px 140px;
+    border-radius: 50%;
+    height: 100%;
+    background: #fff;
+    transition: all 0.6s ease;
+}
 
 
-.connexion form input, .connexion button {
+.connexion form input, .connexion button , #selectOption{
     height: 45px;
     outline: none;
     border: none;
@@ -71,7 +96,7 @@ margin-top: 150px;
 
 }
 
-.form header , .inscription header{
+.form header , .inscription header, i {
     font-size: 24px;
     text-align: center;
     color: #fff;

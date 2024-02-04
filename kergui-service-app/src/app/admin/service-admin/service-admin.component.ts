@@ -90,9 +90,7 @@ chargerProfession( formation : any){
   }
   }
 
-
   // methode pour modifier l'element selectionner
-
 
   modifierProfession(): void {
     

@@ -15,13 +15,24 @@ export class PublicationService {
   geyAllpublication () : Observable<any>{
  return this.http.get<Publication[]>(`${url}/listeOffreEmploi`);
   }
-  // activeDeactiveEmploye(id: number): Observable<any>{
-  //   const accessToken = localStorage.getItem('access_token');
+ 
+  // methode pour ajouter publication
+  
+   addPubication(publication : Publication) {
+    return this.http.post<Publication[]>(`${url}/AjoutOffreEmploi`, publication);
+  }
 
-  //   return accessToken ? this.http.put<any>(`${url}/employe/archive/${id}`, {}, {
-  //     headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
-  //   }) : of(null);
-  // }
+  // methode pour modifier publicatio,
+  
+   editPublication(id : any, publication:any){
+    return this.http.put(`${url}/OffreEmploi/edit/ ${id}`, publication);
+  }
+
+  // methode pour supprimer publication
+  deleteProfession(id: any) {
+    return this.http.delete(`${url}/OffreEmploi/delete/${id}`)
+  }
+
 
  
 }

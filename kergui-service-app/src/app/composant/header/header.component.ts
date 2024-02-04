@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+buttonConnexion: any;
+utilisateurConnecte: any;
+imageDeProfil : string ="";
+prenom : string ="";
 
 }

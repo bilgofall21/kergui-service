@@ -35,9 +35,9 @@
                     </div>
                   </div>
                   <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-2">
-                    <a href=""><i class="bi bi-eye"></i></a>
-                    <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" ><span class="lnr lnr-pencil"></span></a>
-                    <button class="bg-white" > <span class="lnr lnr-trash"></span></button>
+                    <a href=""  (click)="detailPublication(element)"><i class="bi bi-eye"></i></a>
+                    <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerPublication(element)" ><span class="lnr lnr-pencil"></span></a>
+                    <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button>
                 </div>
                   <button href="" class="text-center validpubli text-decoration-none py-1  mt-3"> publier <span class="lnr lnr-arrow-right ms-2"></span></button>
                 </div>
@@ -70,30 +70,30 @@
             <form action="">
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Profession</label>
-                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" >
+                    <input type="number" class="form-control" name="profession_id" id="profession" placeholder="profession" [(ngModel)]="profession_id" >
                   </div>
-                <div class="mb-3">
-                    <label for="nom_prof" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" name="lieu" id="profession" placeholder="adresse" >
+                <div class="mb-3"> 
+                    <label for="lieu" class="form-label">Adresse</label>
+                    <input type="text" class="form-control" name="lieu" id="lieu" placeholder="adresse" [(ngModel)]="lieu">
                   </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Experience</label>
-                    <input type="text" class="form-control" name="experience" id="profession" placeholder="experience" >
+                    <input type="text" class="form-control" name="experience" id="profession" placeholder="experience" [(ngModel)]="experienceMinimum" >
                   </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Salaire</label>
-                    <input type="text" class="form-control" name="slaireMinimum " id="profession" placeholder="salaire" >
+                    <input type="text" class="form-control" name="slaireMinimum " id="profession" placeholder="salaire" [(ngModel)]="slaireMinimum" >
                   </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Type de contrat</label>
-                    <input type="text" class="form-control" name=" 	typeContrat " id="profession" placeholder="xontrat" >
+                    <input type="text" class="form-control" name=" 	typeContrat " id="profession" placeholder="c00ontrat" [(ngModel)]="typeContrat"  >
                   </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4"  ></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
                   </div>
                   <div class="validajout d-flex justify-content-end">
-                    <button > Ajouter</button>
+                    <button (click)="ajouterPublicatin ()" > Ajouter</button>
                     <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
                   </div>
             </form>
@@ -108,30 +108,46 @@
 <!-- modal modification debut  -->
 
 <div class="modal fade " id="exampleModal-modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-      <div class="modal-content ">
-        <div class="modal-header text-center">
-          <h5 class="modal-title " id="exampleModalLabel">Modifier un service</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body  ">
-            <form action="">
-                <div class="mb-3">
-                    <label for="nom_prof" class="form-label">Profession</label>
-                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession"  >
-                  </div>
-                  <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" ></textarea>
-                  </div>
-                  <div class="validajout d-flex justify-content-end">
-                    <button href="" type="submit"> Modifier</button>
-                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</button>
-                  </div>
-            </form>
-        </div>
-     
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h5 class="modal-title " id="exampleModalLabel">Ajouter une publication</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body  ">
+          <form action="">
+              <div class="mb-3">
+                  <label for="nom_prof" class="form-label">Profession</label>
+                  <input type="number" class="form-control" name="profession_id" id="profession" placeholder="profession" [(ngModel)]=" profession_id" >
+                </div>
+              <div class="mb-3"> 
+                  <label for="lieu" class="form-label">Adresse</label>
+                  <input type="text" class="form-control" name="lieu" id="lieu" placeholder="adresse" [(ngModel)]="lieu">
+                </div>
+              <div class="mb-3">
+                  <label for="nom_prof" class="form-label">Experience</label>
+                  <input type="text" class="form-control" name="experience" id="profession" placeholder="experience" [(ngModel)]="experienceMinimum" >
+                </div>
+              <div class="mb-3">
+                  <label for="nom_prof" class="form-label">Salaire</label>
+                  <input type="text" class="form-control" name="slaireMinimum " id="profession" placeholder="salaire" [(ngModel)]="slaireMinimum" >
+                </div>
+              <div class="mb-3">
+                  <label for="nom_prof" class="form-label">Type de contrat</label>
+                  <input type="text" class="form-control" name=" 	typeContrat " id="profession" placeholder="c00ontrat" [(ngModel)]="typeContrat"  >
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
+                </div>
+                <div class="validajout d-flex justify-content-end">
+                  <button data-bs-dismiss="modal" (click)="modifierProfession()" > Modifier</button>
+                  <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
+                </div>
+          </form>
+      </div>
+   
     </div>
   </div>
+</div>
 <!-- modal modification fin -->

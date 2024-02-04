@@ -10,6 +10,7 @@ import { MainEmployeurComponent } from './main-employeur/main-employeur.componen
 import { HomeAdminEmployeureComponent } from './home-admin-employeure/home-admin-employeure.component';
 import { ListePublicationEmployeurComponent } from './liste-publication-employeur/liste-publication-employeur.component';
 import { DetailListePublicationEmployeurComponent } from './detail-liste-publication-employeur/detail-liste-publication-employeur.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { DetailListePublicationEmployeurComponent } from './detail-liste-publica
   ],
   imports: [
     CommonModule,
-    AdminEmployeurRoutingModule
+    AdminEmployeurRoutingModule,
+    FormsModule
+  
   ]
 })
 export class AdminEmployeurModule { }

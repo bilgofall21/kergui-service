@@ -290,7 +290,7 @@ export class DetailServiceComponent {
   afficherutilisteur(): void{
     this.utilisateurservice.getAllCandidat().subscribe((repons)=>{
       this.dataUers = repons;
-      console.log("voir utilisateur",this.dataUers);
+      console.log("voir utilisateur tay",this.dataUers);
     })
   }
 
@@ -309,17 +309,17 @@ export class DetailServiceComponent {
   getArticlesPage(): any[] {
     const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
     const indexFin = indexDebut + this.articlesParPage;
-    return this.listeEmployes.slice(indexDebut, indexFin);
+    return this.dataUers.data.slice(indexDebut, indexFin);
   }
      // Méthode pour générer la liste des pages
      get pages(): number[] {
-      const totalPages = Math.ceil(this. listeEmployes.length / this.articlesParPage);
+      const totalPages = Math.ceil(this. dataUers.data.length / this.articlesParPage);
       return Array(totalPages).fill(0).map((_, index) => index + 1);
     }
   
     // Méthode pour obtenir le nombre total de pages
     get totalPages(): number {
-      return Math.ceil(this. listeEmployes.length / this.articlesParPage);
+      return Math.ceil(this. dataUers.data.length / this.articlesParPage);
     }
  
 }
