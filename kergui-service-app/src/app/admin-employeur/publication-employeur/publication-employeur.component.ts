@@ -61,7 +61,7 @@ export class PublicationEmployeurComponent implements OnInit {
   dataPublication : any;
   afficherPublication () : void{
     this.publicationservice.geyAllpublication().subscribe((data)=>{
-      this.dataPublication = data;
+      this.dataPublication = data.data;
       // console.log("Tous les publication", this.dataPublication);
       // stocker les annones dans local storage
       // localStorage.setItem('annonce', JSON.stringify(data))
@@ -182,7 +182,7 @@ chargerPublication( publication : any){
 // methode pour supprimer publication
 // methode pour supprmer un element
 supprimerProfession(id: any): void {
-  this.publicationservice.deleteProfession(id).subscribe(
+  this.publicationservice.deletePublication(id).subscribe(
     (reponse: any) => {
       console.log("supprimer success", reponse);
       // Mettez à jour la liste locale des professions après la suppression

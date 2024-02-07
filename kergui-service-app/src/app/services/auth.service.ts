@@ -20,6 +20,19 @@ export class AuthService {
   }
 
   constructor( private http : HttpClient) { }
+
+  // methode pour verifier un user connecter
+ 
+
+  // Récupère l'URL de l'image de profil de l'utilisateur connecté
+  getUserProfileImage(): string {
+    // Récupérez l'URL de l'image de profil à partir des données utilisateur stockées localement
+    // Par exemple, si vous stockez les informations de l'utilisateur dans le localStorage, vous pouvez les récupérer ici
+    const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+    return userData.profileImage || ''; // Suppose que l'URL de l'image de profil est stockée dans une propriété profileImage
+  }
+
+
 // methode pour login
   loginUser(user : any) : Observable<any> {
     

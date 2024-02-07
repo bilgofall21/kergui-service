@@ -37,10 +37,14 @@ export class PublicationService {
   }
 
   // methode pour supprimer publication
-  deleteProfession(id : any) {
+  deletePublication(id : any) {
     return this.http.delete(`${url}/OffreEmploi/delete/${id}`)
   }
-
+  
+  // methode pour archiver publication
+  archivePublication(id : any) : Observable<any>{
+    return this.http.put<Publication>(`${url}/offres-emploi/${id}`, {})
+  }
 
  
 }

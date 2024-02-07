@@ -61,9 +61,7 @@ nav{
     font-size: 18px;
     color: var(--kergui-green);
 }
-#navright{
-    width: 30%;
-}
+
 ul{
     margin-left: 180px;
 }
@@ -79,8 +77,8 @@ ul{
 
 }
 #navright img{
-    height: 55px;
-    width: 55px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
 }
 

@@ -30,11 +30,11 @@ h5{
 }
 
 .card-body{
-    height: 7rem;
+    height: 9rem;
     
-    overflow: hidden;
+    /* overflow: hidden; */
     text-overflow: ellipsis;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 /* style formulaire */

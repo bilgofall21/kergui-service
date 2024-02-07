@@ -18,4 +18,22 @@ dataPublictions : any;
       console.log( "voir publica ====", this.dataPublictions);
     })
   }
+publicationSelect :  any;
+
+selectionnerpublication (element : any){
+  this.publicationSelect = element;
+}
+
+archiverOffre (id : any): void {
+  this.publicationservice.archivePublication(id).subscribe((respons)=>{
+    console.log("offre demna", respons);
+
+    const publicationDesactive = this.dataPublictions.find((publication: { id: any; }) => publication.id === id);
+    if (publicationDesactive) {
+      publicationDesactive.statut = 'archiver';
+    }
+
+  })
+}
+
 }

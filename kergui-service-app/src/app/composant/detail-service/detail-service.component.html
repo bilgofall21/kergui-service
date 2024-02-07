@@ -24,7 +24,7 @@
                     <hr class="border-3 opacity-100">
                   </div>
                   <div class="row row-gap-3  mt-4" >
-                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of getArticlesPage()" >
+                    <div class="col-lg-3 col-sm-6 " *ngFor="let element of userDataByProfession" >
                       <div >
                         <div class="card shadow-lg" style="width: 19rem;">
                           <div class="" >
@@ -66,7 +66,7 @@
 </div>
 
 <!-- pagination -->
-<div class="d-flex flex-wrap justify-content-center my-5" >
+<!-- <div class="d-flex flex-wrap justify-content-center my-5" >
       <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
         Précédent
       </button>
@@ -76,7 +76,7 @@
       <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
         Suivant
       </button>
-  </div>
+  </div> -->
 
 
 <app-footer></app-footer>

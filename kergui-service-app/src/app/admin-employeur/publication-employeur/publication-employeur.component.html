@@ -15,7 +15,7 @@
     <h4 class="mt-4">Listes des publications</h4>
 
         <div class="row mt-4">
-            <div class="col-lg-4 cardannonce" *ngFor="let element of dataPublication.data">
+            <div class="col-lg-4 cardannonce" *ngFor="let element of dataPublication">
               <div class="cardcontain">
                 <div class="card border-0" style="width: 20rem;">
                   <div>
@@ -33,16 +33,16 @@
                     <!-- <div>
                       <i class="bi bi-person-circle"></i> {{element.user_id}}
                     </div> -->
-                    <div class="mt-2">
-                      <i class="bi bi-clock"></i>{{element.created_at}}
+                    <div class="mt-1 mb-2">
+                      <span class="lnr lnr-calendar-full me-2 "></span> {{element.created_at | date:'dd-MM-yyyy'  }}
                     </div>
                   </div>
-                  <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-2">
+                  <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-1">
                     <a href=""  (click)="detailPublication(element)"><i class="bi bi-eye"></i></a>
                     <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerPublication(element)" ><span class="lnr lnr-pencil"></span></a>
                     <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button>
                 </div>
-                  <button href="" class="text-center validpubli text-decoration-none py-1  mt-3" (click)="afficherrCandidatByOffre(element.id)" routerLink="/admin-employeur/detail-liste-publication-employeur" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
+                  <button href="" class="text-center validpubli text-decoration-none py-1  mt-1" (click)="afficherrCandidatByOffre(element.id)" routerLink="/admin-employeur/detail-liste-publication-employeur" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
                 </div>
 
               </div>

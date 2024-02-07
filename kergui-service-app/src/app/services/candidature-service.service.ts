@@ -24,9 +24,8 @@ export class CandidatureServiceService {
 // validCandidat(id: string, etatCan: string): Observable<any> {
 //   return this.http.put<any>(`${url}/${id}/ModifierAfichageCandidature`, { etatCan: etatCan });
 // }
-validatCandidat(id: number, etatCan: string): Observable<any> {
-  const body = { etatCan: etatCan };
-  return this.http.put<any>(`${url}/${id}/ModifierAfichageCandidature`, body);
+validatCandidat(id: any, candidatData: any): Observable<any> {
+  return this.http.put<any>(`${url}/ModifierAfichageCandidature/${id}`, candidatData);
 }
 
 }

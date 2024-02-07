@@ -46,10 +46,16 @@ export class DetailListePublicationEmployeurComponent implements OnInit {
 
   // validation candidats
   etatCan : string ="";
-  id!: number;
-  validationCandidat(id: number, etatCan: string): void {
-    console.log("bind", etatCan);
-    this.candidatureservice.validatCandidat(id, etatCan).subscribe((respons) => {
+  newEtatCan : any = {
+etatCan : '',
+  } 
+  id!: any;
+  validationCandidat(id: any): void {
+    this.newEtatCan={
+      etatCan : this.etatCan,
+    }
+    console.log("hhhh", this.newEtatCan);
+    this.candidatureservice.validatCandidat(id, this.newEtatCan).subscribe((respons) => {
       console.log("etat change", respons);
     });
   }

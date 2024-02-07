@@ -43,14 +43,13 @@
                                     
                                     <td class="cell">
                                      
-                                        <label for="nom_prof" class="form-label">Profession</label>
-                                        <select class="form-select" [(ngModel)]="candidat.etatCan">
-                                          <option value="accepter">accepter</option>
-                                          <option value="rejeter">rejeter</option>
-                                          <!-- <option value="attente">attente</option> -->
-                                         
-                                        </select>
-                                        <button class="btn btn-warning mt-2"(click)="validationCandidat(candidat.id, candidat.etatCan)" >valider</button>
+                                        <select class="form-select" aria-label="Default select example" name="civilite" [(ngModel)]="etatCan" >
+                                            <option selected>Votre Sexe</option>
+                                            <option value="accepter">accepter</option>
+                                            <option value="rejeter">rejeter</option>
+                                
+                                          </select>
+                                        <button class="btn btn-warning mt-2"(click)="validationCandidat(candidat.id)" >valider</button>
                                     </td>
                                    
                                 </tr>

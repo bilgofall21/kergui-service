@@ -15,7 +15,7 @@ h5{
     font-weight: bold;
 }
 .card-body p{
-    height: 6.5rem;
+    height: 10rem;
     
     overflow: hidden;
     text-overflow: ellipsis;

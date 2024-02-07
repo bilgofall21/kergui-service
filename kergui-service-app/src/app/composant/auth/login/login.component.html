@@ -124,7 +124,13 @@
             </div>
          
             <div class="col-md-5">
-                <input class="" type="text" name="civilite" placeholder="Votre civilite" [(ngModel)]="registreEmploye .civilite"  required />
+                <!-- <input class="" type="text" name="civilite" placeholder="Votre civilite" [(ngModel)]="registreEmploye .civilite"  required /> -->
+                <select class="form-select" aria-label="Default select example" name="civilite" [(ngModel)]="registreEmploye .civilite" >
+                    <option selected>Votre Sexe</option>
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+        
+                  </select>
             </div>
             <div class="col-md-5">
                 <input class="" type="text" name="langueParler" placeholder="Langue parler" [(ngModel)]="registreEmploye .langueParler"  required />
