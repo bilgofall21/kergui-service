@@ -1,0 +1,100 @@
+hr{
+    height: 8px !important;
+    border-color: var(--kergui-green) !important;
+    text-align: center;
+    width: 10%;
+    margin: 0 auto;
+  }
+  .title h4{
+    color: var(--kergui-blue);
+  }
+  
+  
+  /* style baniere */
+  .banner{
+      background: url(https://media.istockphoto.com/id/1500809831/photo/happy-excited-young-woman-listening-mobile-music-dancing-at-home.jpg?s=2048x2048&w=is&k=20&c=52McG1wmm13OiBOQ5W3mv6psDFuwqegX0W1dLUsODnY=);
+      height: 80vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center center;
+      position: relative;
+  
+  }
+  #carouselcontainer{
+      height: 80vh;
+  }
+  .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 54, 104, 0.5);
+      
+   
+    }
+  .banner h2{
+      font-size: 40px;
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      
+      
+  }
+
+  /* style annonce debut */
+.annoncecartecontainer .card-img-top{
+    height: 14rem;
+  }
+  .cardcontain {
+   
+      margin-bottom: 30px;
+      box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
+      transition: .5s ease;
+      border-radius: 6px;
+      padding: 45px;
+      /* background-color: red; */
+  }
+  
+  .annoncecartecontainer .cardannonce{
+   position: relative;
+   
+  }
+  .annoncecartecontainer .cardcontain:hover{
+    position: relative;
+      transform: translateY(-5px);
+      box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.16);
+   
+  }
+  
+  
+  
+  .annoncecartecontainer .annoncetitle{
+  background-color: var(--kergui-blue);
+  padding: 2px 2px; 
+  width: 50%;
+  border-radius: 8px;
+  position: relative;
+  bottom: 200px;
+  left: 20px;
+  }
+  .annoncetitle h5{
+    font-size: 15px;
+  }
+  .overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 14rem;
+    background-color: #3a6a7e57;
+  }
+  .annoncecartecontainer a{
+    color: var(--kergui-green);
+    text-decoration: none;
+   
+  }
+  /* style annonce fin */

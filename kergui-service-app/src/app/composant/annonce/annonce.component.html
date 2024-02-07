@@ -1,0 +1,59 @@
+<app-header></app-header>
+<section class="baniere">
+    <div class="banner">
+        <div class="overlay"></div>
+        <h2 class="text-center  w-50"> Services</h2>  
+    </div>
+</section>
+<section class="carteannonce mt-5">
+    <div class="annoncecartecontainer">
+        <div class="container">
+            
+            <div class="searchbar mb-5">
+                <div class="d-flex justify-content-end">
+                    <div class="input-group w-50 ">
+                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" />
+                        <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+                      </div>
+
+                </div>
+              </div>
+              <div class="title text-center mb-3">
+                <h4 class="fw-bold"> Les annonces</h4>
+                <hr class="border-3 opacity-100">
+              </div>
+              <div class="row">
+                <div class="col-lg-4 cardannonce" *ngFor="let publica of dataPublications.data">
+                  <div class="cardcontain">
+                    <div class="card border-0" style="width: 20rem;">
+                      <div>
+                        <img src="https://media.istockphoto.com/id/1183604411/photo/chef-preparing-dish.jpg?s=612x612&w=0&k=20&c=EtSakYnEIdbeZI4zBWKVa4J85MqqkHiZSh243cMYcMk=" class="card-img-top" alt="...">
+                        <div class="overlay1"></div>
+                        <div class="annoncetitle text-center ">
+                          <!-- <h5 class="text-white pt-2 fw-bold">Cuisinier/-ère</h5> -->
+                        </div>
+                      </div>
+                      <div class="card-body ">
+                      
+                        <p class="card-text text-center"> {{publica.description}} </p>
+                      </div>
+                      <div class="cardfooter d-flex justify-content-around">
+                        <div>
+                          <!-- <i class="bi bi-person-circle"></i> Rama Lo -->
+                        </div>
+                        <div>
+                          <i class="bi bi-clock"></i>  {{publica.created_at}}
+                        </div>
+                      </div>
+                      <a href="" class="text-center text-decoration-none me-2 pb-2 mt-3" (click)="voirDetail(publica)"  [routerLink]="['/detail-offre']" > Voir annonce <span class="lnr lnr-arrow-right"></span></a>
+                    </div>
+    
+                  </div>
+                </div>
+               
+              </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

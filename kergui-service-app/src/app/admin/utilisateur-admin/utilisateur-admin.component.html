@@ -1,0 +1,187 @@
+
+<div class="admingestioncontainer mt-5">
+    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+        <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#list-employeur" role="tab" aria-controls="list-employeur" aria-selected="true">Liste des employeurs</a>
+        <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false">Liste des employés</a>
+       
+    </nav>
+    
+    
+    <div class="tab-content" id="orders-table-tab-content">
+
+        <!-- tableau employeur -->
+        <div class="tab-pane fade show active" id="list-employeur" role="tabpanel" aria-labelledby="orders-all-tab">
+            <div class="app-card app-card-orders-table shadow-sm mb-5">
+                <div class="app-card-body">
+                    <div class="table-responsive">
+                        <table class="table app-table-hover mb-0 text-left">
+                            <thead>
+                                <tr>
+                                    <th class="cellhead">prenom</th>
+                                    <th class="cellhead">Nom</th>
+                                    <th class="cellhead">Email</th>
+                                    <th class="cellhead">Adresse</th>
+                                    <th class="cellhead">Statut</th>
+                                    <th class="cellhead">Action</th>
+                                    <!-- <th class="cell">Total</th>
+                                    <th class="cell"></th> -->
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let element of getArticlesPage()">
+                                <tr *ngIf="element.role == 'employeur'">
+                                    <td class="cell"> {{element.prenom}} </td>
+                                    <td class="cell">  {{element.nom}} </td>
+                                    <td class="cell"> {{element.email}} </td>
+                                    <td class="cell"> {{element.lieu}} </td>
+                                    <td class="cell" [ngClass]="{'text-success': element.statut === 'activer', 'text-danger': element.statut === 'deactive'}">
+                                        {{element.statut}}
+                                      </td>
+                                    <td class="cell">
+                                        <div class="iconegestion d-flex justify-content-around w-50   ">
+                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDeatailUser(element )" ><i class="bi bi-eye"></i></a>
+                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)"  ><i class="bi bi-save-fill"></i></a>
+                                           
+                                        </div>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!--//table-responsive-->
+                   
+                </div><!--//app-card-body-->		
+            </div><!--//app-card-->
+         <!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5" >
+    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+      Précédent
+    </button>
+    <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+      {{ page }}
+    </button>
+    <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+      Suivant
+    </button>
+  </div>
+        </div>
+        
+
+        <!-- tableau employé -->
+        <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
+            <div class="app-card app-card-orders-table mb-5">
+                <div class="app-card-body">
+                    <div class="table-responsive">
+                        
+                        <table class="table mb-0 text-left">
+                            <thead >
+                                <tr>
+                                    <th class="cellhead">prenom</th>
+                                    <th class="cellhead">Nom</th>
+                                    <th class="cellhead">Telephone</th>
+                                    <th class="cellhead">Profession</th>
+                                    <th class="cellhead">Adresse</th>
+                                    <th class="cellhead">Statut</th>
+                                    <th class="cellhead">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let element of getArticlesPage()">
+                                <tr  *ngIf=" element.role == 'candidat' ">
+                                    <td class="cell"> {{element.prenom}} </td>
+                                    <td class="cell">  {{element.nom}} </td>
+                                    <td class="cell"> {{element.email}} </td>
+                                    <td class="cell"> {{element.profession_id}} </td>
+                                    <td class="cell"> {{element.lieu}} </td>
+                                    <td class="cell" [ngClass]="{'text-success': element.statut === 'activer', 'text-danger ': element.statut === 'deactive'}">
+                                        {{element.statut}}
+                                      </td>
+                                    <td class="cell">
+                                        <div class="iconegestion d-flex justify-content-around w-50   ">
+                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDeatailUser(element )" ><i class="bi bi-eye"></i></a>
+                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)"  ><i class="bi bi-save-fill"></i></a>
+                                        </div>
+                                    </td>
+                                   
+                                </tr>
+                                
+                        
+
+                            </tbody>
+                        </table>
+                    </div><!--//table-responsive-->
+                </div><!--//app-card-body-->		
+            </div><!--//app-card-->
+
+                     <!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5" >
+    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+      Précédent
+    </button>
+    <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+      {{ page }}
+    </button>
+    <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+      Suivant
+    </button>
+  </div>
+        </div>
+      
+    </div>
+
+</div>
+
+
+
+<!-- modal  detail  -->
+
+<div class="modal fade " id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+           
+              
+                  <div class="" *ngIf="utulisateurSelectionner ">
+                   <div class="row">
+                    <div class="col-4 " id="tof">
+                        <img src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}" alt="">
+                    </div>
+                    <div class="col-8 ">
+                        <div class="d-flex mb-2">
+                            <h6>prenom :  {{utulisateurSelectionner.prenom}} </h6>
+                            <h6 class="ms-3">nom :  {{utulisateurSelectionner.nom}} </h6>
+                        </div>
+                        
+                        <div class="d-flex mb-2">
+                            <h6> mail:  {{utulisateurSelectionner.email}} </h6>
+                            <h6 class="ms-3"> {{utulisateurSelectionner.telephone}} </h6>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <h6> Adresse: {{utulisateurSelectionner.lieu}} </h6>
+                            <h6 class="ms-3">Telephone :  {{utulisateurSelectionner.dateNaissance}} </h6>
+                        </div>
+                        <div>
+                            <h6>presentation</h6>
+                        </div>
+                        <div>
+                            <p> {{utulisateurSelectionner.presentation}} </p>
+                        </div>
+                    </div>
+                   </div>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
+                  </div>
+
+                  
+           
+        </div>
+     
+      </div>
+    </div>
+  </div>
+<!-- modal fin -->
+
+

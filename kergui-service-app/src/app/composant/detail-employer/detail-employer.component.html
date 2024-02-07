@@ -1,1 +1,188 @@
-<p>detail-employer works!</p>
+<app-header></app-header>
+
+  <div class="profilcontainer">
+    <div class="container">
+      <div class="detailprofilcontainer text-center" *ngIf=" dataDetailProfil">
+        <div class="imageprofilcontain ">
+          <img
+            src="http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}}"
+            class="imageprofil img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="nameprofil">
+          <h2 class="text-white bg-primary"> {{dataDetailProfil.prenom}}  {{dataDetailProfil.nom}}</h2>
+        </div>
+        <div class=" ">
+          <!-- <h5 class="text-black fst-italic">Femme de menage</h5> -->
+        </div>
+        <div class="profilcontact mt-4">
+          <ul
+            class="profilcontact-list list-unstyled list-inline mb-0 justify-content-between"
+          >
+            <li class="list-inline-item me-md-3 me-lg-5">
+              <i class="profilcontact-icon bi bi-telephone-inbound me-2"></i>
+              {{dataDetailProfil.telephone}}
+            </li>
+            <li class="list-inline-item me-md-3 me-lg-5">
+              <i class="profilcontact-icon bi bi-envelope me-2"></i>
+              {{dataDetailProfil.email}}
+            </li>
+            <li class="list-inline-item me-lg-5">
+              <i class="bi bi-geo-alt me-2"></i>
+              {{dataDetailProfil.lieu}}
+            </li>
+          </ul>
+        </div>
+  
+        <div class="informationcontact">
+          <div class="row">
+            <div class="col-md-12 col-lg-8 pe-lg-4">
+              <section class="information-presentation mt-3">
+                <div class="d-flex py-2 py-lg-3 py-2 py-lg-3">
+                  <div class="information-title-icon d-flex justify-content-center align-items-center me-4">
+                    <i class="bi bi-person"></i>
+                  </div>
+                  <h4 class="information-title text-black text-start">
+                    A propos de moi
+                  </h4>
+                </div>
+                <div class="resume-summary-desc text-start">
+                  {{dataDetailProfil.presentation}}
+                </div>
+              </section>
+  
+              <hr />
+  
+              <section class="information-experience mt-3">
+                <div class=" d-flex py-2 py-lg-3 py-3">
+                  <div class="information-title-icon d-flex justify-content-center align-items-center me-4">
+                    <i class="bi bi-briefcase"></i>
+                  </div>
+                  <h4 class=" information-title  text-start"> Experience professionnelle </h4>
+  
+                </div>
+                <div>
+                  <ul class="ms-5 text-start">
+                    <div class="d-flex">
+                      <i class="bi bi-check2 me-2"></i> <li>{{dataDetailProfil.experienceProf}}</li>
+                    </div>
+                    
+                  </ul>
+                </div>
+              </section>
+            </div>
+            <div class="col-md-12 col-lg-4 ps-lg-4">
+              <section class="detailprofil mt-3">
+                <div class="d-flex py-2 py-lg-3 py-2 py-lg-3 px-4">
+                  <div class="information-title-icon d-flex justify-content-center align-items-center me-4">
+                    <i class="bi bi-person-gear"></i>
+                  </div>
+                    <h4 class="information-title text-black text-start">
+                      Détails
+                    </h4>
+                </div>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                      <div class=" d-flex justify-content-around">
+                        <h6 class="fw-bold">Date de naissance</h6> <h6> {{dataDetailProfil.dateNaissance}} </h6>
+                      </div>
+                      <hr>
+                  </li> 
+                  <!-- <li class="mb-2">
+                      <div class=" d-flex justify-content-around">
+                        <h6 class="fw-bold">Niveau</h6> <h6>Bfem FCa</h6>
+                      </div>
+                      <hr>
+                  </li>  -->
+                  <li class="mb-2">
+                      <div class=" d-flex justify-content-around">
+                        <h6 class="fw-bold">Langue</h6> <h6>{{dataDetailProfil.langueParler}} </h6>
+                      </div>
+                      <hr>
+                  <li class="mb-2">
+                      <div class=" d-flex justify-content-around">
+                        <h6 class="fw-bold">Civilite</h6> <h6> {{dataDetailProfil.civilite}} </h6>
+                      </div>
+                      <hr>
+                  </li> 
+                </ul>
+              </section>
+
+              <section class="joinprofil mb-4">
+                <div class="d-flex justify-content-around">
+                  <div class="call join-icon d-flex justify-content-around align-items-center">
+                   <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-telephone-fill"></i></a>
+                   
+                  </div>
+                  <div class="temoignege join-icon">
+                    <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-temoignage" > 
+                      <i class="bi bi-chat-dots-fill"></i>
+                    </a>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- modal pour appeler vers wattsup -->
+
+  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content w-75" id="phonepopup">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4 text-center" id="exampleModalLabel">Me joindre</h1>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body text-center">
+        <h6>appeler ou </h6>  <h6> Continuer vers Whatsapp</h6> <h6> <span>777452565</span></h6>
+        <div>
+         <a href=""> <i class="bi bi-whatsapp" style="font-size: 5rem; color: #3A6A7E;"></i> </a> 
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- fin awttsup modal -->
+
+<!-- modal pour temoignage -->
+
+<div class="modal fade" id="exampleModal-temoignage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="temoignagepopup">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4" id="exampleModalLabel">Temoignage</h1>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+        <h5>Astou seck</h5>
+        <div class="mt-3">
+          <div class="mb-3">
+            <label for="description" class="form-label">temoignage</label>
+            <textarea class="form-control" id="description" name="appreciation" placeholder="description ici" rows="4" [(ngModel)]="appreciation" ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="ajouterTemoignage()" >Ajouter</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

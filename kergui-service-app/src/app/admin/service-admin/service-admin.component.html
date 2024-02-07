@@ -1,0 +1,143 @@
+<div class="admingestioncontainer mt-5">
+    <div class="ajoutservicebutton">
+        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
+    </div>
+    <h4 class="mt-4">Listes des services</h4>
+    <div class="row mt-4 row-gap-4 mb-4" >
+        <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage()" >
+          <div class="card shadow-lg" style="width: 18.5rem;" >
+            <div>
+              <img  src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8=" class="card-img-top" alt="..." style="height: 12rem;">
+              <div class="titleService">
+                <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
+              </div>
+            </div>
+            <div class="card-body " >
+              <p class="card-text"> {{element.description}} </p>
+            </div>
+            <div class="iconegestion d-flex justify-content-around w-50 mb-1 ">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)= "chargerDetailProfession (element)"  ><i class="bi bi-eye"></i></a>
+                <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)= "chargerProfession(element)" ><span class="lnr lnr-pencil"></span></a>
+                <button class="bg-white" (click)="supprimerProfession(element.id)"> <span class="lnr lnr-trash"></span></button>
+            </div>
+            <div class="cardfooter"></div>
+          </div>
+        </div>
+        
+        
+       
+      </div>
+
+<!-- Modal ajout services -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  
+</div>
+<!-- Modal ajout debut -->
+
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title " id="exampleModalLabel">Ajouter un service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+            <form action="">
+                <div class="mb-3">
+                    <label for="nom_prof" class="form-label">Profession</label>
+                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof">
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button (click)="ajouterPofession ()" data-bs-dismiss="modal" > Ajouter</button>
+                    <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
+                  </div>
+            </form>
+        </div>
+     
+      </div>
+    </div>
+  </div>
+
+<!-- modal ajout fin -->
+
+<!-- modal modification debut  -->
+
+<div class="modal fade " id="exampleModal-modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title " id="exampleModalLabel">Modifier un service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+            <form action="" (ngSubmit)="modifierProfession()">
+                <div class="mb-3">
+                    <label for="nom_prof" class="form-label">Profession</label>
+                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button href="" type="submit" data-bs-dismiss="modal"> Modifier</button>
+                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</button>
+                  </div>
+            </form>
+        </div>
+     
+      </div>
+    </div>
+  </div>
+<!-- modal modification fin -->
+
+
+<!-- modal  detail  -->
+
+<div class="modal fade " id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title " id="exampleModalLabel">Detail profession</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+           
+              
+                  <div class="" *ngIf="voirDetailProfession">
+                    <h5> {{voirDetailProfession.nom_prof}} </h5>
+                    <p class="text-start mt-4">{{voirDetailProfession.description}} </p>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
+                  </div>
+           
+        </div>
+     
+      </div>
+    </div>
+  </div>
+<!-- modal fin -->
+
+
+<!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5" >
+  <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+    Précédent
+  </button>
+  <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+    {{ page }}
+  </button>
+  <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+    Suivant
+  </button>
+</div>

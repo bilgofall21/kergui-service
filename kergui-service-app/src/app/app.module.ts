@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,30 @@ import { DetailEmployerComponent } from './composant/detail-employer/detail-empl
 import { BluefontDirective } from './bluefont.directive';
 import { BlueFontDirective } from './directive/blue-font.directive';
 import { GreenFontDirective } from './directive/green-font.directive';
+import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admin.component';
+import { FonctionnementComponent } from './composant/fonctionnement/fonctionnement.component';
+import { LoginComponent } from './composant/auth/login/login.component';
+import { AnnonceComponent } from './composant/annonce/annonce.component';
+import { ServiceDashboardComponent } from './composant/section-dash-admin/service-dashboard/service-dashboard.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+// import { AuthInterceptor } from './interceptors/intercepteur';
+import { AuthService } from './services/auth.service';
+import { AuthInterceptor, TokenInterceptorProvider } from './interceptors/interceptor';
+import { DetailOffreComponent } from './composant/detail-offre/detail-offre.component';
+
+// import { AuthInterceptor } from './interceptors/interceptor';
+
+// import { AuthInterceptor } from './interceptors/intercepteur';
+
+
+
+
+
+
+// import { AuthInterceptor } from './interceptors/intercepteur';
+
+
 
 @NgModule({
   declarations: [
@@ -30,13 +56,26 @@ import { GreenFontDirective } from './directive/green-font.directive';
     DetailEmployerComponent,
     BluefontDirective,
     BlueFontDirective,
-    GreenFontDirective
+    GreenFontDirective,
+    DashbordAdminComponent,
+    FonctionnementComponent,
+    LoginComponent,
+    AnnonceComponent,
+    ServiceDashboardComponent,
+    DetailOffreComponent,
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    FormsModule
+   
   ],
-  providers: [],
+  providers: [
+   TokenInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

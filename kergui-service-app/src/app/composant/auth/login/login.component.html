@@ -1,0 +1,240 @@
+<app-header></app-header>
+
+<div class="logincontainer">
+    
+
+<!-- section connexion debut -->
+<section class="connexionuser" *ngIf="showConnexion">
+    <div class="connexion">
+    <div class="form signup">
+      <header class="text-white mb-2">Connectez-vous</header>
+      <form action="#" (ngSubmit)="submitFunction($event)" >
+        <div class="row row-gap-4">
+      
+            <div class="">
+                <input class="col-12" type="email" placeholder="Email" name="email" required [(ngModel)]="formData.email" />
+            </div>
+           
+            <div class="">
+                <input class=" col-12" type="password" placeholder="Mot de pass" name="password" required  [(ngModel)]="formData.password" />
+            </div>
+            <div>
+                <p class="text-white">mot de pass oublié ?</p>
+            </div>
+            <div>
+              <button class="col-12"> Connexion</button>
+            </div>
+            <p class="text-center text-white"> Vous n'avez pas de compte ?</p>
+          
+    </div>
+    
+      </form>
+    </div>
+    <div class="footerform">
+        <header><a href=""  class="text-decoration-none" (click)="afficherSection('presentationlogin', $event)"> S'inscrire</a></header>
+    </div>
+</div>
+</section>
+<!-- section connexion fin -->
+
+
+<!-- section authentification employeur debut -->
+<section class="inscriptionemployeur" *ngIf="showAuthEmployeur">
+    <div class=" inscription">
+    <div class="form signup">
+      <header class="text-white mb-2">Inscrivez-vous</header>
+      <form action="#">
+        <div class="row row-gap-4 column-gap-2">
+          
+            <div class="col-md-5">
+                <input class="" type="text" name="prenom" placeholder="prenom" required  [(ngModel)]="registreData.prenom" />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="nom" placeholder="nom" required [(ngModel)]="registreData.nom" />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="email" placeholder="Email" required [(ngModel)]="registreData.email" />
+            </div>
+            <div class="col-md-5">
+                <input type="tel" id="typePhone" name ="telephone" placeholder="Telephone" [(ngModel)]="registreData.telephone"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="password" name ="password" placeholder="Mot de pass" [(ngModel)]="registreData.password" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="password" name="password_confirmation " placeholder="Confirmer mot de pass" [(ngModel)]="registreData.password_confirmation" required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="presentation" placeholder="Adresse" [(ngModel)]="registreData.lieu" required />
+            </div>
+            <div class="col-md-5">
+                <input class="form-control" type="file" (change)="getFile($event)" > 
+            <button  class="btn btn-outline-light mt-2"> <span class="lnr lnr-upload"  ></span></button>
+            </div>
+            <!-- <div class="form-group mt-3">
+                <label class="mr-2">Upload your CV:</label>
+                <input type="file" name="file">
+              </div> -->
+            
+            
+            <div class="d-flex justify-content-center">
+                <input class="col-6 " type="submit" (click)="registerUser()" value="S'inscrire" />
+            </div>
+    </div>
+    
+      </form>
+    </div>
+    <div class="footerform">
+        <header><a href=""  class="text-decoration-none" (click)="afficherSection('connexionuser', $event)"> Se connecter</a></header>
+    </div>
+</div>
+</section>
+<!-- section authentification employeur fin -->
+
+
+<!-- section authentification employé debut -->
+<section class="inscritionemploye" *ngIf="showAuthEmploye">
+    <div class="inscription" id="employesign">
+    <div class="form signup">
+      <header class="text-white mb-2">Incrivez-vous</header>
+      <form action="#">
+        <div class="row row-gap-3 column-gap-0">
+            <div class="col-md-8 d-flex justify-content-around">
+                <i class="me-3"><span class="lnr lnr-camera"></span></i>
+                <input class="form-control" type="file" (change)="getFile($event)" > 
+            <button  class="btn btn-outline-light ms-3"> <span class="lnr lnr-upload"  ></span></button>
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="prenom" placeholder="prenom" required [(ngModel)]="registreEmploye .prenom" />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="nom" placeholder="nom" required [(ngModel)]="registreEmploye .nom"  />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="email" placeholder="Email" required [(ngModel)]="registreEmploye .email"  />
+            </div>
+            <div class="col-md-5">
+                <input type="tel" id="telephone" name="telephone" placeholder="Telephone" [(ngModel)]="registreEmploye .telephone"  required />
+            </div>
+            <div class="col-md-5">
+                <input type="text" id="lieu" placeholder="Adresse"  name="lieu" required [(ngModel)]="registreEmploye .lieu"  />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="date" placeholder="Date de naissance" name="dateNaissance" [(ngModel)]="registreEmploye .dateNaissance"  required />
+            </div>
+         
+            <div class="col-md-5">
+                <input class="" type="text" name="civilite" placeholder="Votre civilite" [(ngModel)]="registreEmploye .civilite"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="langueParler" placeholder="Langue parler" [(ngModel)]="registreEmploye .langueParler"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="text" name="experienceProf" placeholder="experience prpfessionnelle" [(ngModel)]="registreEmploye .experienceProf"  required />
+            </div>
+            <div class="col-md-5">
+                <input class="" type="number" name="profession_id" placeholder="profession" [(ngModel)]="registreEmploye .profession_id"  required />
+            </div>
+           
+            <div class="col-md-5">
+                <input class="" type="password" name="password" placeholder="Mot de pass" [(ngModel)]="registreEmploye .password"  required />
+            </div>
+            <div></div>
+            <div class="col-md-5">
+                <input class="" type="password" name="password_confirmation" placeholder="Confirmer mot de pass" [(ngModel)]="registreEmploye .password_confirmation"  required />
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="registreEmploye .presentation" ></textarea>
+              </div>
+          
+            <input class=" col-md-8" type="submit" (click)="registerUserEmploye()" value="S'inscrire" />
+    </div>
+    
+      </form>
+    </div>
+    <div class="footerform">
+        <header><a href=""  class="text-decoration-none" (click)="afficherSection('connexionuser', $event)"> Se connecter</a></header>
+    </div>
+</div>
+</section>
+<!-- section authentification employé fin -->
+
+
+
+<!-- section presentation connexion debut -->
+<section class="presentationlogin" *ngIf="showPresentation">
+    <div class="container">
+    <div class="presentationlogincontainer">
+        <div class="container">
+            <h4 class="text-center text-white">Vous êtes un employeur ou a la recherche d’un emploi <br>
+                Rejoignez nous</h4>
+            <div class="row column-gap-0 mt-5">
+                <div class="item col-lg-5 ">
+                    <h6 class="text-center"> Je suis propriétaire à la recherche d’un employer</h6>
+                    <a href="" class="d-flex justify-content-center mt-4" (click)="afficherSection('inscriptionemployeur', $event)"> <span class="lnr lnr-pointer-up me-3"></span> Cliquez ici</a>
+                </div>
+                <div class="item col-lg-5 " >
+                    <h6 class="text-center"> Je suis un professionnel  à la recherche d’un emploi</h6>
+                    <a href=""  class="d-flex justify-content-center mt-4" (click)="afficherSection('inscritionemploye', $event)"> <span class="lnr lnr-pointer-up me-3"></span> Cliquez ici</a>
+                </div>
+            
+                
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+
+                <a href="" class="btn btn-light"> Créer un compte</a>
+            </div>
+            <h5 class="text-center text-white mt-4">Vous avez déjà un compte? <a href="" class="text-white fw-bold text-decoration-none">Connectez-vous</a></h5>
+        </div>
+    </div>
+</div>
+</section>
+<!-- section presentation connexion fin -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="form lo>
+  <header class="text-">Login</header>
+  <form action="#">
+    <input type="text" placeholder="Email address" required />
+    <input type="password" placeholder="Password" required />
+    <a href="#">Forgot password?</a>
+    <input type="submit" value="Login" />
+  </form>
+</div> -->
+<!-- <script>
+  const wrapper = document.querySelector(".wrapper"),
+    signupHeader = document.querySelector(".signup header"),
+    loginHeader = document.querySelector(".login header");
+  loginHeader.addEventListener("click", () => {
+    wrapper.classList.add("active");
+  });
+  signupHeader.addEventListener("click", () => {
+    wrapper.classList.remove("active");
+  });
+</script> -->
+  

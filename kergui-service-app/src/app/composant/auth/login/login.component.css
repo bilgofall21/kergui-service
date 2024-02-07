@@ -1,0 +1,159 @@
+.logincontainer{
+margin-top: 150px;
+}
+
+.connexion {
+    position: relative;
+    max-width: 470px;
+    width: 100%;
+    border-radius: 37px 37px 0px 0px;
+    padding: 20px 30px 100px;
+    background: var(--kergui-blue);
+    box-shadow: 0 5px 10px #3a6a7e94;
+    margin-top: 100px;
+    margin-left: 200px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+.inscription {
+    position: relative;
+    max-width: 570px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 20px 20px 100px;
+    background: var(--kergui-blue);
+    box-shadow: 0 5px 10px rgba(0, 0, 0,0.1);
+    margin-top: 100px;
+    margin-left: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+#employesign {
+    position: relative;
+    max-width: 570px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 20px 20px 100px;
+    background: var(--kergui-blue);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    margin-left: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.inscription form input {
+    height: 40px;
+    outline: none;
+    border: none;
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    background: #ffffff;
+    
+}
+.inscription form .col-md-5, .inscription form .col-md-8 {
+   margin: 0 auto;
+    
+}
+.inscription .footerform{
+    position: absolute;
+    left: 50%;
+    bottom: -86%;
+    transform: translateX(-50%);
+    width: calc(100% + 220px);
+    padding: 20px 140px;
+    border-radius: 50%;
+    height: 100%;
+    background: #fff;
+    transition: all 0.6s ease;
+}
+#employesign  .footerform{
+    position: absolute;
+    left: 50%;
+    bottom: -90%;
+    transform: translateX(-50%);
+    width: calc(100% + 220px);
+    padding: 20px 140px;
+    border-radius: 50%;
+    height: 100%;
+    background: #fff;
+    transition: all 0.6s ease;
+}
+
+
+.connexion form input, .connexion button , #selectOption{
+    height: 45px;
+    outline: none;
+    border: none;
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 10px;
+    background: #fff;
+
+}
+
+.form header , .inscription header, i {
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    /* cursor: pointer; */
+}
+.connexion .footerform{
+    position: absolute;
+    left: 50%;
+    bottom: -86%;
+    transform: translateX(-50%);
+    width: calc(100% + 220px);
+    padding: 20px 140px;
+    border-radius: 50%;
+    height: 100%;
+    background: #fff;
+    transition: all 0.6s ease;
+}
+
+.footerform header {
+    font-size: 30px;
+    text-align: center;
+    color: #060101;
+    font-weight: 600;
+    /* cursor: pointer; */
+}
+
+
+
+/* style presentation login debut */
+.presentationlogincontainer{
+    height: 550px;
+    width : 70%;
+    border-radius: 21px;
+    background-color: var(--kergui-blue);
+    padding: 100px;
+    margin: 0 auto;
+    
+}
+.presentationlogincontainer .item{
+    /* width: 470px; */
+    height: 200px;
+    border-radius: 14px;
+background: #fff;
+margin: 0 auto;
+padding-top: 50px;
+}
+.presentationlogincontainer .item a{
+   color: var(--kergui-green);
+   text-decoration: none;
+}
+
+/* style presentation login fin */
+
+/* style pour cacher section */
+.connexionuser .inscriptionemployeur .inscritionemploye .presentationlogin{
+    display: none;
+}
+
+

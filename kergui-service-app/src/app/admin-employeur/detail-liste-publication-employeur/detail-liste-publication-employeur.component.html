@@ -1,0 +1,69 @@
+<div class="admingestioncontainer mt-5">
+    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+        <!-- <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#list-employeur" role="tab" aria-controls="list-employeur" aria-selected="true">Liste des employeurs</a> -->
+        <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false"> Liste des postulants</a>
+       
+    </nav>
+    
+    
+    <div class="tab-content" id="orders-table-tab-content">
+
+        <!-- tableau employeur -->
+        
+        
+
+        <!-- tableau employé -->
+        <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
+            <div class="app-card app-card-orders-table mb-5">
+                <div class="app-card-body">
+                    <div class="table-responsive">
+                        
+                        <table class="table mb-0 text-left">
+                            <thead >
+                                <tr>
+                                    <th class="cellhead" >Prenom</th>
+                                    <th class="cellhead">Nom</th>
+                                    <th class="cellhead">Profession</th>
+                                    <th class="cellhead">telephone</th>
+                                    <th class="cellhead">Etat</th>
+                                    <th class="cellhead"> Action</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr *ngFor="let candidat of mycandidatData">
+                                    <td class="cell"> {{candidat.dateSoum}} </td>
+                                    <td class="cell">{{candidat.user_id}} </td>
+                                    <td class="cell">
+                                       {{candidat.offre_emploi_id}}
+                                    </td>
+                                    <td class="cell">{{candidat.created_at}} </td>
+                                    <td class="cell">
+                                        {{candidat.etatCan}} 
+                                    </td>
+                                    
+                                    <td class="cell">
+                                     
+                                        <label for="nom_prof" class="form-label">Profession</label>
+                                        <select class="form-select" [(ngModel)]="candidat.etatCan">
+                                          <option value="accepter">accepter</option>
+                                          <option value="rejeter">rejeter</option>
+                                          <!-- <option value="attente">attente</option> -->
+                                         
+                                        </select>
+                                        <button class="btn btn-warning mt-2"(click)="validationCandidat(candidat.id, candidat.etatCan)" >valider</button>
+                                    </td>
+                                   
+                                </tr>
+                                
+                        
+
+                            </tbody>
+                        </table>
+                    </div><!--//table-responsive-->
+                </div><!--//app-card-body-->		
+            </div><!--//app-card-->
+        </div>
+      
+    </div>
+
+</div>

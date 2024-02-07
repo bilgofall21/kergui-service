@@ -1,1 +1,64 @@
-<p>page-service works!</p>
+<app-header></app-header>
+<div class="servicecontainer">
+    <!-- section baniere debut-->
+
+    <section class="banner">
+        <section class="baniere">
+                    <div class="banner">
+                        <div class="overlay"></div>
+                        <h2 class="text-center  w-50"> Services</h2>  
+                    </div>
+        </section>
+    </section>
+    <!-- section baniere fin -->
+    <!-- section carte service debut -->
+
+    <section class="carteservice m-5">
+        <div class="carteservicecontainer">
+            <div class="container">
+              <div class="searchbar mb-5">
+                <div class="d-flex justify-content-end">
+                    <div class="input-group w-50 ">
+                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" />
+                        <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+                      </div>
+
+                </div>
+              </div>
+                <div class="title text-center mb-3">
+                    <h4 class="fw-bold"> Les services</h4>
+                    <hr class="border-3 opacity-100">
+                  </div>
+                <div class="row row-gap-4">
+                    <div class="col-lg-3 col-sm-6 "*ngFor="let service of dataprofessions.data">
+                        <div class="card shadow-lg" style="width: 19rem;">
+                          <div>
+                            <img  src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8=" class="card-img-top" alt="..." style="height: 12rem;">
+                            <div class="titleService">
+                              <h5 class="text-center">  {{service.nom_prof}} </h5>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <p class="card-text">  {{service.description}}  </p>
+                            <a  class=" text-decoration-none me-4 d-flex justify-content-center" [routerLink]="['/detail-service']">  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
+                          </div>
+                          <div class="cardfooter"></div>
+                        </div>
+                      </div>
+                      
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section carte service fin -->
+
+</div>
+
+<!-- pagination debut -->
+
+
+<!-- pagination fin -->
+
+
+<app-footer></app-footer>

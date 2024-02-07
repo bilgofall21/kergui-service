@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white">
+<nav class="navbar navbar-expand-lg  fixed-top">
     <div class="container-fluid " >
       <a class="navbar-brand  img-fluid" href="#" id="logoheader">
         <img src=".\assets\image\logo kergui.png" class="img-fluid" alt="">
@@ -9,31 +9,40 @@
       <div class="collapse navbar-collapse  " id="navbarNav">
         <div class="d-flex justify-content-around w-100" id="contenumenu">
             
-            <ul class="navbar-nav d-flex w-75">
-              <li class="nav-item">
-                <a class="nav-link active  fw-bold" aria-current="page" href="#">Accueil</a>
+            <ul class="navbar-nav d-flex w-75 ">
+              <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link  fw-bold" aria-current="page" [routerLink]="['/accueil']" >Accueil</a>
               </li>
               
-              <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">A propos</a>
+              <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link  fw-bold" [routerLink]="['/a-propos']" >A propos</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">Services</a>
+              <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link  fw-bold" [routerLink]="['/page-service']"   >Services</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">Annonces</a>
+              <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link  fw-bold" [routerLink]="['/annonce']"  >Annonces</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">Contact</a>
+              <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link  fw-bold" [routerLink]="['/page-contact']">Contact</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link  fw-bold" href="#">Fonctionnement</a>
+              <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link  fw-bold" [routerLink]="['/fonctionnement']" >Fonctionnement</a>
               </li>
               
             </ul>
-            <div class="d-flex justify-content-around w-25" id="navright">
-                <a href="" class="d-flex align-items-center"> S'inscrire</a>
-                <button class="btn text-white fw-bold">Se connecter</button>
+            <div class=" d-flex justify-content-around" id="navright">
+                <!-- <a href="" class="d-flex align-items-center"  [routerLink]="['/admin-employeur']"> S'inscrire</a> -->
+                <!-- <div class="app-utility-item app-user-dropdown dropdown" *ngIf="utilisateurConnecte; else buttonConnexion">
+                    <a class="  dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img [src]="utilisateurConnecte.imageDeprofil" alt="user profile"></a>
+                    <ul class="dropdown-menu">
+                      <li><button class="dropdown-item" type="button">Mon espace</button></li>
+                      <li><button class="dropdown-item" type="button">Deconnexion</button></li>
+                      <li><button class="dropdown-item" type="button">Something else here</button></li>
+                    </ul>
+                  </div> -->
+                <button class="btn text-white fw-bold"   [routerLink]="['/login']" *ngIf="!isUserLoggedIn"  >Se connecter</button>
+                <button class="btn text-white fw-bold" *ngIf="isUserLoggedIn" >Dashbord</button>
             </div>
         </div>
       </div>
