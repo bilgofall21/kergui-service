@@ -25,7 +25,7 @@
                   </div>
                   <div class="row row-gap-3  mt-4" >
                     <div class="col-lg-3 col-sm-6 " *ngFor="let element of getArticlesPage()" >
-                      <div>
+                      <div >
                         <div class="card shadow-lg" style="width: 19rem;">
                           <div class="" >
                             <img  src="http://127.0.0.1:8000/storage/{{element.imageDeProfil }}" class="card-img-top " alt="..." style="height: 15rem;">
@@ -47,7 +47,7 @@
                                       <i class="bi bi-calendar-event me-3"></i>  {{element.dateNaissance}} 
                                   </div>
                               </div>
-                            <a  class=" text-decoration-none me-4 d-flex justify-content-center mt-2" [routerLink]="['/detail-employer']">  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir profil</a>
+                            <a  class=" text-decoration-none me-4 d-flex justify-content-center mt-2" [routerLink]="['/detail-employer']"(click)=" voirdetailProfil(element)"  >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir profil</a>
                           </div>
                           <div class="cardfooter"></div>
                         </div>

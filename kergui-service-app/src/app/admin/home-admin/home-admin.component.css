@@ -1,5 +1,11 @@
 
-
+.card-body{
+  height: 12rem;
+    
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-y: auto;
+}
 
 
 

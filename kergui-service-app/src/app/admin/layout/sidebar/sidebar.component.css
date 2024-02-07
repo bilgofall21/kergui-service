@@ -828,7 +828,7 @@ body {
     font-size: 0.875rem;
     font-weight: bold;
   }
-  .app-nav-tabs .nav-link.active {
+  .app-nav-tabs .nav-link active {
     color: #15a362;
     border-bottom: 2px solid #15a362;
   }

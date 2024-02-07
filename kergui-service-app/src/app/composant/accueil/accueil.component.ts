@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Publication } from 'src/app/models/publication';
 import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
@@ -14,11 +15,12 @@ this.affichepublication();
 
   // methode pour afficher 3 dernier publications au niveau de l'accueil
 dataHomepublication : any;
+lastThreePublications: Publication[] = [];
 affichepublication() : void {
   this.publicationservice.geyAllpublication().subscribe((homepublic)=>{
     this.dataHomepublication = homepublic;
     console.log(  "les publications",this.dataHomepublication);
-
+    
     // virifier si les donnee sont null
     if (this.dataHomepublication && this.dataHomepublication.data){
        // Trier les publications par date de création dans l'ordre décroissant
@@ -26,8 +28,8 @@ affichepublication() : void {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
       // Prendre les trois dernières publications
-      const lastThreePublications = sortedPublications.slice(0, 3);
-      console.log('vor dernietr', lastThreePublications);
+      this.lastThreePublications = sortedPublications.slice(0, 3);
+      console.log('vor dernietr', this.lastThreePublications);
     }
   })
 }

@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { url } from '../models/apiUrl';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  // variable super global
+  isAuth$ = new BehaviorSubject<boolean>(false); 
+ 
+  static utilisateurConnecte(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
   userID : string ='';
   setUserId(id: string) {
    this.userID = id;
@@ -16,7 +22,9 @@ export class AuthService {
   constructor( private http : HttpClient) { }
 // methode pour login
   loginUser(user : any) : Observable<any> {
+    
     return this.http.post<any>('http://127.0.0.1:8000/api/login',user);
+    
   }
 
    // methode pour s'inscrire
@@ -35,10 +43,10 @@ deconnexion() : Observable<any>{
   return this.http.get<any>('http://127.0.0.1:8000/api/logout', );
 
 }
-utilisateurConnecte (): boolean {
-  // Vous pouvez implémenter cette méthode en fonction de la manière dont vous stockez l'état de connexion, par exemple, en vérifiant si le jeton est présent dans le stockage local.
-  return !!localStorage.getItem('access_token');
-}
+// utilisateurConnecte (): boolean {
+//   // Vous pouvez implémenter cette méthode en fonction de la manière dont vous stockez l'état de connexion, par exemple, en vérifiant si le jeton est présent dans le stockage local.
+//   return !!localStorage.getItem('access_token');
+// }
 
 }
 

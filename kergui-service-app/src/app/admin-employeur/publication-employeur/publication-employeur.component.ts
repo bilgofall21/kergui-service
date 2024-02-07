@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Profession } from 'src/app/models/profession';
+import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
 import { PublicationService } from 'src/app/services/publication.service';
 import Swal from 'sweetalert2';
 
@@ -34,9 +35,25 @@ export class PublicationEmployeurComponent implements OnInit {
 
     
 
-  constructor( private publicationservice : PublicationService) { }
+  constructor( private publicationservice : PublicationService, public candidatservice : CandidatureServiceService) { }
   ngOnInit(): void {
   this.afficherPublication();
+  }
+  dataOffres : any;
+  afficherOfrreUser(): void{
+    this.candidatservice.showCadidature().subscribe((respons)=>{
+      this.dataOffres= respons;
+      // console.log("voir mes offres" ,this.dataOffres);
+    })
+  }
+  datacandidatOffre :[]= [];
+  afficherrCandidatByOffre(id : string): void{
+    this.publicationservice.getCandidatByOffre(id).subscribe((respons)=>{
+      this.datacandidatOffre = respons.data;
+      console.log("voir candidatureeeee", this.datacandidatOffre)
+
+      localStorage.setItem('candaidatby_offre', JSON.stringify(this.datacandidatOffre))
+    })
   }
 
 
@@ -45,11 +62,15 @@ export class PublicationEmployeurComponent implements OnInit {
   afficherPublication () : void{
     this.publicationservice.geyAllpublication().subscribe((data)=>{
       this.dataPublication = data;
-      console.log("Tous les publication", this.dataPublication);
+      // console.log("Tous les publication", this.dataPublication);
       // stocker les annones dans local storage
       // localStorage.setItem('annonce', JSON.stringify(data))
     })
   }
+
+
+  // methode pour afficher publication de chaque user
+
 
  //  methode pour ajouter publication
 

@@ -1,5 +1,10 @@
 /* style bouton action */
-
+#tof img{
+  height : 100px;
+  width: 100px;
+  border-radius: 5px;
+  border: 2px solid var(--kergui-green);
+}
 .iconegestion {
     /* margin: 0 auto; */
    
@@ -25,6 +30,13 @@
     text-decoration: none;
     margin-right: 20px;
    
+}
+.col-8 .d-flex{
+  margin: 0 auto;
+  
+}
+.modal-content{
+  width: 600px;
 }
 .modal-header{
     background-color: var(--kergui-blue);

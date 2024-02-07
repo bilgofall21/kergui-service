@@ -4,19 +4,19 @@
         <div class="sidepanel-inner d-flex flex-column">
             <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
             <div class="logo-dashboard">
-                <a class="app-logo" href="index.html"><img class="logo-icon me-2" src=".\assets\image\logo kergui.png" alt="logo"></a>
+                <a class="app-logo"  routerLink="/accueil"><img class="logo-icon me-2" src=".\assets\image\logo kergui.png" alt="logo"></a>
     
             </div>
             
             <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
                 <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                    <li class="nav-item">
-                        <a class="nav-link active" routerLink="admin/home-admin">
+                    <li class="nav-item" [routerLinkActive]="['active']">
+                        <a class="nav-link  active" routerLink="/admin/home-admin">
                             <i class="bi bi-speedometer2 nav-icon "></i>
                              <span class="nav-link-text ">Dashboad</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" [routerLinkActive]="['active']">
                         <a class="nav-link" routerLink="/admin/service-admin">
                             <span class="nav-icon">
                               <span class="lnr lnr-briefcase"></span>
@@ -24,7 +24,7 @@
                              <span class="nav-link-text">Services</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" [routerLinkActive]="['active']">
                         <a class="nav-link"  routerLink="/admin/utilisateur-admin" >
                             <span class="nav-icon">
                               <span class="lnr lnr-users"></span>
@@ -32,8 +32,8 @@
                              <span class="nav-link-text"> Utulisateur</span>
                         </a>
                     </li>
-                    <li class="nav-item" routerLink="/admin/publication-admin">
-                        <a class="nav-link" >
+                    <li class="nav-item" [routerLinkActive]="['active']" >
+                        <a class="nav-link" routerLink="/admin/publication-admin">
                             <span class="nav-icon">
                               <span class="lnr lnr-file-empty"></span>
                              </span>

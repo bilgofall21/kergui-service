@@ -50,10 +50,10 @@
                     </div><!--//app-utility-item-->
                    
                     
-                    <div class="app-utility-item app-user-dropdown dropdown">
-                        <a class="image-header" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="https://img.freepik.com/free-photo/young-african-american-man-holding-my-president-protest-banner-with-open-hand-doing-stop-sign-with-serious-confident-expression-defense-gesture_839833-25102.jpg?size=626&ext=jpg&ga=GA1.1.1427853960.1704321632&semt=ais" alt="user profile"></a>
+                    <div class="app-utility-item app-user-dropdown dropdown" *ngIf="userProfile">
+                        <a class="image-header" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="http://127.0.0.1:8000/storage/{{userProfile.imageDeProfil}}" alt="user profile"></a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                            <li><a class="dropdown-item" href="">Profil</a></li>
+                            <li><a class="dropdown-item" routerLink="/admin-employeur/profil-employeur">Profil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li ><a class="dropdown-item" (click)="LogOutUser()" >Deconnexion</a></li>
                         </ul>

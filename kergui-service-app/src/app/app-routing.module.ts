@@ -11,13 +11,15 @@ import { DetailEmployerComponent } from './composant/detail-employer/detail-empl
 import { PageContactComponent } from './composant/page-contact/page-contact.component';
 import { ServiceDashboardComponent } from './composant/section-dash-admin/service-dashboard/service-dashboard.component';
 import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admin.component';
+import { DetailOffreComponent } from './composant/detail-offre/detail-offre.component';
+import { AuthGuardServiceService } from './services/auth-guard-service.service';
 
 
 const routes: Routes = [
   {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
   {path : 'page-service' , component : PageServiceComponent},
   {path : 'detail-service', component : DetailServiceComponent,},
-  {path : 'detail-employer', component : DetailEmployerComponent,},
+  {path : 'detail-employer', component : DetailEmployerComponent, },
   {path : 'fonctionnement' , component : FonctionnementComponent,},
   {path : 'accueil' , component : AccueilComponent,},
   {path : 'a-propos' , component : AProposComponent},
@@ -25,10 +27,11 @@ const routes: Routes = [
   {path : 'page-contact', component : PageContactComponent,},
   {path : 'login', component : LoginComponent,},
   {path : 'service-dashboard', component : ServiceDashboardComponent,},
-  
+  {path : 'detail-offre', component : DetailOffreComponent, },
   // {path : 'dashbord-admin',component : DashbordAdminComponent,},
-  { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)},
+  { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule) },
   {path : 'admin-employeur', loadChildren:() =>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule)},
+  {path : 'admin-candidat', loadChildren:() =>import('./admin-candidat/admin-candidat.module').then(m=>m.AdminCandidatModule,)},
   // {path : 'admin-employeur', loadChildren :()=>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule)},
   // { path: 'admin-employeur',loadChildren:()=>import('./admin-employeur/admin.module').then(m=>m.AdminModule)},
 ];

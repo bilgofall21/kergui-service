@@ -11,10 +11,15 @@ import Swal from 'sweetalert2';
 export class ServiceAdminComponent implements OnInit {
   selectedProfession: any;
 
-  constructor(private professionService : ProfessionServiceService){}
+  constructor(private professionService : ProfessionServiceService ){}
   ngOnInit(): void {
    this.recupAllProfession();
   }
+
+   // Attribut pour la pagination
+   articlesParPage = 4; // Nombre d'articles par page
+   pageActuelle = 1; // Page actuelle
+
 
   
 //  variables pour methodes
@@ -136,6 +141,14 @@ chargerProfession( formation : any){
 
   // methode pour supprmer un element
   supprimerProfession(id: any): void {
+    Swal.fire({
+      title: "Voulez vous vraiment supprimé ce service?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#FF9A00",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui supprimer!"
+    }).then((result) => {
     this.professionService.deleteProfession(id).subscribe(
       (reponse: any) => {
         console.log("supprimer success", reponse);
@@ -145,7 +158,15 @@ chargerProfession( formation : any){
       error => {
         console.error(`Erreur lors de la suppression de la profession avec l'ID ${id} :`, error);
       }
+      
     );
+    Swal.fire({
+      title: "service supprimé!",
+      text: "Ce service a été supprimé .",
+      icon: "success"
+      });
+    }
+    )
   }
 
   // methode pour voir detail
@@ -157,24 +178,23 @@ chargerProfession( formation : any){
   }
 
 
-  // sweet alert methode
+// pagination
+  
+getArticlesPage(): any[] {
+  const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
+  const indexFin = indexDebut + this.articlesParPage;
+  return this.dataProfession.data.slice(indexDebut, indexFin);
+}
+   // Méthode pour générer la liste des pages
+   get pages(): number[] {
+    const totalPages = Math.ceil(this. dataProfession.data.length / this.articlesParPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
 
-//   Swal.fire({
-//     title: "Voulez vous vraiment desactivé ce compte?",
-//     icon: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#3085d6",
-//     cancelButtonColor: "#d33",
-//     confirmButtonText: "Oui,j'approuve!"
-//   }).then((result) => {
-
-
-//   Swal.fire({
-//     title: "Compte desactivé!",
-//     text: "Ce Utilisateur a été desactivé .",
-//     icon: "success"
-//     });
-// }
+  // Méthode pour obtenir le nombre total de pages
+  get totalPages(): number {
+    return Math.ceil(this. dataProfession.data.length / this.articlesParPage);
+  }
 
 
 }

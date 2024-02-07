@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 // import { AuthInterceptor } from './interceptors/intercepteur';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor, TokenInterceptorProvider } from './interceptors/interceptor';
+import { DetailOffreComponent } from './composant/detail-offre/detail-offre.component';
 
 // import { AuthInterceptor } from './interceptors/interceptor';
 
@@ -61,6 +62,7 @@ import { AuthInterceptor, TokenInterceptorProvider } from './interceptors/interc
     LoginComponent,
     AnnonceComponent,
     ServiceDashboardComponent,
+    DetailOffreComponent,
    
   ],
   imports: [

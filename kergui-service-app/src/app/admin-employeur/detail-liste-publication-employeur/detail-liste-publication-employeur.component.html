@@ -29,25 +29,28 @@
                                     <th class="cellhead"> Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cell">rokhaye</td>
-                                    <td class="cell">Ndiaye</td>
+                            <tbody >
+                                <tr *ngFor="let candidat of mycandidatData">
+                                    <td class="cell"> {{candidat.dateSoum}} </td>
+                                    <td class="cell">{{candidat.user_id}} </td>
                                     <td class="cell">
-                                       cuisiniere
+                                       {{candidat.offre_emploi_id}}
                                     </td>
-                                    <td class="cell">778315292</td>
+                                    <td class="cell">{{candidat.created_at}} </td>
                                     <td class="cell">
-                                        <div>
-                                            <button>en cour</button>
-                                        </div>
+                                        {{candidat.etatCan}} 
                                     </td>
                                     
                                     <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a href=""><i class="bi bi-eye"></i></a>
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><i class="bi bi-save-fill"></i></a>
-                                        </div>
+                                     
+                                        <label for="nom_prof" class="form-label">Profession</label>
+                                        <select class="form-select" [(ngModel)]="candidat.etatCan">
+                                          <option value="accepter">accepter</option>
+                                          <option value="rejeter">rejeter</option>
+                                          <!-- <option value="attente">attente</option> -->
+                                         
+                                        </select>
+                                        <button class="btn btn-warning mt-2"(click)="validationCandidat(candidat.id, candidat.etatCan)" >valider</button>
                                     </td>
                                    
                                 </tr>

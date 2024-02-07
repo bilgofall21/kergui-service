@@ -1,3 +1,48 @@
+.imagecard img{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.temoignage .crochet{
+  color: var(--kergui-blue);
+  font-size: 80px;
+  font-style: italic;
+}
+.temoignage .crochet{
+  color: var(--kergui-blue);
+  font-size: 30px;
+ 
+}
+.temoignage .crochet1{
+  color: var(--kergui-blue);
+  font-size: 20px;
+ 
+}
+.temoignage p{
+  font-size: 12px;
+}
+
+.card-body{
+  height: 22rem;
+    
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* style bouton action */
 
 .iconegestion {

@@ -1,0 +1,17 @@
+.card-body img{
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    border: 1px solid var(--kergui-blue);
+    box-shadow: 2px 4px 3px 0px var(--kergui-blue);
+    margin:  0 auto;
+}
+.card{
+    border: 1px solid var(--kergui-blue);
+}
+small{
+    color: var(--kergui-blue);
+}
+.form-group button{
+    background-color: var(--kergui-green);
+}

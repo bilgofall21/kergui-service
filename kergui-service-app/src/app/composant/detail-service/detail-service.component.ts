@@ -288,10 +288,16 @@ export class DetailServiceComponent {
   dataUers : any;
 
   afficherutilisteur(): void{
-    this.utilisateurservice.getAllCandidat().subscribe((repons)=>{
+    this.utilisateurservice.getAllUser().subscribe((repons)=>{
       this.dataUers = repons;
       console.log("voir utilisateur tay",this.dataUers);
     })
+  }
+  selectedProfil : any;
+
+  voirdetailProfil (element : any) : void {
+    this.selectedProfil = element;
+    localStorage.setItem('data_profil', JSON.stringify(this.selectedProfil));
   }
 
 

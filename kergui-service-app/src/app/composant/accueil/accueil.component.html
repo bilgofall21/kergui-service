@@ -231,10 +231,10 @@
             <hr class="border-3 opacity-100">
           </div>
           <div class="row">
-            <div class="col-lg-4 cardannonce">
-              <div class="cardcontain">
-                <div class="card border-0" style="width: 20rem;" >
-                  <div>
+            <div class="col-lg-4 cardannonce" *ngFor="let publication of lastThreePublications">
+              <div class="cardcontain" >
+                <div class="card border-0" style="width: 20rem;"  >
+                  <div >
                     <img src="https://media.istockphoto.com/id/1183604411/photo/chef-preparing-dish.jpg?s=612x612&w=0&k=20&c=EtSakYnEIdbeZI4zBWKVa4J85MqqkHiZSh243cMYcMk=" class="card-img-top" alt="...">
                     <div class="overlay1"></div>
                     <div class="annoncetitle text-center ">
@@ -243,14 +243,14 @@
                   </div>
                   <div class="card-body ">
                   
-                    <p class="card-text text-center">Pour un événement familiale, je suis à la recherche d’un cuissière expérimenté</p>
+                    <p class="card-text text-center"> {{publication.description}} </p>
                   </div>
                   <div class="cardfooter d-flex justify-content-around">
                     <div>
-                      <i class="bi bi-person-circle"></i> Rama Lo
+                      <i class="bi bi-person-circle"></i>{{publication.user_id}}
                     </div>
                     <div>
-                      <i class="bi bi-clock"></i> 21 mars 2023
+                      <i class="bi bi-clock"></i> {{publication.updated_at}}
                     </div>
                   </div>
                   <a href="" class="text-center text-decoration-none me-2 pb-2 mt-3"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>

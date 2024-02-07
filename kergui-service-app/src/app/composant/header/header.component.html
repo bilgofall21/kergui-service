@@ -41,7 +41,8 @@
                       <li><button class="dropdown-item" type="button">Something else here</button></li>
                     </ul>
                   </div> -->
-                <button class="btn text-white fw-bold"   [routerLink]="['/login']"  >Se connecter</button>
+                <button class="btn text-white fw-bold"   [routerLink]="['/login']" *ngIf="!isUserLoggedIn"  >Se connecter</button>
+                <button class="btn text-white fw-bold" *ngIf="isUserLoggedIn" >Dashbord</button>
             </div>
         </div>
       </div>

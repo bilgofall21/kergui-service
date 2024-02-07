@@ -15,13 +15,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
+  isAuth$: any;
 
   constructor( private authentification : AuthService ,
                private router : Router,
                private professionservice : ProfessionServiceService     
                ){}
+               utilisateurConnecte : boolean = false;
   ngOnInit(): void {
     this.useProfession();
+    this.utilisateurConnecte = AuthService.utilisateurConnecte()
   }
 
   // variable pour cacher ou afficherles sections
@@ -47,7 +50,7 @@ formData = {
 };
 userfoundid = '';
 
- utilisateurConnecte : boolean = false;
+
 // connexion methode
 submitFunction(event: Event): void {
   event.preventDefault();
@@ -64,11 +67,17 @@ submitFunction(event: Event): void {
         console.log("wouy", user);
 
         this.userfoundid = user.data;
+        // Stocker le profil complet de l'utilisateur
+localStorage.setItem('user_profile', JSON.stringify(user.data));
+// const userProfileString = localStorage.getItem('user_profile');
+ //recuperer le userConnecter
+//  this.isAuth$.next(true);
+          
         // let useretat = user.role;
 
         if (user.token) {
           this.affichermessage('success', 'Bienvenu', user.data.prenom);
-        this.utilisateurConnecte =true;
+      
           // alert(this.userfoundid);
           if (user.data.role == "admin" && user.data.statut  == "activer") {
             // stocker notre les info de la requete dans notre localstorage
@@ -90,7 +99,7 @@ submitFunction(event: Event): void {
             //   localStorage.getItem('access_Token') || ''
             // );
           
-            this.router.navigate(['/accueil']);
+            this.router.navigate(['/admin-candidat']);
             
          
           }
@@ -257,10 +266,11 @@ console.log("info formation", this.selectOptions);
 
 LogOutUser() : void{
   this.authentification.deconnexion().subscribe((respons)=>{
+    this.utilisateurConnecte = false;
 
     console.log("byyy byyyy", respons);
     localStorage.removeItem('access_token');
-   this.utilisateurConnecte = false;
+ 
     return new Observable<any>();
     
   })

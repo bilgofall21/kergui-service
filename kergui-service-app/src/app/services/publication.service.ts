@@ -15,6 +15,9 @@ export class PublicationService {
   geyAllpublication () : Observable<any>{
  return this.http.get<Publication[]>(`${url}/listeOffreEmploi`);
   }
+
+  // methode pour recuperer publication par user
+  
  
   // methode pour ajouter publication
   
@@ -28,8 +31,13 @@ export class PublicationService {
     return this.http.put(`${url}/OffreEmploi/edit/ ${id}`, publication);
   }
 
+  // candidature par publication
+  getCandidatByOffre(id : any): Observable<any>{
+    return this.http.get(`${url}/chercheCandidatureParOffre/${id}`)
+  }
+
   // methode pour supprimer publication
-  deleteProfession(id: any) {
+  deleteProfession(id : any) {
     return this.http.delete(`${url}/OffreEmploi/delete/${id}`)
   }
 

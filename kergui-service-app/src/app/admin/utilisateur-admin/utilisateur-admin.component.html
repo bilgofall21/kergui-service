@@ -27,7 +27,7 @@
                                     <th class="cell"></th> -->
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let element of userData ">
+                            <tbody *ngFor="let element of getArticlesPage()">
                                 <tr *ngIf="element.role == 'employeur'">
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
@@ -51,20 +51,18 @@
                    
                 </div><!--//app-card-body-->		
             </div><!--//app-card-->
-            <nav class="app-pagination">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav><!--//app-pagination-->
-            
+         <!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5" >
+    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+      Précédent
+    </button>
+    <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+      {{ page }}
+    </button>
+    <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+      Suivant
+    </button>
+  </div>
         </div>
         
 
@@ -86,7 +84,7 @@
                                     <th class="cellhead">Action</th>
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let element of userData">
+                            <tbody *ngFor="let element of getArticlesPage()">
                                 <tr  *ngIf=" element.role == 'candidat' ">
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
@@ -112,6 +110,19 @@
                     </div><!--//table-responsive-->
                 </div><!--//app-card-body-->		
             </div><!--//app-card-->
+
+                     <!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5" >
+    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+      Précédent
+    </button>
+    <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+      {{ page }}
+    </button>
+    <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+      Suivant
+    </button>
+  </div>
         </div>
       
     </div>
@@ -134,11 +145,29 @@
               
                   <div class="" *ngIf="utulisateurSelectionner ">
                    <div class="row">
-                    <div class="col-4">
-                        <img src="" alt="">
+                    <div class="col-4 " id="tof">
+                        <img src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}" alt="">
                     </div>
-                    <div class="col-8">
-
+                    <div class="col-8 ">
+                        <div class="d-flex mb-2">
+                            <h6>prenom :  {{utulisateurSelectionner.prenom}} </h6>
+                            <h6 class="ms-3">nom :  {{utulisateurSelectionner.nom}} </h6>
+                        </div>
+                        
+                        <div class="d-flex mb-2">
+                            <h6> mail:  {{utulisateurSelectionner.email}} </h6>
+                            <h6 class="ms-3"> {{utulisateurSelectionner.telephone}} </h6>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <h6> Adresse: {{utulisateurSelectionner.lieu}} </h6>
+                            <h6 class="ms-3">Telephone :  {{utulisateurSelectionner.dateNaissance}} </h6>
+                        </div>
+                        <div>
+                            <h6>presentation</h6>
+                        </div>
+                        <div>
+                            <p> {{utulisateurSelectionner.presentation}} </p>
+                        </div>
                     </div>
                    </div>
                   </div>
@@ -154,3 +183,5 @@
     </div>
   </div>
 <!-- modal fin -->
+
+

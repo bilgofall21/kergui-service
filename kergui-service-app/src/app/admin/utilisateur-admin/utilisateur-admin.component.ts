@@ -13,6 +13,9 @@ constructor(private utulisateurservice : UtulisateurService){}
   ngOnInit(): void {
    this.afficherAllUser();
   }
+   // Attribut pour la pagination
+   articlesParPage = 8; // Nombre d'articles par page
+   pageActuelle = 1; // Page actuelle
 
 // methode pour recupere tous les utulisaturs
 userData : any []= [];
@@ -35,7 +38,7 @@ afficherDeatailUser(element : any){
 desactiverUser(id : string): void {
 
   Swal.fire({
-    title: "Voulez vous vraiment Desactiver ce compte?",
+    title: "Voulez vous vraiment Desactiver cet utulisateur?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#FF9A00",
@@ -59,9 +62,25 @@ desactiverUser(id : string): void {
     })
   }
   )
-
-  
 }
+
+// pagination
+  
+getArticlesPage(): any[] {
+  const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
+  const indexFin = indexDebut + this.articlesParPage;
+  return this.userData.slice(indexDebut, indexFin);
+}
+   // Méthode pour générer la liste des pages
+   get pages(): number[] {
+    const totalPages = Math.ceil(this. userData.length / this.articlesParPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  // Méthode pour obtenir le nombre total de pages
+  get totalPages(): number {
+    return Math.ceil(this. userData.length / this.articlesParPage);
+  }
 
 
 

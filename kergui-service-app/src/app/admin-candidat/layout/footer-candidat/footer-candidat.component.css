@@ -183,20 +183,14 @@ body {
   }
   .app-header {
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid #07296d;
+    border-bottom: 1px solid #e7e9ed;
     height: 56px;
     background: #fff;
-    margin-left: 250px;
-    background-color: var(--kergui-blue);
-    
   }
   .app-header-inner {
-    /* position: relative; */
+    position: relative;
   }
-  .app-search-form {
-    /* position: relative;
-    max-width: 600px; */
-  }
+
   .app-search-form .search-input {
     font-size: 0.875rem;
     border-radius: 0.25rem;

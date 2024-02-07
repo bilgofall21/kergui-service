@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { ServiceAdminComponent } from './service-admin/service-admin.component';
 import { UtilisateurAdminComponent } from './utilisateur-admin/utilisateur-admin.component';
 import { PublicationAdminComponent } from './publication-admin/publication-admin.component';
+import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
 
 const routes: Routes = [
   {path : '', component : MainComponent, children :[
@@ -13,6 +14,7 @@ const routes: Routes = [
     {path :  'service-admin', component : ServiceAdminComponent,},
     {path : 'utilisateur-admin', component : UtilisateurAdminComponent,},
     {path : 'publication-admin', component : PublicationAdminComponent,},
+    {path : 'profil-admin', component : ProfilAdminComponent,},
   ]}
   
 
