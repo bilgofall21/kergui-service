@@ -33,4 +33,8 @@ listeOffreByCandidat(user : any): Observable<any>{
   return this.http.get<any>(`${url}/listeCandidatureDeChaqueCandidat` ,user)
 }
 
+delteCandidature(id : any) :  Observable<any>{
+  return this.http.delete<any>(`${url}/SuppressionCandidature/${id}`)
+}
+
 }

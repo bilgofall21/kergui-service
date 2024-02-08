@@ -42,7 +42,7 @@
                     <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerPublication(element)" ><span class="lnr lnr-pencil"></span></a>
                     <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button>
                 </div>
-                  <button href="" class="text-center validpubli text-decoration-none py-1  mt-1" (click)="afficherrCandidatByOffre(element.id)" routerLink="/admin-employeur/detail-liste-publication-employeur" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
+                  <button href="" class="text-center validpubli text-decoration-none py-1  mt-1"  [routerLink]="['/admin-employeur/detail-liste-publication-employeur',element.id]" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
                 </div>
 
               </div>

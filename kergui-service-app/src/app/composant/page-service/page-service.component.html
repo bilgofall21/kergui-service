@@ -41,7 +41,7 @@
                           <div class="card-body">
                             <p class="card-text">  {{service.description}}  </p>
                           </div>
-                          <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service']" (click)=" afficherUsedrByProfession(service.id)" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
+                          <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', service.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
                           <!-- <button class="btn btn-warning"  >testUser</button> -->
                           <div class="cardfooter"></div>
                         </div>

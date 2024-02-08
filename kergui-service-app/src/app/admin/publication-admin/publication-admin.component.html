@@ -27,6 +27,7 @@
                                     <th class="cellhead">Remuneraion</th>
                                     <th class="cellhead">Date Publication</th>
                                     <th class="cellhead">Etat</th>
+                                    <th class="cellhead"> Details</th>
                                     <th class="cellhead"> Action</th>
                                 </tr>
                             </thead>
@@ -41,8 +42,18 @@
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
                                             <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye" ></i></a>
-                                            <a href="" (click)="archiverOffre (publication.id)" ><i class="bi bi-save-fill"></i></a>
+                                            <!-- <a href="" (click)="archiverOffre (publication.id)" ><i class="bi bi-save-fill"></i></a> -->
                                         </div>
+                                    </td>
+                                    <td class="cell" >
+                                     
+                                        <select class="form-select" aria-label="choix etat" name="civilite" [(ngModel)]="etat" >
+                                            <option value="">choix etat</option>
+                                            <option value="archiver">archiver</option>
+                                            
+                                
+                                          </select>
+                                        <button class="btn btn-warning mt-2"(click)="archiverOffre (publication.id)" >Archiver</button>
                                     </td>
                                    
                                 </tr>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { error } from 'jquery';
+import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { TemoignageServiceService } from 'src/app/services/temoignage-service.service';
 import Swal from 'sweetalert2';
 

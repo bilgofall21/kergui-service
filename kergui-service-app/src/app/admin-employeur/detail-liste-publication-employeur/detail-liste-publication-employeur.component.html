@@ -26,10 +26,11 @@
                                     <th class="cellhead">Date de candidature</th>
                                     <th class="cellhead">Etat</th>
                                     <th class="cellhead"> Action</th>
+                                    <th class="cellhead"> supprimmer</th>
                                 </tr>
                             </thead>
                             <tbody >
-                                <tr *ngFor="let candidat of mycandidatData">
+                                <tr *ngFor="let candidat of datacandidatOffre">
                                     <td class="cell">{{candidat.created_at | date:'dd-MM-yyyy' }} </td>
                                     <td class="cell">{{candidat.updated_at | date:'dd-MM-yyyy' }} </td>
                                     <td class="cell"> {{candidat.dateSoum | date:'dd-MM-yyyy' }} </td>
@@ -45,6 +46,13 @@
                                 
                                           </select>
                                         <button class="btn btn-warning mt-2"(click)="validationCandidat(candidat.id)" >valider</button>
+                                    </td>
+                                    <td class="cell">
+                                        <div class="iconegestion d-flex justify-content-around w-50   ">
+                                            <a  ><span class="lnr lnr-trash" (click)="supprimerCandidature(candidat.id)" ></span></a>
+   
+                                           
+                                        </div>
                                     </td>
                                    
                                 </tr>

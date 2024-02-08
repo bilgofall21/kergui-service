@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
 
 @Component({
@@ -11,16 +13,25 @@ export class DetailServiceComponent implements OnInit {
      // Attribut pour la pagination
      articlesParPage = 4; // Nombre d'articles par page
      pageActuelle = 1; // Page actuelle
+  userprofData: any;
 
      
-  constructor(private utilisateurservice : UtulisateurService) { }
+  constructor(private utilisateurservice : UtulisateurService ,  private professionservice : ProfessionServiceService, private activatedRoute: ActivatedRoute ) { }
 
 
   recupDataUser : any;
   userDataByProfession : any; 
   ngOnInit(): void {
- this.chargementdonne();
 //  this.afficherutilisteur();
+
+  this.professionservice.GetUserByProfession(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{
+    this.userprofData =data.data;
+    console.log("voir mes user specifique", this.userprofData);
+    localStorage.setItem('uer_byprof', JSON.stringify(this.userprofData))
+  })
+
+
+
   }
    // declaration tableau employe
   
@@ -28,8 +39,8 @@ export class DetailServiceComponent implements OnInit {
   dataUers : any;
 chargementdonne ():  void{
   this.recupDataUser = localStorage.getItem('uer_byprof');
-  this.userDataByProfession = this.recupDataUser ? JSON.parse(this.recupDataUser) : null
-  console.log("nos utulisaturs", this.userDataByProfession);
+  this.userprofData = this.recupDataUser ? JSON.parse(this.recupDataUser) : null
+  console.log("nos utulisaturs", this.userprofData);
   // this.afficherutilisteur()
 }
   // afficherutilisteur(): void{
@@ -60,17 +71,17 @@ chargementdonne ():  void{
   getArticlesPage(): any[] {
     const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
     const indexFin = indexDebut + this.articlesParPage;
-    return this.userDataByProfession.slice(indexDebut, indexFin);
+    return this.userprofData.slice(indexDebut, indexFin);
   }
      // Méthode pour générer la liste des pages
      get pages(): number[] {
-      const totalPages = Math.ceil(this.userDataByProfession.length / this.articlesParPage);
+      const totalPages = Math.ceil(this.userprofData.length / this.articlesParPage);
       return Array(totalPages).fill(0).map((_, index) => index + 1);
     }
   
     // Méthode pour obtenir le nombre total de pages
     get totalPages(): number {
-      return Math.ceil(this.userDataByProfession.length / this.articlesParPage);
+      return Math.ceil(this.userprofData.length / this.articlesParPage);
     }
  
 }

@@ -1,6 +1,8 @@
 import { JsonpInterceptor } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
+import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
   selector: 'app-detail-liste-publication-employeur',
@@ -8,32 +10,32 @@ import { CandidatureServiceService } from 'src/app/services/candidature-service.
   styleUrls: ['./detail-liste-publication-employeur.component.css']
 })
 export class DetailListePublicationEmployeurComponent implements OnInit {
+  datacandidatOffre: any;
 
-  constructor(private candidatureservice : CandidatureServiceService){}
+  constructor(private candidatureservice : CandidatureServiceService, private publicationservice: PublicationService,private activatedRoute: ActivatedRoute) { }
   mycandidatData: any[]=[];
   recupOnly : any;
   ngOnInit(): void {
-   const recupCnadidat = localStorage.getItem('candaidatby_offre');
-    this.mycandidatData = recupCnadidat ? JSON.parse(recupCnadidat) : null;
-    console.log("vrais candidat",this.mycandidatData);
+   
+   
+      this.publicationservice.getCandidatByOffre(this.activatedRoute.snapshot.params['id']).subscribe((respons)=>{
+        this.datacandidatOffre = respons.data;
+        console.log("voir candidatureeeee", this.datacandidatOffre)
 
+        this.allcandidat();
+  
+        // localStorage.setItem('candaidatby_offre', JSON.stringify(this.datacandidatOffre))
+      })
+   
+  
     
 
-    this.listeCandidat();
+   
     this.allcandidat()
     // this.listevraiCandidat()
   }
   dataBouvle : any;
 
-  listeCandidat(){
-    let servicetaille = 0;
-   for (let i = 0; i < this.mycandidatData.length; i++) {
-    this.dataBouvle = this.mycandidatData[i];
-    // console.log('mmmmmmmm', this.dataBouvle);
-    
-   }
-    return servicetaille;
-  }
 
   dataCanactif : any;
   allcandidat(): void{
@@ -61,6 +63,14 @@ etatCan : '',
       
       
     });
+  }
+
+  supprimerCandidature(id : any): void{
+    this.candidatureservice.delteCandidature(id).subscribe((respons)=>{
+      console.log("bien supprimer", respons);
+
+      this.allcandidat();
+    })
   }
   
 

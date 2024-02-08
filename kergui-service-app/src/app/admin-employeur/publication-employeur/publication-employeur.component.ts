@@ -58,6 +58,8 @@ export class PublicationEmployeurComponent implements OnInit {
     })
   }
 
+  
+
 
   userId = localStorage.getItem('userId');
   dataPublication : any;

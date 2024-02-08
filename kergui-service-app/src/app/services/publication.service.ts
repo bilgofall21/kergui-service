@@ -16,8 +16,10 @@ export class PublicationService {
  return this.http.get<Publication[]>(`${url}/listeOffreEmploi`);
   }
 
-  // methode pour recuperer publication par user
-  
+  // methode 
+  getPublicationUser(): Observable<any>{
+    return this.http.get<any>(`${url}/AfichageCandidature`)
+  }
  
   // methode pour ajouter publication
   
