@@ -246,11 +246,11 @@
                     <p class="card-text text-center"> {{publication.description}} </p>
                   </div>
                   <div class="cardfooter d-flex justify-content-around">
-                    <div>
+                    <!-- <div>
                       <i class="bi bi-person-circle"></i>{{publication.user_id}}
-                    </div>
+                    </div> -->
                     <div>
-                      <i class="bi bi-clock"></i> {{publication.updated_at}}
+                      <span class="lnr lnr-calendar-full me-3"></span> {{publication.created_at | date:'dd-MM-yyyy'  }}
                     </div>
                   </div>
                   <a href="" class="text-center text-decoration-none me-2 pb-2 mt-3"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>

@@ -8,7 +8,13 @@ hr{
   .title h4{
     color: var(--kergui-blue);
   }
-  
+  .card-body{
+    height: 10rem;
+    
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    /* overflow-y: auto; */
+}
   
   /* style baniere */
   .banner{

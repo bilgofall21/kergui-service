@@ -46,6 +46,8 @@ export class PublicationEmployeurComponent implements OnInit {
       // console.log("voir mes offres" ,this.dataOffres);
     })
   }
+
+  // methode pour afficher candidat pour chaqu offre
   datacandidatOffre :[]= [];
   afficherrCandidatByOffre(id : string): void{
     this.publicationservice.getCandidatByOffre(id).subscribe((respons)=>{

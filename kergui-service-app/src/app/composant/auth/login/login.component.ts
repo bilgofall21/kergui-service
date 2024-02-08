@@ -206,10 +206,12 @@ registerUser(): void {
   // Call the registration method in your authentication service
   this.authentification.registerUser(formData).subscribe(
     (response: any) => {
+      this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
       console.log(  "inscription successfully", response);
       // Handle successful registration, e.g., show a success message or navigate to another page
     },
     (error: any) => {
+      this.affichermessageregister('error', 'desole', ' Inscription non validé');
       console.error('Erreur durant inscription:', error);
       // Handle registration error, e.g., show an error message
     }
@@ -239,10 +241,12 @@ registerUserEmploye(): void {
   // Call the registration method in your authentication service
   this.authentification.registerEmploye(formData).subscribe(
     (response: any) => {
+      this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
       console.log(  "inscription successfully", response);
       // Handle successful registration, e.g., show a success message or navigate to another page
     },
     (error: any) => {
+      this.affichermessageregister('error', 'desole', ' Inscription non validé');
       console.error('Erreur durant inscription:', error);
       // Handle registration error, e.g., show an error message
     }
@@ -250,16 +254,38 @@ registerUserEmploye(): void {
 
 }
 
+
+
+affichermessageregister(icone: any, message: string,user:string) {
+  Swal.fire({
+      position: 'center',
+      icon: icone,
+      title: message +"" +user,
+      showConfirmButton: true,
+      // timer: 1500
+  })
+}
+affichermessageemployeur(icone: any, message: string,user:string) {
+  Swal.fire({
+      position: 'center',
+      icon: icone,
+      title: message +"" +user,
+      showConfirmButton: true,
+      // timer: 1500
+  })
+}
+
 getFile(event: any) {
   console.warn(event.target.files[0]);
   this.image= event.target.files[0] as File ;
 }
-selectOptions: []=[];
-  selectedOption!: number;
+selectOptionData: any;
+
 useProfession() :  void{
-  this.professionservice.getSelectOption().subscribe((options)=>{
-this.selectOptions=options;
-console.log("info formation", this.selectOptions);
+  this.professionservice.getProfession().subscribe((data)=>{
+
+this.selectOptionData = data.data;
+// console.log("voir profession", this.selectOptionData);
   })
 }
 

@@ -22,19 +22,21 @@
                         <table class="table mb-0 text-left">
                             <thead >
                                 <tr>
-                                    <th class="cellhead" >Prenom</th>
-                                    <th class="cellhead">Nom</th>
-                                    <th class="cellhead">Secteur</th>
+                                    <th class="cellhead" >Lieu</th>
+                                    <th class="cellhead">Contrat</th>
+                                    <th class="cellhead">Remuneraion</th>
                                     <th class="cellhead">Date Publication</th>
+                                    <th class="cellhead">Etat</th>
                                     <th class="cellhead"> Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor=" let publication of dataPublictions.data">
-                                    <td class="cell"> {{publication.user_id}} </td>
-                                    <td class="cell">  {{publication.nom}} </td>
-                                    <td class="cell"> {{publication.profession_id}} </td>
-                                    <td class="cell">  {{publication.created_at}} </td>
+                                <tr *ngFor=" let publication of dataPublictions">
+                                    <td class="cell"> {{publication.lieu}} </td>
+                                    <td class="cell">  {{publication.typeContrat }} </td>
+                                    <td class="cell"> {{publication.slaireMinimum}} </td>
+                                    <td class="cell">  {{publication.created_at | date:'dd-MM-yyyy' }} </td>
+                                    <td class="cell">  {{publication.etat}} </td>
                             
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">

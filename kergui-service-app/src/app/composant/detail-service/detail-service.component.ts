@@ -9,7 +9,7 @@ import { UtulisateurService } from 'src/app/services/utulisateur.service';
 export class DetailServiceComponent implements OnInit {
   // listeEmployes! : any;
      // Attribut pour la pagination
-     articlesParPage = 8; // Nombre d'articles par page
+     articlesParPage = 4; // Nombre d'articles par page
      pageActuelle = 1; // Page actuelle
 
      
@@ -57,20 +57,20 @@ chargementdonne ():  void{
 
 // pagination
   
-  // getArticlesPage(): any[] {
-  //   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
-  //   const indexFin = indexDebut + this.articlesParPage;
-  //   return this.userDataByProfession.data.slice(indexDebut, indexFin);
-  // }
-  //    // Méthode pour générer la liste des pages
-  //    get pages(): number[] {
-  //     const totalPages = Math.ceil(this.userDataByProfession.data.length / this.articlesParPage);
-  //     return Array(totalPages).fill(0).map((_, index) => index + 1);
-  //   }
+  getArticlesPage(): any[] {
+    const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
+    const indexFin = indexDebut + this.articlesParPage;
+    return this.userDataByProfession.slice(indexDebut, indexFin);
+  }
+     // Méthode pour générer la liste des pages
+     get pages(): number[] {
+      const totalPages = Math.ceil(this.userDataByProfession.length / this.articlesParPage);
+      return Array(totalPages).fill(0).map((_, index) => index + 1);
+    }
   
-  //   // Méthode pour obtenir le nombre total de pages
-  //   get totalPages(): number {
-  //     return Math.ceil(this.userDataByProfession.data.length / this.articlesParPage);
-  //   }
+    // Méthode pour obtenir le nombre total de pages
+    get totalPages(): number {
+      return Math.ceil(this.userDataByProfession.length / this.articlesParPage);
+    }
  
 }

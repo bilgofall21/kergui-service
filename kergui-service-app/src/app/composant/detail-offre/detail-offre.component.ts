@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail-offre',
@@ -17,7 +18,24 @@ export class DetailOffreComponent implements OnInit  {
 
   Candididater(id : any) : void{
     this.candidaterservice.CandidaterUser(id).subscribe((respons)=>{
+      this.affichermessageCandidater('success', 'bravo', ' candidature acceptée');
       console.log("candidature reussi", respons);
+    },
+    (error: any) => {
+      this.affichermessageCandidater('error', 'desole', ' veiller vous connectez');
+      console.error('candidature non valide:', error);
+      // Handle registration error, e.g., show an error message
+    }
+    )
+  }
+
+  affichermessageCandidater(icone: any, message: string,user:string) {
+    Swal.fire({
+        position: 'center',
+        icon: icone,
+        title: message +"" +user,
+        showConfirmButton: true,
+        // timer: 1500
     })
   }
   

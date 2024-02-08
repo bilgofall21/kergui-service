@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { error } from 'jquery';
 import { TemoignageServiceService } from 'src/app/services/temoignage-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail-employer',
@@ -27,9 +29,26 @@ this.temoinnew = {
   appreciation : this.appreciation,
 }
 this.temoignageservice.addTemoignage(this.temoinnew).subscribe((respons)=>{
+  this.affichermessagetemoignage('success', 'bravo', 'temoignage ajouté')
   console.log("test", this.temoinnew);
   console.log("voir avis", respons);
-})
+},
+(error : any)=>{
+  this.affichermessagetemoignage('error', 'desole', ' veillez vous connectez')
+  console.error('temoignage non ajoute', error);
+  
 }
+)
+}
+
+affichermessagetemoignage(icone: any, message: string,user:string) {
+  Swal.fire({
+      position: 'center',
+      icon: icone,
+      title: message +"" +user,
+      showConfirmButton: true,
+      // timer: 1500
+  })
    
+}
 }

@@ -78,6 +78,13 @@ font-size: 16px;
     background-color: var(--kergui-blue);
     height: 8px;
   }
+  .card-body{
+    height: 6.5rem;
+    
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    /* overflow-y: auto; */
+}
  
   
   .validservice button{

@@ -21,30 +21,25 @@
                         <table class="table mb-0 text-left">
                             <thead >
                                 <tr>
-                                    <th class="cellhead" >Prenom</th>
-                                    <th class="cellhead">Nom</th>
-                                    <th class="cellhead">Profession</th>
-                                    <th class="cellhead">telephone</th>
+                                    <th class="cellhead" >Date de creation</th>
+                                    <th class="cellhead">Derniere modification</th>
+                                    <th class="cellhead">Date de candidature</th>
                                     <th class="cellhead">Etat</th>
                                     <th class="cellhead"> Action</th>
                                 </tr>
                             </thead>
                             <tbody >
                                 <tr *ngFor="let candidat of mycandidatData">
-                                    <td class="cell"> {{candidat.dateSoum}} </td>
-                                    <td class="cell">{{candidat.user_id}} </td>
-                                    <td class="cell">
-                                       {{candidat.offre_emploi_id}}
-                                    </td>
-                                    <td class="cell">{{candidat.created_at}} </td>
-                                    <td class="cell">
+                                    <td class="cell">{{candidat.created_at | date:'dd-MM-yyyy' }} </td>
+                                    <td class="cell">{{candidat.updated_at | date:'dd-MM-yyyy' }} </td>
+                                    <td class="cell"> {{candidat.dateSoum | date:'dd-MM-yyyy' }} </td>
+                                    <td class="cell" [ngClass]="{'text-success': candidat.etatCan === 'accepter', 'text-danger': candidat.etatCan === 'rejeter'}">
                                         {{candidat.etatCan}} 
                                     </td>
-                                    
-                                    <td class="cell">
+                                    <td class="cell" >
                                      
-                                        <select class="form-select" aria-label="Default select example" name="civilite" [(ngModel)]="etatCan" >
-                                            <option selected>Votre Sexe</option>
+                                        <select class="form-select" aria-label="votre choix" name="civilite" [(ngModel)]="etatCan" >
+                                            <option value="">votre choix</option>
                                             <option value="accepter">accepter</option>
                                             <option value="rejeter">rejeter</option>
                                 

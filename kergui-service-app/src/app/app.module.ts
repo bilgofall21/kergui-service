@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor, TokenInterceptorProvider } from './interceptors/interceptor';
 import { DetailOffreComponent } from './composant/detail-offre/detail-offre.component';
+import { ScrfollBarComponent } from './composant/scrfoll-bar/scrfoll-bar.component';
 
 // import { AuthInterceptor } from './interceptors/interceptor';
 
@@ -63,6 +64,7 @@ import { DetailOffreComponent } from './composant/detail-offre/detail-offre.comp
     AnnonceComponent,
     ServiceDashboardComponent,
     DetailOffreComponent,
+    ScrfollBarComponent,
    
   ],
   imports: [

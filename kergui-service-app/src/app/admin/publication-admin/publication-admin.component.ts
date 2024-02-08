@@ -13,8 +13,8 @@ export class PublicationAdminComponent implements OnInit {
   }
 dataPublictions : any;
   afficherPublication(){
-    this.publicationservice.geyAllpublication().subscribe((repons)=>{
-      this.dataPublictions = repons;
+    this.publicationservice.geyAllpublication().subscribe((data)=>{
+      this.dataPublictions = data.data;
       console.log( "voir publica ====", this.dataPublictions);
     })
   }
@@ -26,7 +26,7 @@ selectionnerpublication (element : any){
 
 archiverOffre (id : any): void {
   this.publicationservice.archivePublication(id).subscribe((respons)=>{
-    console.log("offre demna", respons);
+    console.log("offre demna", respons.data);
 
     const publicationDesactive = this.dataPublictions.find((publication: { id: any; }) => publication.id === id);
     if (publicationDesactive) {

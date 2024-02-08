@@ -29,7 +29,7 @@ export class DetailListePublicationEmployeurComponent implements OnInit {
     let servicetaille = 0;
    for (let i = 0; i < this.mycandidatData.length; i++) {
     this.dataBouvle = this.mycandidatData[i];
-    console.log('mmmmmmmm', this.dataBouvle);
+    // console.log('mmmmmmmm', this.dataBouvle);
     
    }
     return servicetaille;
@@ -39,7 +39,7 @@ export class DetailListePublicationEmployeurComponent implements OnInit {
   allcandidat(): void{
     this.candidatureservice.showCadidature().subscribe((respons)=>{
       this.dataCanactif = respons;
-      // console.log("tttttttt", this.dataCanactif);
+      console.log("tttttttt", this.dataCanactif);
       localStorage.setItem('moi', JSON.stringify(this.dataCanactif))
     })
   }
@@ -57,6 +57,9 @@ etatCan : '',
     console.log("hhhh", this.newEtatCan);
     this.candidatureservice.validatCandidat(id, this.newEtatCan).subscribe((respons) => {
       console.log("etat change", respons);
+      this.allcandidat();
+      
+      
     });
   }
   
