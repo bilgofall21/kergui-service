@@ -125,8 +125,8 @@
          
             <div class="col-md-5">
                 <!-- <input class="" type="text" name="civilite" placeholder="Votre civilite" [(ngModel)]="registreEmploye .civilite"  required /> -->
-                <select class="form-select" aria-label="Default select example" name="civilite" [(ngModel)]="registreEmploye .civilite" >
-                    <option selected>Votre Sexe</option>
+                <select class="form-select" aria-label="Votre sexe" name="civilite" [(ngModel)]="registreEmploye .civilite" >
+                    <option value="">Votre Sexe</option>
                     <option value="homme">Homme</option>
                     <option value="femme">Femme</option>
         
@@ -139,14 +139,9 @@
                 <input class="" type="text" name="experienceProf" placeholder="experience prpfessionnelle" [(ngModel)]="registreEmploye .experienceProf"  required />
             </div>
             <div class="col-md-5">
-                <!-- <input class="" type="number" name="profession_id" placeholder="profession" [(ngModel)]="registreEmploye .profession_id"  required /> -->
                 <select class="form-select" aria-label="Sélectionner une profession" name="profession_id" [(ngModel)]="registreEmploye .profession_id" >
                     <option value="">Sélectionner une profession</option>
                     <option *ngFor="let profession of selectOptionData" [value]="profession.id">{{ profession.nom_prof }}</option>
-
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-        
                   </select>
             </div>
            

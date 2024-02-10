@@ -28,7 +28,7 @@ export class ProfilAdminComponent implements OnInit{
 
   modifierProfil() : void{
     let formData = new FormData();
-    formData.append('prenom', this.nom);
+    formData.append('prenom', this.prenom);
     formData.append('nom', this.nom);
     formData.append('telephone', this.telephone);
     formData.append('password', this.password);

@@ -21,12 +21,12 @@
                         <table class="table mb-0 text-left">
                             <thead >
                                 <tr>
-                                    <th class="cellhead" >Date de creation</th>
+                                    <th class="cellhead" >Date de publication</th>
                                     <th class="cellhead">Derniere modification</th>
                                     <th class="cellhead">Date de candidature</th>
                                     <th class="cellhead">Etat</th>
                                     <th class="cellhead"> Action</th>
-                                    <th class="cellhead"> supprimmer</th>
+                                    <th class="cellhead"> validation</th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -37,28 +37,21 @@
                                     <td class="cell" [ngClass]="{'text-success': candidat.etatCan === 'accepter', 'text-danger': candidat.etatCan === 'rejeter'}">
                                         {{candidat.etatCan}} 
                                     </td>
-                                    <td class="cell" >
-                                     
-                                        <select class="form-select" aria-label="votre choix" name="civilite" [(ngModel)]="etatCan" >
+                                    <td class="cell">
+                                        <div class="iconegestion d-flex justify-content-around w-50   ">
+                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDetailCandidat(candidat.user_id)"  ><i class="bi bi-eye"></i></a>
+                                            <a  ><span class="lnr lnr-trash ms-3" (click)="supprimerCandidature(candidat.id)" ></span></a>
+                                        </div>
+                                    </td>  
+                                    <td class="cell " >
+                                        <select class="form-select w-75" aria-label="votre choix" name="civilite" [(ngModel)]="etatCan" >
                                             <option value="">votre choix</option>
                                             <option value="accepter">accepter</option>
                                             <option value="rejeter">rejeter</option>
-                                
                                           </select>
-                                        <button class="btn btn-warning mt-2"(click)="validationCandidat(candidat.id)" >valider</button>
+                                        <button class="btn btn-warning mt-2 text-white"(click)="validationCandidat(candidat.id)" >valider</button>
                                     </td>
-                                    <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a  ><span class="lnr lnr-trash" (click)="supprimerCandidature(candidat.id)" ></span></a>
-   
-                                           
-                                        </div>
-                                    </td>
-                                   
                                 </tr>
-                                
-                        
-
                             </tbody>
                         </table>
                     </div><!--//table-responsive-->
@@ -69,3 +62,64 @@
     </div>
 
 </div>
+
+
+
+<!-- modal  detail  -->
+
+<div class="modal fade " id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">   
+                  <div class="">
+                   <div class="row" *ngIf="candidatSelectionner">
+                    <div class="col-4 " id="tof">
+                        <img src="http://127.0.0.1:8000/storage/{{candidatSelectionner.imageDeProfil}}" alt="">
+                        
+                    </div>
+                    <div class="col-8 ">
+                        <div>
+                            <h5 class="ms-3"> {{candidatSelectionner.nomProfession}} </h5>
+                        </div>
+                        
+                        <div class="d-flex mb-2">
+                            <h6>prenom :  {{candidatSelectionner.prenom}} </h6>
+                            <h6 class="ms-3">nom : {{candidatSelectionner.nom}}   </h6>
+                        </div>
+                        
+                        <div class="d-flex mb-2">
+                            <h6> mail:  {{candidatSelectionner.email}} </h6>
+                            <h6 class="ms-3"> telephone : {{candidatSelectionner.telephone}} </h6>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <h6> Adresse: {{candidatSelectionner.lieu}}  </h6>
+                            <h6 class="ms-3">Telephone : {{candidatSelectionner.dateNaissance}}  </h6>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <h6> Experience: {{candidatSelectionner.experienceProf}}  </h6>
+                            <h6 class="ms-3">Langue : {{candidatSelectionner.langueParler}}  </h6>
+                        </div>
+                     
+                        <div>
+                            <h6>presentation</h6>
+                            <p> {{candidatSelectionner.presentation}} </p>
+
+                        </div>
+                   </div>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button href="" class="btn btn-secondary" data-bs-dismiss="modal"> Fermer</button>
+                  </div>
+
+                  
+           
+        </div>
+     
+      </div>
+    </div>
+  </div>
+<!-- modal fin -->

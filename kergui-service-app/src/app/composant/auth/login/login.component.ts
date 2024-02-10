@@ -76,7 +76,7 @@ localStorage.setItem('user_profile', JSON.stringify(user.data));
         // let useretat = user.role;
 
         if (user.token) {
-          this.affichermessage('success', 'Bienvenu', user.data.prenom);
+          this.affichermessage('success', 'Bienvenu ',  user.data.prenom);
       
           // alert(this.userfoundid);
           if (user.data.role == "admin" && user.data.statut  == "activer") {

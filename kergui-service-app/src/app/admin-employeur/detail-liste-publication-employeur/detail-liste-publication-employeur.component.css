@@ -13,6 +13,23 @@
 .iconegestion a:hover{
    color: var(--kergui-green);
 }
+#tof img{
+  height : 100px;
+  width: 100px;
+  border-radius: 5px;
+  border: 2px solid var(--kergui-green);
+}
+.col-8 .d-flex{
+  margin: 0 auto;
+  
+}
+.modal-content{
+  width: 700px;
+  height: auto;
+}
+.modal-header{
+    background-color: var(--kergui-blue);
+}
 
 
 

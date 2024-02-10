@@ -37,7 +37,9 @@
                                     <td class="cell">  {{publication.typeContrat }} </td>
                                     <td class="cell"> {{publication.slaireMinimum}} </td>
                                     <td class="cell">  {{publication.created_at | date:'dd-MM-yyyy' }} </td>
-                                    <td class="cell">  {{publication.etat}} </td>
+                                    <td class="cell" [ngClass]="{'text-success': publication.etat === 'nouveau', 'text-danger': publication.etat === 'archiver'}">  
+                                        {{publication.etat}} 
+                                    </td>
                             
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
