@@ -63,11 +63,24 @@ nav{
 }
 
 ul{
-    margin-left: 180px;
+    margin-left: 100px;
 }
 
 #navright a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+}
+#navright a:hover{
+    color: var(--kergui-green);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+}
+#navright ul{
     color: var(--kergui-bluelight);
+    background-color: var(--kergui-blue);
     text-decoration: none;
     font-size: 18px;
 }
@@ -80,6 +93,11 @@ ul{
     height: 45px;
     width: 45px;
     border-radius: 50%;
+}
+
+#boutonmenu{
+    background-color: white;
+
 }
 
 

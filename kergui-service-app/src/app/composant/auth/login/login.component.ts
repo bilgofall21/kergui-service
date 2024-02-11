@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit{
                utilisateurConnecte : boolean = false;
   ngOnInit(): void {
     this.useProfession();
-    this.utilisateurConnecte = AuthService.utilisateurConnecte()
+    // this.utilisateurConnecte = AuthService.utilisateurConnecte()
+    this.utilisateurConnecte = this.authentification.isLoggedIn();
   }
 
   // variable pour cacher ou afficherles sections
@@ -65,14 +66,13 @@ submitFunction(event: Event): void {
     this.authentification.loginUser(loginData).subscribe(
       (user: any) => {
         console.log("wouy", user);
+       
 
         this.userfoundid = user.data;
         // Stocker le profil complet de l'utilisateur
 localStorage.setItem('user_profile', JSON.stringify(user.data));
 // const userProfileString = localStorage.getItem('user_profile');
- //recuperer le userConnecter
-//  this.isAuth$.next(true);
-          
+
         // let useretat = user.role;
 
         if (user.token) {
@@ -80,8 +80,14 @@ localStorage.setItem('user_profile', JSON.stringify(user.data));
       
           // alert(this.userfoundid);
           if (user.data.role == "admin" && user.data.statut  == "activer") {
+
+            // variable pour definir etat de l'utulisateuer
+            this.utilisateurConnecte = true;
+            this.authentification.setLoggedIn(true);
             // stocker notre les info de la requete dans notre localstorage
             localStorage.setItem('access_Token', user.token);
+            localStorage.setItem("dashbord_type", 'admin');
+
             
 
         
@@ -91,6 +97,10 @@ localStorage.setItem('user_profile', JSON.stringify(user.data));
           }
           else if (user.data.role == "candidat" && user.data.statut  == "activer") {
             // stocker notre les info de la requete dans notre localstorage
+            this.authentification.setLoggedIn(true);
+            this.utilisateurConnecte = true;
+
+            localStorage.setItem("dashbord_type", 'candidat');
             localStorage.setItem('access_Token', user.token);
             
 
@@ -107,10 +117,10 @@ localStorage.setItem('user_profile', JSON.stringify(user.data));
             // stocker notre les info de la requete dans notre localstorage
             localStorage.setItem('access_Token', user.token);
 
-            //recuperer le userConnecter
-            // const access_Token = JSON.parse(
-            //   localStorage.getItem('access_Token') || ''
-            // );
+            localStorage.setItem("dashboard_type", 'employeur');
+            this.utilisateurConnecte = true;
+            this.authentification.setLoggedIn(true);
+
             this.router.navigate(['/admin-employeur']);
           }
           else {

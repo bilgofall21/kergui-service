@@ -18,7 +18,8 @@ constructor(private candidaturservice : CandidatureServiceService){}
     this.dataCandidat = this.recupDataUser ? JSON.parse(this.recupDataUser) : null;
     console.log("falll" ,this.dataCandidat);
     const userId = this.dataCandidat.id;
-    this.candidaturesUserConnecte = this.candidatures.filter(candidature => candidature.user.id === userId);
+    console.log("eeeee", userId)
+    this.candidaturesUserConnecte = this.candidatures.filter(candidature => candidature.id === userId);
     console.log("mammmm" ,this.candidaturesUserConnecte);
 
     this.recupCandidatureByUser();

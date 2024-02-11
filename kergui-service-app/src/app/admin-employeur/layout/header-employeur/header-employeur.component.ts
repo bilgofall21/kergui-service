@@ -24,7 +24,7 @@ LogOutUser() : void{
     console.log("byyy byyyy", respons);
     localStorage.removeItem('access_token');
     // redirection vers page connexion
-  
+    this.authservice.setLoggedIn(false);
     this.router.navigate(['/login']);
     return new Observable<any>();
   })

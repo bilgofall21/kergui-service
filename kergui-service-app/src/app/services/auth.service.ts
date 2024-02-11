@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, of } from 'rxjs';
 import { url } from '../models/apiUrl';
 
 @Injectable({
@@ -11,10 +11,9 @@ export class AuthService {
   // variable super global
   isAuth$ = new BehaviorSubject<boolean>(false); 
  
-  static utilisateurConnecte(): boolean {
-    return !!localStorage.getItem('access_token');
-  }
+ 
   userID : string ='';
+  utilisateurConnecte: boolean =false;
   setUserId(id: string) {
    this.userID = id;
   }
@@ -53,8 +52,27 @@ export class AuthService {
 
   // methode pour deconnexion
 deconnexion() : Observable<any>{
-  return this.http.get<any>('http://127.0.0.1:8000/api/logout', );
+  return this.http.get<any>('http://127.0.0.1:8000/api/logout', ).pipe(
+    map(response => {
+      localStorage.removeItem('access_token');
+      console.log("demana walla , response");
+      return response;
+    }),
+    catchError(error => {
+      return of(error);
+    })
+  );
 
+}
+
+
+
+setLoggedIn(etat: boolean): void {
+  this.utilisateurConnecte = etat;
+}
+
+isLoggedIn(): boolean {
+  return this.utilisateurConnecte;
 }
 // utilisateurConnecte (): boolean {
 //   // Vous pouvez implémenter cette méthode en fonction de la manière dont vous stockez l'état de connexion, par exemple, en vérifiant si le jeton est présent dans le stockage local.
