@@ -21,6 +21,8 @@ constructor(private candidaturservice : CandidatureServiceService){}
     this.candidaturesUserConnecte = this.candidatures.filter(candidature => candidature.user.id === userId);
     console.log("mammmm" ,this.candidaturesUserConnecte);
 
+    this.recupCandidatureByUser();
+
   // methode pour filtrer
 
    this.recupCandidatureByUser();

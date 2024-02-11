@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { url } from '../models/apiUrl';
 import { User } from '../models/user';
@@ -7,9 +7,13 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class CandidatureServiceService {
+export class CandidatureServiceService implements OnInit {
 
   constructor( private http : HttpClient) { }
+  ngOnInit(): void {
+
+
+  }
  CandidaterUser(id : number) : Observable<any>{
   return this.http.post<any>(`${url}/AjoutCandidature/${id}`, {})
 

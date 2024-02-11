@@ -78,7 +78,7 @@
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Profession</label>
                     <select class="form-select" aria-label="Sélectionner profession" name="profession_id" [(ngModel)]="profession_id" >
-                      <!-- <option value="">Sélectionner profession</option> -->
+                      <option value="" >Sélectionner profession</option>
                       <option *ngFor="let profession of professionData" [value]="profession.id">{{ profession.nom_prof }}</option>
                     </select>
                     <!-- <input type="number" class="form-control" placeholder="profession"  name = "profession_id" [(ngModel)]="profession_id"> -->
