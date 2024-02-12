@@ -2,12 +2,22 @@
     <div class="ajoutservicebutton">
         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
     </div>
+
+    <div class="searchbar mb-5">
+      <div class="d-flex justify-content-end">
+          <div class="input-group w-50 ">
+              <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon"  [(ngModel)]="searchservice" (input)="getArticlesPage()" />
+              <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+            </div>
+
+      </div>
+    </div>
     <h4 class="mt-4">Listes des services</h4>
     <div class="row mt-4 row-gap-4 mb-4" >
         <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage()" >
           <div class="card shadow-lg" style="width: 18.5rem;" >
             <div>
-              <img  src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8=" class="card-img-top" alt="..." style="height: 12rem;">
+              <img  src="./assets/image/carte1.png" class="card-img-top" alt="..." style="height: 12rem;">
               <div class="titleService">
                 <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
               </div>

@@ -14,7 +14,7 @@ const routes: Routes = [
     {path : 'home-admin-employeure', component : HomeAdminEmployeureComponent,},
     {path : 'publication-employeur', component : PublicationEmployeurComponent,},
     {path : 'liste-publication-employeur',component : ListePublicationEmployeurComponent,},
-    {path : 'detail-liste-publication-employeur', component : DetailListePublicationEmployeurComponent,},
+    {path : 'detail-liste-publication-employeur/:id', component : DetailListePublicationEmployeurComponent,},
     {path : 'profil-employeur', component : ProfilEmployeurComponent,},
     
   ]}

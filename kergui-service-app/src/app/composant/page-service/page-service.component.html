@@ -6,7 +6,7 @@
         <section class="baniere">
                     <div class="banner">
                         <div class="overlay"></div>
-                        <h2 class="text-center  w-50"> Services</h2>  
+                        <!-- <h2 class="text-center  w-50"> Services</h2>   -->
                     </div>
         </section>
     </section>
@@ -19,7 +19,7 @@
               <div class="searchbar mb-5">
                 <div class="d-flex justify-content-end">
                     <div class="input-group w-50 ">
-                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" />
+                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon"   [(ngModel)]="searchQuery" (input)=" getArticlesPage()" />
                         <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
                       </div>
 
@@ -30,7 +30,7 @@
                     <hr class="border-3 opacity-100">
                   </div>
                 <div class="row row-gap-4">
-                    <div class="col-lg-3 col-sm-6 "*ngFor="let service of dataprofessions.data">
+                    <div class="col-lg-3 col-sm-6 "*ngFor="let service of getArticlesPage()">
                         <div class="card shadow-lg" style="width: 19rem;">
                           <div>
                             <img  src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8=" class="card-img-top" alt="..." style="height: 12rem;">
@@ -40,8 +40,9 @@
                           </div>
                           <div class="card-body">
                             <p class="card-text">  {{service.description}}  </p>
-                            <a  class=" text-decoration-none me-4 d-flex justify-content-center" [routerLink]="['/detail-service']">  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
                           </div>
+                          <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', service.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
+                          <!-- <button class="btn btn-warning"  >testUser</button> -->
                           <div class="cardfooter"></div>
                         </div>
                       </div>
@@ -57,7 +58,18 @@
 
 <!-- pagination debut -->
 
-
+<!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5" >
+  <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+    Précédent
+  </button>
+  <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+    {{ page }}
+  </button>
+  <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+    Suivant
+  </button>
+</div>
 <!-- pagination fin -->
 
 

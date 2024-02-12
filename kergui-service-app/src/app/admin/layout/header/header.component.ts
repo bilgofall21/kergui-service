@@ -22,8 +22,9 @@ constructor(public authservice: AuthService, private router: Router){}
   
       console.log("byyy byyyy", respons);
       localStorage.removeItem('access_token');
+      // console.log("eeeeeeeee", 'access_token');
       // redirection vers page connexion
-    
+      this.authservice.setLoggedIn(false);
       this.router.navigate(['/login']);
       return new Observable<any>();
     })

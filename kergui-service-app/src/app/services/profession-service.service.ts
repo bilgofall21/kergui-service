@@ -42,6 +42,14 @@ return this.http.get<any>(`${url}/listeProfession`).pipe(
 getProfessionById(id: number): Observable<any> {
   return this.http.get<any>(`${url}/getProfessionById/${id}`);
 }
+GetUserByProfession(id : number) :  Observable<any>{
+  return this.http.get<any>(`${url}/chercheUsersParProfession/${id}`)
+}
+
+// CandidaterUser(id : number) : Observable<any>{
+//  return this.http.post<any>(`${url}/AjoutCandidature/${id}`, {})
+
+// }
   
 
   // methode pour modifier donnée ves l'api

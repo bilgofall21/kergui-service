@@ -18,7 +18,7 @@ import { AuthGuardServiceService } from './services/auth-guard-service.service';
 const routes: Routes = [
   {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
   {path : 'page-service' , component : PageServiceComponent},
-  {path : 'detail-service', component : DetailServiceComponent,},
+  {path : 'detail-service/:id', component : DetailServiceComponent,},
   {path : 'detail-employer', component : DetailEmployerComponent, },
   {path : 'fonctionnement' , component : FonctionnementComponent,},
   {path : 'accueil' , component : AccueilComponent,},

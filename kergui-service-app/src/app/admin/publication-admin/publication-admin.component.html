@@ -14,6 +14,7 @@
 
         <!-- tableau employé -->
         <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
+           
             <div class="app-card app-card-orders-table mb-5">
                 <div class="app-card-body">
                     <div class="table-responsive">
@@ -21,25 +22,40 @@
                         <table class="table mb-0 text-left">
                             <thead >
                                 <tr>
-                                    <th class="cellhead" >Prenom</th>
-                                    <th class="cellhead">Nom</th>
-                                    <th class="cellhead">Secteur</th>
+                                    <th class="cellhead" >Lieu</th>
+                                    <th class="cellhead">Contrat</th>
+                                    <th class="cellhead">Remuneraion</th>
                                     <th class="cellhead">Date Publication</th>
+                                    <th class="cellhead">Etat</th>
+                                    <th class="cellhead"> Details</th>
                                     <th class="cellhead"> Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor=" let publication of dataPublictions.data">
-                                    <td class="cell"> {{publication.user_id}} </td>
-                                    <td class="cell">  {{publication.nom}} </td>
-                                    <td class="cell"> {{publication.profession_id}} </td>
-                                    <td class="cell">  {{publication.created_at}} </td>
+                                <tr *ngFor=" let publication of dataPublictions">
+                                    <td class="cell"> {{publication.lieu}} </td>
+                                    <td class="cell">  {{publication.typeContrat }} </td>
+                                    <td class="cell"> {{publication.slaireMinimum}} </td>
+                                    <td class="cell">  {{publication.created_at | date:'dd-MM-yyyy' }} </td>
+                                    <td class="cell" [ngClass]="{'text-success': publication.etat === 'nouveau', 'text-danger': publication.etat === 'archiver'}">  
+                                        {{publication.etat}} 
+                                    </td>
                             
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a href=""><i class="bi bi-eye"></i></a>
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"><i class="bi bi-save-fill"></i></a>
+                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye" ></i></a>
+                                            <!-- <a href="" (click)="archiverOffre (publication.id)" ><i class="bi bi-save-fill"></i></a> -->
                                         </div>
+                                    </td>
+                                    <td class="cell" >
+                                     
+                                        <select class="form-select" aria-label="choix etat" name="civilite" [(ngModel)]="etat" >
+                                            <option value="">choix etat</option>
+                                            <option value="archiver">archiver</option>
+                                            
+                                
+                                          </select>
+                                        <button class="btn btn-warning mt-2"(click)="archiverOffre (publication.id)" >Archiver</button>
                                     </td>
                                    
                                 </tr>
@@ -56,3 +72,66 @@
     </div>
 
 </div>
+
+
+
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  
+
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+           
+              
+                  <div class="" *ngIf="publicationSelect ">
+                   <div class="row">
+                    <div class="col-4 " id="tof">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHB1YmxpY2F0aW9uJTIwd2ViJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    </div>
+                    <div class="col-8 ">
+                        <div class=" mb-2">
+                            <h6>contrat :  {{publicationSelect.typeContrat}} </h6>
+                           
+                        </div>
+                        
+                        <div class="d-flex mb-2">
+                            <h6> salaire:  {{publicationSelect.slaireMinimum}} </h6>
+                            <h6 class="ms-3">adresse :  {{publicationSelect.lieu}} </h6>
+                        </div>
+                        <div class=" mb-2">
+                            <h6> creer le: {{publicationSelect.created_at}} </h6>
+                           
+                        </div>
+                        <div>
+                            <h6>description</h6>
+                        </div>
+                        <div>
+                            <p> {{publicationSelect.description}} </p>
+                        </div>
+                    </div>
+                   </div>
+                  </div>
+                  <div class="validajout d-flex justify-content-end">
+                    <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
+                  </div>
+
+                  
+           
+        </div>
+     
+      </div>
+    </div>
+  </div>
+
+
+
+

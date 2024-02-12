@@ -14,8 +14,11 @@ h5{
     color: var(--kergui-green);
     font-weight: bold;
 }
+.searchbar button{
+    background-color: var(--kergui-blue);
+}
 .card-body p{
-    height: 6.5rem;
+    height: 10rem;
     
     overflow: hidden;
     text-overflow: ellipsis;

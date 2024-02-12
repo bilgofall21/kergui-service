@@ -2,7 +2,7 @@
 <section class="baniere">
     <div class="banner">
         <div class="overlay"></div>
-        <h2 class="text-center  w-50"> Detail offre</h2>  
+        <!-- <h2 class="text-center  w-50"> Detail offre</h2>   -->
     </div>
 </section>
 
@@ -13,21 +13,21 @@
                 <h4 class="fw-bold"> Les annonces</h4>
                 <hr class="border-3 opacity-100">
               </div>
-              <article *ngIf="dataDetail" >
-                <!-- Post header-->
+              <!-- <article *ngIf="dataDetail" >
+             
                 <header class="mb-4">
-                    <!-- Post title-->
+                  
                     <h1 class="fw-bolder mb-1">Detail de l'annoce</h1>
-                    <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Poster le {{dataDetail.created_at}} </div>
+                   
+                    <div class="text-muted fst-italic mb-2">Poster le {{dataDetail.created_at | date:'dd-MM-yyyy'  }} </div>
                  
-                    <!-- Post categories-->
+             
                     <a class="badge bg-secondary text-decoration-none link-light" href="#!"> Profession</a>
-                    <!-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a> -->
+              
                 </header>
-                <!-- Preview image figure-->
+            
                 <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
-                <!-- Post content-->
+              
                 <section class="mb-5">
                     <p class="fs-5 mb-4"> {{dataDetail.description}} </p>
             
@@ -49,7 +49,50 @@
                 <div class="postulation text-center">
                     <button class="postuler mt-4 mb-4" (click)="Candididater(dataDetail.id)">Postuler à cette offre</button>
                 </div>
-            </article>
+            </article> -->
+
+            <div class="detailcontainer  p-5 mb-3">
+                <div class="well p-5"  *ngIf="dataDetail">
+                    <div class="annconcedetail d-flex justify-content-between">
+                       <div>
+                           <h5>profession</h5> 
+    
+                       </div>
+                            <div>
+                                <h6> <i class="bi bi-person-circle me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> Prenom nom</h6>
+                            </div>
+                            <div>
+                              <h6>  <i class="bi bi-calendar me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.created_at | date:'dd-MM-yyyy'  }}</h6> 
+                            </div>
+                            <div>
+                                <h6>  <i class="fa fa-map-marker me-3"  style="font-size: 1.5em; color: #3A6A7E;" aria-hidden="true"></i> {{dataDetail.lieu}}</h6>
+                            </div>
+                        
+                    </div>
+                    <div class="annocedescription">
+                        <p class="lead text-center mt-5 py-5">
+                            {{dataDetail.description}}
+                        </p>
+                    </div>
+                    <footer class="d-flex justify-content-around">
+                        <div>
+                            <h6 class="badge  " > Experince Profession : {{dataDetail.experienceMinimum}} </h6>
+                        </div>
+                        <div>
+                            <h6 class="badge  " > Salaire :  {{dataDetail.slaireMinimum}}</h6>
+                        </div>
+                        <div>
+                            <h6 class="badge  " > Adresse :  {{dataDetail.lieu}} </h6>
+                        </div>
+                    </footer>
+                    
+                    <div class="text-center m-4">
+                        <button class="postuler " (click)="Candididater(dataDetail.id)"> Postuler a cette annonce</button>
+                    </div>
+
+                </div>
+                
+            </div>
        
         </div>
     </div>

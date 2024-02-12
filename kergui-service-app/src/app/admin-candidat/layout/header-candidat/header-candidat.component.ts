@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -24,7 +25,7 @@ LogOutUser() : void{
     console.log("byyy byyyy", respons);
     localStorage.removeItem('access_token');
     // redirection vers page connexion
-  
+    this.authservice.setLoggedIn(false);
     this.router.navigate(['/login']);
     return new Observable<any>();
   })

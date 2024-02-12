@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit{
                utilisateurConnecte : boolean = false;
   ngOnInit(): void {
     this.useProfession();
-    this.utilisateurConnecte = AuthService.utilisateurConnecte()
+    // this.utilisateurConnecte = AuthService.utilisateurConnecte()
+    this.utilisateurConnecte = this.authentification.isLoggedIn();
   }
 
   // variable pour cacher ou afficherles sections
@@ -65,23 +66,28 @@ submitFunction(event: Event): void {
     this.authentification.loginUser(loginData).subscribe(
       (user: any) => {
         console.log("wouy", user);
+       
 
         this.userfoundid = user.data;
         // Stocker le profil complet de l'utilisateur
 localStorage.setItem('user_profile', JSON.stringify(user.data));
 // const userProfileString = localStorage.getItem('user_profile');
- //recuperer le userConnecter
-//  this.isAuth$.next(true);
-          
+
         // let useretat = user.role;
 
         if (user.token) {
-          this.affichermessage('success', 'Bienvenu', user.data.prenom);
+          this.affichermessage('success', 'Bienvenu ',  user.data.prenom);
       
           // alert(this.userfoundid);
           if (user.data.role == "admin" && user.data.statut  == "activer") {
+
+            // variable pour definir etat de l'utulisateuer
+            this.utilisateurConnecte = true;
+            this.authentification.setLoggedIn(true);
             // stocker notre les info de la requete dans notre localstorage
             localStorage.setItem('access_Token', user.token);
+            localStorage.setItem("dashbord_type", 'admin');
+
             
 
         
@@ -91,6 +97,10 @@ localStorage.setItem('user_profile', JSON.stringify(user.data));
           }
           else if (user.data.role == "candidat" && user.data.statut  == "activer") {
             // stocker notre les info de la requete dans notre localstorage
+            this.authentification.setLoggedIn(true);
+            this.utilisateurConnecte = true;
+
+            localStorage.setItem("dashbord_type", 'candidat');
             localStorage.setItem('access_Token', user.token);
             
 
@@ -107,10 +117,10 @@ localStorage.setItem('user_profile', JSON.stringify(user.data));
             // stocker notre les info de la requete dans notre localstorage
             localStorage.setItem('access_Token', user.token);
 
-            //recuperer le userConnecter
-            // const access_Token = JSON.parse(
-            //   localStorage.getItem('access_Token') || ''
-            // );
+            localStorage.setItem("dashboard_type", 'employeur');
+            this.utilisateurConnecte = true;
+            this.authentification.setLoggedIn(true);
+
             this.router.navigate(['/admin-employeur']);
           }
           else {
@@ -206,10 +216,12 @@ registerUser(): void {
   // Call the registration method in your authentication service
   this.authentification.registerUser(formData).subscribe(
     (response: any) => {
+      this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
       console.log(  "inscription successfully", response);
       // Handle successful registration, e.g., show a success message or navigate to another page
     },
     (error: any) => {
+      this.affichermessageregister('error', 'desole', ' Inscription non validé');
       console.error('Erreur durant inscription:', error);
       // Handle registration error, e.g., show an error message
     }
@@ -239,10 +251,12 @@ registerUserEmploye(): void {
   // Call the registration method in your authentication service
   this.authentification.registerEmploye(formData).subscribe(
     (response: any) => {
+      this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
       console.log(  "inscription successfully", response);
       // Handle successful registration, e.g., show a success message or navigate to another page
     },
     (error: any) => {
+      this.affichermessageregister('error', 'desole', ' Inscription non validé');
       console.error('Erreur durant inscription:', error);
       // Handle registration error, e.g., show an error message
     }
@@ -250,16 +264,38 @@ registerUserEmploye(): void {
 
 }
 
+
+
+affichermessageregister(icone: any, message: string,user:string) {
+  Swal.fire({
+      position: 'center',
+      icon: icone,
+      title: message +"" +user,
+      showConfirmButton: true,
+      // timer: 1500
+  })
+}
+affichermessageemployeur(icone: any, message: string,user:string) {
+  Swal.fire({
+      position: 'center',
+      icon: icone,
+      title: message +"" +user,
+      showConfirmButton: true,
+      // timer: 1500
+  })
+}
+
 getFile(event: any) {
   console.warn(event.target.files[0]);
   this.image= event.target.files[0] as File ;
 }
-selectOptions: []=[];
-  selectedOption!: number;
+selectOptionData: any;
+
 useProfession() :  void{
-  this.professionservice.getSelectOption().subscribe((options)=>{
-this.selectOptions=options;
-console.log("info formation", this.selectOptions);
+  this.professionservice.getProfession().subscribe((data)=>{
+
+this.selectOptionData = data.data;
+// console.log("voir profession", this.selectOptionData);
   })
 }
 

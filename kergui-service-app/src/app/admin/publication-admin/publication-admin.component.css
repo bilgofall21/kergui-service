@@ -1,5 +1,45 @@
-/* style bouton action */
+/* modal detail */
+/* style formulaire  */
+.validajout a , .validajout button{
+  padding: 8px 25px;
+  background-color: var(--kergui-blue);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 20px;
+ 
+}
 
+#tof img{
+  height : 100px;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid var(--kergui-green);
+}
+.col-8 .d-flex{
+margin: 0 auto;
+
+}
+.modal-content{
+width: 600px;
+}
+.modal-header{
+  background-color: var(--kergui-blue);
+}
+.modal-body label {
+  color: var(--kergui-blue);
+  font-weight: bold;
+  font-size: 18px;
+}
+.modal-body input{
+  height: 45px;}
+
+
+
+
+
+/* style bouton action */
 .iconegestion {
     /* margin: 0 auto; */
    
