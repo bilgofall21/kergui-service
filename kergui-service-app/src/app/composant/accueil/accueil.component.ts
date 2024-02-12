@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Profession } from 'src/app/models/profession';
 import { Publication } from 'src/app/models/publication';
+import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
@@ -8,9 +10,10 @@ import { PublicationService } from 'src/app/services/publication.service';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-constructor( private publicationservice : PublicationService) {}
+constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService) {}
   ngOnInit(): void {
 this.affichepublication();
+this.afficherservice();
   }
 
   // methode pour afficher 3 dernier publications au niveau de l'accueil
@@ -30,6 +33,22 @@ affichepublication() : void {
       // Prendre les trois dernières publications
       this.lastThreePublications = sortedPublications.slice(0, 3);
       console.log('vor dernietr', this.lastThreePublications);
+    }
+  })
+}
+dataHomeService : any;
+lastFourService : Profession[]= [];
+afficherservice(){
+  this.professionservice.getProfession().subscribe((data)=>{
+    this.dataHomeService = data;
+    console.log("mes service home ", this.dataHomeService);
+    if(this.dataHomeService && this.dataHomeService.data){
+      const sortedServices = this.dataHomeService.data.sort((a : {created_at : string| number | Date;}, b : {created_at: string | number | Date;})=>{
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      });
+      this.lastFourService = sortedServices.slice(0, 4);
+      console.log("4 sevice recent", this.lastFourService);
+
     }
   })
 }
