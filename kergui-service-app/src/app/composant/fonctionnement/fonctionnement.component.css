@@ -12,7 +12,7 @@ hr{
   
   /* style baniere */
   .banner{
-      background: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTbhHH3UQI9Q8J_W8zSdGQ0Dzgh5AjSWLy7bN0Yp4z3A5b3C6d9);
+      background: url(src\assets\image\fonctionnement.png);
       height: 80vh;
       width: 100%;
       background-size: cover;
@@ -27,7 +27,7 @@ hr{
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 54, 104, 0.5);
+      /* background: rgba(0, 54, 104, 0.5); */
       
    
     }

@@ -67,11 +67,16 @@ chargementdonne ():  void{
 
 
 // pagination
-  
+searchElement: string = '';
+  userproftrouve : any []=[];
   getArticlesPage(): any[] {
     const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
     const indexFin = indexDebut + this.articlesParPage;
-    return this.userprofData.slice(indexDebut, indexFin);
+    this.userproftrouve = this.userprofData.filter((element: { prenom: string; nom: string; }) =>
+      element.prenom.toLowerCase().includes(this.searchElement.toLowerCase()) ||
+      element.nom.toLowerCase().includes(this.searchElement.toLowerCase())
+      );
+    return this.userproftrouve.slice(indexDebut, indexFin);
   }
      // Méthode pour générer la liste des pages
      get pages(): number[] {

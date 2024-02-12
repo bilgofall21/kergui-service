@@ -179,11 +179,16 @@ chargerProfession( formation : any){
 
 
 // pagination
-  
+  dataprofessiontrouve : any []=[];
+  searchservice : string= '';
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
-  return this.dataProfession.data.slice(indexDebut, indexFin);
+  this.dataprofessiontrouve= this.dataProfession.data.filter((service: { nom_prof: string; description: string; }) =>
+    service.nom_prof.toLowerCase().includes(this.searchservice.toLowerCase()) ||
+    service.description.toLowerCase().includes(this.searchservice.toLowerCase())
+    );
+  return this.dataprofessiontrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {

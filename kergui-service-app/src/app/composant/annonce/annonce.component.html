@@ -12,7 +12,7 @@
             <div class="searchbar mb-5">
                 <div class="d-flex justify-content-end">
                     <div class="input-group w-50 ">
-                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" />
+                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" [(ngModel)]="searchPublication" (input)="getArticlesPage()" />
                         <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
                       </div>
 
@@ -27,7 +27,7 @@
                   <div class="cardcontain">
                     <div class="card border-0" style="width: 20rem;">
                       <div>
-                        <img src="https://media.istockphoto.com/id/1183604411/photo/chef-preparing-dish.jpg?s=612x612&w=0&k=20&c=EtSakYnEIdbeZI4zBWKVa4J85MqqkHiZSh243cMYcMk=" class="card-img-top" alt="...">
+                        <img src="./assets/image/annoncecarte1.png" class="card-img-top" alt="...">
                         <div class="overlay1"></div>
                         <div class="annoncetitle text-center ">
                           <h5 class="text-white pt-2 fw-bold">Offre d'emploi</h5>

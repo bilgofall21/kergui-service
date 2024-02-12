@@ -34,6 +34,16 @@ hr{
     border-bottom: 2px solid var(kergui-blue);
 
 }
+.banner3{
+    background: url(src\assets\image\baniere3.png);
+    height: 80vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    border-bottom: 2px solid var(kergui-blue);
+
+}
 #carouselcontainer{
     height: 80vh;
 }

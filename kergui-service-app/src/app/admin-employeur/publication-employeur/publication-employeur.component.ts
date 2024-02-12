@@ -38,10 +38,12 @@ publication: any;
     
 
   constructor( private publicationservice : PublicationService, private candidatservice : CandidatureServiceService, private professionservice : ProfessionServiceService) { }
+ userConnectedId : any;
+ datPublicationFiltred : any[]= [] ;
   ngOnInit(): void {
   this.afficherPublication();
   this.listeProfession ();
-
+ 
   }
   dataOffres : any;
   afficherOfrreUser(): void{
@@ -69,30 +71,25 @@ publication: any;
   dataPublication : any;
   userConnect : any;
   afficherPublication () : void{
-
+    // rcuperation de l'user connecte depuis local storage
     const recupuserConnecte = localStorage.getItem('user_profile')
     this.userConnect = recupuserConnecte ? JSON.parse(recupuserConnecte) : null;
     if(this.userConnect){
-      
+      // appel du service recuperant tpous les annonces
       this.publicationservice.geyAllpublication().subscribe((data)=>{
         this.dataPublication = data.data;
-        console.log("dddd", this.dataPublication);
+        console.log("dddd", this.dataPublication);      
+        console.log("ma fi nek" , this.userConnect);
+        // fitrer les anonces en fontion du userconnecté
+        this.datPublicationFiltred = this.dataPublication.filter((element: { user_id: any; }) => element.user_id == this.userConnect.id);
         
-
-        this.dataPublication.forEach((publication: {  user_id: any; }) => {
-          if(publication.user_id === this.userConnect.id){
-            // console.log("Publication de l'utilisateur connecté :", publication);
-            // console.log("Informations de l'utilisateur :", this.userConnect);
-          }
-        });
+        console.log("mes pubiiiii", this.datPublicationFiltred);
+              
       })
       
     }
 
   }
-
-
-  // methode pour afficher publication de chaque user
 
 
  //  methode pour ajouter publication

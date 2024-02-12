@@ -15,13 +15,13 @@
     <h4 class="mt-4">Listes des publications</h4>
 
         <div class="row mt-4">
-            <div class="col-lg-4 cardannonce" *ngFor="let element of dataPublication">
-              <ng-container  *ngIf="element.user_id === userConnect.id" >
+            <div class="col-lg-4 cardannonce" *ngFor="let element of datPublicationFiltred ">
+              <!-- <ng-container  > -->
 
                 <div class="cardcontain">
                   <div class="card border-0" style="width: 20rem;">
                     <div>
-                      <img src="https://media.istockphoto.com/id/1183604411/photo/chef-preparing-dish.jpg?s=612x612&w=0&k=20&c=EtSakYnEIdbeZI4zBWKVa4J85MqqkHiZSh243cMYcMk=" class="card-img-top" alt="...">
+                      <img src="./assets/image/annoncecarte1.png" class="card-img-top" alt="...">
                       <div class="overlay1"></div>
                       <div class="annoncetitle text-center ">
                         <h5 class="text-white pt-2 fw-bold"> {{element.nom_prof}} </h5>
@@ -48,7 +48,7 @@
                   </div>
   
                 </div>
-              </ng-container>
+              <!-- </ng-container> -->
               
             </div>
            

@@ -23,6 +23,8 @@ id!: number;
     })
   }
   userprofData : any;
+  dataprofessiontrouve : any []= [];
+  searchQuery: string = '';
   afficherUsedrByProfession(id : number) : void{
     this.professionservice.GetUserByProfession(id).subscribe((data)=>{
       this.userprofData =data.data;
@@ -30,6 +32,21 @@ id!: number;
       localStorage.setItem('uer_byprof', JSON.stringify(this.userprofData))
     })
   }
+
+
+  // recherche
+
+  // filterservice (){
+  //   this.dataprofessiontrouve = this.dataprofessions;
+  //   if (this.searchQuery.trim() === '') {
+  //     this.dataprofessiontrouve = this.dataprofessions;
+  //   }else{
+  //     this.dataprofessiontrouve = this.dataprofessions.filter((profession: { nom_prof: string; description: string; }) =>
+  //       profession.nom_prof.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+  //       profession.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+  //       );
+  //   }
+  // }
 
    // Attribut pour la pagination
    articlesParPage = 4; // Nombre d'articles par page
@@ -41,7 +58,15 @@ id!: number;
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
-  return this.dataprofessions.slice(indexDebut, indexFin);
+  this.dataprofessiontrouve = this.dataprofessions.filter((service: { nom_prof: { toLowerCase: () => {
+    includes: any; (): any; new(): any; include: { (arg0: string): any; new(): any; }; 
+}; }; description: { toLowerCase: () => {
+  includes(arg0: string): any; (): any; new(): any; include: { (arg0: string): any; new(): any; }; 
+}; }; }) =>
+    service.nom_prof.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+    service.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  return this.dataprofessiontrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {

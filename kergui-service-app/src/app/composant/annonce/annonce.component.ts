@@ -35,11 +35,17 @@ voirDetail(element : any){
 
 
 // pagination
-  
+ datapublicationTrouve : any []=[]; 
+ searchPublication : string='';
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
-  return this.dataPublications.slice(indexDebut, indexFin);
+  this.datapublicationTrouve = this.dataPublications.filter((publica: { description: string; created_at: string; }) => 
+    publica.description.toLowerCase().includes(this.searchPublication.toLowerCase())||
+    publica.created_at.toLowerCase().includes(this.searchPublication.toLowerCase())
+    );
+  
+  return this.datapublicationTrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {
