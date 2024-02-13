@@ -18,7 +18,16 @@ afficherAllPublication(){
   this.publicationservice.geyAllpublication().subscribe((respons)=>{
     this.dataPublications =respons.data;
     console.log("mes publicaaa", this.dataPublications);
+    this.dataPublications.forEach((publication : any)=>{
+      const nomProfession = this.getNomProfesion(publication.profession_id);
+      console.log('professs', nomProfession);
+    })
   })
+}
+getNomProfesion (professionId : number) : void{
+  console.log("dfhgbjkn,l", this.dataPublications);
+  const profession = this.dataPublications.find((profess: { id: any; }) => profess.id == professionId); 
+  return profession ? profession.nom_prof :  'profession inconue'                                                        
 }
 voirDetail(element : any){
   this.detailOffre = element;

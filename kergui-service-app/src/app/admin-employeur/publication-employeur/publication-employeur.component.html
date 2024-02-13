@@ -24,7 +24,7 @@
                       <img src="./assets/image/annoncecarte1.png" class="card-img-top" alt="...">
                       <div class="overlay1"></div>
                       <div class="annoncetitle text-center ">
-                        <h5 class="text-white pt-2 fw-bold"> {{element.nom_prof}} </h5>
+                        <h5 class="text-white pt-2 fw-bold"> {{ getNomProfesion(element.profession_id) }} </h5>
                       </div>
                     </div>
                     <div class="card-body ">
@@ -176,29 +176,33 @@
          
             
                 <div class="" >
-                 <div class="row">
+                 <div class="row" *ngIf="publcationselect">
                   <div class="col-4 " id="tof">
-                      <img src="" alt="">
+                      <img src="./assets/image/annoncecarte1.png" alt="">
                   </div>
                   <div class="col-8 ">
-                      <div class="d-flex mb-2">
-                          <h6>prenom :   </h6>
-                          <h6 class="ms-3">nom :  </h6>
+                      <div class="mb-2">
+                          <h6>date publication :{{publcationselect.created_at | date:'dd-MM-yyyy'  }}   </h6>
+                        
                       </div>
                       
                       <div class="d-flex mb-2">
-                          <h6> mail:  </h6>
+                          <h6> experience: {{publcationselect.experienceMinimum}} </h6>
                           <h6 class="ms-3">  </h6>
                       </div>
-                      <div class="d-flex mb-2">
-                          <h6> Adresse:  </h6>
-                          <h6 class="ms-3">Telephone :  </h6>
+                      <div class="mb-2">
+                          <h6> Adresse:  {{publcationselect.lieu}} </h6>
+                        
+                      </div>
+                      <div class="mb-2">
+                          <h6> Contrat :  {{publcationselect.typeContrat}} </h6>
+                        
                       </div>
                       <div>
                           <h6>presentation</h6>
                       </div>
                       <div>
-                          <p>  </p>
+                          <p>{{publcationselect.description}}  </p>
                       </div>
                   </div>
                  </div>

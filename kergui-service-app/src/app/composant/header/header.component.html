@@ -32,7 +32,6 @@
               
             </ul>
             <div class=" d-flex w-25" id="navright"  >
-              <button   *ngIf="!utilisateurConnecte" class="btn text-white fw-bold"   [routerLink]="['/login']"  >Se connecter</button>
               <div class="dropdown"  *ngIf="utilisateurConnecte">
                 <a class="" id="boutonmenu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="http://127.0.0.1:8000/storage/{{userProfile.imageDeProfil}}" alt=""  >
@@ -44,7 +43,8 @@
                 </ul>
               </div>
               
-               
+              <button   *ngIf="!utilisateurConnecte" class="btn text-white fw-bold"   [routerLink]="['/login']"  >Se connecter</button>
+
             </div>
         </div>
       </div>

@@ -472,10 +472,10 @@ body {
     /* border-left: 8px solid var(--kergui-blue); */
   }
   .app-nav .nav-link.active {
-    background-color: var(--kergui-green);
-    color: white;
+    /* background-color: var(--kergui-green); */
+    /* color: white; */
     /* border-left: 3px solid var(--kergui-green); */
-    font-weight: bold;
+    /* font-weight: bold; */
   }
   
   .app-nav .nav-link:hover {
@@ -835,6 +835,12 @@ body {
   .app-nav-tabs .nav-link:hover {
     background: #edfdf6;
     color: #15a362;
+  }
+
+  .active{
+    background-color: var(--kergui-green);
+    color: white;
+    font-weight: bold;
   }
   .app-pagination .pagination {
     font-size: 0.875rem;
