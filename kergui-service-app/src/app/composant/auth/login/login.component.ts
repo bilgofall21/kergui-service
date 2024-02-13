@@ -200,67 +200,77 @@ imageDeProfil!: File;
 
 
 registerUser(): void {
-  // Perform additional validation if needed
-  console.log("voir info rentrer", this.registreData);
-  let formData=new FormData();
-  formData.append('nom', this.registreData.nom);
-  formData.append('prenom', this.registreData.prenom);
-  formData.append('email', this.registreData.email);
-  formData.append('telephone', this.registreData.telephone);
-  formData.append('lieu', this.registreData.lieu);
-  formData.append('password', this.registreData.password);
-  formData.append('password_confirmation', this.registreData.password_confirmation);
-  formData.append('imageDeProfil', this.image);
+  if(this.registreData.email !== '' && this.registreData.password !==''  && this.registreData.nom !== '' && this.registreData.prenom !== '' && this.registreData.telephone !== '' && this.registreData.lieu !== '' && this.registreData.password_confirmation !== '' && this.registreData.imageDeProfil !=='') {
 
+    // Perform additional validation if needed
+    console.log("voir info rentrer", this.registreData);
+    let formData=new FormData();
+    formData.append('nom', this.registreData.nom);
+    formData.append('prenom', this.registreData.prenom);
+    formData.append('email', this.registreData.email);
+    formData.append('telephone', this.registreData.telephone);
+    formData.append('lieu', this.registreData.lieu);
+    formData.append('password', this.registreData.password);
+    formData.append('password_confirmation', this.registreData.password_confirmation);
+    formData.append('imageDeProfil', this.image);
   
-  // Call the registration method in your authentication service
-  this.authentification.registerUser(formData).subscribe(
-    (response: any) => {
-      this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
-      console.log(  "inscription successfully", response);
-      // Handle successful registration, e.g., show a success message or navigate to another page
-    },
-    (error: any) => {
-      this.affichermessageregister('error', 'desole', ' Inscription non validé');
-      console.error('Erreur durant inscription:', error);
-      // Handle registration error, e.g., show an error message
-    }
-  );
+    
+    // Call the registration method in your authentication service
+    this.authentification.registerUser(formData).subscribe(
+      (response: any) => {
+        this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
+        console.log(  "inscription successfully", response);
+        // Handle successful registration, e.g., show a success message or navigate to another page
+      },
+      (error: any) => {
+        this.affichermessageregister('error', 'desole', ' Inscription non validé');
+        console.error('Erreur durant inscription:', error);
+        // Handle registration error, e.g., show an error message
+      }
+    );
+  }else{
+    this.affichermessage('error', 'Verifiez', ' information manquante ou incorrect');
+  }
 
 }
 registerUserEmploye(): void {
   // Perform additional validation if needed
-  console.log("voir info rentrer", this.registreData);
-  let formData=new FormData();
-  formData.append('nom', this.registreEmploye.nom);
-  formData.append('prenom', this.registreEmploye.prenom);
-  formData.append('email', this.registreEmploye.email);
-  formData.append('telephone', this.registreEmploye.telephone);
-  formData.append('lieu', this.registreEmploye.lieu);
-  formData.append('password', this.registreEmploye.password);
-  formData.append('password_confirmation', this.registreEmploye.password_confirmation);
-  formData.append('dateNaissance', this.registreEmploye.dateNaissance);
-  formData.append('langueParler', this.registreEmploye.langueParler);
-  formData.append('presentation', this.registreEmploye.presentation);
-  formData.append('civilite', this.registreEmploye.civilite);
-  formData.append('profession_id', this.registreEmploye.profession_id);
-  formData.append('experienceProf', this.registreEmploye.experienceProf);
-  formData.append('imageDeProfil', this.image);
+  if(this.registreEmploye.nom ! == '' && this.registreEmploye.prenom ! == '' && this.registreEmploye.email ! == '' && this.registreEmploye.telephone ! == '' && this.registreEmploye.lieu ! == '' && this.registreEmploye.password ! == '' && this.registreEmploye.password_confirmation ! == '' && this.image ! == '' && this.registreEmploye.dateNaissance !=='' && this.registreEmploye.civilite !== '' && this.registreEmploye.langueParler !=='' && this.registreEmploye.presentation !== '' && this.registreEmploye.profession_id ! == '' && this.registreEmploye.experienceProf !=='' ){
 
+    console.log("voir info rentrer", this.registreData);
+    let formData=new FormData();
+    formData.append('nom', this.registreEmploye.nom);
+    formData.append('prenom', this.registreEmploye.prenom);
+    formData.append('email', this.registreEmploye.email);
+    formData.append('telephone', this.registreEmploye.telephone);
+    formData.append('lieu', this.registreEmploye.lieu);
+    formData.append('password', this.registreEmploye.password);
+    formData.append('password_confirmation', this.registreEmploye.password_confirmation);
+    formData.append('dateNaissance', this.registreEmploye.dateNaissance);
+    formData.append('langueParler', this.registreEmploye.langueParler);
+    formData.append('presentation', this.registreEmploye.presentation);
+    formData.append('civilite', this.registreEmploye.civilite);
+    formData.append('profession_id', this.registreEmploye.profession_id);
+    formData.append('experienceProf', this.registreEmploye.experienceProf);
+    formData.append('imageDeProfil', this.image);
   
-  // Call the registration method in your authentication service
-  this.authentification.registerEmploye(formData).subscribe(
-    (response: any) => {
-      this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
-      console.log(  "inscription successfully", response);
-      // Handle successful registration, e.g., show a success message or navigate to another page
-    },
-    (error: any) => {
-      this.affichermessageregister('error', 'desole', ' Inscription non validé');
-      console.error('Erreur durant inscription:', error);
-      // Handle registration error, e.g., show an error message
-    }
-  );
+    
+    // Call the registration method in your authentication service
+    this.authentification.registerEmploye(formData).subscribe(
+      (response: any) => {
+        this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
+        console.log(  "inscription successfully", response);
+        // Handle successful registration, e.g., show a success message or navigate to another page
+      },
+      (error: any) => {
+        this.affichermessageregister('error', 'desole', ' Inscription non validé');
+        console.error('Erreur durant inscription:', error);
+        // Handle registration error, e.g., show an error message
+      }
+    );
+  }else{
+    this.affichermessage('error', 'reverifiez ', 'champ vide ou informations incorectes ')
+  }
 
 }
 

@@ -78,44 +78,58 @@ publication: any;
       // appel du service recuperant tpous les annonces
       this.publicationservice.geyAllpublication().subscribe((data)=>{
         this.dataPublication = data.data;
-        console.log("dddd", this.dataPublication);      
-        console.log("ma fi nek" , this.userConnect);
+      
         // fitrer les anonces en fontion du userconnecté
         this.datPublicationFiltred = this.dataPublication.filter((element: { user_id: any; }) => element.user_id == this.userConnect.id);
         
         console.log("mes pubiiiii", this.datPublicationFiltred);
-              
+        this.datPublicationFiltred.forEach((publication : any)=>{
+          const nomProfession = this.getNomProfesion(publication.profession_id);
+          console.log("profession", nomProfession);
+        })
       })
       
     }
 
   }
 
+  getNomProfesion (professionId : number) : void{
+    console.log("dfhgbjkn,l", this.professionData);
+    const profession = this.professionData.find((profess: { id: any; }) => profess.id ==professionId); 
+  
+    return profession ? profession.nom_prof :  'profession inconue'                                                        
+  }
+
 
  //  methode pour ajouter publication
 
 ajouterPublicatin (): void{
-  this.newPublication={
-    lieu: this.lieu,
-    typeContrat : this.typeContrat,
-    description : this.description,
-    slaireMinimum : this.slaireMinimum,
-    experienceMinimum :  this.experienceMinimum,
-    userId : this.userId,
-    profession_id : this.profession_id,
-  };
-  this.publicationservice.addPubication(this.newPublication).subscribe((datapubli : any) =>{
-    console.log("champ", this.newPublication);
-    console.log("ajout bien", datapubli);
-
-    this.viderChamp();
+  if (this.profession_id !=="" && this.description !=="" && this.lieu !=="" && this.slaireMinimum !=="" && this.experienceMinimum !=="" && this.typeContrat !==""){
     
-    window.location.reload();
-  },
-  error =>{
-    console.error('Erreur lors de l\'ajout :', error);
+    this.newPublication={
+      lieu: this.lieu,
+      typeContrat : this.typeContrat,
+      description : this.description,
+      slaireMinimum : this.slaireMinimum,
+      experienceMinimum :  this.experienceMinimum,
+      userId : this.userId,
+      profession_id : this.profession_id,
+    };
+    this.publicationservice.addPubication(this.newPublication).subscribe((datapubli : any) =>{
+      console.log("champ", this.newPublication);
+      console.log("ajout bien", datapubli);
+  
+      this.viderChamp();
+      
+      window.location.reload();
+    },
+    error =>{
+      console.error('Erreur lors de l\'ajout :', error);
+    }
+    )
+  }else{
+    this.affichermessage('error', 'reverifiez ', 'données saisient fausses ou champs vides');
   }
-  )
 }
 // methode pour vider champ
 viderChamp(): void{
@@ -249,6 +263,16 @@ listeProfession () :  void{
   this.professionservice.getProfession().subscribe((data)=>{
 this.professionData = data.data;
 console.log("voir profession", this.professionData);
+  })
+}
+
+affichermessage(icone: any, message: string,user:string) {
+  Swal.fire({
+      position: 'center',
+      icon: icone,
+      title: message +"" +user,
+      showConfirmButton: true,
+      // timer: 1500
   })
 }
 

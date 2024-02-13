@@ -31,6 +31,9 @@
     margin-right: 20px;
    
 }
+.searchbar button{
+  background-color: var(--kergui-blue);
+}
 .col-8 .d-flex{
   margin: 0 auto;
   

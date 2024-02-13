@@ -1,7 +1,16 @@
 
 
+.card-body{
+  height: 12rem;
+    
+  overflow: hidden;
+  /* text-overflow: ellipsis;
+  overflow-y: auto; */
+}
 
-
+.searchbar  button{
+  background-color: var(--kergui-blue);
+}
 
 /* style dash template */
 

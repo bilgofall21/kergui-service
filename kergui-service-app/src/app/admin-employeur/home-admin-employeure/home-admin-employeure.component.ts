@@ -22,8 +22,11 @@ afficherProfession(){
     }
   tailleProfession : number | undefined ;
   afficherTaille(): void {
-    this.tailleProfession = this.getArticlesPage.length;
-    console.log("talll", this.tailleProfession);
+    if (this.professionData && this.professionData.data) {
+      this.tailleProfession = this.professionData.data.length;
+      console.log("talll", this.tailleProfession);
+
+    }
   }
 
 

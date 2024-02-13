@@ -6,6 +6,12 @@
     border-radius: 10px;
     text-decoration: none;
 }
+#tof img{
+    height : 100px;
+    width: 100px;
+    border-radius: 5px;
+    border: 2px solid var(--kergui-green);
+  }
 
 h4{
     color: var(--kergui-blue);

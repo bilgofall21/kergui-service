@@ -45,31 +45,40 @@ desactiverUser(id : string): void {
     cancelButtonColor: "#d33",
     confirmButtonText: "Oui desactiver!"
   }).then((result) => {
+    if(result.isConfirmed){
+      this.utulisateurservice.archiverUser(id).subscribe((repons)=>{
+        console.log("desactiver compte user", repons);
+         // Mettez à jour l'interface en recherchant l'utilisateur dans la liste
+         const utilisateurDesactive = this.userData.find((element) => element.id === id);
+         if (utilisateurDesactive) {
+           utilisateurDesactive.statut = 'deactive';
+         }
+  
+        Swal.fire({
+          title: "Utulisateur desactiver!",
+          text: "Cet utulisateur a été desactivé .",
+          icon: "success"
+          });
+      })
 
-    this.utulisateurservice.archiverUser(id).subscribe((repons)=>{
-      console.log("desactiver compte user", repons);
-       // Mettez à jour l'interface en recherchant l'utilisateur dans la liste
-       const utilisateurDesactive = this.userData.find((element) => element.id === id);
-       if (utilisateurDesactive) {
-         utilisateurDesactive.statut = 'deactive';
-       }
+    }
 
-      Swal.fire({
-        title: "Utulisateur desactiver!",
-        text: "Cet utulisateur a été desactivé .",
-        icon: "success"
-        });
-    })
   }
   )
 }
 
 // pagination
-  
+  utulisateurTrouve : any []=[];
+  searchUtulisateur : string = "";
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
-  return this.userData.slice(indexDebut, indexFin);
+  this.utulisateurTrouve = this.userData.filter((element :{prenom : string; nom : string})=>
+  element.prenom.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) ||
+  element.nom.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) 
+
+  );
+  return this.utulisateurTrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {

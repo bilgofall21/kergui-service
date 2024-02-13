@@ -31,6 +31,12 @@ export class ServiceAdminComponent implements OnInit {
       description :string = "";
       created_at :string = "";
       updated_at :string = ""; 
+      viderChamp(): void{
+        this.nom_prof = "";
+        this.description = "";
+        this.created_at = "";
+        this.updated_at = ""; 
+      }
 
       // initiliser objet crer pour ajout
       newProfession: any = {
@@ -62,20 +68,27 @@ export class ServiceAdminComponent implements OnInit {
 //  methode pour ajouter profession
 
 ajouterPofession (): void{
-  this.newProfession={
-    nom_prof:this.nom_prof,
-    description:this.description,
-    updated_at:this.created_at,
-    created_at:this.updated_at
-  };
-  this.professionService.addProfession(this.newProfession).subscribe((dataprof : any) =>{
-    console.log("ajout", dataprof);
-    window.location.reload();
-  },
-  error =>{
-    console.error('Erreur lors de l\'ajout :', error);
+  if (this.nom_prof !== '' && this.description !== '') {
+
+    this.newProfession={
+      nom_prof:this.nom_prof,
+      description:this.description,
+      updated_at:this.created_at,
+      created_at:this.updated_at
+    };
+    this.professionService.addProfession(this.newProfession).subscribe((dataprof : any) =>{
+      console.log("ajout", dataprof);
+      this.viderChamp();
+      window.location.reload();
+    },
+    error =>{
+      console.error('Erreur lors de l\'ajout :', error);
+    }
+    )
   }
-  )
+  else{
+    this.affichermessage('error', 'reverifiez', 'profession  ou Description Incorrecte');
+  }
 }
   // methode pour charger element a modifier dans formulaire
 
@@ -167,6 +180,16 @@ chargerProfession( formation : any){
       });
     }
     )
+  }
+
+  affichermessage(icone: any, message: string,user:string) {
+    Swal.fire({
+        position: 'center',
+        icon: icone,
+        title: message +"" +user,
+        showConfirmButton: true,
+        // timer: 1500
+    })
   }
 
   // methode pour voir detail

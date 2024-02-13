@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicationService } from 'src/app/services/publication.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-publication-admin',
@@ -24,16 +25,43 @@ selectionnerpublication (element : any){
   this.publicationSelect = element;
 }
 etat : string ="";
+
+
+
 archiverOffre (id : any): void {
+
+
+
+  Swal.fire({
+    title: "Voulez vous vraiment Archiver cet publication ?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#FF9A00",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Oui archiver!"
+  }).then((result) => {
+if(result.isConfirmed){
   this.publicationservice.archivePublication(id).subscribe((respons)=>{
     console.log("offre demna", respons.data);
 
-    // const publicationDesactive = this.dataPublictions.find((publication: { id: any; }) => publication.id === id);
-    // if (publicationDesactive) {
-    //   publicationDesactive.statut = 'archiver';
-    // }
+
+
+    Swal.fire({
+      title: "Publication archiver!",
+      text: "Cet publication a été archivé .",
+      icon: "success"
+      });
+    
+  })
+
+
+  
+}
 
   })
+
+
+
 }
 
 }

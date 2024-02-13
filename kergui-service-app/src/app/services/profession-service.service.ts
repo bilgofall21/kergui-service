@@ -73,10 +73,3 @@ GetUserByProfession(id : number) :  Observable<any>{
 
 
 
-//  activeDeactiveEmploye(id: number): Observable<any>{
-//     const accessToken = localStorage.getItem('access_token');
-
-//     return accessToken ? this.http.put<any>(`${url}/employe/archive/${id}`, {}, {
-//       headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
-//     }) : of(null);
-//   }

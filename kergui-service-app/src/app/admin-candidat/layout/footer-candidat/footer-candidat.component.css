@@ -31,6 +31,11 @@ body {
   .text-muted {
     color: #9fa7b5 !important;
   }
+  
+  .active{
+    background-color: var(--kergui-green);
+  }
+
   .table-dark {
     background: #252930;
     color: #fff;
