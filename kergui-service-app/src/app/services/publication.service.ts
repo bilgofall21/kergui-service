@@ -23,7 +23,7 @@ export class PublicationService {
  
   // methode pour ajouter publication
   
-   addPubication(publication : Publication) {
+   addPubication(publication : any) {
     return this.http.post<Publication[]>(`${url}/AjoutOffreEmploi`, publication);
   }
 

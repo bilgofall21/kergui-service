@@ -76,7 +76,7 @@ etatCan : '',
             timer: 1500
           }).then(() => {
             // Recharger les candidatures ou mettre à jour la liste
-            this.allcandidat();
+          
           });
         }, error => {
           console.error('Erreur lors de la validation de la candidature:', error);
@@ -89,6 +89,7 @@ etatCan : '',
         });
       }
     });
+    this.allcandidat();
   }
 
 

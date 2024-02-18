@@ -29,6 +29,12 @@ getProfilCandidat() :  Observable<any>{
 archiverUser(id: any): Observable<any>{
 return this.http.put<User>(`${url}/user/deactivateCompteUser/${id}`, {});
 }
+
+// mthode pour reactiver utulisateur
+desaciverUser(id: any): Observable<any>{
+return this.http.put<User>(`${url}/user/activateCompteUser/${id}`, {});
+}
+
 // methode pour modifier profil admin
 
 updateProfilAdmin(updateAmin : any): Observable<any>{

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
 
@@ -9,12 +10,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./utilisateur-admin.component.css']
 })
 export class UtilisateurAdminComponent implements OnInit{
-constructor(private utulisateurservice : UtulisateurService){}
+constructor(private utulisateurservice : UtulisateurService, private professionservice : ProfessionServiceService){}
   ngOnInit(): void {
    this.afficherAllUser();
+   this.allProfession();
+   this.allCandidat ();
   }
    // Attribut pour la pagination
-   articlesParPage = 8; // Nombre d'articles par page
+   articlesParPage = 10; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 // methode pour recupere tous les utulisaturs
@@ -23,7 +26,28 @@ afficherAllUser () : void {
   this.utulisateurservice.getAllUser().subscribe((repons)=>{
 this.userData = repons.data;
 console.log("voir les utilisateurs", this.userData);
+this.userData.forEach((element : any) =>{
+  const nomProfession = this.getNomProfession(element.profession_id);
+})
   })
+}
+dataCandidat : any []=[];
+allCandidat (): void{
+  this.utulisateurservice.getAllCandidat().subscribe((data)=>{
+    this.dataCandidat = data.data;
+    console.log("poutguihiljk", this.dataCandidat);
+  })
+}
+dataProfession :  any
+allProfession(): void{
+  this.professionservice.getProfession().subscribe((data)=>{
+    this.dataProfession = data.data;
+    console.log("voir profession", this.dataProfession);
+  })
+}
+getNomProfession(professionId : number): void{
+  const profession = this.dataProfession.find((profession : {id : any} ) => profession.id == professionId);
+  return profession ? profession.nom_prof : 'profession inconnue'
 }
 
 // methode voir detail utulisateu
@@ -38,12 +62,16 @@ afficherDeatailUser(element : any){
 desactiverUser(id : string): void {
 
   Swal.fire({
-    title: "Voulez vous vraiment Desactiver cet utulisateur?",
+    title: "Voulez vous vraiment désactiver cet utulisateur ?",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#FF9A00",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Oui desactiver!"
+    confirmButtonColor: "#3A6A7E",
+      cancelButtonColor: "#FF9A00",
+      width: 480,
+      padding: 15,
+      color : '#ffff',
+      background: '#3A6A7E',
+      confirmButtonText: "Oui désactiver!"
   }).then((result) => {
     if(result.isConfirmed){
       this.utulisateurservice.archiverUser(id).subscribe((repons)=>{
@@ -53,13 +81,66 @@ desactiverUser(id : string): void {
          if (utilisateurDesactive) {
            utilisateurDesactive.statut = 'deactive';
          }
-  
+        },
+        error => {
+          // console.error(`Erreur lors de la desactivation de la profession avec l'ID ${id} :`, error);
+        }
+        );
         Swal.fire({
-          title: "Utulisateur desactiver!",
-          text: "Cet utulisateur a été desactivé .",
-          icon: "success"
+          title: "Utilisateur desactiver!",
+          text: "Cet utlisateur a été desactivé .",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+          width: 410,
+          padding: 15,
+          color : '#ffff',
+          background: '#3A6A7E',
           });
-      })
+
+    }
+
+  }
+  )
+}
+activerUser(id : string): void {
+
+  Swal.fire({
+    title: "Voulez vous vraiment réactiver cet utulisateur ?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3A6A7E",
+    cancelButtonColor: "#FF9A00",
+    width: 480,
+    padding: 15,
+    color : '#ffff',
+    background: '#3A6A7E',
+    confirmButtonText: "Oui réactiver!"
+  }).then((result) => {
+    if(result.isConfirmed){
+      this.utulisateurservice.desaciverUser(id).subscribe((repons)=>{
+        console.log("desactiver compte user", repons);
+         // Mettez à jour l'interface en recherchant l'utilisateur dans la liste
+         const utilisateurActive = this.userData.find((element) => element.id === id);
+         if (utilisateurActive) {
+           utilisateurActive.statut = 'activer';
+         }
+  
+        }, error=>{
+
+        }
+        )
+        Swal.fire({
+          title: "Utulisateur réactiver!",
+          text: "Cet utilisateur a été réactivé .",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+          width: 400,
+          padding: 15,
+          color : '#ffff',
+          background: '#3A6A7E',
+          });
 
     }
 
@@ -90,10 +171,4 @@ getArticlesPage(): any[] {
   get totalPages(): number {
     return Math.ceil(this. userData.length / this.articlesParPage);
   }
-
-
-
-
-
-
 }

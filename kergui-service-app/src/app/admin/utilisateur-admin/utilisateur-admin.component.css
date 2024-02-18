@@ -5,10 +5,10 @@
   border-radius: 5px;
   border: 2px solid var(--kergui-green);
 }
-.iconegestion {
-    /* margin: 0 auto; */
-   
+#toto{
+  margin: 0 auto;
 }
+
 .iconegestion a{
     text-decoration: none;
     color: var(--kergui-blue);
@@ -20,6 +20,27 @@
 }
 
 /* modal detail */
+
+ /* style pagination debut */
+
+ .pagiColor {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--kergui-blue);
+  color: var(--kergui-blue);
+}
+#pagination{
+  margin-left: 120px;
+  margin-top: 20px;
+}
+
+/* style pagination fin */
 /* style formulaire  */
 .validajout a , .validajout button{
     padding: 8px 25px;
@@ -866,6 +887,7 @@ body {
   .app-card-orders-table .table .cellhead {
     background-color: var(--kergui-blue);
     color: white;
+
   }
 
   .app-card-orders-table .table .cell {

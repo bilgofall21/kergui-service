@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
+import { PublicationService } from 'src/app/services/publication.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 
 @Component({
   selector: 'app-home-admin-employeure',
@@ -8,10 +10,13 @@ import { ProfessionServiceService } from 'src/app/services/profession-service.se
 })
 export class HomeAdminEmployeureComponent implements OnInit {
   dataProfession: any ;
-  constructor( private professionservice : ProfessionServiceService) { }
+  constructor( private professionservice : ProfessionServiceService, private utulisateurservice : UtulisateurService, public publicationservice : PublicationService) { }
   ngOnInit(): void {
     this.afficherProfession();
-    this.afficherTaille()
+    this.recupAllOffre();
+    this.allCandidat();
+    this.recupAllService();
+    this.afficherPublicationByUser();
   }
  professionData : any;
 afficherProfession(){
@@ -20,14 +25,55 @@ afficherProfession(){
     console.log("voir profession", this.professionData);
       })
     }
-  tailleProfession : number | undefined ;
-  afficherTaille(): void {
-    if (this.professionData && this.professionData.data) {
-      this.tailleProfession = this.professionData.data.length;
-      console.log("talll", this.tailleProfession);
 
+    allpublication :any[]=[]
+    recupAllOffre(){
+      this.publicationservice.geyAllpublication().subscribe((respons)=>{
+        this.allpublication = respons.data;
+        console.log("eeee", this.allpublication);
+        // localStorage.setItem('all_publication', JSON.stringify(this.allpublication.data))
+      })
     }
-  }
+    dataCandidat : any []=[];
+    allCandidat(): void{
+      this.utulisateurservice.getAllCandidat().subscribe((data)=>{
+        this.dataCandidat = data.data;
+      })
+    }
+    allprofession : any []= [];
+    recupAllService(){
+      this.professionservice.getProfession().subscribe((respons)=>{
+        this.allprofession = respons.data;
+        console.log('rrrrrrrr', this.allprofession);
+        // localStorage.setItem('all_profession', JSON.stringify(this.allprofession.data))
+      })
+    }
+    userConnect : any;
+    dataPublication : any;
+    datPublicationFiltred : any []=[]
+    afficherPublicationByUser () : void{
+      // rcuperation de l'user connecte depuis local storage
+      const recupuserConnecte = localStorage.getItem('user_profile')
+      this.userConnect = recupuserConnecte ? JSON.parse(recupuserConnecte) : null;
+      if(this.userConnect){
+        // appel du service recuperant tpous les annonces
+        this.publicationservice.geyAllpublication().subscribe((data)=>{
+          this.dataPublication = data.data;
+        
+          // fitrer les anonces en fontion du userconnecté
+          this.datPublicationFiltred = this.dataPublication.filter((element: { user_id: any; }) => element.user_id == this.userConnect.id);
+          
+          console.log("mes pubiiiii", this.datPublicationFiltred);
+          // this.datPublicationFiltred.forEach((publication : any)=>{
+          //   const nomProfession = this.getNomProfesion(publication.profession_id);
+          //   console.log("profession", nomProfession);
+          // })
+        })
+        
+      }
+  
+    }
+  
 
 
      // Attribut pour la pagination

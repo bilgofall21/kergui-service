@@ -33,8 +33,8 @@ return this.http.get<any>(`${url}/listeProfession`).pipe(
   //     label: item.nom_prof
 
   // methode pour ajouter donnée ves l'api
-  addProfession(profession : Profession) {
-    return this.http.post<Profession[]>(`${url}/AjoutProfession`, profession);
+  addProfession(profession : any) {
+    return this.http.post<any>(`${url}/AjoutProfession`, profession);
   }
 
  

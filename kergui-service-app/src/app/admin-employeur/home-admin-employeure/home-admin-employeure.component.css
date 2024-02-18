@@ -1,3 +1,22 @@
+ /* style pagination debut */
+
+ .pagiColor {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--kergui-blue);
+  color: var(--kergui-blue);
+}
+#pagination{
+  margin-left: 180px;
+  margin-top: 20px;
+  
+}
 
 
 .card-body{

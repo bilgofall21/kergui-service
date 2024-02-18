@@ -6,18 +6,18 @@
     <div class="searchbar mb-5">
       <div class="d-flex justify-content-end">
           <div class="input-group w-50 ">
-              <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon"  [(ngModel)]="searchservice" (input)="getArticlesPage()" />
+              <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon"  [(ngModel)]="searchservice" (input)="getArticlesPage()" />
               <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
             </div>
-
+            <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
       </div>
     </div>
     <h4 class="mt-4">Listes des services</h4>
-    <div class="row mt-4 row-gap-4 mb-4" >
+    <div class="row mt-4 mb-4" >
         <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage()" >
-          <div class="card shadow-lg" style="width: 18.5rem;" >
+          <div class="card shadow-lg" style="width: 18.5rem; height: 28rem;" >
             <div>
-              <img  src="./assets/image/carte1.png" class="card-img-top" alt="..." style="height: 12rem;">
+              <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 14rem;">
               <div class="titleService">
                 <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
               </div>
@@ -30,7 +30,7 @@
                 <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)= "chargerProfession(element)" ><span class="lnr lnr-pencil"></span></a>
                 <button class="bg-white" (click)="supprimerProfession(element.id)"> <span class="lnr lnr-trash"></span></button>
             </div>
-            <div class="cardfooter"></div>
+            <div class="cardfooter mt-1"></div>
           </div>
         </div>
         
@@ -58,6 +58,11 @@
         </div>
         <div class="modal-body  ">
             <form action="">
+              <div class="mb-3">
+                <Label class = "form-label"> Sélectionnez la photo 
+                <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)">
+               </Label>
+               </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Profession</label>
                     <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof">
@@ -71,11 +76,15 @@
                     <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
                   </div>
             </form>
+            
+            
         </div>
      
       </div>
     </div>
   </div>
+
+
 
 <!-- modal ajout fin -->
 
@@ -89,7 +98,12 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body  ">
-            <form action="" (ngSubmit)="modifierProfession()">
+            <form action="" >
+              <div class="mb-3">
+                <Label class = "form-label"> Sélectionnez la photo 
+                <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)">
+               </Label>
+               </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Profession</label>
                     <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof" >
@@ -99,9 +113,10 @@
                     <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
                   </div>
                   <div class="validajout d-flex justify-content-end">
-                    <button href="" type="submit" data-bs-dismiss="modal"> Modifier</button>
+                    <button href="" type="submit" data-bs-dismiss="modal" (click)="modifierProfession()"> Modifier</button>
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</button>
                   </div>
+                  
             </form>
         </div>
      
@@ -140,14 +155,31 @@
 
 
 <!-- pagination -->
-<div class="d-flex flex-wrap justify-content-center my-5" >
+<!-- <div class="d-flex flex-wrap justify-content-center my-5" >
   <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
     Précédent
   </button>
-  <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+  <button class="btn pagiColore   ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
     {{ page }}
   </button>
   <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+    Suivant
+  </button>
+</div> -->
+
+<div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+  <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+    Précédent
+  </button>
+  <button class="btn pagiColore ms-2" 
+          *ngFor="let page of pages" 
+          [class.current]="page === pageActuelle" 
+          (click)="pageActuelle = page">
+    {{ page }}
+  </button>
+  <button class="btn pagiColor ms-2" 
+          [disabled]="pageActuelle === totalPages" 
+          (click)="pageActuelle = pageActuelle + 1">
     Suivant
   </button>
 </div>

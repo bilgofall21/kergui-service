@@ -9,6 +9,10 @@ export class Publication {
     user_id!:string;
     profession_id!:string;
     etat!:string;
+    dateline! : Date;
+    image! : File;
     created_at!:string;
     updated_at!:string; 
+profession: any;
+user: any;
 }

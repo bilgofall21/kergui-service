@@ -487,7 +487,7 @@ body {
   
   .app-nav .nav-link:hover {
     border-left: 4px solid var(--kergui-green);
-    color: var(--kergui-green);
+    color: white;
   }
   .app-nav .nav-icon {
     position: absolute;

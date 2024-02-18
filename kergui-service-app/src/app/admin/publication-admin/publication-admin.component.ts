@@ -29,39 +29,40 @@ etat : string ="";
 
 
 archiverOffre (id : any): void {
-
-
-
   Swal.fire({
     title: "Voulez vous vraiment Archiver cet publication ?",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#FF9A00",
-    cancelButtonColor: "#d33",
+    confirmButtonColor: "#3A6A7E",
+    cancelButtonColor: "#FF9A00",
+    width: 450,
+    padding: 15,
+    color : '#ffff',
+    background: '#3A6A7E',
     confirmButtonText: "Oui archiver!"
   }).then((result) => {
 if(result.isConfirmed){
   this.publicationservice.archivePublication(id).subscribe((respons)=>{
-    console.log("offre demna", respons.data);
-
-
-
-    Swal.fire({
-      title: "Publication archiver!",
-      text: "Cet publication a été archivé .",
-      icon: "success"
-      });
-    
+    const publicationArchiver = this.dataPublictions.find((element: { id: any; }) => element.id === id);
+    if( publicationArchiver){
+      publicationArchiver.etat = 'archiver'
+    }else{
+      Swal.fire({
+        title: "Publication archiver!",
+        text: "Cet publication a été archivé .",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+        width: 400,
+        padding: 15,
+        color : '#ffff',
+        background: '#3A6A7E', 
+        });
+        console.log("offre demna", respons.data);
+    }
   })
-
-
-  
 }
-
   })
-
-
-
 }
 
 }

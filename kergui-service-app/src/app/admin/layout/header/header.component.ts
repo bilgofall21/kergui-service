@@ -17,13 +17,14 @@ constructor(public authservice: AuthService, private router: Router){}
     console.log("fffffff", this.userProfile)
   }
 
+  utilisateurConnecte : boolean = false;
   LogOutUser() : void{
     this.authservice.deconnexion().subscribe((respons)=>{
-  
+      this.utilisateurConnecte = false;
       console.log("byyy byyyy", respons);
-      localStorage.removeItem('access_token');
-      // console.log("eeeeeeeee", 'access_token');
-      // redirection vers page connexion
+      localStorage.removeItem('access_Token');
+    localStorage.removeItem('user_profile');
+    localStorage.removeItem('dashboard_type')
       this.authservice.setLoggedIn(false);
       this.router.navigate(['/login']);
       return new Observable<any>();

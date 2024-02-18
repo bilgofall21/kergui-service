@@ -19,6 +19,18 @@ export class PublicationEmployeurComponent implements OnInit {
     slaireMinimum:string ="";
     experienceMinimum:string="";
     profession_id: any;
+    dateline:  any = "";
+    image! : File;
+    viderChamps(): void{
+      this.lieu ="";
+    this.typeContrat ="";
+    this.description ="";
+    this.slaireMinimum ="";
+    this.experienceMinimum ="";
+    this.profession_id ="";
+    this.dateline = "";
+   
+    }
     
     newPublication : any ={
       // nom_prof: "",
@@ -83,53 +95,81 @@ publication: any;
         this.datPublicationFiltred = this.dataPublication.filter((element: { user_id: any; }) => element.user_id == this.userConnect.id);
         
         console.log("mes pubiiiii", this.datPublicationFiltred);
-        this.datPublicationFiltred.forEach((publication : any)=>{
-          const nomProfession = this.getNomProfesion(publication.profession_id);
-          console.log("profession", nomProfession);
-        })
+        // this.datPublicationFiltred.forEach((publication : any)=>{
+        //   const nomProfession = this.getNomProfesion(publication.profession_id);
+        //   console.log("profession", nomProfession);
+        // })
       })
       
     }
 
   }
 
-  getNomProfesion (professionId : number) : void{
-    console.log("dfhgbjkn,l", this.professionData);
-    const profession = this.professionData.find((profess: { id: any; }) => profess.id ==professionId); 
-  
-    return profession ? profession.nom_prof :  'profession inconue'                                                        
-  }
+  // getNomProfesion (professionId : number) : void{
+  //   const profession = this.professionData.find((profess: { id: any; }) => profess.id ==professionId); 
+  //   return profession ? profession.nom_prof :  'profession inconue'                                                        
+  // }
 
 
  //  methode pour ajouter publication
 
 ajouterPublicatin (): void{
   if (this.profession_id !=="" && this.description !=="" && this.lieu !=="" && this.slaireMinimum !=="" && this.experienceMinimum !=="" && this.typeContrat !==""){
-    
-    this.newPublication={
-      lieu: this.lieu,
-      typeContrat : this.typeContrat,
-      description : this.description,
-      slaireMinimum : this.slaireMinimum,
-      experienceMinimum :  this.experienceMinimum,
-      userId : this.userId,
-      profession_id : this.profession_id,
-    };
-    this.publicationservice.addPubication(this.newPublication).subscribe((datapubli : any) =>{
-      console.log("champ", this.newPublication);
-      console.log("ajout bien", datapubli);
-  
-      this.viderChamp();
-      
-      window.location.reload();
-    },
-    error =>{
-      console.error('Erreur lors de l\'ajout :', error);
-    }
-    )
+
+    Swal.fire({
+      title: "Voulez vous vraiment ajoutez cette publication ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3A6A7E",
+      cancelButtonColor: "#FF9A00",
+      width: 450,
+      padding: 15,
+      color : '#ffff',
+      background: '#3A6A7E',
+      confirmButtonText: "Oui ajouter!"
+    }).then((result) => {
+      if(result.isConfirmed){
+        
+        let formData = new FormData();
+        formData.append('lieu', this.lieu);
+        formData.append('typeContrat', this.typeContrat);
+        formData.append('description', this.description);
+        formData.append('slaireMinimum', this.slaireMinimum);
+        formData.append('experienceMinimum', this.experienceMinimum);
+        formData.append('profession_id', this.profession_id);
+        formData.append('dateline', this.dateline);
+        formData.append('image', this.image);
+        this.publicationservice.addPubication(formData).subscribe((datapubli : any) =>{
+          console.log("champ", formData);
+          console.log("ajout bien", datapubli);
+          this.viderChamp();   
+          window.location.reload();
+        },
+        error =>{
+          console.error('Erreur lors de l\'ajout :', error);
+          Swal.fire({
+            title: "publication ajouté!",
+            text: "Cet publicaion  a été ajouté.",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500,
+            width: 400,
+            padding: 15,
+            color : '#ffff',
+            background: '#3A6A7E',
+            });
+        }
+        )
+      }
+    })
   }else{
     this.affichermessage('error', 'reverifiez ', 'données saisient fausses ou champs vides');
   }
+}
+
+getFile(event: any) {
+  console.warn(event.target.files[0]);
+  this.image= event.target.files[0] as File ;
 }
 // methode pour vider champ
 viderChamp(): void{
@@ -139,6 +179,7 @@ viderChamp(): void{
   this.slaireMinimum = "";
   this.experienceMinimum  = "";
   this.profession_id = "";
+  this.dateline = "";
   
 }
 
@@ -152,12 +193,14 @@ chargerPublication( publication : any){
     this.selectedPublication = publication.id;
     console.log("id publication", this.selectedPublication);
     this.lieu =publication.lieu;
+    this.dateline = publication.dateline;
+    this.image = publication.image;
     this.typeContrat =publication.typeContrat;
     this.description = publication.description;
     this.slaireMinimum = publication.slaireMinimum;
     this.experienceMinimum = publication.experienceMinimum;
     this.profession_id = publication.profession_id;
-    this.userId = publication.userId;
+    // this.userId = publication.userId;
   }else {
     console.error("Erreur: ID de la formation non défini");
     
@@ -173,27 +216,33 @@ chargerPublication( publication : any){
     Swal.fire({
       title: "Voulez vous vraiment modifié cette publication?",
       icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#FF9A00",
-      cancelButtonColor: "#d33",
+      showCancelButton: true,  
+      confirmButtonColor: "#3A6A7E",
+      cancelButtonColor: "#FF9A00",
+      width: 450,
+      padding: 15,
+      color : '#ffff',
+      background: '#3A6A7E',
       confirmButtonText: "Oui modifier!"
     }).then((result) => {
       if(result.isConfirmed){
 
         if (this.selectedPublication) {
           // Modification d'une profession existante
-          this.publicationservice.editPublication(this.selectedPublication, {
-            lieu: this.lieu,
+      this.publicationservice.editPublication(this.selectedPublication, {
+      lieu: this.lieu,
       typeContrat : this.typeContrat,
       description : this.description,
       slaireMinimum : this.slaireMinimum,
       experienceMinimum :  this.experienceMinimum,
-      userId : this.userId,
+      // userId : this.userId,
       profession_id : this.profession_id,
+      dateline : this.dateline,
+      image : this.image,
           
           }).subscribe(
             (data: any) => {
-              console.log("Modification réussie :", data);
+              console.log(" what:", data);
               // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
               // window.location.reload(); ou mieux, mettre à jour la liste localement
               
@@ -209,7 +258,13 @@ chargerPublication( publication : any){
           Swal.fire({
             title: "publication modifié!",
             text: "Cet publicaion  a été supprimé.",
-            icon: "success"
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500,
+            width: 400,
+            padding: 15,
+            color : '#ffff',
+            background: '#3A6A7E',
             });
         }
       }
@@ -222,11 +277,15 @@ chargerPublication( publication : any){
 supprimerProfession(id: any): void {
   
   Swal.fire({
-    title: "Voulez vous vraiment supprime cette publication?",
+    title: "Voulez vous vraiment supprime cette publication ?",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#FF9A00",
-    cancelButtonColor: "#d33",
+    confirmButtonColor: "#3A6A7E",
+    cancelButtonColor: "#FF9A00",
+    width: 450,
+    padding: 15,
+    color : '#ffff',
+    background: '#3A6A7E',
     confirmButtonText: "Oui supprimer!"
   }).then((result) => { 
     if(result.isConfirmed){
@@ -242,7 +301,13 @@ supprimerProfession(id: any): void {
           Swal.fire({
             title: "publication supprime!",
             text: "Cette publication  a été supprimé .",
-            icon: "success"
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500,
+            width: 400,
+            padding: 15,
+            color : '#ffff',
+            background: '#3A6A7E',
             });
         }
         
@@ -274,6 +339,36 @@ affichermessage(icone: any, message: string,user:string) {
       showConfirmButton: true,
       // timer: 1500
   })
+}
+
+
+   // Attribut pour la pagination
+   articlesParPage = 3; // Nombre d'articles par page
+   pageActuelle = 1; // Page actuelle
+
+
+
+// pagination
+datapublicationtrouve : any []=[];
+searchpublication : string= '';
+getArticlesPage(): any[] {
+const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
+const indexFin = indexDebut + this.articlesParPage;
+this.datapublicationtrouve= this.datPublicationFiltred.filter((service: { dateline: string; description: string; }) =>
+  service.dateline.toLowerCase().includes(this.searchpublication.toLowerCase()) ||
+  service.description.toLowerCase().includes(this.searchpublication.toLowerCase())
+  );
+return this.datapublicationtrouve.slice(indexDebut, indexFin);
+}
+ // Méthode pour générer la liste des pages
+ get pages(): number[] {
+  const totalPages = Math.ceil(this. datPublicationFiltred .length / this.articlesParPage);
+  return Array(totalPages).fill(0).map((_, index) => index + 1);
+}
+
+// Méthode pour obtenir le nombre total de pages
+get totalPages(): number {
+  return Math.ceil(this. datPublicationFiltred.length / this.articlesParPage);
 }
 
 }

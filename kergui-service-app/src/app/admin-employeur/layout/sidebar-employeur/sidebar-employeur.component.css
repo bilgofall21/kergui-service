@@ -471,16 +471,11 @@ body {
     padding-left: 3rem;
     /* border-left: 8px solid var(--kergui-blue); */
   }
-  .app-nav .nav-link.active {
-    /* background-color: var(--kergui-green); */
-    /* color: white; */
-    /* border-left: 3px solid var(--kergui-green); */
-    /* font-weight: bold; */
-  }
+
   
   .app-nav .nav-link:hover {
     border-left: 4px solid var(--kergui-green);
-    color: var(--kergui-green);
+    color: white;
   }
   .app-nav .nav-icon {
     position: absolute;

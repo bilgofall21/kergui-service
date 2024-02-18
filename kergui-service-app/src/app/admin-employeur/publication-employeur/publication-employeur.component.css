@@ -35,12 +35,24 @@ h5{
    color: var(--kergui-green);
 }
 
-.card-body{
-    height: 9rem;
+#description p {
+    height: 7.5rem;
     
-    /* overflow: hidden; */
+    overflow: hidden;
     text-overflow: ellipsis;
     /* overflow-y: auto; */
+}
+
+.u-shadow-v11 {
+    -webkit-box-shadow: 0 0 2px #ccc;
+    box-shadow: 0 0 2px #ccc;
+}
+.g-px-30 {
+    padding-left: 2.14286rem !important;
+    padding-right: 2.14286rem !important;
+}
+.g-bg-white {
+    background-color: #fff !important;
 }
 
 /* style formulaire */
@@ -137,3 +149,47 @@ h5{
   /* style annonce fin */
 
 
+  #description p {
+    height: 7.5rem;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* overflow-y: auto; */
+}
+
+  #description h5{
+ color: var(--kergui-blue);
+ font-size: 16px;
+}
+  #description h6{
+ color:black;
+ font-size: 16px;
+}
+
+.searchbar  button{
+    background-color: var(--kergui-blue);
+  }
+  
+
+ /* style pagination debut */
+
+
+ .pagiColor {
+    background-color: var(--kergui-blue);
+    color: white;
+  }
+  .pagiColore.current {
+    background-color: var(--kergui-blue);
+    color: white;
+  }
+  .pagiColore {
+    border:1px solid  var(--kergui-blue);
+    color: var(--kergui-blue);
+  }
+  #pagination{
+    margin-left: 180px;
+    margin-top: 20px;
+  }
+
+   /* style pagination fin */
+  

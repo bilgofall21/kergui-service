@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
       this.utilisateurConnecte = false;
       this.authservice.setLoggedIn(false);
       localStorage.removeItem('access_token');
+      localStorage.removeItem('dashbord_type')
       
       this.router.navigate(['/login']);
       
@@ -41,14 +42,18 @@ export class HeaderComponent implements OnInit {
 
   redirectToDashboard(){
     const trueSashboard = localStorage.getItem('dashboard_type');
-    if(trueSashboard=== 'admin'){
+    if(trueSashboard === 'admina'){
+      console.log('dshboard troive est admin');
       this.router.navigate(['/admin'])
     }else if(trueSashboard ===  'employeur'){
+      console.log('dshboard troive est employeur');
       this.router.navigate(['/admin-employeur'])
     } else if(trueSashboard === 'candidat'){
+      console.log('dshboard troive est c andidat');
       this.router.navigate(['/admin-candidat'])
     } else{
       console.error("dashbord non trouve");
+      this.router.navigate(['/login']);
     }
   }
   

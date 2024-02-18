@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderEmployeurComponent implements OnInit {
   userProfile: any;
+  
 constructor(public authservice: AuthService, private router : Router){}
 
 
@@ -18,11 +19,14 @@ constructor(public authservice: AuthService, private router : Router){}
     this.userProfile = userProfileString ? JSON.parse(userProfileString) : null;
     console.log("fffffff", this.userProfile);
   }
+  utilisateurConnecte: boolean = false;
 LogOutUser() : void{
   this.authservice.deconnexion().subscribe((respons)=>{
-
+    this.utilisateurConnecte = false;
     console.log("byyy byyyy", respons);
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('access_Token');
+  localStorage.removeItem('user_profile');
+  localStorage.removeItem('dashboard_type', )
     // redirection vers page connexion
     this.authservice.setLoggedIn(false);
     this.router.navigate(['/login']);
