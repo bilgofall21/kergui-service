@@ -196,6 +196,10 @@ chargerProfession( formation : any){
   // methode pour modifier l'element selectionner
 
   modifierProfession(): void {
+    let formData = new FormData();
+    formData.append('nom_prof', this.nom_prof);
+    formData.append('description', this.description);
+    formData.append('image', this.image);
     
     Swal.fire({
       title: "Voulez vous vraiment modifié ce compte?",
@@ -213,12 +217,7 @@ chargerProfession( formation : any){
       if(result.isConfirmed){
         if (this.selectedProfession) {
           // Modification d'une profession existante
-          this.professionService.editProfession(this.selectedProfession, {
-            nom_prof: this.nom_prof,
-            description: this.description,
-            image : this.image
-          
-          }).subscribe(
+          this.professionService.editProfession(this.selectedProfession,formData).subscribe(
             (data: any) => {
               console.log("Modification réussie :", data);
               // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste

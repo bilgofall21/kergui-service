@@ -205,6 +205,15 @@ chargerPublication( publication : any){
 
 
   modifierProfession(): void {
+    let formData = new FormData();
+    formData.append('lieu', this.lieu);
+    formData.append('typeContrat', this.typeContrat);
+    formData.append('description', this.description);
+    formData.append('slaireMinimum', this.slaireMinimum);
+    formData.append('experienceMinimum', this.experienceMinimum);
+    formData.append('profession_id', this.profession_id);
+    formData.append('dateline', this.dateline);
+    formData.append('image', this.image);
     
     Swal.fire({
       title: "Voulez vous vraiment modifié cette publication?",
@@ -222,18 +231,7 @@ chargerPublication( publication : any){
 
         if (this.selectedPublication) {
           // Modification d'une profession existante
-      this.publicationservice.editPublication(this.selectedPublication, {
-      lieu: this.lieu,
-      typeContrat : this.typeContrat,
-      description : this.description,
-      slaireMinimum : this.slaireMinimum,
-      experienceMinimum :  this.experienceMinimum,
-      // userId : this.userId,
-      profession_id : this.profession_id,
-      dateline : this.dateline,
-      image : this.image,
-          
-          }).subscribe(
+      this.publicationservice.editPublication(this.selectedPublication,formData).subscribe(
             (data: any) => {
               console.log(" what:", data);
               // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste

@@ -54,7 +54,7 @@ GetUserByProfession(id : number) :  Observable<any>{
 
   // methode pour modifier donnée ves l'api
   editProfession(id : any, profession:any){
-    return this.http.put(`${url}/profession/edit/ ${id}`, profession)
+    return this.http.post(`${url}/profession/edit/ ${id}`, profession)
   }
 
 

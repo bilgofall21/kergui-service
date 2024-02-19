@@ -33,7 +33,7 @@ export class PublicationService {
   // methode pour modifier publicatio,
   
    editPublication(id : any, publication:any){
-    return this.http.put(`${url}/OffreEmploi/edit/ ${id}`, publication);
+    return this.http.post(`${url}/OffreEmploi/edit/ ${id}`, publication);
   }
 
   // candidature par publication

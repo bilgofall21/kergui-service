@@ -188,7 +188,7 @@ imageDeProfil!: File;
 
 
 
-registerUser(): void {
+registerUser( registerForm :NgForm): void {
   if(this.registreData.email !== '' && this.registreData.password !==''  && this.registreData.nom !== '' && this.registreData.prenom !== '' && this.registreData.telephone !== '' && this.registreData.lieu !== '' && this.registreData.password_confirmation !== '' ) {
 
     // Perform additional validation if needed
@@ -240,7 +240,7 @@ registerUser(): void {
   }
 
 }
-registerUserEmploye(): void {
+registerUserEmploye(registerForm :NgForm): void {
   // Perform additional validation if needed
 
 
