@@ -99,3 +99,97 @@ hr{
    
   }
   /* style annonce fin */
+
+  #carteannonce{
+    margin-left: 50px;
+  
+  }
+  #annoncecol{
+   
+    box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
+    transition: .5s ease;
+  }
+  #annoncecol:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.16);
+  }
+
+  #description p {
+    height: 7.5rem;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* overflow-y: auto; */
+  }
+  
+  .u-shadow-v11 {
+    -webkit-box-shadow: 0 0 2px #ccc;
+    box-shadow: 0 0 2px #ccc;
+  }
+  .g-px-30 {
+    padding-left: 2.14286rem !important;
+    padding-right: 2.14286rem !important;
+  }
+  .g-bg-white {
+    background-color: #fff !important;
+  }
+  
+  #description h5 {
+    font-size: 16px;
+    
+  }
+  
+  
+  #description h6 {
+    font-size: 16px;
+    color: #000;
+  }
+  #description p {
+    height: 7.5rem;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* overflow-y: auto; */
+  }
+  h4{
+    color: var(--kergui-blue);
+  }
+  h5{
+    color: var(--kergui-blue);
+    font-weight: bold;
+  }
+  
+  #carteannonce{
+    margin-left: 50px;
+  
+  }
+  #annoncecol{
+   
+    box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
+    transition: .5s ease;
+  }
+  #annoncecol:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.16);
+  }
+  /* style pagination debut */
+
+
+ .pagiColor {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--kergui-blue);
+  color: var(--kergui-blue);
+}
+#pagination{
+  /* margin-left: 180px; */
+  margin-top: 20px;
+}
+
+ /* style pagination fin */

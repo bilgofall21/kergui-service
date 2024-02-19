@@ -28,12 +28,10 @@ const routes: Routes = [
   {path : 'login', component : LoginComponent,},
   {path : 'service-dashboard', component : ServiceDashboardComponent,},
   {path : 'detail-offre', component : DetailOffreComponent, },
-  // {path : 'dashbord-admin',component : DashbordAdminComponent,},
-  { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule) },
-  {path : 'admin-employeur', loadChildren:() =>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule)},
-  {path : 'admin-candidat', loadChildren:() =>import('./admin-candidat/admin-candidat.module').then(m=>m.AdminCandidatModule,)},
-  // {path : 'admin-employeur', loadChildren :()=>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule)},
-  // { path: 'admin-employeur',loadChildren:()=>import('./admin-employeur/admin.module').then(m=>m.AdminModule)},
+  { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule),  canActivate: [AuthGuardServiceService] },
+  {path : 'admin-employeur', loadChildren:() =>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule),  canActivate: [AuthGuardServiceService] },
+  {path : 'admin-candidat', loadChildren:() =>import('./admin-candidat/admin-candidat.module').then(m=>m.AdminCandidatModule,),  canActivate: [AuthGuardServiceService] },
+
 ];
 
 @NgModule({

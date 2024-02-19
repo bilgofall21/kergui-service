@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { SelectOption } from 'src/app/models/select-option.model';
 import { Observable } from 'rxjs';
+import { NgForm, NgModel } from '@angular/forms';
 
 
 
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     this.useProfession();
     // this.utilisateurConnecte = AuthService.utilisateurConnecte()
-    this.utilisateurConnecte = this.authentification.isLoggedIn();
+    // this.utilisateurConnecte = this.authentification.isLoggedIn();
   }
 
   // variable pour cacher ou afficherles sections
@@ -53,8 +54,9 @@ userfoundid = '';
 
 
 // connexion methode
-submitFunction(event: Event): void {
+submitFunction(event: Event, registerForm :NgForm): void {
   event.preventDefault();
+  console.log("voirrrrrr", JSON.stringify(registerForm.value));
 
   if (this.formData.email !== '' && this.formData.password !== '') {
     const loginData = {
@@ -63,6 +65,9 @@ submitFunction(event: Event): void {
     };
     this.authentification.loginUser(loginData).subscribe(
       (user: any) => {
+        // this.authentification.setLoggedIn(true);
+        this.utilisateurConnecte = true;
+        console.log("etat anomouu", this.utilisateurConnecte);
         // console.log("wouy", user);
         this.userfoundid = user.data;
         // Stocker le profil complet de l'utilisateur
@@ -266,7 +271,12 @@ registerUserEmploye(): void {
           icon: 'success',
           title: 'Inscription réussie',
           text: 'Vous êtes inscrit avec succès !',
-          confirmButtonText: 'Se connecter'
+          confirmButtonText: 'Se connecter',
+          confirmButtonColor: "#3A6A7E",
+            width: 400,
+            padding: 15,
+            color : '#ffff',
+            background: '#3A6A7E',
         }).then((result) => {
           if(result.isConfirmed){
             this.registreEmploye = {

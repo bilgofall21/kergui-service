@@ -1,7 +1,19 @@
 <div class="admingestioncontainer mt-5">
+
+  <h4 class="mt-4">Liste des témoignages</h4>
+  <div class="searchbar mb-5 mt-5">
+    <div class="d-flex justify-content-end">
+        <div class="input-group w-50 ">
+            <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon"[(ngModel)]="searchUtulisateur" (input)="getArticlesPage()"   />
+            <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+          </div>
+
+    </div>
+  </div>
+
     <div class="row">
             
-        <div class="col-md-3" *ngFor=" let element of  dataTemoignage">
+        <div class="col-md-3" *ngFor=" let element of  getArticlesPage()">
           <div class="card shadow-lg border-0" style="width: 18rem;">
             <div class="d-flex justify-content-around mt-2">
               <div class="imagecard">
@@ -26,6 +38,24 @@
           </div>
         </div>
        
+      </div>
+
+      <!-- pagination -->
+      <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+        <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+          Précédent
+        </button>
+        <button class="btn pagiColore ms-2" 
+                *ngFor="let page of pages" 
+                [class.current]="page === pageActuelle" 
+                (click)="pageActuelle = page">
+          {{ page }}
+        </button>
+        <button class="btn pagiColor ms-2" 
+                [disabled]="pageActuelle === totalPages" 
+                (click)="pageActuelle = pageActuelle + 1">
+          Suivant
+        </button>
       </div>
 
 </div>

@@ -55,6 +55,7 @@ publication: any;
   ngOnInit(): void {
   this.afficherPublication();
   this.listeProfession ();
+  // this.publicationonly ();
  
   }
   dataOffres : any;
@@ -104,14 +105,6 @@ publication: any;
     }
 
   }
-
-  // getNomProfesion (professionId : number) : void{
-  //   const profession = this.professionData.find((profess: { id: any; }) => profess.id ==professionId); 
-  //   return profession ? profession.nom_prof :  'profession inconue'                                                        
-  // }
-
-
- //  methode pour ajouter publication
 
 ajouterPublicatin (): void{
   if (this.profession_id !=="" && this.description !=="" && this.lieu !=="" && this.slaireMinimum !=="" && this.experienceMinimum !=="" && this.typeContrat !==""){

@@ -10,6 +10,7 @@ import { PublicationService } from 'src/app/services/publication.service';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
+  detailOffre: []=[];
 constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService) {}
   ngOnInit(): void {
 this.affichepublication();
@@ -52,7 +53,12 @@ afficherservice(){
     }
   })
 }
+voirDetail(element : any){
+  this.detailOffre = element;
+  console.log("lou khew" ,this.detailOffre);
+  localStorage.setItem('detail_offre', JSON.stringify(this.detailOffre))
 
+}
 
 
 }

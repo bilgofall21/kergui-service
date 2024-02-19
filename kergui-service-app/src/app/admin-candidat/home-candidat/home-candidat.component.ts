@@ -76,4 +76,35 @@ getNomProfesion (professionId : number) : void{
 }
 
 
+
+   // Attribut pour la pagination
+   articlesParPage = 3; // Nombre d'articles par page
+   pageActuelle = 1; // Page actuelle
+
+
+
+// pagination
+datapublicationtrouve : any []=[];
+searchpublication : string= '';
+getArticlesPage(): any[] {
+const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
+const indexFin = indexDebut + this.articlesParPage;
+this.datapublicationtrouve= this. allpublication.filter((service: { dateline: string; description: string; }) =>
+  service.dateline.toLowerCase().includes(this.searchpublication.toLowerCase()) ||
+  service.description.toLowerCase().includes(this.searchpublication.toLowerCase())
+  );
+return this.datapublicationtrouve.slice(indexDebut, indexFin);
+}
+ // Méthode pour générer la liste des pages
+ get pages(): number[] {
+  const totalPages = Math.ceil(this.  allpublication .length / this.articlesParPage);
+  return Array(totalPages).fill(0).map((_, index) => index + 1);
+}
+
+// Méthode pour obtenir le nombre total de pages
+get totalPages(): number {
+  return Math.ceil(this.  allpublication.length / this.articlesParPage);
+}
+
+
 }

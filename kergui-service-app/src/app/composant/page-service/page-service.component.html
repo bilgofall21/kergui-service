@@ -30,7 +30,7 @@
                     <hr class="border-3 opacity-100">
                   </div>
                 <div class="row row-gap-4">
-                    <div class="col-lg-3 col-sm-6 "*ngFor="let service of getArticlesPage()">
+                    <!-- <div class="col-lg-3 col-sm-6 "*ngFor="let service of getArticlesPage()">
                         <div class="card shadow-lg" style="width: 19rem;">
                           <div>
                             <img  src="./assets/image/carte1.png" class="card-img-top" alt="..." style="height: 12rem;">
@@ -42,8 +42,26 @@
                             <p class="card-text">  {{service.description}}  </p>
                           </div>
                           <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', service.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
-                          <!-- <button class="btn btn-warning"  >testUser</button> -->
+                       
                           <div class="cardfooter"></div>
+                        </div>
+                      </div> -->
+                      <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage() " >
+                        <div class="card shadow-lg" style="width: 18.5rem; height: 30rem;" >
+                          <div>
+                            <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 14rem;">
+                            <div class="titleService">
+                              <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
+                            </div>
+                          </div>
+                          <div class="card-body " >
+                            <p class="card-text"> {{element.description}} </p>
+                          </div>
+                          <div class="iconegestion text-center mb-1 ">
+                            <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', element.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>                
+                          </div>
+                
+                          <div class="cardfooter mt-1"></div>
                         </div>
                       </div>
                       
@@ -58,15 +76,19 @@
 
 <!-- pagination debut -->
 
-<!-- pagination -->
-<div class="d-flex flex-wrap justify-content-center my-5" >
+<div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
   <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
     Précédent
   </button>
-  <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+  <button class="btn pagiColore ms-2" 
+          *ngFor="let page of pages" 
+          [class.current]="page === pageActuelle" 
+          (click)="pageActuelle = page">
     {{ page }}
   </button>
-  <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+  <button class="btn pagiColor ms-2" 
+          [disabled]="pageActuelle === totalPages" 
+          (click)="pageActuelle = pageActuelle + 1">
     Suivant
   </button>
 </div>

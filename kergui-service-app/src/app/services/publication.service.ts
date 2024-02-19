@@ -16,10 +16,13 @@ export class PublicationService {
  return this.http.get<Publication[]>(`${url}/listeOffreEmploi`);
   }
 
-  // methode 
+  // methode pour afficher dandidature de chaque employeur
   getPublicationUser(): Observable<any>{
     return this.http.get<any>(`${url}/AfichageCandidature`)
   }
+
+  // methode pour lister les offres postuler par chaque candidat
+ 
  
   // methode pour ajouter publication
   

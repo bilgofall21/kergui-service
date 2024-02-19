@@ -49,43 +49,70 @@
         
           <h4 class="mt-4 "> Liste des publications</h4>
           
-          <div class="row mt-4">
-            <div class="col-lg-4 cardannonce" *ngFor="let element of allpublication  ">
-              <!-- <ng-container  > -->
-
-                <div class="cardcontain">
-                  <div class="card border-0" style="width: 20rem;">
-                    <div>
-                      <img src="./assets/image/annoncecarte1.png" class="card-img-top" alt="...">
-                      <div class="overlay1"></div>
-                      <div class="annoncetitle text-center ">
-                        <h5 class="text-white pt-2 fw-bold"> {{getNomProfesion(element.profession_id)}} </h5>
-                      </div>
-                    </div>
-                    <div class="card-body ">
-                    
-                      <p class="card-text text-center">{{element.description}}</p>
-                    </div>
-                    <div class="cardfooter d-flex justify-content-around">
-                      <!-- <div>
-                        <i class="bi bi-person-circle"></i> {{element.user_id}}
-                      </div> -->
-                      <div class="mt-5 mb-2">
-                        <span class="lnr lnr-calendar-full me-2 "></span> {{element.created_at | date:'dd-MM-yyyy'  }}
-                      </div>
-                    </div>
-                    <!-- <a href="" class="text-center text-decoration-none me-2 pb-2 mt-3"  > Voir annonce <span class="lnr lnr-arrow-right"></span></a> -->
-
+          <div class="searchbar mb-5 mt-5">
+            <div class="d-flex justify-content-end">
+                <div class="input-group w-50 ">
+                    <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Rechercher"  aria-describedby="search-addon" [(ngModel)]="searchpublication" (input)="getArticlesPage()"  />
+                    <button type="button   " class="btn text-white" data-mdb-ripple-init  >rechercher</button>
                   </div>
-  
-                </div>
-              <!-- </ng-container> -->
-              
+      
             </div>
-           
+          </div>
+          
+          <div class="row  gap-4 mt-4">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3 shadow-sm" *ngFor="let element of getArticlesPage()" style="width: 24rem;">
+              <article class="u-shadow-v11">
+                  <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
+                  <div class="g-bg-warning " id="description">
+                    <div class="d-flex justify-content-around">
+                      <div class="d-flex mt-2">
+                        <h5 class="">Date limite : </h5>   
+                        <h6 class="ms-2 "> {{element.dateline}} </h6>
+                      </div>
+                      <div class="">    
+                     <h6 class="mb-2 ms-2"> <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #3A6A7E;"></i> {{element.user.prenom}} {{element.user.nom}}</h6>
+                      </div>
+
+                    </div>
+                    <div class="text-center my-1">
+                      <h5> {{element.profession.nom_prof}} </h5>
+                    </div>
+                      <h3 class="h5 p-md-4 mb-2">
+                         Description
+                      </h3>
+                      <p class="px-3">{{element.description}}</p>
+                      <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-1">
+                        <!-- <a href=""   data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="detailPublication(element)"><i class="bi bi-eye"></i></a> -->
+                        <!-- <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerPublication(element)" ><span class="lnr lnr-pencil"></span></a> -->
+                        <!-- <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button> -->
+                    </div>
+                      <hr class="">
+                      <button href="" class="text-center validpubli text-decoration-none py-1  mb-2"   > Détail annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
+                  </div>
+              </article>
+          </div>
           </div>
        
     </div>
+
+
+    <!-- pagination -->
+<div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+  <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+    Précédent
+  </button>
+  <button class="btn pagiColore ms-2" 
+          *ngFor="let page of pages" 
+          [class.current]="page === pageActuelle" 
+          (click)="pageActuelle = page">
+    {{ page }}
+  </button>
+  <button class="btn pagiColor ms-2" 
+          [disabled]="pageActuelle === totalPages" 
+          (click)="pageActuelle = pageActuelle + 1">
+    Suivant
+  </button>
+</div>
 
 </div>
 

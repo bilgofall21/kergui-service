@@ -11,6 +11,7 @@ import { HeaderCandidatComponent } from './layout/header-candidat/header-candida
 import { FooterCandidatComponent } from './layout/footer-candidat/footer-candidat.component';
 import { HomeCandidatComponent } from './home-candidat/home-candidat.component';
 import { MainCandidatComponent } from './main-candidat/main-candidat.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { MainCandidatComponent } from './main-candidat/main-candidat.component';
   ],
   imports: [
     CommonModule,
-    AdminCandidatRoutingModule
+    AdminCandidatRoutingModule,
+    FormsModule
+    
   ]
 })
 export class AdminCandidatModule { }

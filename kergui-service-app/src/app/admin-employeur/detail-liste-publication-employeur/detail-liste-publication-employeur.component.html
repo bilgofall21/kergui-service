@@ -34,8 +34,11 @@
                                     <td class="cell">{{candidat.created_at | date:'dd-MM-yyyy' }} </td>
                                     <td class="cell">{{candidat.updated_at | date:'dd-MM-yyyy' }} </td>
                                     <td class="cell"> {{candidat.dateSoum | date:'dd-MM-yyyy' }} </td>
-                                    <td class="cell" [ngClass]="{'text-success': candidat.etatCan === 'accepter', 'text-danger': candidat.etatCan === 'rejeter'}">
-                                        {{candidat.etatCan}} 
+                                    <td class="cell" >
+                                      
+                                        <span class="badge text-bg-success" *ngIf="candidat.etatCan === 'accepter'"> {{candidat.etatCan}} </span>
+                                        <span class="badge text-bg-danger" *ngIf="candidat.etatCan === 'rejeter'"> {{candidat.etatCan}} </span>
+                                        <span class="badge text-bg-secondary" *ngIf="candidat.etatCan === 'attente'"> {{candidat.etatCan}} </span>
                                     </td>
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
@@ -43,13 +46,17 @@
                                             <a  ><span class="lnr lnr-trash ms-3" (click)="supprimerCandidature(candidat.id)" ></span></a>
                                         </div>
                                     </td>  
-                                    <td class="cell " >
+                                    <!-- <td class="cell " >
                                         <select class="form-select w-75" aria-label="votre choix" name="civilite" [(ngModel)]="etatCan" >
                                             <option value="">votre choix</option>
                                             <option value="accepter">accepter</option>
                                             <option value="rejeter">rejeter</option>
                                           </select>
                                         <button class="btn btn-warning mt-2 text-white"(click)="validationCandidat(candidat.id)" >valider</button>
+                                    </td> -->
+                                    <td class="cell " id="validons">
+                                        <button class="btn btn-success me-2" (click)="accepterCandidature(candidat.id)">Accepter</button>
+                                        <button class="btn btn-danger" (click)="rejeterCandidature(candidat.id)">Rejeter</button>
                                     </td>
                                 </tr>
                             </tbody>

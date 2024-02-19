@@ -8,21 +8,34 @@
     <div class="connexion">
     <div class="form signup">
       <header class="text-white mb-2">Connectez-vous</header>
-      <form action="#" (ngSubmit)="submitFunction($event)" >
+      <form novalidate  (ngSubmit)="submitFunction($event,registerForm )" #registerForm ="ngForm">
         <div class="row row-gap-4">
       
             <div class="">
-                <input class="col-12" type="email" placeholder="Email" name="email" required [(ngModel)]="formData.email" />
+                <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required email
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                #verifEmail="ngModel"
+                [ngClass]="{'is-invalid': verifEmail.touched && !verifEmail.valid}" />
+                <div class="invalid-feedback">
+                    <span *ngIf="verifEmail.errors &&  verifEmail.errors['required']"  class="message-erreur"> Entrer votre email</span>
+                    <span *ngIf=" verifEmail.errors && verifEmail.errors['email']"  class="message-erreur"> Email invalide </span>
+                </div>
             </div>
            
             <div class="">
-                <input class=" col-12" type="password" placeholder="Mot de pass" name="password" required  [(ngModel)]="formData.password" />
+                <input class=" col-12" type="password" placeholder="Mot de pass" name="password" required minlength="8" [(ngModel)]="formData.password" 
+                #verifPassword="ngModel"
+                [ngClass]="{'is-invalid': verifPassword.touched && !verifPassword.valid}" />
+                <div class="invalid-feedback">
+                    <span *ngIf="verifPassword.errors &&  verifPassword.errors['required']"  class="message-erreur"> Entrer votre mot de passe</span>
+                    <span *ngIf=" verifPassword.errors && verifPassword.errors['minlength']"  class="message-erreur"> Minimum 8 caractères </span>
+                </div>
             </div>
             <div>
                 <!-- <p class="text-white">mot de pass oublié ?</p> -->
             </div>
             <div>
-              <button class="col-12"> Connexion</button>
+                <button class="col-12 btn-custom" type="submit" [disabled]="!registerForm.valid"> Connexion</button>
             </div>
             <p class="text-center text-white"> Vous n'avez pas de compte ?</p>
           

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { BehaviorSubject, catchError, map, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, of, throwError } from 'rxjs';
 import { url } from '../models/apiUrl';
 
 @Injectable({
@@ -10,18 +10,12 @@ import { url } from '../models/apiUrl';
 export class AuthService {
   // variable super global
   isAuth$ = new BehaviorSubject<boolean>(false); 
- 
- 
   userID : string ='';
   utilisateurConnecte: boolean =false;
   setUserId(id: string) {
    this.userID = id;
   }
-
   constructor( private http : HttpClient) { }
-
-  // methode pour verifier un user connecter
- 
 
   // Récupère l'URL de l'image de profil de l'utilisateur connecté
   getUserProfileImage(): string {
@@ -33,14 +27,25 @@ export class AuthService {
 
 
 // methode pour login
-  loginUser(user : any) : Observable<any> {
+  // loginUser(user : any) : Observable<any> {
     
-    return this.http.post<any>('http://127.0.0.1:8000/api/login',user);
+  //   return this.http.post<any>('http://127.0.0.1:8000/api/login',user);
     
+  // }
+  loginUser(user: any): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/login', user).pipe(
+      map(response => {
+        // Si la connexion réussit, mettez à jour l'état d'authentification
+        this.setLoggedIn(true);
+        return response;
+      }),
+      catchError(error => {
+        // En cas d'erreur, vous pouvez gérer l'erreur ici ou la propager
+        return throwError(error);
+      })
+    );
   }
 
-   // methode pour s'inscrire
-        // employeur
 
    registerUser(registrationEmployeur: any): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/regiserEmployeur', registrationEmployeur);
@@ -66,18 +71,14 @@ deconnexion() : Observable<any>{
 }
 
 
-
 setLoggedIn(etat: boolean): void {
   this.utilisateurConnecte = etat;
+  this.isAuth$.next(etat); // Met à jour la valeur de l'observable isAuth$
 }
 
 isLoggedIn(): boolean {
   return this.utilisateurConnecte;
 }
-// utilisateurConnecte (): boolean {
-//   // Vous pouvez implémenter cette méthode en fonction de la manière dont vous stockez l'état de connexion, par exemple, en vérifiant si le jeton est présent dans le stockage local.
-//   return !!localStorage.getItem('access_token');
-// }
 
 }
 
