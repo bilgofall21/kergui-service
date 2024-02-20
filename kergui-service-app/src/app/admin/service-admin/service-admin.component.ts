@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { error } from 'jquery';
 import { Profession } from 'src/app/models/profession';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./service-admin.component.css']
 })
 export class ServiceAdminComponent implements OnInit {
+[x: string]: any;
   selectedProfession: any;
 
   constructor(private professionService : ProfessionServiceService ){}
@@ -121,7 +123,7 @@ export class ServiceAdminComponent implements OnInit {
 //   }
 // }
 
-ajouterPofession(): void {
+ajouterPofession(registerForm :NgForm): void {
   if (this.nom_prof !== '' && this.description !== '') {
     let formData = new FormData();
     formData.append('nom_prof', this.nom_prof);

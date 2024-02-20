@@ -11,10 +11,14 @@ import { PublicationService } from 'src/app/services/publication.service';
 })
 export class AccueilComponent implements OnInit {
   detailOffre: []=[];
+  // utilisateurConnecte: boolean=false;
+
 constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService) {}
   ngOnInit(): void {
 this.affichepublication();
 this.afficherservice();
+// this.utilisateurConnecte = true;
+// console.log('ttt eta', this.utilisateurConnecte);
   }
 
   // methode pour afficher 3 dernier publications au niveau de l'accueil

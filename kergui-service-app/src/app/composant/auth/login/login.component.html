@@ -8,12 +8,12 @@
     <div class="connexion">
     <div class="form signup">
       <header class="text-white mb-2">Connectez-vous</header>
-      <form novalidate  (ngSubmit)="submitFunction($event,registerForm )" #registerForm ="ngForm">
+      <form novalidate  (ngSubmit)="connexion($event,registerForm )" #registerForm ="ngForm">
         <div class="row row-gap-4">
       
             <div class="">
                 <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required email
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                pattern="^[A-Za-z]+[A-Za-z0-9\._+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]{2,}$"
                 #verifEmail="ngModel"
                 [ngClass]="{'is-invalid': verifEmail.touched && !verifEmail.valid}" />
                 <div class="invalid-feedback">
@@ -119,7 +119,7 @@
                 [ngClass]="{'is-invalid': validlieu.touched && !validlieu.valid}"
                 />
             <div class="invalid-feedback">
-                <span *ngIf="validlieu.touched && validlieu.errors && validlieu.errors['required']"> Enter une adresse</span>
+                <span *ngIf="validlieu.touched && validlieu.errors && validlieu.errors['required']" > Enter une adresse</span>
             </div>
             </div>
             <div class="col-md-5">

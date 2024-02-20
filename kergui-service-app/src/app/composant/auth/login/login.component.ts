@@ -16,7 +16,7 @@ import { NgForm, NgModel } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  isAuth$: any;
+  // isAuth$: any;
 
   constructor( private authentification : AuthService ,
                private router : Router,
@@ -54,73 +54,119 @@ userfoundid = '';
 
 
 // connexion methode
-submitFunction(event: Event, registerForm :NgForm): void {
+// submitFunction(event: Event, registerForm :NgForm): void {
+//   event.preventDefault();
+//   console.log("voirrrrrr", JSON.stringify(registerForm.value));
+
+//   if (this.formData.email !== '' && this.formData.password !== '') {
+//     const loginData = {
+//       email: this.formData.email,
+//       password: this.formData.password
+//     };
+//     this.authentification.loginUser(loginData).subscribe(
+//       (user: any) => {
+      
+//         this.utilisateurConnecte = true;
+//         console.log("etat anomouu", this.utilisateurConnecte);
+       
+//         this.userfoundid = user.data;
+   
+// localStorage.setItem('user_profile', JSON.stringify(user.data));
+
+//         if (user.token) {
+//           this.affichermessage('success', 'Bienvenue ',  user.data.prenom);
+      
+
+//           if (user.data.role == "admin" && user.data.statut  == "activer") {
+         
+//             this.utilisateurConnecte = true;
+//             this.authentification.setLoggedIn(true);
+        
+//             localStorage.setItem("dashboard_type", 'admina'); 
+//             localStorage.setItem('access_Token', user.token);
+//             this.router.navigate(['/admin']);
+//           this.authentification.setUserId(user.data.id);
+//           }
+//           else if (user.data.role == "candidat" && user.data.statut  == "activer") {
+     
+//             this.authentification.setLoggedIn(true);
+//             this.utilisateurConnecte = true;
+
+//             localStorage.setItem("dashboard_type", 'candidat');
+//             localStorage.setItem('access_Token', user.token);          
+//             this.router.navigate(['/admin-candidat']);
+//           }
+//           else if (user.data.role == "employeur" && user.data.statut  == "activer") {
+       
+//             localStorage.setItem('access_Token', user.token);
+//               localStorage.setItem("dashboard_type", 'candidat');
+//             this.utilisateurConnecte = true;
+//             this.authentification.setLoggedIn(true);
+
+//             this.router.navigate(['/admin-employeur']);
+//           }
+//           else {
+//             this.affichermessage('error', 'Ce compte a été désactive', 'error');
+//           }
+//         } else {
+//           this.affichermessage('error', 'Oops', 'Login ou mot de passe incorrecte');
+//         }
+//       },
+//       (error: any) => {
+//         console.error('Erreur lors de la connexion :', error);
+//         this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
+//       }
+//     );
+
+//   } else {
+//     this.affichermessage('error', 'Désolé', ' Les Informations que vous avez saisies sont incorrectes!');
+//   }
+// }
+
+connexion(event : Event, registerForm : NgForm): void{
   event.preventDefault();
   console.log("voirrrrrr", JSON.stringify(registerForm.value));
-
-  if (this.formData.email !== '' && this.formData.password !== '') {
-    const loginData = {
-      email: this.formData.email,
-      password: this.formData.password
-    };
-    this.authentification.loginUser(loginData).subscribe(
-      (user: any) => {
-        // this.authentification.setLoggedIn(true);
-        this.utilisateurConnecte = true;
-        console.log("etat anomouu", this.utilisateurConnecte);
-        // console.log("wouy", user);
-        this.userfoundid = user.data;
-        // Stocker le profil complet de l'utilisateur
+  // objet contenant les donneé envoye
+  const loginData = {
+    email: this.formData.email,
+    password: this.formData.password
+  };
+  this.authentification.loginUser(loginData,).subscribe((user : any)=>{
+    this.userfoundid = user.data;
+      // Stocker l'objet utilisateur recut
 localStorage.setItem('user_profile', JSON.stringify(user.data));
-// const userProfileString = localStorage.getItem('user_profile');
-        if (user.token) {
-          this.affichermessage('success', 'Bienvenue ',  user.data.prenom);
-      
-          // alert(this.userfoundid);
-          if (user.data.role == "admin" && user.data.statut  == "activer") {
-            // variable pour definir etat de l'utulisateuer
-            this.utilisateurConnecte = true;
-            this.authentification.setLoggedIn(true);
-            // stocker notre les info de la requete dans notre localstorage
+      if (user.token) {
+         // Mise à jour de l'état de l'utilisateur connecté
+      this.authentification.setLoggedIn(true);
+        this.affichermessage('success', 'Bienvenue ',  user.data.prenom);
+          // redirection suivant le role
+          if (user.data.role == "admin" && user.data.statut  == "activer"){
             localStorage.setItem("dashboard_type", 'admina'); 
+            // stockage du token sur le local storage
             localStorage.setItem('access_Token', user.token);
+              // rediriger vers dashbord admin
             this.router.navigate(['/admin']);
-          this.authentification.setUserId(user.data.id);
-          }
-          else if (user.data.role == "candidat" && user.data.statut  == "activer") {
-            // stocker notre les info de la requete dans notre localstorage
-            this.authentification.setLoggedIn(true);
-            this.utilisateurConnecte = true;
-
+          } else if (user.data.role == "candidat" && user.data.statut  == "activer"){
             localStorage.setItem("dashboard_type", 'candidat');
-            localStorage.setItem('access_Token', user.token);          
-            this.router.navigate(['/admin-candidat']);
-          }
-          else if (user.data.role == "employeur" && user.data.statut  == "activer") {
-            // stocker notre les info de la requete dans notre localstorage
+            // stockage du token sur le local storage
             localStorage.setItem('access_Token', user.token);
+              // rediriger vers dashbord admin-candidat
+            this.router.navigate(['/admin-candidat']);
+          }else if (user.data.role == "employeur" && user.data.statut  == "activer"){
             localStorage.setItem("dashboard_type", 'employeur');
-            this.utilisateurConnecte = true;
-            this.authentification.setLoggedIn(true);
-
+              // stockage du token sur le local storage
+              localStorage.setItem('access_Token', user.token);
+              // rediriger vers dashbord admin-employeur
             this.router.navigate(['/admin-employeur']);
+          } else {
+            this.affichermessage('error', 'Ce compte a été désactive', 'désolé');
           }
-          else {
-            this.affichermessage('error', 'Ce compte a été désactive', 'error');
-          }
-        } else {
-          this.affichermessage('error', 'Oops', 'Login ou mot de passe incorrecte');
+        };
+        (error: any) => {
+          console.error('Erreur lors de la connexion :', error);
+          this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
         }
-      },
-      (error: any) => {
-        console.error('Erreur lors de la connexion :', error);
-        this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
-      }
-    );
-
-  } else {
-    this.affichermessage('error', 'Désolé', ' Les Informations que vous avez saisies sont incorrectes!');
-  }
+  })
 }
 
 affichermessage(icone: any, message: string,user:string) {
@@ -357,13 +403,14 @@ this.selectOptionData = data.data;
 
 LogOutUser() : void{
   this.authentification.deconnexion().subscribe((respons)=>{
-    this.utilisateurConnecte = false;
-
+    // this.utilisateurConnecte = false;
+    this.authentification.setLoggedIn(false);
     console.log("byyy byyyy", respons);
     localStorage.removeItem('access_Token');
     localStorage.removeItem('user_profile');
+    this.router.navigate(['/login']);
  
-    return new Observable<any>();
+    // return new Observable<any>();
     
   })
 }

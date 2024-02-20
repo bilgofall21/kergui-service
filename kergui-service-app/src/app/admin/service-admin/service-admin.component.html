@@ -57,22 +57,33 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body  ">
-            <form action="">
+            <form (ngSubmit)="ajouterPofession (registerForm)" #registerForm="ngForm">
               <div class="mb-3">
                 <Label class = "form-label"> Sélectionnez la photo 
-                <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)">
+                <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)" >
                </Label>
                </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Profession</label>
-                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof">
+                    <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof" required #verifprofession = "ngModel" maxlength="30" 
+                    [ngClass]="{'is-invalid': verifprofession.touched && !verifprofession.valid}"
+                    >
+                    <div class="invalid-feedback">
+                      <span *ngIf="verifprofession.errors && verifprofession.touched && verifprofession.errors['required']"  class="message-erreur"> Entrer une profession</span>
+                      <span *ngIf="verifprofession.errors && verifprofession.touched && verifprofession.errors['maxlength']"  class="message-erreur"> Maximum 30 caractères</span>
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" required #verifdescrip="ngModel" 
+                    [ngClass]="{'is-invalid': verifdescrip.touched && !verifdescrip.valid}"
+                    ></textarea>
+                    <div class="invalid-feedback">
+                      <span *ngIf="verifdescrip.errors && verifdescrip.touched && verifdescrip.errors['required']" class="message-erreur">Entrer une description</span>
+                    </div>
                   </div>
                   <div class="validajout d-flex justify-content-end">
-                    <button (click)="ajouterPofession ()" data-bs-dismiss="modal" > Ajouter</button>
+                    <button  data-bs-dismiss="modal" type="submit"  class="btn-custom" [disabled]="!registerForm.valid"> Ajouter</button>
                     <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
                   </div>
             </form>

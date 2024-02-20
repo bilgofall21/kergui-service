@@ -13,6 +13,8 @@ export class DetailOffreComponent implements OnInit  {
     const recupDetail = localStorage.getItem('detail_offre');
     this.dataDetail = recupDetail? JSON.parse(recupDetail) : null;
     console.log("uuuuu", this.dataDetail);
+
+    
   }
   constructor(private candidaterservice : CandidatureServiceService,){}
 

@@ -12,17 +12,26 @@ export class HeaderComponent implements OnInit {
 
   userProfile: any;
   utilisateurConnecte: boolean = false;
+  isLoggedInSubscription: any;
   constructor(private authservice : AuthService, private router : Router){}
+  
   ngOnInit(): void {
-    const userProfileData = localStorage.getItem('user_profile');
-    this.userProfile = userProfileData ? JSON.parse(userProfileData) : null;
-    console.log("fffffff", this.userProfile)
+    // const userProfileData = localStorage.getItem('user_profile');
+    // this.userProfile = userProfileData ? JSON.parse(userProfileData) : null;
+    // console.log("fffffff", this.userProfile)
+    this.isLoggedInSubscription = this.authservice.isLoggedIn$.subscribe(isLoggedIn => {
+      this.utilisateurConnecte = isLoggedIn;
+      if (isLoggedIn) {
+        // Si l'utilisateur est connecté, récupérez les informations de profil
+        this.userProfile = JSON.parse(localStorage.getItem('user_profile') || '{}');
+      }
+    });
 
     const access_token = localStorage.getItem('access_token');
-    this.utilisateurConnecte = access_token ? true : false;
-    console.log("Utilisateur connecté :", this.utilisateurConnecte);
+    // this.utilisateurConnecte = access_token ? true : false;
+    // console.log("Utilisateur connecté :", this.utilisateurConnecte);
 
-    this.utilisateurConnecte = this.authservice.isLoggedIn();
+    // this.utilisateurConnecte = this.authservice.isLoggedIn();
   }
 
 
@@ -30,7 +39,8 @@ export class HeaderComponent implements OnInit {
 
     this.authservice.deconnexion().subscribe((respons)=>{
       console.log("deconexion reussi", respons);
-      this.utilisateurConnecte = false;
+      // this.utilisateurConnecte = false;
+      // this.authservice.setLoggedIn(false);
       this.authservice.setLoggedIn(false);
       localStorage.removeItem('access_token');
       localStorage.removeItem('dashbord_type')
