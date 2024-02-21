@@ -253,24 +253,37 @@ registerUser( registerForm :NgForm): void {
     // Call the registration method in your authentication service
     this.authentification.registerUser(formData).subscribe(
       (response: any) => {
-        this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
         console.log(  "inscription successfully", response);
-        this.registreData = {
-          nom : "",
-          prenom : "",
-          email : "",
-          telephone : "",
-          lieu : "",
-          password : "",
-          password_confirmation : "",
-          imageDeProfil : "",
-        }
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Inscription réussie',
+          text: 'Vous êtes inscrit avec succès !',
+          confirmButtonText: 'Se connecter',
+          confirmButtonColor: "#3A6A7E",
+            width: 400,
+            padding: 15,
+            color : '#ffff',
+            background: '#3A6A7E',
+        }).then((result) => {
+          if(result.isConfirmed){
+            this.registreData = {
+              nom : "",
+              prenom : "",
+              email : "",
+              telephone : "",
+              lieu : "",
+              password : "",
+              password_confirmation : "",
+              imageDeProfil : "",
+            }
+            this.showConnexion = true;
+            this.showPresentation = false;
+            this.showAuthEmployeur = false;
+            this.showAuthEmploye = false;
+          }
+        })
 
-        this.showConnexion = true;
-        this.showPresentation = false;
-        this.showAuthEmployeur = false;
-        this.showAuthEmploye = false;
-        
         // Handle successful registration, e.g., show a success message or navigate to another page
       },
       (error: any) => {
@@ -288,8 +301,6 @@ registerUser( registerForm :NgForm): void {
 }
 registerUserEmploye(registerForm :NgForm): void {
   // Perform additional validation if needed
-
-
     
     let formData=new FormData();
     formData.append('nom', this.registreEmploye.nom);
@@ -349,10 +360,7 @@ registerUserEmploye(registerForm :NgForm): void {
           }
         })
         // this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
-        // console.log(  "inscription successfully", response);
-        
-       
-      
+        // console.log(  "inscription successfully", response); 
       },
       (error: any) => {
         this.affichermessageregister('error', 'desole', ' Inscription non validé');
@@ -372,8 +380,12 @@ affichermessageregister(icone: any, message: string,user:string) {
       position: 'center',
       icon: icone,
       title: message +"" +user,
-      showConfirmButton: true,
-      // timer: 1500
+      showConfirmButton: false,
+      timer: 1500,
+      width: 400,
+      padding: 15,
+      color : '#ffff',
+      background: '#3A6A7E'
   })
 }
 affichermessageemployeur(icone: any, message: string,user:string) {
@@ -381,8 +393,13 @@ affichermessageemployeur(icone: any, message: string,user:string) {
       position: 'center',
       icon: icone,
       title: message +"" +user,
-      showConfirmButton: true,
+      showConfirmButton: false,
       // timer: 1500
+      timer: 1500,
+      width: 400,
+      padding: 15,
+      color : '#ffff',
+      background: '#3A6A7E'
   })
 }
 
@@ -402,8 +419,7 @@ this.selectOptionData = data.data;
 
 
 LogOutUser() : void{
-  this.authentification.deconnexion().subscribe((respons)=>{
-    // this.utilisateurConnecte = false;
+  this.authentification.deconnexion().subscribe((respons)=>{ 
     this.authentification.setLoggedIn(false);
     console.log("byyy byyyy", respons);
     localStorage.removeItem('access_Token');

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Profession } from 'src/app/models/profession';
 import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
@@ -93,7 +94,8 @@ publication: any;
         this.dataPublication = data.data;
       
         // fitrer les anonces en fontion du userconnecté
-        this.datPublicationFiltred = this.dataPublication.filter((element: { user_id: any; }) => element.user_id == this.userConnect.id);
+        this.datPublicationFiltred = this.dataPublication.filter((element: {etat: string; user_id: any; }) =>
+         element.user_id == this.userConnect.id && element.etat == 'nouveau') ;
         
         console.log("mes pubiiiii", this.datPublicationFiltred);
         // this.datPublicationFiltred.forEach((publication : any)=>{
@@ -156,7 +158,7 @@ ajouterPublicatin (): void{
       }
     })
   }else{
-    this.affichermessage('error', 'reverifiez ', 'données saisient fausses ou champs vides');
+    this.affichermessage('error', 'Désolé ', 'veillez remplir tous les champs');
   }
 }
 
@@ -193,6 +195,7 @@ chargerPublication( publication : any){
     this.slaireMinimum = publication.slaireMinimum;
     this.experienceMinimum = publication.experienceMinimum;
     this.profession_id = publication.profession_id;
+    this.image = publication.image;
     // this.userId = publication.userId;
   }else {
     console.error("Erreur: ID de la formation non défini");
@@ -205,6 +208,20 @@ chargerPublication( publication : any){
 
 
   modifierProfession(): void {
+    // Vérifier que tous les champs sont remplis
+    if (!this.lieu || !this.typeContrat || !this.description || !this.slaireMinimum || !this.experienceMinimum || !this.profession_id || !this.dateline || !this.image) {
+      Swal.fire({
+        title: "Erreur!",
+        text: "Veuillez remplir tous les champs.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+        color: '#ffff',
+        background: '#3A6A7E'
+      });
+      return; // Sortir de la fonction si un champ requis est manquant
+    }
+  
     let formData = new FormData();
     formData.append('lieu', this.lieu);
     formData.append('typeContrat', this.typeContrat);
@@ -214,54 +231,69 @@ chargerPublication( publication : any){
     formData.append('profession_id', this.profession_id);
     formData.append('dateline', this.dateline);
     formData.append('image', this.image);
-    
+  
     Swal.fire({
-      title: "Voulez vous vraiment modifié cette publication?",
+      title: "Voulez-vous vraiment modifier cette publication?",
       icon: "warning",
-      showCancelButton: true,  
+      showCancelButton: true,
       confirmButtonColor: "#3A6A7E",
       cancelButtonColor: "#FF9A00",
       width: 450,
       padding: 15,
-      color : '#ffff',
+      color: '#ffff',
       background: '#3A6A7E',
-      confirmButtonText: "Oui modifier!"
+      confirmButtonText: "Oui, modifier!"
     }).then((result) => {
-      if(result.isConfirmed){
-
+      if (result.isConfirmed) {
         if (this.selectedPublication) {
-          // Modification d'une profession existante
-      this.publicationservice.editPublication(this.selectedPublication,formData).subscribe(
+          // Modification d'une publication existante
+          this.publicationservice.editPublication(this.selectedPublication, formData).subscribe(
             (data: any) => {
               console.log(" what:", data);
+              // Afficher le message de succès si la modification réussit
+              Swal.fire({
+                title: "Publication modifiée!",
+                text: "Cette publication a été modifiée avec succès.",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500,
+                width: 400,
+                padding: 15,
+                color: '#ffff',
+                background: '#3A6A7E',
+              });
               // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
-              // window.location.reload(); ou mieux, mettre à jour la liste localement
-              
-              this.afficherPublication();  // mettre a jour la liste
+              this.afficherPublication(); // mettre à jour la liste
             },
             error => {
               console.error('Erreur lors de la modification :', error);
+              // Afficher un message d'erreur en cas d'échec de la modification
+              Swal.fire({
+                title: "Erreur!",
+                text: "Une erreur est survenue lors de la modification.",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+                color: '#ffff',
+                background: '#3A6A7E'
+              });
             }
           );
         } else {
-          console.error("Erreur: Aucune profession sélectionnée pour la modification");
+          console.error("Erreur: Aucune publication sélectionnée pour la modification");
           // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
           Swal.fire({
-            title: "publication modifié!",
-            text: "Cet publicaion  a été supprimé.",
-            icon: "success",
+            title: "Erreur!",
+            text: "Aucune publication sélectionnée pour la modification.",
+            icon: "error",
             showConfirmButton: false,
             timer: 1500,
-            width: 400,
-            padding: 15,
-            color : '#ffff',
-            background: '#3A6A7E',
-            });
+            color: '#ffff',
+            background: '#3A6A7E'
+          });
         }
       }
-      }
-    )
-    
+    });
   }
 // methode pour supprimer publication
 // methode pour supprmer un element
@@ -327,8 +359,12 @@ affichermessage(icone: any, message: string,user:string) {
       position: 'center',
       icon: icone,
       title: message +"" +user,
-      showConfirmButton: true,
-      // timer: 1500
+      showConfirmButton: false,
+      width: 480,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E',
+      timer: 1500
   })
 }
 

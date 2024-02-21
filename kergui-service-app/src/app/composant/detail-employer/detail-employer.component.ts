@@ -17,6 +17,8 @@ export class DetailEmployerComponent implements OnInit {
   this.dataDetailProfil = recupDataProfil ? JSON.parse(recupDataProfil) : null;
   console.log("dtail profil", this.dataDetailProfil);
 
+  this.temoignageForEmploye();
+
   }
   elementdetailselected : any;
   showElement (element : any) : void{
@@ -52,4 +54,13 @@ affichermessagetemoignage(icone: any, message: string,user:string) {
   })
    
 }
+dataEmployeTemoignage : any;
+ temoignageForEmploye(): void{
+  this.temoignageservice.temoignageemploye().subscribe((respons)=>{
+    this.dataEmployeTemoignage=respons;
+    console.log("nos temoignege", this.dataEmployeTemoignage);
+  })
+ }   
+
+
 }

@@ -123,27 +123,26 @@ export class ServiceAdminComponent implements OnInit {
 //   }
 // }
 
-ajouterPofession(registerForm :NgForm): void {
-  if (this.nom_prof !== '' && this.description !== '') {
+ajouterPofession(registerForm: NgForm): void {
+  if (this.nom_prof !== '' && this.description !== '' && this.image) {
     let formData = new FormData();
     formData.append('nom_prof', this.nom_prof);
     formData.append('description', this.description);
     formData.append('image', this.image);
 
     this.professionService.addProfession(formData).subscribe(
-      (respons) => {
-        this.recupAllProfession()
+      (response) => {
+        this.recupAllProfession();
         Swal.fire({
           icon: 'success',
           title: 'Bravo',
-          text: 'Profession ajouté avec succès',
+          text: 'Profession ajoutée avec succès',
           showConfirmButton: false,
           timer: 1500,
           width: 400,
-          padding: 15,
-          color : '#ffff',
+          padding: 10,
+          color: '#ffff',
           background: '#3A6A7E'
-
         });
         this.viderChamp();
       },
@@ -157,22 +156,34 @@ ajouterPofession(registerForm :NgForm): void {
           timer: 1500,
           width: 400,
           padding: 15,
-          color : '#ffff',
+          color: '#ffff',
           background: '#3A6A7E'
-
         });
       }
     );
   } else {
-    this.affichermessage('error', 'reverifiez', 'profession  ou description incorrecte');
+    this.affichermessage('error', 'Attention', 'remplir les champs manquants');
   }
 }
+// methode pour empécher affichage par defaut message d'erreur
+
 
 
 getFile(event: any) {
   console.warn(event.target.files[0]);
   this.image= event.target.files[0] as File ;
 }
+
+// getFile(event: any) {
+//   const selectedFile = event.target.files[0] as File;
+//   if (selectedFile) {
+//     console.warn("fichier selectionne",selectedFile);
+//     this.image = selectedFile;
+//   } else {
+//     console.error("Aucun fichier sélectionné");
+
+//   }
+// }
   // methode pour charger element a modifier dans formulaire
 
 chargerProfession( formation : any){
@@ -191,68 +202,147 @@ chargerProfession( formation : any){
     // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
   }
   }
-
-
-  
-
   // methode pour modifier l'element selectionner
 
+  // modifierProfession(): void {
+  //   let formData = new FormData();
+  //   formData.append('nom_prof', this.nom_prof);
+  //   formData.append('description', this.description);
+  //   formData.append('image', this.image);
+    
+  //   Swal.fire({
+  //     title: "Voulez vous vraiment modifié ce service?",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3A6A7E",
+  //     cancelButtonColor: "#FF9A00",
+  //     width: 450,
+  //     padding: 15,
+  //     color : '#ffff',
+  //     background: '#3A6A7E',
+  //     confirmButtonText: "Oui modifier!"
+      
+  //   }).then((result) => {
+  //     if(result.isConfirmed){
+  //       if (this.selectedProfession) {
+  //         // Modification d'une profession existante
+  //         this.professionService.editProfession(this.selectedProfession,formData).subscribe(
+  //           (data: any) => {
+  //             console.log("Modification réussie :", data);
+  //             // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
+  //             // window.location.reload(); ou mieux, mettre à jour la liste localement
+              
+  //             this.recupAllProfession();  // mettre a jour la liste
+  //           },
+  //           error => {
+  //             console.error('Erreur lors de la modification :', error);
+  //           }
+  //         );
+  //       } else {
+  //         console.error("Erreur: Aucune profession sélectionnée pour la modification");
+  //         // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
+  //         Swal.fire({
+  //           title: "service modifié!",
+  //           text: "Ce service a été modifié .",
+  //           icon: "success",
+  //           showConfirmButton: false,
+  //           timer: 1500,
+  //           width: 400,
+  //           padding: 15,
+  //           color : '#ffff',
+  //           background: '#3A6A7E',
+  //           });
+  //       }
+
+  //     }
+  //     }
+  //   )
+    
+  // }
+
+
+
   modifierProfession(): void {
+    // Vérifier si tous les champs requis sont remplis, y compris l'image
+    if (!this.nom_prof || !this.description || !this.image) {
+      Swal.fire({
+        title: "Erreur!",
+        text: "Veuillez remplir tous les champs, y compris l'image.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+        color: '#ffff',
+        background: '#3A6A7E'
+      });
+      return; // Sortir de la fonction si un champ requis est manquant
+    }
+  
     let formData = new FormData();
     formData.append('nom_prof', this.nom_prof);
     formData.append('description', this.description);
     formData.append('image', this.image);
-    
+  
+    // Si tous les champs requis sont remplis, continuer avec la modification de la profession
     Swal.fire({
-      title: "Voulez vous vraiment modifié ce compte?",
+      title: "Voulez-vous vraiment modifier ce service?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3A6A7E",
       cancelButtonColor: "#FF9A00",
       width: 450,
-      padding: 15,
-      color : '#ffff',
-      background: '#3A6A7E',
-      confirmButtonText: "Oui modifier!"
-      
+      confirmButtonText: "Oui, modifier!",
+      padding: 10,
+      color: '#ffff',
+      background: '#3A6A7E'
     }).then((result) => {
-      if(result.isConfirmed){
+      if (result.isConfirmed) {
         if (this.selectedProfession) {
           // Modification d'une profession existante
-          this.professionService.editProfession(this.selectedProfession,formData).subscribe(
+          this.professionService.editProfession(this.selectedProfession, formData).subscribe(
             (data: any) => {
               console.log("Modification réussie :", data);
-              // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
-              // window.location.reload(); ou mieux, mettre à jour la liste localement
-              
-              this.recupAllProfession();  // mettre a jour la liste
+              Swal.fire({
+                title: "Service modifié!",
+                text: "Ce service a été modifié.",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500,
+                width: 400,
+                padding: 10,
+                color: '#ffff',
+                background: '#3A6A7E'
+              });
+              this.recupAllProfession();  // Mettre à jour la liste
             },
             error => {
               console.error('Erreur lors de la modification :', error);
+              Swal.fire({
+                title: "Erreur!",
+                text: "Une erreur est survenue lors de la modification.",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+                color: '#ffff',
+                background: '#3A6A7E'
+              });
             }
           );
         } else {
           console.error("Erreur: Aucune profession sélectionnée pour la modification");
-          // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
           Swal.fire({
-            title: "service modifié!",
-            text: "Ce service a été modifié .",
-            icon: "success",
+            title: "Erreur!",
+            text: "Aucune profession sélectionnée pour la modification.",
+            icon: "error",
             showConfirmButton: false,
             timer: 1500,
-            width: 400,
-            padding: 15,
-            color : '#ffff',
-            background: '#3A6A7E',
-            });
+            color: '#ffff',
+            background: '#3A6A7E'
+          });
         }
-
       }
-      }
-    )
-    
+    });
   }
-
+  
   // methode pour supprmer un element
   supprimerProfession(id: any): void {
     Swal.fire({
@@ -296,14 +386,30 @@ chargerProfession( formation : any){
     )
   }
 
-  affichermessage(icone: any, message: string,user:string) {
+  affichermessage(icone: any, titre: string, message: string) {
+    // Swal.fire({
+    //     position: 'center',
+    //     icon: icone,
+    //     title: message +"" ,
+    //     showConfirmButton: false,
+    //     // timer: 1500
+    //     timer: 1500,
+    //     width: 450,
+    //     padding: 10,
+    //     color : '#ffff',
+    //     background: '#3A6A7E'
+    // })
     Swal.fire({
-        position: 'center',
-        icon: icone,
-        title: message +"" +user,
-        showConfirmButton: true,
-        // timer: 1500
-    })
+      title: titre +"" ,
+      text: message  ,
+      icon: icone,
+      showConfirmButton: false,
+      timer: 1500,
+      width: 400,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E',
+      });
   }
 
   // methode pour voir detail

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -29,15 +30,25 @@ constructor(public authservice: AuthService, private router: Router){}
   // utilisateurConnecte : boolean = false;
   LogOutUser() : void{
     this.authservice.deconnexion().subscribe((respons)=>{
-      // this.utilisateurConnecte = false;
       this.authservice.setLoggedIn(false);
-      console.log("byyy byyyy", respons);
-      localStorage.removeItem('access_Token');
-    localStorage.removeItem('user_profile');
-    localStorage.removeItem('dashboard_type')
-      // this.authservice.setLoggedIn(false);
-      this.router.navigate(['/login']);
-      return new Observable<any>();
-    })
+      Swal.fire({
+        icon: 'success',
+        title: 'Déconnexion réussie',
+        text: 'Au revoir!',
+        showConfirmButton: false,
+        timer: 1500,
+      width: 450,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E'
+    }).then(() => {
+        localStorage.removeItem('access_Token');
+        localStorage.removeItem('user_profile');
+        localStorage.removeItem('dashboard_type');
+        this.router.navigate(['/login']);
+    });
+});
   }
+
+  
 }

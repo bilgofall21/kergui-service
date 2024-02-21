@@ -2,6 +2,7 @@ import { NgIfContext } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -39,13 +40,24 @@ export class HeaderComponent implements OnInit {
 
     this.authservice.deconnexion().subscribe((respons)=>{
       console.log("deconexion reussi", respons);
-      // this.utilisateurConnecte = false;
-      // this.authservice.setLoggedIn(false);
       this.authservice.setLoggedIn(false);
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('dashbord_type')
+      Swal.fire({
+        icon: 'success',
+        title: 'Déconnexion réussie',
+        text: 'Au revoir!',
+        showConfirmButton: false,
+        timer: 1500,
+      width: 450,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E'
+    }).then(() => {
+        localStorage.removeItem('access_Token');
+        localStorage.removeItem('user_profile');
+        localStorage.removeItem('dashboard_type');
+        this.router.navigate(['/login']);
+    });
       
-      this.router.navigate(['/login']);
       
     })
   }

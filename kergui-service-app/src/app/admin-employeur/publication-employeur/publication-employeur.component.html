@@ -103,7 +103,7 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body  ">
-            <form action="">
+            <form novalidate >
               <div class="mb-3">
                 <Label class = "form-label"> Sélectionnez la photo 
                 <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)" >
@@ -111,38 +111,44 @@
                </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Profession</label>
-                    <select class="form-select" aria-label="Sélectionner profession" name="profession_id" [(ngModel)]="profession_id" >
+                    <select class="form-select" aria-label="Sélectionner profession" name="profession_id" [(ngModel)]="profession_id" required >
                       <option value="" >Sélectionner profession</option>
                       <option *ngFor="let profession of professionData" [value]="profession.id">{{ profession.nom_prof }}</option>
                     </select>
+                 
                     <!-- <input type="number" class="form-control" placeholder="profession"  name = "profession_id" [(ngModel)]="profession_id"> -->
                   </div>
                 <div class="mb-3"> 
                     <label for="lieu" class="form-label">Date Limite</label>
-                    <input type="date" class="form-control" name="dataline" id="dateline" placeholder="adresse" [(ngModel)]="dateline" >
+                    <input type="date" class="form-control" name="dataline" id="dateline" placeholder="adresse" [(ngModel)]="dateline"  required >
+
                   </div>
                 <div class="mb-3"> 
                     <label for="lieu" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" name="lieu" id="lieu" placeholder="adresse" [(ngModel)]="lieu">
+                    <input type="text" class="form-control" name="lieu" id="lieu" placeholder="adresse" [(ngModel)]="lieu" required >
+                    
                   </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Experience</label>
                     <input type="text" class="form-control" name="experience" id="profession" placeholder="experience" [(ngModel)]="experienceMinimum" >
+                   
                   </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Salaire</label>
                     <input type="text" class="form-control" name="slaireMinimum " id="profession" placeholder="salaire" [(ngModel)]="slaireMinimum" >
+                   
                   </div>
                 <div class="mb-3">
                     <label for="nom_prof" class="form-label">Type de contrat</label>
-                    <input type="text" class="form-control" name=" 	typeContrat " id="profession" placeholder="c00ontrat" [(ngModel)]="typeContrat"  >
+                    <input type="text" class="form-control" name=" 	typeContrat " id="profession" placeholder="c00ontrat" [(ngModel)]="typeContrat" >
+                   
                   </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" ></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description"></textarea>
                   </div>
                   <div class="validajout d-flex justify-content-end">
-                    <button (click)="ajouterPublicatin ()"  > Ajouter</button>
+                    <button type="submit" data-bs-dismiss="modal" class="btn-custom"  (click)="ajouterPublicatin ()"> Ajouter</button>
                     <button href="" class="btn btn-secondary" data-bs-dismiss="modal"> Annuler</button>
                   </div>
             </form>
@@ -230,7 +236,7 @@
                 <div class="" >
                  <div class="row" *ngIf="publcationselect">
                   <div class="col-4 " id="tof">
-                      <img src="./assets/image/annoncecarte1.png" alt="">
+                      <img src="http://127.0.0.1:8000/storage/{{publcationselect.image}}" alt="">
                   </div>
                   <div class="col-8 ">
                       <div class="mb-2">

@@ -26,6 +26,7 @@ export class CandidatureServiceService implements OnInit {
   return this.http.get<any>(`${url}/AfichageCandidature`)
  }
 
+
 // validCandidat (id : string, etatCan : string): Observable<any>{
 //   return this.http.put<any>(`${url}/${id}/ModifierAfichageCandidature`, etatCan)
 // }

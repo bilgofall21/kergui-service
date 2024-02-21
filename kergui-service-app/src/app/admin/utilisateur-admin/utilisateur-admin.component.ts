@@ -62,7 +62,7 @@ afficherDeatailUser(element : any){
 desactiverUser(id : string): void {
 
   Swal.fire({
-    title: "Voulez vous vraiment désactiver cet utulisateur ?",
+    title: "Voulez vous vraiment désactiver cet utilisateur ?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3A6A7E",
@@ -106,7 +106,7 @@ desactiverUser(id : string): void {
 activerUser(id : string): void {
 
   Swal.fire({
-    title: "Voulez vous vraiment réactiver cet utulisateur ?",
+    title: "Voulez vous vraiment réactiver cet utilisateur ?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3A6A7E",
@@ -131,7 +131,7 @@ activerUser(id : string): void {
         }
         )
         Swal.fire({
-          title: "Utulisateur réactiver!",
+          title: "Utilisateur réactiver!",
           text: "Cet utilisateur a été réactivé .",
           icon: "success",
           showConfirmButton: false,
