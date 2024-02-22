@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProfilServiceService } from 'src/app/services/profil-service.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,18 +15,16 @@ export class HeaderComponent implements OnInit {
   userProfile: any;
   isLoggedInSubscription: any;
   utilisateurConnecte: boolean=false;
-constructor(public authservice: AuthService, private router: Router){}
+constructor(public authservice: AuthService, private router: Router, private profilService: ProfilServiceService, private utilisateurservice : UtulisateurService){}
   ngOnInit(): void {
-    // const userProfileData = localStorage.getItem('user_profile');
-    // this.userProfile = userProfileData ? JSON.parse(userProfileData) : null;
-    // console.log("fffffff", this.userProfile)
-    this.isLoggedInSubscription = this.authservice.isLoggedIn$.subscribe(isLoggedIn => {
-      this.utilisateurConnecte = isLoggedIn;
-      if (isLoggedIn) {
-        // Si l'utilisateur est connecté, récupérez les informations de profil
-        this.userProfile = JSON.parse(localStorage.getItem('user_profile') || '{}');
-      }
-    });
+   this.profilService.profileData$.subscribe((profilData)=>{
+    if(profilData){
+      this.samaProfil = profilData;
+    }else{
+      this.afficherProfil();
+    }
+   })
+   this.afficherProfil();
   }
 
   // utilisateurConnecte : boolean = false;
@@ -50,5 +50,12 @@ constructor(public authservice: AuthService, private router: Router){}
 });
   }
 
+  samaProfil :  any;
+afficherProfil() :void {
+  this.utilisateurservice.getProfil().subscribe((respons)=>{
+    this.samaProfil = respons.data;
+    console.log("voir profil", this.samaProfil );
+  })
+}
   
 }

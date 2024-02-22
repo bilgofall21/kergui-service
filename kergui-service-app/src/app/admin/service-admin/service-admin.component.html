@@ -12,7 +12,7 @@
             <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
       </div>
     </div>
-    <h4 class="mt-4">Listes des services</h4>
+    <h4 class="mt-4">Liste des services</h4>
     <div class="row mt-4 mb-4" >
         <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage()" >
           <div class="card shadow-lg" style="width: 18.5rem; height: 28rem;" >
@@ -22,8 +22,8 @@
                 <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
               </div>
             </div>
-            <div class="card-body " >
-              <p class="card-text text-center"> {{element.description}} </p>
+            <div class="card-body text-start" >
+              <p class="card-text "> {{element.description}} </p>
             </div>
             <div class="iconegestion d-flex justify-content-around w-50 mb-1 ">
                 <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)= "chargerDetailProfession (element)"  ><i class="bi bi-eye"></i></a>

@@ -13,7 +13,7 @@
       
             <div class="">
                 <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required email
-                pattern="^[A-Za-z]+[A-Za-z0-9\._+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]{2,}$"
+                
                 #verifEmail="ngModel"
                 [ngClass]="{'is-invalid': verifEmail.touched && !verifEmail.valid}" />
                 <div class="invalid-feedback">

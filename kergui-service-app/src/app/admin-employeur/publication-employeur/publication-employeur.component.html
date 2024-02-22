@@ -57,37 +57,45 @@
         
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 mb-3 shadow-sm" *ngFor="let element of getArticlesPage()">
-              <article class="u-shadow-v11">
-                  <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
-                  <div class="g-bg-warning g-px-30 g-py-20" id="description">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex mt-2">
-                        <h5 class="">Date limite : </h5>   
-                        <h6 class="ms-2 "> {{element.dateline}} </h6>
+            <ng-container *ngIf="getArticlesPage().length >0; else noPublication">
+              <div class="col-sm-12 col-md-6 col-lg-4 mb-3 shadow-sm" *ngFor="let element of getArticlesPage()">
+                <article class="u-shadow-v11">
+                    <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
+                    <div class="g-bg-warning g-px-30 g-py-20" id="description">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex mt-2">
+                          <h5 class="">Date limite : </h5>   
+                          <h6 class="ms-2 "> {{element.dateline}} </h6>
+                        </div>
+                        <div class="">    
+                       <h6 class="mb-2 ms-2"> <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #3A6A7E;"></i> {{element.user.prenom}} {{element.user.nom}}</h6>
+                        </div>
+  
                       </div>
-                      <div class="">    
-                     <h6 class="mb-2 ms-2"> <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #3A6A7E;"></i> {{element.user.prenom}} {{element.user.nom}}</h6>
+                      <div class="text-center my-1">
+                        <h5> {{element.profession.nom_prof}} </h5>
                       </div>
-
+                        <h3 class="h5 g-color-black font-weight-400 font-size-1 mb-2">
+                           Description
+                        </h3>
+                        <p class="g-color-gray-dark-v4 g-line-height-1_8">{{element.description}}</p>
+                        <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-1">
+                          <a href=""   data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="detailPublication(element)"><i class="bi bi-eye"></i></a>
+                          <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerPublication(element)" ><span class="lnr lnr-pencil"></span></a>
+                          <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button>
+                      </div>
+                        <hr class="">
+                        <button href="" class="text-center validpubli text-decoration-none py-1  mb-2"  [routerLink]="['/admin-employeur/detail-liste-publication-employeur',element.id]" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
                     </div>
-                    <div class="text-center my-1">
-                      <h5> {{element.profession.nom_prof}} </h5>
-                    </div>
-                      <h3 class="h5 g-color-black font-weight-400 font-size-1 mb-2">
-                         Description
-                      </h3>
-                      <p class="g-color-gray-dark-v4 g-line-height-1_8">{{element.description}}</p>
-                      <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-1">
-                        <a href=""   data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="detailPublication(element)"><i class="bi bi-eye"></i></a>
-                        <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerPublication(element)" ><span class="lnr lnr-pencil"></span></a>
-                        <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button>
-                    </div>
-                      <hr class="">
-                      <button href="" class="text-center validpubli text-decoration-none py-1  mb-2"  [routerLink]="['/admin-employeur/detail-liste-publication-employeur',element.id]" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
-                  </div>
-              </article>
-          </div>
+                </article>
+            </div>
+            </ng-container>
+            <ng-template #noPublication>
+              
+              <h4 class="text-center">Aucune publication disponible</h4>
+            </ng-template>
+            
+            
             
           </div>
         

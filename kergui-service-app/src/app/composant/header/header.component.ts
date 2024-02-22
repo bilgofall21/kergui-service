@@ -2,6 +2,7 @@ import { NgIfContext } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,9 +15,10 @@ export class HeaderComponent implements OnInit {
   userProfile: any;
   utilisateurConnecte: boolean = false;
   isLoggedInSubscription: any;
-  constructor(private authservice : AuthService, private router : Router){}
+  constructor(private authservice : AuthService, private router : Router, private  utilisateurservice : UtulisateurService){}
   
   ngOnInit(): void {
+    this.afficherProfil();
     // const userProfileData = localStorage.getItem('user_profile');
     // this.userProfile = userProfileData ? JSON.parse(userProfileData) : null;
     // console.log("fffffff", this.userProfile)
@@ -37,7 +39,6 @@ export class HeaderComponent implements OnInit {
 
 
   LogOutUser(): void {
-
     this.authservice.deconnexion().subscribe((respons)=>{
       console.log("deconexion reussi", respons);
       this.authservice.setLoggedIn(false);
@@ -56,9 +57,7 @@ export class HeaderComponent implements OnInit {
         localStorage.removeItem('user_profile');
         localStorage.removeItem('dashboard_type');
         this.router.navigate(['/login']);
-    });
-      
-      
+    });  
     })
   }
 
@@ -79,7 +78,13 @@ export class HeaderComponent implements OnInit {
     }
   }
   
-
+  samaProfil :  any;
+afficherProfil() :void {
+  this.utilisateurservice.getProfil().subscribe((respons)=>{
+    this.samaProfil = respons.data;
+    console.log("voir profil", this.samaProfil );
+  })
+}
 
 
 }

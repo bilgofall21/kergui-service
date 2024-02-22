@@ -35,7 +35,7 @@
                             <h6 class="text-white me-2">{{userProfile.prenom}} {{userProfile.nom}} </h6>
                             <a class="image-header" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="http://127.0.0.1:8000/storage/{{userProfile.imageDeProfil}}" alt="user profile"></a>
                             <ul class="dropdown-menu" id="mou" aria-labelledby="user-dropdown-toggle">
-                                <li><a class="dropdown-item" routerLink="/admin/profil-admin">Profil</a></li>
+                                <li><a class="dropdown-item" routerLink="/admin-candidat/profil-candidat">Profil</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li ><a class="dropdown-item" (click)="LogOutUser()" >Deconnexion</a></li>
                             </ul>

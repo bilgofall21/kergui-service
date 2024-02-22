@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProfilServiceService } from 'src/app/services/profil-service.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,20 +16,25 @@ export class HeaderEmployeurComponent implements OnInit {
   utilisateurConnecte: boolean =false;
   isLoggedInSubscription: any;
   
-constructor(public authservice: AuthService, private router : Router){}
+constructor(public authservice: AuthService, private router : Router, private utilisateurservice : UtulisateurService, private profilservice : ProfilServiceService){}
 
 
   ngOnInit(): void {
-    // const userProfileString = localStorage.getItem('user_profile');
-    // this.userProfile = userProfileString ? JSON.parse(userProfileString) : null;
-    // console.log("fffffff", this.userProfile);
-    this.isLoggedInSubscription = this.authservice.isLoggedIn$.subscribe(isLoggedIn => {
-      this.utilisateurConnecte = isLoggedIn;
-      if (isLoggedIn) {
-        // Si l'utilisateur est connecté, récupérez les informations de profil
-        this.userProfile = JSON.parse(localStorage.getItem('user_profile') || '{}');
+    this.profilservice.profileData$.subscribe((profilData)=>{
+      if(profilData){
+        this.samaProfil = profilData;
+      }else{
+        this.afficherProfil();
       }
-    });
+    })
+
+    // this.isLoggedInSubscription = this.authservice.isLoggedIn$.subscribe(isLoggedIn => {
+    //   this.utilisateurConnecte = isLoggedIn;
+    //   if (isLoggedIn) {
+       
+    //   }
+    // });
+    this.afficherProfil();
   }
   // utilisateurConnecte: boolean = false;
 LogOutUser() : void{
@@ -51,5 +58,13 @@ LogOutUser() : void{
   });
 });
   // return new Observable<any>();
+}
+
+samaProfil :  any;
+afficherProfil() :void {
+  this.utilisateurservice.getProfil().subscribe((respons)=>{
+    this.samaProfil = respons.data;
+    console.log("voir profil", this.samaProfil );
+  })
 }
 }

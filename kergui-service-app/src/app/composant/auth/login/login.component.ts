@@ -134,7 +134,8 @@ connexion(event : Event, registerForm : NgForm): void{
   this.authentification.loginUser(loginData,).subscribe((user : any)=>{
     this.userfoundid = user.data;
       // Stocker l'objet utilisateur recut
-localStorage.setItem('user_profile', JSON.stringify(user.data));
+      console.log("connexion status", user);
+// localStorage.setItem('user_profile', JSON.stringify(user.data));
       if (user.token) {
          // Mise à jour de l'état de l'utilisateur connecté
       this.authentification.setLoggedIn(true);

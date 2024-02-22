@@ -554,9 +554,9 @@ justify-content: space-evenly;
 
 
 /* style annonce debut */
-.annoncecontainer img{
-  /* height: 60vh;
-  width: 100%; */
+.annoncecontainerpub img{
+  height: 60vh;
+  width: 100%;
 }
 /*  style annonce fin*/
 

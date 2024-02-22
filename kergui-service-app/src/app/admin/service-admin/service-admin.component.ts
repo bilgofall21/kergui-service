@@ -145,6 +145,7 @@ ajouterPofession(registerForm: NgForm): void {
           background: '#3A6A7E'
         });
         this.viderChamp();
+        registerForm.reset();
       },
       error => {
         console.error('Erreur lors de l\'ajout :', error);

@@ -15,7 +15,7 @@
                 <div class="searchbar m-5">
                     <div class="d-flex justify-content-end">
                         <div class="input-group w-50 ">
-                            <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon" [(ngModel)]="searchUtulisateur" (input)="getArticlesPage()" />
+                            <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Rechercher"  aria-describedby="search-addon" [(ngModel)]="searchEmployeur" (input)="getArticlesPageEmployeur()" />
                             <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>Rechercher</button>
                           </div>
     
@@ -36,8 +36,8 @@
                                     <th class="cell"></th> -->
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let element of getArticlesPage()">
-                                <tr *ngIf="element.role == 'employeur'">
+                            <tbody *ngFor="let element of getArticlesPageEmployeur()">
+                                <tr>
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
                                     <td class="cell"> {{element.email}} </td>
@@ -48,7 +48,7 @@
                                       </td>
                                   
                                     <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50 bg-warnin" id="toto">
+                                        <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
                                             <button data-bs-toggle="modal" data-bs-target="#exampleModal-detail" title="detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailUser(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
                                             <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
                                             <button class="btn btn-outline-success ms-2 border-1" (click)="activerUser(element.id)"><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
@@ -64,18 +64,18 @@
             </div><!--//app-card-->
          <!-- pagination -->
          <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
-            <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+            <button class="btn pagiColor me-2" [disabled]="  pageEmActuelle === 1" (click)="  pageEmActuelle =   pageEmActuelle - 1">
               Précédent
             </button>
             <button class="btn pagiColore ms-2" 
-                    *ngFor="let page of pages" 
-                    [class.current]="page === pageActuelle" 
-                    (click)="pageActuelle = page">
+                    *ngFor="let page of pagesEmployeur" 
+                    [class.current]="page ===   pageEmActuelle" 
+                    (click)="  pageEmActuelle = page">
               {{ page }}
             </button>
             <button class="btn pagiColor ms-2" 
-                    [disabled]="pageActuelle === totalPages" 
-                    (click)="pageActuelle = pageActuelle + 1">
+                    [disabled]="  pageEmActuelle === totalEmPages" 
+                    (click)="  pageEmActuelle =   pageEmActuelle + 1">
               Suivant
             </button>
           </div>
@@ -95,7 +95,7 @@
                 <div class="app-card-body">
                     <div class="table-responsive">
                         
-                        <table class="table mb-0 text-left">
+                        <table class="table mb-0 text-center">
                             <thead >
                                 <tr>
                                     <th class="cellhead">prenom</th>
@@ -112,7 +112,7 @@
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
                                     <td class="cell"> {{element.email}} </td>
-                                    <td class="cell"> {{getNomProfession(element.profession_id)}} </td>
+                                    <td class="cell"> {{element.profession.nom_prof}} </td>
                                     <td class="cell"> {{element.lieu}} </td>
                                     <td class="cell" >
                                        
@@ -120,7 +120,7 @@
                                         <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
                                       </td>
                                     <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50   ">
+                                        <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
                                             <button data-bs-toggle="modal" data-bs-target="#exampleModal-detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailUser(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
                                             <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
                                             <button class="btn btn-outline-success ms-2" (click)="activerUser(element.id)" ><i class="bi bi-person-check" style="font-size: 20px;"></i></button>

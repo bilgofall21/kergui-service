@@ -17,15 +17,20 @@ constructor(private utulisateurservice : UtulisateurService, private professions
    this.allCandidat ();
   }
    // Attribut pour la pagination
-   articlesParPage = 10; // Nombre d'articles par page
+   articlesParPage = 4; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 // methode pour recupere tous les utulisaturs
 userData : any []= [];
+employeurData: any[]=[];
 afficherAllUser () : void {
   this.utulisateurservice.getAllUser().subscribe((repons)=>{
 this.userData = repons.data;
 console.log("voir les utilisateurs", this.userData);
+this.employeurData = this.userData.filter((element : {role : string})=>
+element.role == "employeur"
+);
+console.log('data emplouer', this.employeurData);
 this.userData.forEach((element : any) =>{
   const nomProfession = this.getNomProfession(element.profession_id);
 })
@@ -154,7 +159,7 @@ activerUser(id : string): void {
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
-  this.utulisateurTrouve = this.userData.filter((element :{prenom : string; nom : string})=>
+  this.utulisateurTrouve = this.dataCandidat.filter((element :{prenom : string; nom : string})=>
   element.prenom.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) ||
   element.nom.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) 
 
@@ -163,12 +168,40 @@ getArticlesPage(): any[] {
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {
-    const totalPages = Math.ceil(this. userData.length / this.articlesParPage);
+    const totalPages = Math.ceil(this. dataCandidat.length / this.articlesParPage);
     return Array(totalPages).fill(0).map((_, index) => index + 1);
   }
 
   // Méthode pour obtenir le nombre total de pages
   get totalPages(): number {
-    return Math.ceil(this. userData.length / this.articlesParPage);
+    return Math.ceil(this. dataCandidat.length / this.articlesParPage);
+  }
+
+
+  // pour employeur
+  // Attribut pour la pagination
+  articlesEmParPage = 5; // Nombre d'articles par page
+  pageEmActuelle = 1; // Page actuelle
+  EmployerTrouve : any []=[];
+  searchEmployeur : string = "";
+getArticlesPageEmployeur(): any[] {
+  const indexDebut = (this.pageEmActuelle - 1) * this.articlesEmParPage;
+  const indexFin = indexDebut + this.articlesParPage;
+  this.EmployerTrouve  = this.employeurData.filter((element :{prenom : string; nom : string})=>
+  element.prenom.toLowerCase().includes(this. searchEmployeur.toLowerCase()) ||
+  element.nom.toLowerCase().includes(this. searchEmployeur.toLowerCase()) 
+
+  );
+  return this.EmployerTrouve .slice(indexDebut, indexFin);
+}
+   // Méthode pour générer la liste des pages
+   get pagesEmployeur(): number[] {
+    const totalEmPages = Math.ceil(this. employeurData.length / this.articlesEmParPage);
+    return Array(totalEmPages).fill(0).map((_, index) => index + 1);
+  }
+
+  // Méthode pour obtenir le nombre total de pages
+  get totalEmPages(): number {
+    return Math.ceil(this. employeurData.length / this.articlesEmParPage);
   }
 }

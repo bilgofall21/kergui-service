@@ -31,9 +31,9 @@
                 <div class="row justify-content-end align-items-center">
 
                 <div class="app-utilities col-auto mx-5">                   
-                    <div class="app-utility-item app-user-dropdown dropdown d-flex align-items-center" *ngIf="userProfile">
-                        <h6 class="text-white me-2">{{userProfile.prenom}} {{userProfile.nom}} </h6>
-                        <a class="image-header" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="http://127.0.0.1:8000/storage/{{userProfile.imageDeProfil}}" alt="user profile"></a>
+                    <div class="app-utility-item app-user-dropdown dropdown d-flex align-items-center" *ngIf="samaProfil">
+                        <h6 class="text-white me-2">{{samaProfil.prenom}} {{samaProfil.nom}} </h6>
+                        <a class="image-header" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="http://127.0.0.1:8000/storage/{{samaProfil.imageDeProfil}}" alt="profile"></a>
                         <ul class="dropdown-menu" id="mou" aria-labelledby="user-dropdown-toggle">
                             <li><a class="dropdown-item" routerLink="/admin/profil-admin">Profil</a></li>
                             <li><hr class="dropdown-divider"></li>

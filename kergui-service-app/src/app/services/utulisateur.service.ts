@@ -11,6 +11,11 @@ export class UtulisateurService {
 
   constructor(private http : HttpClient) {}
 
+  // methode pour recuperer profil
+  getProfil() : Observable<any>{
+    return this.http.get<User>(`${url}/profile`);
+  }
+
   // methode pour voir tous les utulisaturs
 getAllUser () : Observable<any>{
   return this.http.get<User[]>(`${url}/user/VoirEnsembleUser`)
