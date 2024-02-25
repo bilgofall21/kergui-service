@@ -10,7 +10,7 @@
                      
                        <div class="col-lg-4 col-xlg-3" *ngIf="userProfile">
                            <div class="card">
-                               <div class="card-body text-center">
+                               <div class="card-body text-center" id="imgProfil" >
                                   <img src="http://127.0.0.1:8000/storage/{{userProfile.imageDeProfil}}"
                                            class="rounded-circle" width="150" />
                                        <h4 class="card-title mt-2"> {{userProfile.prenom}} {{userProfile.nom}} </h4>

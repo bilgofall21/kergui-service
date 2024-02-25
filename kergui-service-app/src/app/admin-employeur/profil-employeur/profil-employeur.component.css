@@ -15,3 +15,8 @@ small{
 .form-group button{
     background-color: var(--kergui-green);
 }
+#imgProfil img{
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+}

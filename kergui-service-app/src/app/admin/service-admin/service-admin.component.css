@@ -6,9 +6,15 @@
     border-radius: 10px;
     text-decoration: none;
 }
+.cardfooter{
+    background-color: var(--kergui-blue);
+    height: 6px;
+  }
+  
 
 h4{
     color: var(--kergui-blue);
+    font-weight: 600;
 }
 h5{
     color: var(--kergui-green);
@@ -17,14 +23,46 @@ h5{
 .searchbar button{
     background-color: var(--kergui-blue);
 }
-.card-body p{
-    height: 10rem;
+ /* style pagination debut */
+
+.pagiColor {
+    background-color: var(--kergui-blue);
+    color: white;
+}
+.pagiColore.current {
+    background-color: var(--kergui-blue);
+    color: white;
+}
+.pagiColore {
+    border:1px solid  var(--kergui-blue);
+    color: var(--kergui-blue);
+}
+#pagination{
+    margin-left: 180px;
+    margin-top: 20px;
     
+}
+.btn-custom:disabled {
+    opacity: 0.7; /* Réduire l'opacité du bouton */
+    cursor: not-allowed; /* Changer le curseur en "non autorisé" */
+    background-color: var(--kergui-green);
+    /* text-decoration: line-through; 
+    text-decoration-thickness: 2px;  */
+}
+.message-erreur {
+    color: var(--kergui-green);
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    /* Ajoutez d'autres styles CSS selon vos besoins */
+}
+
+ /* style pagination fin */
+
+.card-body {
+    height: 6rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    overflow-y: auto;
-    /* white-space: nowrap; */
-    /* max-height: 80px; */
 }
 .iconegestion {
     margin: 0 auto;
@@ -36,6 +74,7 @@ h5{
     font-weight: bold;
     font-size: 18px;
     border: none;
+    
 }
 .iconegestion a:hover{
    color: var(--kergui-green);

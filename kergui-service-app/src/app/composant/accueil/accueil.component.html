@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<!-- <app-navheader></app-navheader> -->
 
 <div class="homecontainer">
     <!-- baniere debut -->
@@ -16,12 +16,12 @@
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner" id="carouselcontainer">
-            <div class="carousel-item active">
+            <!-- <div class="carousel-item active">
               <div class="banner img-fluid">
                 <div class="overlay"></div>
             </div>
-            </div>
-            <div class="carousel-item">
+            </div> -->
+            <div class="carousel-item active">
               <div class="banner2">
                 <div class="overlay"></div>
             </div>
@@ -106,7 +106,7 @@
       <hr class="border-3 opacity-100">
     </div>
     <div class="row mt-4 row-gap-3">
-      <div class="col-lg-3 col-sm-6 " *ngFor=" let service of lastFourService ">
+      <!-- <div class="col-lg-3 col-sm-6 " *ngFor=" let service of lastFourService ">
         <div class="card shadow-lg" style="width: 19rem;" >
           <div>
             <img  src="./assets/image/carte1.png" class="card-img-top" alt="..." style="height: 12rem;">
@@ -120,10 +120,31 @@
           </div>
           <div class="cardfooter"></div>
         </div>
+      </div> -->
+      <div class="col-lg-3 col-sm-6 " *ngFor=" let element of lastFourService " >
+        <div class="card shadow-lg" style="width: 19rem; height: 28rem;" >
+          <div>
+            <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 14rem;">
+            <div class="titleService">
+              <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
+            </div>
+          </div>
+          <div class="card-body " >
+            <p class="card-text"> {{element.description}} </p>
+          </div>
+          <div class="iconegestion text-center mb-1 ">
+            <a href="#"  id="iconegestion " class=" text-decoration-none me-4 d-flex justify-content-center" [routerLink]="['/page-service']" >  <span class="lnr lnr-arrow-right me-2 fs-5" ></span> Voir Plus</a>
+
+          </div>
+
+          <div class="cardfooter mt-1"></div>
+        </div>
       </div>
+      
       
      
     </div>
+    
     <div class="validservice text-center m-4">
       <button class="btn fw-bold " [routerLink]="['/page-service']"> <span class="lnr lnr-arrow-right  me-2 fs-5"  ></span> Tous les services</button>
     </div>
@@ -176,35 +197,53 @@
             <h4 class="fw-bold"> Les récentes annonces</h4>
             <hr class="border-3 opacity-100">
           </div>
-          <div class="row">
-            <div class="col-lg-4 cardannonce" *ngFor="let publication of lastThreePublications">
-              <div class="cardcontain" >
-                <div class="card border-0" style="width: 20rem;"  >
-                  <div >
-                    <img src="./assets/image/annoncecarte1.png" class="card-img-top" alt="...">
-                    <div class="overlay1"></div>
-                    <div class="annoncetitle text-center ">
-                      <h5 class="text-white pt-2 fw-bold">Cuisinier/-ère</h5>
-                    </div>
-                  </div>
-                  <div class="card-body ">
-                  
-                    <p class="card-text text-center"> {{publication.description}} </p>
-                  </div>
-                  <div class="cardfooter d-flex justify-content-around">
-                    <!-- <div>
-                      <i class="bi bi-person-circle"></i>{{publication.user_id}}
-                    </div> -->
-                    <div>
-                      <span class="lnr lnr-calendar-full me-3"></span> {{publication.created_at | date:'dd-MM-yyyy'  }}
-                    </div>
-                  </div>
-                  <a href="" class="text-center text-decoration-none me-2 pb-2 mt-3"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>
-                </div>
 
-              </div>
+          <div class="container">
+            <div class="row gap-4" id="carteannonce">
+              <!-- <div class="col-sm-12 col-md-6 col-lg-4 mb-3  shadow-sm" id="annoncecol" *ngFor="let element of lastThreePublications" style="width: 24rem;">
+                <article class="u-shadow-v11">
+                    <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
+                    <div class="g-bg-warning " id="description">
+                      <div class="d-flex justify-content-around">
+                        <div class="d-flex mt-2">
+                          <h5 class="">Date limite : </h5>   
+                          <h6 class="ms-2 "> {{element.dateline}} </h6>
+                        </div>
+                        <div class="">    
+                       <h6 class="mb-2 ms-2"> <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #3A6A7E;"></i> {{element.user.prenom}} {{element.user.nom}}</h6>
+                        </div>
+  
+                      </div>
+                      <div class="text-center my-1">
+                        <h5> {{element.profession.nom_prof}} </h5>
+                      </div>
+                        <h3 class="h5 p-md-4 ">
+                           Description
+                        </h3>
+                        <p class="px-3">{{element.description}}</p>
+                        <div class="iconegestion text-center mb-1  mt-1">
+                          <a href="" class="text-center text-decoration-none mb-3"  [routerLink]="['/detail-offre', element.id]"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>
+                      </div>
+                        <hr class="">
+                    </div>
+                </article>
+            </div> -->
+  
+            <div class="col-md-3 col-sm-6" *ngFor="let element of lastThreePublications">
+              <div class="card card-block" >
+                <h5 class="card-title mt-2 mb-2 text-center"> {{element.profession.nom_prof}} </h5>
+                <img src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Photo of sunset">
+                <h6 class="mb-2 ms-2 mt-2 text-center"> Auteur : {{element.user.prenom}} {{element.user.nom}}</h6>
+                <p class="card-text px-2">{{element.description}} </p>
+                <h5 class="card-title mt-2 mb-2 text-center"> Date limite : {{element.dateline | date:'dd/MM/yyyy'}}  </h5>
+                 <a (click)="voirDetail(element)"  [routerLink]="['/detail-offre', element.id]">
+                  <h4 class="card-title text-center mt-2"><i class="material-icons">Voir Detail</i></h4>
+                 </a>  
+          </div>
             </div>
-           
+             
+            </div>
+
           </div>
           <div class="validservice text-center m-4">
             <button class="btn fw-bold "  [routerLink]="['/annonce']"  > <span class="lnr lnr-arrow-right  me-2 fs-5"></span> Toutes les annonces</button>
@@ -219,7 +258,7 @@
     <!-- section publicite  debut-->
     <section class="annonce mb-3">
       <div class="container">
-        <div class="annoncecontainer">
+        <div class="annoncecontainerpub">
           <img src=".\assets\image\2.png" class="img-fluid rounded-4 shadow-lg" alt="">
         </div>
     

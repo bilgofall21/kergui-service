@@ -1,13 +1,41 @@
+ /* style pagination debut */
 
-
-.card-body{
-  height: 12rem;
-    
-  overflow: hidden;
-  /* text-overflow: ellipsis;
-  overflow-y: auto; */
+ .pagiColor {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--kergui-blue);
+  color: var(--kergui-blue);
+}
+#pagination{
+  margin-left: 180px;
+  margin-top: 20px;
+  
+}
+.cardfooter{
+  background-color: var(--kergui-blue);
+  height: 6px;
 }
 
+.card-body p{
+  font-size: 15px;  
+    height: 8.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.iconegestion  a{
+  font-size: 15px;
+  color: var(--kergui-green);
+  
+  }
+.titleService h5{
+  color: var(--kergui-green);
+}
 .searchbar  button{
   background-color: var(--kergui-blue);
 }

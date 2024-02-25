@@ -1,7 +1,7 @@
 <div class="admingestioncontainer mt-5">
     <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
         <!-- <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#list-employeur" role="tab" aria-controls="list-employeur" aria-selected="true">Liste des employeurs</a> -->
-        <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false">Liste des publications</a>
+        <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false">Liste des offres postulés</a>
        
     </nav>
     
@@ -22,26 +22,30 @@
                         <table class="table mb-0 text-left">
                             <thead >
                                 <tr >
-                                    <th class="cellhead" >Lieu</th>
-                                    <th class="cellhead">Contrat</th>
-                                    <th class="cellhead">Remuneraion</th>
+                                    <th class="cellhead" >Auteur</th>
+                                    <th class="cellhead">Profession</th>
                                     <th class="cellhead">Date Publication</th>
+                                    <th class="cellhead">Date de cloture</th>
                                     <th class="cellhead">Etat</th>
-                                    <th class="cellhead"> Action</th>
+                                    <th class="cellhead"> Détails</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor=" let candidate of candidaturesUserConnecte " >
-                                    <td class="cell"> {{candidate.prenom}}  {{candidate.nom}}  </td>
-                                    <td class="cell">  </td>
-                                    <td class="cell"> </td>
-                                    <td class="cell">   </td>
-                                    <td class="cell">  </td>
-                            
+                                <tr *ngFor=" let candidate of  candidatures " >
+                                    <td class="cell"> {{candidate.offre_emplois.user.prenom}}  {{candidate.offre_emplois.user.nom}}  </td>
+                                    <td class="cell">   {{candidate.offre_emplois.profession.nom_prof}}  </td>
+                                    <td class="cell">   {{candidate.offre_emplois.created_at | date:'dd-MM-yyyy' }}  </td>
+                                    <td class="cell">   {{candidate.offre_emplois.dateline}}  </td>
+                                    <td class="cell">  
+                                    <span class="badge text-bg-success" *ngIf=" candidate.etatCan === 'accepter'  "> {{candidate.etatCan}} </span>    
+                                    <span class="badge text-bg-danger"  *ngIf=" candidate.etatCan === 'rejeter'  "> {{candidate.etatCan}} </span>    
+                                    <span class="badge text-bg-secondary"  *ngIf=" candidate.etatCan === 'attente'  "> {{candidate.etatCan}} </span>    
+                                    </td>                            
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal"  ><i class="bi bi-eye" ></i></a>
-                                            <a href=""  ><i class="bi bi-save-fill"></i></a>
+                                            <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal"  ><button class="btn btn-outline-primary"> detail</button> </a> -->
+                                            <a class="btn-sm app-btn-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal"  href="">Détail</a>
+                                          
                                         </div>
                                     </td>
                                    
@@ -69,7 +73,7 @@
   <!-- Modal -->
   
 
-  <!-- <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
       <div class="modal-content ">
         <div class="modal-header text-center">
@@ -79,30 +83,30 @@
         <div class="modal-body  ">
            
               
-                  <div class="" *ngIf="publicationSelect ">
+                  <div class="" >
                    <div class="row">
                     <div class="col-4 " id="tof">
                         <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHB1YmxpY2F0aW9uJTIwd2ViJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D" alt="">
                     </div>
                     <div class="col-8 ">
                         <div class=" mb-2">
-                            <h6>contrat :  {{publicationSelect.typeContrat}} </h6>
+                            <h6>contrat : </h6>
                            
                         </div>
                         
                         <div class="d-flex mb-2">
-                            <h6> salaire:  {{publicationSelect.slaireMinimum}} </h6>
-                            <h6 class="ms-3">adresse :  {{publicationSelect.lieu}} </h6>
+                            <h6> salaire:  </h6>
+                            <h6 class="ms-3">adresse :  </h6>
                         </div>
                         <div class=" mb-2">
-                            <h6> creer le: {{publicationSelect.created_at}} </h6>
+                            <h6> creer le:  </h6>
                            
                         </div>
                         <div>
                             <h6>description</h6>
                         </div>
                         <div>
-                            <p> {{publicationSelect.description}} </p>
+                            <p>  </p>
                         </div>
                     </div>
                    </div>
@@ -117,7 +121,7 @@
      
       </div>
     </div>
-  </div> -->
+  </div>
 
 
 

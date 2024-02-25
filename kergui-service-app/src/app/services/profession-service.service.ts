@@ -33,8 +33,8 @@ return this.http.get<any>(`${url}/listeProfession`).pipe(
   //     label: item.nom_prof
 
   // methode pour ajouter donnée ves l'api
-  addProfession(profession : Profession) {
-    return this.http.post<Profession[]>(`${url}/AjoutProfession`, profession);
+  addProfession(profession : any) {
+    return this.http.post<any>(`${url}/AjoutProfession`, profession);
   }
 
  
@@ -54,7 +54,7 @@ GetUserByProfession(id : number) :  Observable<any>{
 
   // methode pour modifier donnée ves l'api
   editProfession(id : any, profession:any){
-    return this.http.put(`${url}/profession/edit/ ${id}`, profession)
+    return this.http.post(`${url}/profession/edit/ ${id}`, profession)
   }
 
 

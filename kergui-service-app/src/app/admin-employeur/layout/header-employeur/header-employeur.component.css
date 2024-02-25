@@ -1,3 +1,9 @@
+#mou{
+  background-color: var(--kergui-blue)
+}
+
+
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -161,7 +167,7 @@ button.close:focus {
 }
 .dropdown-menu .dropdown-item {
   padding: 0.5rem 1rem;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 .dropdown-menu .dropdown-item:hover {
   color: #252930;
@@ -286,8 +292,8 @@ border-radius: 50%;
   font-size: 1rem;
 }
 .app-notifications-dropdown .dropdown-menu .profile-image {
-  width: 36px;
-  height: 36px;
+  width: 45px;
+  height: 45px;
 }
 .app-notifications-dropdown .dropdown-menu .info {
   padding-right: 80px;

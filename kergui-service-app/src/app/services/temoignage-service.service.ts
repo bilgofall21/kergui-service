@@ -15,7 +15,15 @@ export class TemoignageServiceService {
     return this.http.get<Evaluation>(`${url}/ListeEvaluation`)
   }
 
-  addTemoignage(evaluation : Evaluation) : Observable<any>{
-    return this.http.post<Evaluation>(`${url}/AjoutEvaluation`, evaluation)
+  addTemoignage(id : any, appreciation : any) : Observable<any>{
+    return this.http.post<Evaluation>(`${url}/AjoutEvaluation/${id}`, appreciation )
   }
+
+  temoignageemploye(): Observable<any>{
+    return this.http.get<any>(`${url}/ListeEvaluationCandidat`)
+   }
+
+  temoignageemployeur(): Observable<any>{
+    return this.http.get<any>(`${url}/ListeEvaluationEmployeur`)
+   }
 }

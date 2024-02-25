@@ -156,12 +156,15 @@ body {
     border-color: #15a362;
   }
   .dropdown-menu {
-    border-color: var(--kergui-blue);
-   
+    border-color: var(--kergui-blue); 
   }
   .dropdown-menu .dropdown-item {
     padding: 0.5rem 1rem;
-    color: black;
+    color: rgb(255, 255, 255);
+    
+  }
+  #mou{
+    background-color: var(--kergui-blue)
   }
   .dropdown-menu .dropdown-item:hover {
     color: #252930;
@@ -251,6 +254,7 @@ body {
   }
   .app-utility-item img {
  border-radius: 50%;
+
   }
   .app-utility-item .icon {
     font-size: 1.25rem;
@@ -345,8 +349,8 @@ body {
     display: inline-block;
   }
   .app-user-dropdown img {
-    width: 36px;
-    height: 36px;
+    height: 45px;
+    width: 45px;
   }
   @media (min-width: 576px) {
     .app-notifications-dropdown .dropdown-menu {

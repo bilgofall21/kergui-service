@@ -5,10 +5,10 @@
   border-radius: 5px;
   border: 2px solid var(--kergui-green);
 }
-.iconegestion {
-    /* margin: 0 auto; */
-   
+#toto{
+  margin: 0 auto;
 }
+
 .iconegestion a{
     text-decoration: none;
     color: var(--kergui-blue);
@@ -20,6 +20,27 @@
 }
 
 /* modal detail */
+
+ /* style pagination debut */
+
+ .pagiColor {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--kergui-blue);
+  color: var(--kergui-blue);
+}
+#pagination{
+  margin-left: 120px;
+  margin-top: 20px;
+}
+
+/* style pagination fin */
 /* style formulaire  */
 .validajout a , .validajout button{
     padding: 8px 25px;
@@ -55,6 +76,48 @@
 /* classe apres desactivation */
 .user-desactivated{
   color: var(--kergui-green);
+}
+
+
+/* jjjjjjjjjjjjjj */
+
+/* CONTACTS */
+.contact-box {
+  background-color: #ffffff;
+  border: 1px solid #e7eaec;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.contact-box > a {
+  color: inherit;
+}
+.contact-box.center-version {
+  border: 1px solid #e7eaec;
+  padding: 0;
+}
+.contact-box.center-version > a {
+  display: block;
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+.contact-box.center-version > a img {
+  width: 140px;
+  height: 140px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.contact-box.center-version address {
+  margin-bottom: 0;
+}
+.contact-box .contact-box-footer {
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid #e7eaec;
+  padding: 15px 20px;
+}
+a{
+    text-decoration:none !important;    
 }
 
 
@@ -866,6 +929,7 @@ body {
   .app-card-orders-table .table .cellhead {
     background-color: var(--kergui-blue);
     color: white;
+
   }
 
   .app-card-orders-table .table .cell {

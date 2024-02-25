@@ -55,11 +55,11 @@
                 <div class="well p-5"  *ngIf="dataDetail">
                     <div class="annconcedetail d-flex justify-content-between">
                        <div>
-                           <h5>profession</h5> 
+                           <h5>{{dataDetail.profession.nom_prof}}</h5> 
     
                        </div>
                             <div>
-                                <h6> <i class="bi bi-person-circle me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> Prenom nom</h6>
+                                <h6> <i class="bi bi-person-circle me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.user.prenom}} {{dataDetail.user.nom}} </h6>
                             </div>
                             <div>
                               <h6>  <i class="bi bi-calendar me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.created_at | date:'dd-MM-yyyy'  }}</h6> 

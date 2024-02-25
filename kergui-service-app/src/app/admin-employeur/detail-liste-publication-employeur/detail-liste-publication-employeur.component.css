@@ -30,6 +30,23 @@
 .modal-header{
     background-color: var(--kergui-blue);
 }
+.accepter{
+  font-size: 12px;
+  padding: 4px;
+  background-color: #0da95f;
+  color: white;
+  border-radius: 5px;
+}
+.rejeter{
+  font-size: 12px;
+  padding: 4px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+#validons button{
+  font-size: 10px;
+}
 
 
 

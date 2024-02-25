@@ -22,41 +22,38 @@
                         <table class="table mb-0 text-left">
                             <thead >
                                 <tr>
-                                    <th class="cellhead" >Lieu</th>
-                                    <th class="cellhead">Contrat</th>
-                                    <th class="cellhead">Remuneraion</th>
+                                    <th class="cellhead" >Prénom Auteur</th>
+                                    <th class="cellhead">Nom Auteur</th>
+                                    <th class="cellhead">Profession</th>
                                     <th class="cellhead">Date Publication</th>
                                     <th class="cellhead">Etat</th>
-                                    <th class="cellhead"> Details</th>
+                                    <!-- <th class="cellhead"> Details</th> -->
                                     <th class="cellhead"> Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor=" let publication of dataPublictions">
-                                    <td class="cell"> {{publication.lieu}} </td>
-                                    <td class="cell">  {{publication.typeContrat }} </td>
-                                    <td class="cell"> {{publication.slaireMinimum}} </td>
+                                    <td class="cell"> {{publication.user?.prenom}} </td>
+                                    <td class="cell"> {{publication.user?.nom}}</td>
+                                    <td class="cell"> {{publication.profession?.nom_prof}} </td>
                                     <td class="cell">  {{publication.created_at | date:'dd-MM-yyyy' }} </td>
-                                    <td class="cell" [ngClass]="{'text-success': publication.etat === 'nouveau', 'text-danger': publication.etat === 'archiver'}">  
-                                        {{publication.etat}} 
+                                    <td class="cell">  
+                                        <span class="badge bg-success" *ngIf="publication.etat === 'nouveau'">Nouveau</span>
+                                        <span class="badge bg-danger" *ngIf="publication.etat === 'archiver'">Archivé</span>
                                     </td>
                             
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye" ></i></a>
-                                            <!-- <a href="" (click)="archiverOffre (publication.id)" ><i class="bi bi-save-fill"></i></a> -->
+                                            <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye" ></i></a> -->
+                                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye"style="font-size: 20px;" ></i></button>
+                                            <button class="btn btn-outline-danger ms-2" (click)="archiverOffre (publication.id)"> <i class="bi bi-save"style="font-size: 20px;"></i></button>
+
                                         </div>
                                     </td>
-                                    <td class="cell" >
-                                     
-                                        <select class="form-select" aria-label="choix etat" name="civilite" [(ngModel)]="etat" >
-                                            <option value="">choix etat</option>
-                                            <option value="archiver">archiver</option>
-                                            
-                                
-                                          </select>
-                                        <button class="btn btn-warning mt-2"(click)="archiverOffre (publication.id)" >Archiver</button>
-                                    </td>
+                                    <!-- <td class="cell" >
+                                        <button class="btn btn-outline-danger"> <i class="bi bi-save"></i></button>
+                                        <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="archiverOffre (publication.id)"  ><i class="bi bi-save-fill"></i></a>
+                                    </td> -->
                                    
                                 </tr>
                                 

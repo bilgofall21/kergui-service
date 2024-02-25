@@ -8,12 +8,12 @@
              
                 <div class="row">
                   
-                    <div class="col-lg-4 col-xlg-3" *ngIf="userProfile">
+                    <div class="col-lg-4 col-xlg-3" *ngIf="samaProfil">
                         <div class="card">
-                            <div class="card-body text-center">
-                               <img src="http://127.0.0.1:8000/storage/{{userProfile.imageDeProfil}}"
+                            <div class="card-body text-center" id="imgProfil">
+                               <img src="http://127.0.0.1:8000/storage/{{samaProfil.imageDeProfil}}"
                                         class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2"> {{userProfile.prenom}} {{userProfile.nom}} </h4>
+                                    <h4 class="card-title mt-2"> {{samaProfil.prenom}} {{samaProfil.nom}} </h4>
                                     <h6 class="card-subtitle">profession</h6>
                                     <div class="row text-center justify-content-md-center">
                                         <div class="col-4"><a  class="link"> <i
@@ -31,9 +31,9 @@
                                 <hr>
                             </div>
                             <div class="card-body"> <small class="contact">Email</small>
-                                <h6> {{userProfile.email}} </h6> <small class=" pt-4 db">telephone</small>
-                                <h6> {{userProfile.telephone}} </h6> <small class=" pt-4 db">Address</small>
-                                <h6> {{userProfile.lieu}} </h6>
+                                <h6> {{samaProfil.email}} </h6> <small class=" pt-4 db">telephone</small>
+                                <h6> {{samaProfil.telephone}} </h6> <small class=" pt-4 db">Address</small>
+                                <h6> {{samaProfil.lieu}} </h6>
                                 
                                
                             </div>

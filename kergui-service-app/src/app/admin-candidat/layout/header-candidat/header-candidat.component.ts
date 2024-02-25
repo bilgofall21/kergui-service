@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { error } from 'jquery';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header-candidat',
@@ -11,24 +12,44 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderCandidatComponent implements OnInit {
   userProfile: any;
+  isLoggedInSubscription: any;
+  
 constructor(private router: Router, private authservice  : AuthService){}
 
   ngOnInit(): void {
-    const userProfileString = localStorage.getItem('user_profile');
-    this.userProfile = userProfileString ? JSON.parse(userProfileString) : null;
-    console.log("fffffff", this.userProfile);
+    // const userProfileString = localStorage.getItem('user_profile');
+    // this.userProfile = userProfileString ? JSON.parse(userProfileString) : null;
+    // console.log("fffffff", this.userProfile);
+    this.isLoggedInSubscription = this.authservice.isLoggedIn$.subscribe(isLoggedIn => {
+      this.utilisateurConnecte = isLoggedIn;
+      if (isLoggedIn) {
+        // Si l'utilisateur est connecté, récupérez les informations de profil
+        this.userProfile = JSON.parse(localStorage.getItem('user_profile') || '{}');
+      }
+    });
   }
-
+  utilisateurConnecte: boolean =false;
 LogOutUser() : void{
   this.authservice.deconnexion().subscribe((respons)=>{
-
-    console.log("byyy byyyy", respons);
-    localStorage.removeItem('access_token');
-    // redirection vers page connexion
     this.authservice.setLoggedIn(false);
-    this.router.navigate(['/login']);
-    return new Observable<any>();
-  })
+    Swal.fire({
+      icon: 'success',
+      title: 'Déconnexion réussie',
+      text: 'Au revoir!',
+      showConfirmButton: false,
+      timer: 1500,
+    width: 450,
+    padding: 10,
+    color : '#ffff',
+    background: '#3A6A7E'
+  }).then(() => {
+      localStorage.removeItem('access_Token');
+      localStorage.removeItem('user_profile');
+      localStorage.removeItem('dashboard_type');
+      this.router.navigate(['/login']);
+  });
+});
+  // return new Observable<any>();
 }
 
 

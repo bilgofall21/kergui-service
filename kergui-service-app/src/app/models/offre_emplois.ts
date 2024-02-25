@@ -6,6 +6,8 @@ export class offre_emplois {
     experienceMinimum!:string;
     slaireMinimum!:string;
     profession_id!:string;
+    dateline! : Date;
+    image! : File;
     user_id!:string;
     etat!:string;
     created_at!:string;

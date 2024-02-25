@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProfilServiceService } from 'src/app/services/profil-service.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -10,23 +13,49 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   userProfile: any;
-constructor(public authservice: AuthService, private router: Router){}
+  isLoggedInSubscription: any;
+  utilisateurConnecte: boolean=false;
+constructor(public authservice: AuthService, private router: Router, private profilService: ProfilServiceService, private utilisateurservice : UtulisateurService){}
   ngOnInit(): void {
-    const userProfileData = localStorage.getItem('user_profile');
-    this.userProfile = userProfileData ? JSON.parse(userProfileData) : null;
-    console.log("fffffff", this.userProfile)
+   this.profilService.profileData$.subscribe((profilData)=>{
+    if(profilData){
+      this.samaProfil = profilData;
+    }else{
+      this.afficherProfil();
+    }
+   })
+   this.afficherProfil();
   }
 
+  // utilisateurConnecte : boolean = false;
   LogOutUser() : void{
     this.authservice.deconnexion().subscribe((respons)=>{
-  
-      console.log("byyy byyyy", respons);
-      localStorage.removeItem('access_token');
-      // console.log("eeeeeeeee", 'access_token');
-      // redirection vers page connexion
       this.authservice.setLoggedIn(false);
-      this.router.navigate(['/login']);
-      return new Observable<any>();
-    })
+      Swal.fire({
+        icon: 'success',
+        title: 'Déconnexion réussie',
+        text: 'Au revoir!',
+        showConfirmButton: false,
+        timer: 1500,
+      width: 450,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E'
+    }).then(() => {
+        localStorage.removeItem('access_Token');
+        localStorage.removeItem('user_profile');
+        localStorage.removeItem('dashboard_type');
+        this.router.navigate(['/login']);
+    });
+});
   }
+
+  samaProfil :  any;
+afficherProfil() :void {
+  this.utilisateurservice.getProfil().subscribe((respons)=>{
+    this.samaProfil = respons.data;
+    console.log("voir profil", this.samaProfil );
+  })
+}
+  
 }

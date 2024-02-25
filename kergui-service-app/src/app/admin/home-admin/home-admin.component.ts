@@ -20,24 +20,13 @@ constructor(private utulisateurservice : UtulisateurService, public professionse
     console.log("yyyyyy", this.allUseData);
 
     this.recupAllService();
-    this.recupAllProfession = localStorage.getItem('all_profession');
-   this.allProfessionData = this.recupAllProfession ? JSON.parse(this.recupAllProfession) : null;
-   console.log("zzzzzzz", this.allProfessionData);
+    this.recupAllCandidat()
 
     this.tailleEmployeur = this.nombreEmployeur();
-    this.tailletCandidat = this.nombreCandidat();
-    this.tailleProfession = this.nombreService();
-    // this.taillePublication = this.nombrePublication();
+    
   
-   
-
-    // this.recupAllOffre();
-    this.recupAllPublication = localStorage.getItem('all_profession');
-    this.allPublicationData = this.recupAllPublication ? JSON.parse(this.recupAllPublication) : null;
-    console.log("qqqqqqq", this.allPublicationData);
-
     this.afficheService();
-
+    this.recupAllOffre();
   }
 alldata : any;
 recupAlluser : any;
@@ -47,37 +36,36 @@ tailletCandidat : any;
 recupAllutulisateur(){
   this.utulisateurservice.getAllUser().subscribe((data)=>{
     this.alldata = data;
-
    localStorage.setItem('all_user', JSON.stringify(this.alldata.data))
-   
-  
   })
 }
-allprofession : any;
-recupAllProfession : any;
-allProfessionData : any;
+allprofession : []= []
+
 tailleProfession : any ;
 
 recupAllService(){
   this.professionservice.getProfession().subscribe((respons)=>{
-    this.allprofession = respons;
+    this.allprofession = respons.data;
     console.log('rrrrrrrr', this.allprofession);
-    localStorage.setItem('all_profession', JSON.stringify(this.allprofession.data))
+    // localStorage.setItem('all_profession', JSON.stringify(this.allprofession.data))
   })
 }
-allpublication : any;
-recupAllPublication : any;
-allPublicationData : any;
+allpublication : any [] = [];
+
 taillePublication : any;
-// recupAllOffre(){
-//   this.publicationservice.geyAllpublication().subscribe((respons)=>{
-//     this.allpublication = respons;
-//     // console.log("eeee", this.allpublication);
-    
-    
-//     localStorage.setItem('all_publication', JSON.stringify(this.allpublication.data))
-//   })
-// }
+recupAllOffre(){
+  this.publicationservice.geyAllpublication().subscribe((respons)=>{
+    this.allpublication = respons.data;
+    console.log("eeee", this.allpublication);
+    // localStorage.setItem('all_publication', JSON.stringify(this.allpublication.data))
+  })
+}
+allCandidat : []=[]
+recupAllCandidat(){
+  this.utulisateurservice.getAllCandidat().subscribe((data)=>{
+    this.allCandidat = data.data;
+  })
+}
 nombreEmployeur() {
   let employeurtaille = 0;
   for (let i = 0; i < this.allUseData.length; i++){
@@ -87,49 +75,57 @@ nombreEmployeur() {
   }
   return employeurtaille;
 }
-nombreCandidat() {
-  let candidattaille = 0;
-  for (let i = 0; i < this.allUseData.length; i++){
-    if (this.allUseData[i].role == "candidat") {
-      candidattaille ++;
-    }
-  }
-  return candidattaille;
-}
-nombreService(){
-  let servicetaille = 0;
-  for (let i = 0; i < this.allProfessionData.length; i++) {
-   servicetaille ++;
+// nombreCandidat() {
+//   let candidattaille = 0;
+//   for (let i = 0; i < this.allUseData.length; i++){
+//     if (this.allUseData[i].role == "candidat") {
+//       candidattaille ++;
+//     }
+//   }
+//   return candidattaille;
+// }
+// nombreService(){
+//   let servicetaille = 0;
+//   for (let i = 0; i < this.allProfessionData.length; i++) {
+//    servicetaille ++;
     
-  }
-  return servicetaille;
-}
+//   }
+//   return servicetaille;
+// }
 // nombrePublication(){
 //   let publicationtaille = 0;
 //   for (let i = 0; i < this.allPublicationData.length; i++) {
 //     publicationtaille ++;
+//     console.log("taille bi", publicationtaille);
 //   }
 //   return publicationtaille;
 // }
-
-lastThreePublications: Publication[] = [];
+lastname : any;
+lastThreeProfession: any[] = [];
 afficheService() : void {
   this.professionservice.getProfession().subscribe((homepublic)=>{
-    this.dataHomeService = homepublic;
-    console.log(  "les publications",this.dataHomeService);
+    this.dataHomeService = homepublic.data;
+    console.log(  "les profession",this.dataHomeService);
     
     // virifier si les donnee sont null
-    if (this.dataHomeService && this.dataHomeService.data){
-       // Trier les publications par date de création dans l'ordre décroissant
-       const sortedPublications = this.dataHomeService.data.sort((a: { created_at: string | number | Date; }, b: { created_at: string | number | Date; }) => {
+    if (this.dataHomeService ){
+
+       // Trier les profession par date de création dans l'ordre décroissant
+       const sortedProfession = this.dataHomeService.sort((a: { created_at: string | number | Date; }, b: { created_at: string | number | Date; }) => {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
-      // Prendre les trois dernières publications
-      this.lastThreePublications = sortedPublications.slice(0, 4);
-      console.log('vor dernietr', this.lastThreePublications);
+      // Prendre les trois dernières profession
+      this.lastThreeProfession = sortedProfession.slice(0, 4);
+      console.log("blemmmm", this.lastThreeProfession);
+      console.warn( this.lastThreeProfession);
+      
+  
+    
     }
   })
 }
+
+
 
 
 

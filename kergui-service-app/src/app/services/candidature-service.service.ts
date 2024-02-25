@@ -18,10 +18,14 @@ export class CandidatureServiceService implements OnInit {
   return this.http.post<any>(`${url}/AjoutCandidature/${id}`, {})
 
  }
+ Candidatbyoffer(): Observable<any>{
+  return this.http.get<any>(`${url}/`)
+ }
 
  showCadidature(): Observable<any>{
   return this.http.get<any>(`${url}/AfichageCandidature`)
  }
+
 
 // validCandidat (id : string, etatCan : string): Observable<any>{
 //   return this.http.put<any>(`${url}/${id}/ModifierAfichageCandidature`, etatCan)

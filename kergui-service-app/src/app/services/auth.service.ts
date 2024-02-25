@@ -1,27 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { BehaviorSubject, catchError, map, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, of, throwError } from 'rxjs';
 import { url } from '../models/apiUrl';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  {
+  
+  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
   // variable super global
-  isAuth$ = new BehaviorSubject<boolean>(false); 
- 
- 
+  // isAuth$ = new BehaviorSubject<boolean>(false); 
   userID : string ='';
   utilisateurConnecte: boolean =false;
   setUserId(id: string) {
    this.userID = id;
   }
+  constructor( private http : HttpClient) { 
+     // Récupérer l'état d'authentification depuis le localStorage lors de l'initialisation du service
+     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+     this.isLoggedInSubject.next(isLoggedIn)
+  }
 
-  constructor( private http : HttpClient) { }
-
-  // methode pour verifier un user connecter
- 
 
   // Récupère l'URL de l'image de profil de l'utilisateur connecté
   getUserProfileImage(): string {
@@ -33,14 +35,26 @@ export class AuthService {
 
 
 // methode pour login
-  loginUser(user : any) : Observable<any> {
+  // loginUser(user : any) : Observable<any> {
     
-    return this.http.post<any>('http://127.0.0.1:8000/api/login',user);
+  //   return this.http.post<any>('http://127.0.0.1:8000/api/login',user);
     
+  // }
+  loginUser(user: any): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/login', user).pipe(
+      map(response => {
+        // Si la connexion réussit, mettez à jour l'état d'authentification
+        this.setLoggedIn(true);
+        // console.log("ett bbb", this.utilisateurConnecte);
+        return response;
+      }),
+      catchError(error => {
+        // En cas d'erreur, vous pouvez gérer l'erreur ici ou la propager
+        return throwError(error);
+      })
+    );
   }
 
-   // methode pour s'inscrire
-        // employeur
 
    registerUser(registrationEmployeur: any): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/regiserEmployeur', registrationEmployeur);
@@ -54,6 +68,7 @@ export class AuthService {
 deconnexion() : Observable<any>{
   return this.http.get<any>('http://127.0.0.1:8000/api/logout', ).pipe(
     map(response => {
+      this.setLoggedIn(false);
       localStorage.removeItem('access_token');
       console.log("demana walla , response");
       return response;
@@ -66,18 +81,19 @@ deconnexion() : Observable<any>{
 }
 
 
+ // Méthode pour mettre à jour l'état de connexion
+ setLoggedIn(value: boolean): void {
+  localStorage.setItem('isLoggedIn', value.toString());
 
-setLoggedIn(etat: boolean): void {
-  this.utilisateurConnecte = etat;
+  this.isLoggedInSubject.next(value);
 }
 
+// Méthode pour récupérer l'état de connexion actuel
 isLoggedIn(): boolean {
-  return this.utilisateurConnecte;
+  
+  return this.isLoggedInSubject.value;
+
 }
-// utilisateurConnecte (): boolean {
-//   // Vous pouvez implémenter cette méthode en fonction de la manière dont vous stockez l'état de connexion, par exemple, en vérifiant si le jeton est présent dans le stockage local.
-//   return !!localStorage.getItem('access_token');
-// }
 
 }
 

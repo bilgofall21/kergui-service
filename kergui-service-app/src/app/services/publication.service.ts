@@ -16,21 +16,24 @@ export class PublicationService {
  return this.http.get<Publication[]>(`${url}/listeOffreEmploi`);
   }
 
-  // methode 
+  // methode pour afficher dandidature de chaque employeur
   getPublicationUser(): Observable<any>{
     return this.http.get<any>(`${url}/AfichageCandidature`)
   }
+
+  // methode pour lister les offres postuler par chaque candidat
+ 
  
   // methode pour ajouter publication
   
-   addPubication(publication : Publication) {
+   addPubication(publication : any) {
     return this.http.post<Publication[]>(`${url}/AjoutOffreEmploi`, publication);
   }
 
   // methode pour modifier publicatio,
   
    editPublication(id : any, publication:any){
-    return this.http.put(`${url}/OffreEmploi/edit/ ${id}`, publication);
+    return this.http.post(`${url}/OffreEmploi/edit/ ${id}`, publication);
   }
 
   // candidature par publication

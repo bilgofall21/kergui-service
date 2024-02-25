@@ -13,22 +13,26 @@ detailOffre :[]= [];
   ngOnInit(): void {
    this.afficherAllPublication();
   }
+  publicationFiltred : []=[];
 dataPublications : any;
 afficherAllPublication(){
   this.publicationservice.geyAllpublication().subscribe((respons)=>{
     this.dataPublications =respons.data;
     console.log("mes publicaaa", this.dataPublications);
-    this.dataPublications.forEach((publication : any)=>{
-      const nomProfession = this.getNomProfesion(publication.profession_id);
-      console.log('professs', nomProfession);
-    })
+    this.publicationFiltred = this.dataPublications.filter((element : {etat : string})=>
+    element.etat == 'nouveau',)
+    console.log("voir publi affiché", this.publicationFiltred)
+    // this.dataPublications.forEach((publication : any)=>{
+    //   const nomProfession = this.getNomProfesion(publication.profession_id);
+    //   console.log('professs', nomProfession);
+    // })
   })
 }
-getNomProfesion (professionId : number) : void{
-  console.log("dfhgbjkn,l", this.dataPublications);
-  const profession = this.dataPublications.find((profess: { id: any; }) => profess.id == professionId); 
-  return profession ? profession.nom_prof :  'profession inconue'                                                        
-}
+// getNomProfesion (professionId : number) : void{
+//   console.log("dfhgbjkn,l", this.dataPublications);
+//   const profession = this.dataPublications.find((profess: { id: any; }) => profess.id == professionId); 
+//   return profession ? profession.nom_prof :  'profession inconue'                                                        
+// }
 voirDetail(element : any){
   this.detailOffre = element;
   console.log("lou khew" ,this.detailOffre);
@@ -49,7 +53,7 @@ voirDetail(element : any){
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
-  this.datapublicationTrouve = this.dataPublications.filter((publica: { description: string; created_at: string; }) => 
+  this.datapublicationTrouve = this.publicationFiltred.filter((publica: { description: string; created_at: string; }) => 
     publica.description.toLowerCase().includes(this.searchPublication.toLowerCase())||
     publica.created_at.toLowerCase().includes(this.searchPublication.toLowerCase())
     );
@@ -58,13 +62,13 @@ getArticlesPage(): any[] {
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {
-    const totalPages = Math.ceil(this.dataPublications.length / this.articlesParPage);
+    const totalPages = Math.ceil(this.publicationFiltred.length / this.articlesParPage);
     return Array(totalPages).fill(0).map((_, index) => index + 1);
   }
 
   // Méthode pour obtenir le nombre total de pages
   get totalPages(): number {
-    return Math.ceil(this.dataPublications.length / this.articlesParPage);
+    return Math.ceil(this.publicationFiltred.length / this.articlesParPage);
   }
 
 }

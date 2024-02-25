@@ -18,9 +18,7 @@
   font-size: 20px;
  
 }
-.temoignage p{
-  font-size: 12px;
-}
+
 
 .card-body{
   height: 18rem;
@@ -28,6 +26,35 @@
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: auto;
+}
+i, p{
+  color: var(--kergui-blue);
+  font-size: 21px;
+}
+.card-text{
+  color: #000;
+  font-size: 16px;
+}
+ /* style pagination debut */
+
+ .pagiColor {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--kergui-blue);
+  color: var(--kergui-blue);
+}
+#pagination{
+  margin-left: 120px;
+  margin-top: 20px;
+}
+.searchbar button{
+  background-color: var(--kergui-blue);
 }
 
 

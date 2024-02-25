@@ -15,41 +15,43 @@
                 <div class="searchbar m-5">
                     <div class="d-flex justify-content-end">
                         <div class="input-group w-50 ">
-                            <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" [(ngModel)]="searchUtulisateur" (input)="getArticlesPage()" />
-                            <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+                            <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Rechercher"  aria-describedby="search-addon" [(ngModel)]="searchEmployeur" (input)="getArticlesPageEmployeur()" />
+                            <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>Rechercher</button>
                           </div>
     
                     </div>
                   </div>
                 <div class="app-card-body">
                     <div class="table-responsive">
-                        <table class="table app-table-hover mb-0 text-left">
+                        <table class="table app-table-hover mb-0 text-center ">
                             <thead>
                                 <tr>
-                                    <th class="cellhead">prenom</th>
+                                    <th class="cellhead ">prenom</th>
                                     <th class="cellhead">Nom</th>
                                     <th class="cellhead">Email</th>
                                     <th class="cellhead">Adresse</th>
                                     <th class="cellhead">Statut</th>
-                                    <th class="cellhead">Action</th>
+                                    <th class="cellhead ">Action</th>
                                     <!-- <th class="cell">Total</th>
                                     <th class="cell"></th> -->
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let element of getArticlesPage()">
-                                <tr *ngIf="element.role == 'employeur'">
+                            <tbody *ngFor="let element of getArticlesPageEmployeur()">
+                                <tr>
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
                                     <td class="cell"> {{element.email}} </td>
                                     <td class="cell"> {{element.lieu}} </td>
-                                    <td class="cell" [ngClass]="{'text-success': element.statut === 'activer', 'text-danger': element.statut === 'deactive'}">
-                                        {{element.statut}}
+                                    <td class="cell" >
+                                        <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
+                                        <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
                                       </td>
+                                  
                                     <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDeatailUser(element )" ><i class="bi bi-eye"></i></a>
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)"  ><i class="bi bi-save-fill"></i></a>
-                                           
+                                        <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
+                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal-detail" title="detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailUser(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
+                                            <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
+                                            <button class="btn btn-outline-success ms-2 border-1" (click)="activerUser(element.id)"><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
                                         </div>
                                     </td>
                                    
@@ -61,34 +63,39 @@
                 </div><!--//app-card-body-->		
             </div><!--//app-card-->
          <!-- pagination -->
-<div class="d-flex flex-wrap justify-content-center my-5" >
-    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
-      Précédent
-    </button>
-    <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
-      {{ page }}
-    </button>
-    <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
-      Suivant
-    </button>
-  </div>
+         <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+            <button class="btn pagiColor me-2" [disabled]="  pageEmActuelle === 1" (click)="  pageEmActuelle =   pageEmActuelle - 1">
+              Précédent
+            </button>
+            <button class="btn pagiColore ms-2" 
+                    *ngFor="let page of pagesEmployeur" 
+                    [class.current]="page ===   pageEmActuelle" 
+                    (click)="  pageEmActuelle = page">
+              {{ page }}
+            </button>
+            <button class="btn pagiColor ms-2" 
+                    [disabled]="  pageEmActuelle === totalEmPages" 
+                    (click)="  pageEmActuelle =   pageEmActuelle + 1">
+              Suivant
+            </button>
+          </div>
         </div>
         
 
         <!-- tableau employé -->
         <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
-            <div class="app-card app-card-orders-table m-5">
-                <div class=" searchbar d-flex justify-content-end">
+            <div class="app-card app-card-orders-table">
+                <div class=" searchbar d-flex justify-content-end m-5">
                     <div class=" input-group w-50 ">
-                        <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" [(ngModel)]="searchUtulisateur" (input)="getArticlesPage()" />
-                        <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+                        <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Rechercher"  aria-describedby="search-addon" [(ngModel)]="searchUtulisateur" (input)="getArticlesPage()" />
+                        <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>Rechercher</button>
                       </div>
 
                 </div>
                 <div class="app-card-body">
                     <div class="table-responsive">
                         
-                        <table class="table mb-0 text-left">
+                        <table class="table mb-0 text-center">
                             <thead >
                                 <tr>
                                     <th class="cellhead">prenom</th>
@@ -105,22 +112,21 @@
                                     <td class="cell"> {{element.prenom}} </td>
                                     <td class="cell">  {{element.nom}} </td>
                                     <td class="cell"> {{element.email}} </td>
-                                    <td class="cell"> {{element.profession_id}} </td>
+                                    <td class="cell"> {{element.profession.nom_prof}} </td>
                                     <td class="cell"> {{element.lieu}} </td>
-                                    <td class="cell" [ngClass]="{'text-success': element.statut === 'activer', 'text-danger ': element.statut === 'deactive'}">
-                                        {{element.statut}}
+                                    <td class="cell" >
+                                       
+                                        <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
+                                        <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
                                       </td>
                                     <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="afficherDeatailUser(element )" ><i class="bi bi-eye"></i></a>
-                                            <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="desactiverUser(element.id)"  ><i class="bi bi-save-fill"></i></a>
+                                        <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
+                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal-detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailUser(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
+                                            <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
+                                            <button class="btn btn-outline-success ms-2" (click)="activerUser(element.id)" ><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
                                         </div>
                                     </td>
-                                   
-                                </tr>
-                                
-                        
-
+                                </tr>                        
                             </tbody>
                         </table>
                     </div><!--//table-responsive-->
@@ -128,17 +134,22 @@
             </div><!--//app-card-->
 
                      <!-- pagination -->
-<div class="d-flex flex-wrap justify-content-center my-5" >
-    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
-      Précédent
-    </button>
-    <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
-      {{ page }}
-    </button>
-    <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
-      Suivant
-    </button>
-  </div>
+                     <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+                        <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+                          Précédent
+                        </button>
+                        <button class="btn pagiColore ms-2" 
+                                *ngFor="let page of pages" 
+                                [class.current]="page === pageActuelle" 
+                                (click)="pageActuelle = page">
+                          {{ page }}
+                        </button>
+                        <button class="btn pagiColor ms-2" 
+                                [disabled]="pageActuelle === totalPages" 
+                                (click)="pageActuelle = pageActuelle + 1">
+                          Suivant
+                        </button>
+                      </div>
         </div>
       
     </div>
@@ -156,10 +167,8 @@
           <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body  ">
-           
-              
-                  <div class="" *ngIf="utulisateurSelectionner ">
+        <div class="modal-body  "> 
+                  <!-- <div class="" *ngIf="utulisateurSelectionner ">
                    <div class="row">
                     <div class="col-4 " id="tof">
                         <img src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}" alt="">
@@ -186,7 +195,33 @@
                         </div>
                     </div>
                    </div>
+                  </div> -->
+                  <div class="">
+                      <div class="contact-box center-version" *ngIf="utulisateurSelectionner">
+                        <a href="">
+                            <img alt="image" class="img-circle" src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}">
+                            <h3 class="m-b-xs"><strong>{{utulisateurSelectionner.prenom}} {{utulisateurSelectionner.nom}}</strong></h3>
+                
+                            <div class="font-bold">{{utulisateurSelectionner.profession.nom_prof}}</div>
+                            <address class="m-t-md">
+                                <strong>  </strong><br>
+                                {{utulisateurSelectionner.lieu}}<br>
+                                {{utulisateurSelectionner.email}}<br>
+                                 {{utulisateurSelectionner.telephone}}
+                            </address>
+                
+                        </a>
+                        <div class="contact-box-footer">
+                            <div class="m-t-xs btn-group">
+                               <p> {{utulisateurSelectionner.presentation}} </p>
+                            </div>
+                        </div>
+                
+                    </div>
+
                   </div>
+                  
+                  
                   <div class="validajout d-flex justify-content-end">
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
                   </div>

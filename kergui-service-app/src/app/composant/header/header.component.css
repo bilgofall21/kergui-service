@@ -2,6 +2,7 @@ nav{
     height: 85px;
     border-bottom: 2px solid var(--kergui-bluelight);
     background-color: var(--kergui-blue);
+    
 }
 #logoheader img{
     height: 70px;
@@ -17,29 +18,29 @@ nav{
     filter:blur(5px);
 } */
 .nav-item a:hover{
-    transform:scale(1.1);
+    /* transform:scale(1.1);
   opacity:1;
   filter:blur(0);
   text-decoration:none;
-  color: var(--kergui-green);
+  color: var(--kergui-green); */
 }
 .nav-item.active{
-    border-bottom: 2px solid var(--kergui-green);
+    /* border-bottom: 2px solid var(--kergui-green); */
 }
 .nav-item :target{
     color : var(--kergui-green);
 }
 .nav-item a:hover:before{
-    transition:transform 0.5s;
+    /* transition:transform 0.5s;
   transform-origin:left;
-  transform:scaleX(1);
+  transform:scaleX(1); */
 }
-#navbarNav ul li{
-    padding-left: 10px;
+#navbarNav {
+    background-color: var(--kergui-blue);
 }
 
 .nav-item a:before{
-    content:'';
+    /* content:'';
     position:absolute;
     top:0;
     left:0;
@@ -49,7 +50,7 @@ nav{
     transition:2.8s;
     transform-origin:right;
     transform:scaleX(0);
-    z-index:-1;
+    z-index:-1; */
 }
 #navbarNav:hover li a{
     /* transform:scale(1.5);
@@ -58,12 +59,12 @@ nav{
 }
 
 .nav-item a:active{
-    font-size: 18px;
-    color: var(--kergui-green);
+    /* font-size: 18px;
+    color: var(--kergui-green); */
 }
 
 ul{
-    margin-left: 100px;
+    /* margin-left: 100px; */
 }
 
 #navright a{
@@ -71,12 +72,14 @@ ul{
     font-weight: bold;
     text-decoration: none;
     font-size: 18px;
+    cursor: pointer;
 }
 #navright a:hover{
     color: var(--kergui-green);
     font-weight: bold;
     text-decoration: none;
     font-size: 18px;
+    cursor: pointer;
 }
 #navright ul{
     color: var(--kergui-bluelight);
@@ -99,6 +102,16 @@ ul{
     background-color: white;
 
 }
+#navigationTitle{
+    /* background-color: red; */
+    width: 75%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+
 
 
 /* media query header debut */
@@ -129,9 +142,13 @@ ul{
         display: none;
         width: 50%;
     }
+    #navigationTitle{
+   
+    
+  
+    }
     #navright {
-        display: none;
-        /* background-color: green; */
+  
     }
     #navright a{
         color: #003668;
@@ -144,18 +161,32 @@ ul{
 
     }
 
-    @media screen and (max-width: 490px){
+    @media screen and (max-width: 700px){
         #navright button{
             margin-top: 10px;
             height: 50px;
             font-size: 12px;
         }
 }
+
+    @media screen and (max-width: 560px){
+        #navright button{
+            margin-top: 10px;
+            height: 40px;
+            font-size: 10px;
+        }
+}
     @media screen and (max-width: 490px){
         #navright button{
             margin-top: 10px;
-            height: 50px;
-            font-size: 11px;
+            height: 45px;
+           
+            font-size: 9px;
         }
 }
 }
+
+
+
+/* new css */
+

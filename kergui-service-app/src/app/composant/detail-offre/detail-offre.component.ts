@@ -13,8 +13,10 @@ export class DetailOffreComponent implements OnInit  {
     const recupDetail = localStorage.getItem('detail_offre');
     this.dataDetail = recupDetail? JSON.parse(recupDetail) : null;
     console.log("uuuuu", this.dataDetail);
+
+    
   }
-  constructor(private candidaterservice : CandidatureServiceService){}
+  constructor(private candidaterservice : CandidatureServiceService,){}
 
   Candididater(id : any) : void{
     this.candidaterservice.CandidaterUser(id).subscribe((respons)=>{
@@ -35,6 +37,11 @@ export class DetailOffreComponent implements OnInit  {
         icon: icone,
         title: message +"" +user,
         showConfirmButton: true,
+        confirmButtonColor: "#3A6A7E",
+        width: 420,
+        padding: 15,
+        color : '#ffff',
+        background: '#3A6A7E',
         // timer: 1500
     })
   }

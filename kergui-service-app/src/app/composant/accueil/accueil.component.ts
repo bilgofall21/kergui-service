@@ -10,24 +10,37 @@ import { PublicationService } from 'src/app/services/publication.service';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
+  detailOffre: []=[];
+  // utilisateurConnecte: boolean=false;
+
 constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService) {}
   ngOnInit(): void {
 this.affichepublication();
 this.afficherservice();
+// this.utilisateurConnecte = true;
+// console.log('ttt eta', this.utilisateurConnecte);
   }
 
   // methode pour afficher 3 dernier publications au niveau de l'accueil
 dataHomepublication : any;
 lastThreePublications: Publication[] = [];
+publicationFiltred : []=[];
 affichepublication() : void {
   this.publicationservice.geyAllpublication().subscribe((homepublic)=>{
     this.dataHomepublication = homepublic;
     console.log(  "les publications",this.dataHomepublication);
+
+
+    this.publicationFiltred = this.dataHomepublication.data.filter((element:{etat: string})=>
+    element.etat == 'nouveau'
+    )
+    console.log("pblication dne", this.publicationFiltred);
+
     
     // virifier si les donnee sont null
-    if (this.dataHomepublication && this.dataHomepublication.data){
+    if (this.publicationFiltred){
        // Trier les publications par date de création dans l'ordre décroissant
-       const sortedPublications = this.dataHomepublication.data.sort((a: { created_at: string | number | Date; }, b: { created_at: string | number | Date; }) => {
+       const sortedPublications = this.publicationFiltred.sort((a: { created_at: string | number | Date; }, b: { created_at: string | number | Date; }) => {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
       // Prendre les trois dernières publications
@@ -52,7 +65,12 @@ afficherservice(){
     }
   })
 }
+voirDetail(element : any){
+  this.detailOffre = element;
+  console.log("lou khew" ,this.detailOffre);
+  localStorage.setItem('detail_offre', JSON.stringify(this.detailOffre))
 
+}
 
 
 }

@@ -1,10 +1,19 @@
 
-.card-body{
+/* .card-body{
   height: 12rem;
     
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: auto;
+} */
+.cardfooter{
+  background-color: var(--kergui-blue);
+  height: 6px;
+}
+.card-body p {
+  height: 7.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 

@@ -41,7 +41,7 @@ margin-top: 150px;
     overflow: hidden;
     margin: 0 auto;
 }
-.inscription form input {
+.inscription form input, #chargetof{
     height: 40px;
     outline: none;
     border: none;
@@ -93,6 +93,19 @@ margin-top: 150px;
     color: #333;
     border-radius: 10px;
     background: #fff;
+
+}
+.connexion button{
+    height: 45px;
+    outline: none;
+    border: none;
+    padding: 0 15px;
+    font-size: 22px;
+    font-weight: 400;
+    color:var(--kergui-blue);
+    border-radius: 10px;
+    background: #fff;
+    font-weight: bold;
 
 }
 
@@ -155,5 +168,97 @@ padding-top: 50px;
 .connexionuser .inscriptionemployeur .inscritionemploye .presentationlogin{
     display: none;
 }
+.btn-disabled {
+    color: gray;
+    pointer-events: none; /* Désactive les événements de souris sur le bouton */
+}
+
+.btn-custom:disabled {
+    opacity: 0.7; /* Réduire l'opacité du bouton */
+    cursor: not-allowed; /* Changer le curseur en "non autorisé" */
+    background-color: var(--kergui-green);
+    /* text-decoration: line-through; 
+    text-decoration-thickness: 2px;  */
+}
+.message-erreur {
+    color: var(--kergui-green);
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    /* Ajoutez d'autres styles CSS selon vos besoins */
+}
+/* .invalid-field {
+    border: 1px solid red;
+  } */
+
+  .is-invalid {
+    border-color: #dc3545; /* Couleur rouge */
+    background-image: none;
+  }
+  
+  .is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+  
+  .invalid-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: #dc3545;
+    
+  }
+
+
+   @media screen and (max-width: 990px){
+    .presentationlogincontainer{
+        height: 800px;
+        width : 100%;
+        border-radius: 21px;
+        background-color: var(--kergui-blue);
+        padding: 100px;
+        margin: 0 auto;
+        
+    }
+}
+   @media screen and (max-width: 680px){
+    .inscription form input, #chargetof{
+        height: 40px;
+        outline: none;
+        border: none;
+        padding: 0 15px;
+        font-size: 16px;
+        width: 100%;
+        font-weight: 400;
+        color: #333;
+        border-radius: 5px;
+        background: #ffffff;
+        
+    }
+}
+   @media screen and (max-width: 470px){
+    .presentationlogincontainer{
+        height: 900px;
+        width : 100%;
+        border-radius: 21px;
+        background-color: var(--kergui-blue);
+        padding: 100px;
+        margin: 0 auto;
+        
+    }
+}
+   @media screen and (max-width: 380px){
+    .presentationlogincontainer{
+        height: 1000px;
+        width : 100%;
+        border-radius: 21px;
+        background-color: var(--kergui-blue);
+        padding: 100px;
+        margin: 0 auto;
+        
+    }
+}
+
+
 
 

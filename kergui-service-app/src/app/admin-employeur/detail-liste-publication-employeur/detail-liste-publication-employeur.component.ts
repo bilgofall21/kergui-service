@@ -20,14 +20,18 @@ candidatId: any;
   mycandidatData: any[]=[];
   recupOnly : any;
   ngOnInit(): void {
-      this.publicationservice.getCandidatByOffre(this.activatedRoute.snapshot.params['id']).subscribe((respons)=>{
-        this.datacandidatOffre = respons.data;
-        console.log("voir candidatureeeee", this.datacandidatOffre)
-        this.allcandidat();  
-      })
+      this.loadCanditures();
+      this.allcandidat();  
 
     this.showProfilCandidat();
     this.allProfssion();
+  }
+
+  loadCanditures(){
+    this.publicationservice.getCandidatByOffre(this.activatedRoute.snapshot.params['id']).subscribe((respons)=>{
+      this.datacandidatOffre = respons.data;
+      console.log("voir candidatureeeee", this.datacandidatOffre)
+    })
   }
   dataBouvle : any;
 
@@ -36,7 +40,7 @@ candidatId: any;
   allcandidat(): void{
     this.candidatureservice.showCadidature().subscribe((respons)=>{
       this.dataCanactif = respons;
-      // console.log("voir mes candidature speci", this.dataCanactif);
+      console.log("voir mes candidature speci", this.dataCanactif);
       // localStorage.setItem('moi', JSON.stringify(this.dataCanactif))
     })
   }
@@ -46,9 +50,15 @@ candidatId: any;
 etatCan : '',
   } 
   id!: any;
-
-
-
+  accepterCandidature(id: any): void {
+    this.etatCan = "accepter"; // Définir l'état sur accepter
+    this.validationCandidat(id);
+  }
+  
+  rejeterCandidature(id: any): void {
+    this.etatCan = "rejeter"; // Définir l'état sur rejeter
+    this.validationCandidat(id);
+  }
   validationCandidat(id: any): void {
     this.newEtatCan = {
       etatCan: this.etatCan,
@@ -59,25 +69,39 @@ etatCan : '',
       text: 'Voulez-vous vraiment changer l\'état de cette candidature?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3A6A7E',
-      cancelButtonColor: '#FF9A00',
+      confirmButtonColor: "#3A6A7E",
+      cancelButtonColor: "#FF9A00",
+      width: 480,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E',
       confirmButtonText: 'Oui, valider!',
-      cancelButtonText: 'Annuler'
+      cancelButtonText: 'Annuler',
     }).then((result) => {
       if (result.isConfirmed) {
         // Si l'utilisateur confirme
         this.candidatureservice.validatCandidat(id, this.newEtatCan).subscribe((respons) => {
           console.log('État changé avec succès', respons);
-          // Affichage de SweetAlert pour confirmer la validation
+          // Mettre à jour l'état de la candidature localement
+          const candidatureToUpdate = this.datacandidatOffre.find((candidature: { id: any; }) => candidature.id === id);
+          if (candidatureToUpdate) {
+            candidatureToUpdate.etat = this.etatCan;
+            // this.datacandidatOffre
+          }
+          // Afficher le message de succès
           Swal.fire({
             icon: 'success',
             title: 'État modifié avec succès!',
             showConfirmButton: false,
-            timer: 1500
-          }).then(() => {
-            // Recharger les candidatures ou mettre à jour la liste
-            this.allcandidat();
+            timer: 1500,
+            width: 480,
+            padding: 10,
+            color : '#ffff',
+            background: '#3A6A7E',
           });
+      this.loadCanditures();
+
+          // this.
         }, error => {
           console.error('Erreur lors de la validation de la candidature:', error);
           // Afficher une alerte en cas d'erreur
@@ -92,14 +116,16 @@ etatCan : '',
   }
 
 
-// affichervalidation(icone : any, message : string, user : string) : void {
-//   Swal.fire({
-//     title: "The Internet?",
-//     text: "That thing is still around?",
-//     icon: "question"
-//     showConfirmButton: true,
-//   });
-// }
+ 
+
+  // getNomProfesion (professionId : number) : void{
+  //   const profession = this.professionData.find((profess: { id: any; }) => profess.id ==professionId); 
+  //   return profession ? profession.nom_prof :  'profession inconue'                                                        
+  // }
+
+
+ //  methode pour ajouter publication
+
 
 
 
@@ -110,8 +136,12 @@ etatCan : '',
       title: "Voulez vous vraiment supprime cette candidature ?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#FF9A00",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#3A6A7E",
+      cancelButtonColor: "#FF9A00",
+      width: 500,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E',
       confirmButtonText: "Oui supprimer!"
     }).then((result) => { 
       if(result.isConfirmed){
@@ -122,7 +152,13 @@ etatCan : '',
         Swal.fire({
           title: "candidature supprime!",
           text: "Cette candidature  a été supprimé .",
-          icon: "success"
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+          width: 480,
+          padding: 10,
+          color : '#ffff',
+          background: '#3A6A7E',
           });
         })
       }
