@@ -20,14 +20,18 @@ candidatId: any;
   mycandidatData: any[]=[];
   recupOnly : any;
   ngOnInit(): void {
-      this.publicationservice.getCandidatByOffre(this.activatedRoute.snapshot.params['id']).subscribe((respons)=>{
-        this.datacandidatOffre = respons.data;
-        console.log("voir candidatureeeee", this.datacandidatOffre)
-      })
+      this.loadCanditures();
       this.allcandidat();  
 
     this.showProfilCandidat();
     this.allProfssion();
+  }
+
+  loadCanditures(){
+    this.publicationservice.getCandidatByOffre(this.activatedRoute.snapshot.params['id']).subscribe((respons)=>{
+      this.datacandidatOffre = respons.data;
+      console.log("voir candidatureeeee", this.datacandidatOffre)
+    })
   }
   dataBouvle : any;
 
@@ -67,8 +71,8 @@ etatCan : '',
       showCancelButton: true,
       confirmButtonColor: "#3A6A7E",
       cancelButtonColor: "#FF9A00",
-      width: 450,
-      padding: 15,
+      width: 480,
+      padding: 10,
       color : '#ffff',
       background: '#3A6A7E',
       confirmButtonText: 'Oui, valider!',
@@ -82,14 +86,22 @@ etatCan : '',
           const candidatureToUpdate = this.datacandidatOffre.find((candidature: { id: any; }) => candidature.id === id);
           if (candidatureToUpdate) {
             candidatureToUpdate.etat = this.etatCan;
+            // this.datacandidatOffre
           }
           // Afficher le message de succès
           Swal.fire({
             icon: 'success',
             title: 'État modifié avec succès!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            width: 480,
+            padding: 10,
+            color : '#ffff',
+            background: '#3A6A7E',
           });
+      this.loadCanditures();
+
+          // this.
         }, error => {
           console.error('Erreur lors de la validation de la candidature:', error);
           // Afficher une alerte en cas d'erreur
@@ -140,7 +152,13 @@ etatCan : '',
         Swal.fire({
           title: "candidature supprime!",
           text: "Cette candidature  a été supprimé .",
-          icon: "success"
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+          width: 480,
+          padding: 10,
+          color : '#ffff',
+          background: '#3A6A7E',
           });
         })
       }

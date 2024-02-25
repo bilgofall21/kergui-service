@@ -14,15 +14,9 @@
     <div class="row">
             <ng-container *ngIf="getArticlesPage().length >0; else noAppreciation ">
               <div class="col-md-3" *ngFor=" let element of  getArticlesPage()">
-                <div class="card shadow-lg border-0" style="width: 18rem;">
-                  <div class="d-flex justify-content-around mt-2">
-                    <div class="imagecard">
-                      <img class="img-fluid" src="https://media.istockphoto.com/id/1278622653/photo/young-woman-baking.jpg?s=612x612&w=0&k=20&c=froE165iUFRxUdUhHV1Mnpo94tbHqs6PlAy3fMkfFY4=" alt="">
-                    </div>
-                    <div class="namecardtop">
-                      <p>Ami Fall</p>
-                    </div>
-          
+                <div class="card shadow-sm border-1 border-primary-subtle" style="width: 20rem; height: 24rem;">
+                  <div class=" mt-2 ">
+                      <h5 class="text-center">Témoignage</h5>
                   </div>
                   <div class="card-body">
                     <i class="bi bi-quote crochet"></i> <p class="card-text lead">  {{element.appreciation}} <i class="bi bi-quote crochet1"></i></p>  

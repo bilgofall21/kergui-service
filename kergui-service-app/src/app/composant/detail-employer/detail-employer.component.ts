@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./detail-employer.component.css']
 })
 export class DetailEmployerComponent implements OnInit {
+
     constructor( public temoignageservice : TemoignageServiceService){}
     dataDetailProfil : any;
   ngOnInit(): void {
@@ -24,14 +25,15 @@ export class DetailEmployerComponent implements OnInit {
   showElement (element : any) : void{
     this.elementdetailselected = element;
   }
+  
 
   appreciation : string ="";
   temoinnew :  any;
-ajouterTemoignage() : void{
+ajouterTemoignage(id:any) : void{
 this.temoinnew = {
   appreciation : this.appreciation,
 }
-this.temoignageservice.addTemoignage(this.temoinnew).subscribe((respons)=>{
+this.temoignageservice.addTemoignage(id, this.temoinnew).subscribe((respons)=>{
   this.affichermessagetemoignage('success', 'bravo', 'temoignage ajouté')
   console.log("test", this.temoinnew);
   console.log("voir avis", respons);
@@ -58,7 +60,7 @@ dataEmployeTemoignage : any;
  temoignageForEmploye(): void{
   this.temoignageservice.temoignageemploye().subscribe((respons)=>{
     this.dataEmployeTemoignage=respons;
-    console.log("nos temoignege", this.dataEmployeTemoignage);
+    console.log("nos temoignage", this.dataEmployeTemoignage);
   })
  }   
 

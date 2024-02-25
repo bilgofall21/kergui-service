@@ -10,8 +10,8 @@
   background-color: var(--kergui-blue);
   height: 6px;
 }
-.card-body {
-  height: 6rem;
+.card-body p {
+  height: 7.2rem;
   overflow: hidden;
   text-overflow: ellipsis;
 }

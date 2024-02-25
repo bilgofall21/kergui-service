@@ -18,9 +18,7 @@
   font-size: 20px;
  
 }
-.temoignage p{
-  font-size: 12px;
-}
+
 
 .card-body{
   height: 18rem;
@@ -28,6 +26,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: auto;
+}
+i, p{
+  color: var(--kergui-blue);
+  font-size: 21px;
+}
+.card-text{
+  color: #000;
+  font-size: 16px;
 }
  /* style pagination debut */
 

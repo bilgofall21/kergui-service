@@ -30,6 +30,9 @@ import { AuthInterceptor, TokenInterceptorProvider } from './interceptors/interc
 import { DetailOffreComponent } from './composant/detail-offre/detail-offre.component';
 import { ScrfollBarComponent } from './composant/scrfoll-bar/scrfoll-bar.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { EmailValidationDirective } from './validations/email-validation.directive';
+import { PasswordValidationDirective } from './validations/password-validation.directive';
+import { NavheaderComponent } from './composant/navheader/navheader.component';
 
 // import { AuthInterceptor } from './interceptors/interceptor';
 
@@ -66,6 +69,9 @@ import { AuthGuardService } from './services/auth-guard.service';
     ServiceDashboardComponent,
     DetailOffreComponent,
     ScrfollBarComponent,
+    EmailValidationDirective,
+    PasswordValidationDirective,
+    NavheaderComponent,
    
   ],
   imports: [

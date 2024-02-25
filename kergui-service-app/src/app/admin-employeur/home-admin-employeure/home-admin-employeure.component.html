@@ -60,7 +60,7 @@
           
           <div class="row mt-4">
             <div class="col-lg-3 col-sm-6 " *ngFor="let profession of getArticlesPage()">
-              <div class="card shadow-lg" style="width: 18.5rem; height: 28rem;">
+              <div class="card shadow-lg" style="width: 18.5rem; height: 30rem;">
                 <div>
                   <img  src="http://127.0.0.1:8000/storage/{{profession.image}}" class="card-img-top" alt="..." style="height: 14rem;">
                   <div class="titleService">
@@ -69,6 +69,9 @@
                 </div>
                 <div class="card-body">
                   <p class="card-text"> {{profession.description}} </p>
+                </div>
+                <div class="iconegestion text-center mb-1 ">
+                  <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', profession.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>                
                 </div>
                 <div class="cardfooter"></div>
               </div>

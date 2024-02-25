@@ -13,7 +13,7 @@ hr{
   /* style baniere */
   .banner{
       background: url(src\assets\image\service.png);
-      height: 10vh;
+      height: 40vh;
       width: 100%;
       background-size: cover;
       background-position: center center;
@@ -103,3 +103,36 @@ font-size: 16px;
 	color: white;
 	font-weight: bold;
 }
+
+/* media query baniere */
+
+@media screen and (max-width:1200px) {
+  .banner {
+    height: 40vh;
+  }
+  }
+  @media screen and (max-width:900px) {
+  .banner {
+    height: 30vh;
+  }
+  }
+  @media screen and (max-width:700px) {
+  .banner {
+    height: 20vh;
+  }
+  }
+  @media screen and (max-width:470px) {
+  .banner {
+    height: 15vh;
+  }
+  }
+  @media screen and (max-width:350px) {
+  .banner {
+    height: 12vh;
+  }
+  }
+  @media screen and (max-width:280px) {
+  .banner {
+    height: 10vh;
+  }
+  }

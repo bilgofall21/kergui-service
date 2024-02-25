@@ -8,14 +8,13 @@
     <div class="connexion">
     <div class="form signup">
       <header class="text-white mb-2">Connectez-vous</header>
-      <form novalidate  (ngSubmit)="connexion($event,registerForm )" #registerForm ="ngForm">
+      <form novalidate  (ngSubmit)="connexion($event)" #monForm ="ngForm">
         <div class="row row-gap-4">
       
             <div class="">
-                <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required email
-                
+                <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required email appEmailValidation
                 #verifEmail="ngModel"
-                [ngClass]="{'is-invalid': verifEmail.touched && !verifEmail.valid}" />
+                [ngClass]="{'is-invalid': verifEmail.invalid && (verifEmail.dirty || verifEmail.touched)}" (input)="onEmailInput(verifEmail)" />
                 <div class="invalid-feedback">
                     <span *ngIf="  verifEmail.touched && verifEmail.errors &&  verifEmail.errors['required']"  class="message-erreur"> Entrer votre email</span>
                     <span *ngIf=" verifEmail.touched && verifEmail.errors && verifEmail.errors['email']"  class="message-erreur"> Email invalide </span>
@@ -25,17 +24,17 @@
             <div class="">
                 <input class=" col-12" type="password" placeholder="Mot de pass" name="password" required minlength="8" [(ngModel)]="formData.password" 
                 #verifPassword="ngModel"
-                [ngClass]="{'is-invalid': verifPassword.touched && !verifPassword.valid}"  />
+                [ngClass]="{'is-invalid': verifPassword.errors && (verifPassword.dirty || verifPassword.touched)}"  (input)="onEmailInput(verifPassword)"  />
                 <div class="invalid-feedback">
-                    <span *ngIf=" verifEmail.touched && verifPassword.errors &&  verifPassword.errors['required']"  class="message-erreur"> Entrer votre mot de passe</span>
-                    <span *ngIf=" verifEmail.touched && verifPassword.errors && verifPassword.errors['minlength']"  class="message-erreur"> Minimum 8 caractères </span>
+                    <span *ngIf=" verifPassword.touched && verifPassword.errors &&  verifPassword.errors['required']"  class="message-erreur"> Entrer votre mot de passe</span>
+                    <span *ngIf=" verifPassword.touched && verifPassword.errors && verifPassword.errors['minlength']"  class="message-erreur"> Minimum 8 caractères </span>
                 </div>
             </div>
             <div>
                 <!-- <p class="text-white">mot de pass oublié ?</p> -->
             </div>
             <div>
-                <button class="col-12 btn-custom" type="submit" [disabled]="!registerForm.valid"> Connexion</button>
+                <button class="col-12 btn-custom" type="submit" [disabled]="!monForm.valid"> Connexion</button>
             </div>
             <p class="text-center text-white"> Vous n'avez pas de compte ?</p>
           
@@ -56,29 +55,29 @@
     <div class=" inscription">
     <div class="form signup">
       <header class="text-white mb-2">Inscrivez-vous</header>
-      <form novalidate (ngSubmit)="registerUser(registerForm)"  #registerForm ="ngForm">
+      <form novalidate (ngSubmit)="registerUser()"  #monForm ="ngForm">
         <div class="row row-gap-4 column-gap-2">
           
             <div class="col-md-5">
-                <input class="" type="text" name="prenom" placeholder="prenom" required  [(ngModel)]="registreData.prenom" required #validPrenom="ngModel"
-                [ngClass]="{'is-invalid': validPrenom.touched && !validPrenom.valid}"
+                <input class="" type="text" name="prenom" placeholder="prenom" required  [(ngModel)]="registreData.prenom" required #validPrenom="ngModel" (input)="onEmailInput(validPrenom)"
+                [ngClass]="{'is-invalid': validPrenom.invalid && (validPrenom.dirty || validPrenom.touched) }"
                 />
                 <div class="invalid-feedback">
-                    <span *ngIf="validPrenom.touched && validPrenom.errors && validPrenom.errors['required']" class="message-erreur" > Entrer le prénom</span>
+                    <span *ngIf="validPrenom.invalid && validPrenom.errors && validPrenom.errors['required']" class="message-erreur" > Entrer le prénom</span>
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="nom" placeholder="nom" [(ngModel)]="registreData.nom" required #validnom="ngModel"
-                [ngClass]="{'is-invalid': validnom.touched && !validnom.valid}"
+                <input class="" type="text" name="nom" placeholder="nom" [(ngModel)]="registreData.nom" required #validnom="ngModel" (input)="onEmailInput(validnom)"
+                [ngClass]="{'is-invalid': validnom.invalid && (validnom.dirty || validnom.touched) }"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="validnom.touched && validnom.errors && validnom.errors['required']" class="message-erreur" > Entrer le nom</span>
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="email" placeholder="Email" [(ngModel)]="registreData.email" required email #validemail="ngModel"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                [ngClass]="{'is-invalid': validemail.touched && !validemail.valid}"
+                <input class="" type="text" name="email" placeholder="Email" [(ngModel)]="registreData.email" required email appEmailValidation #validemail="ngModel" (input)="onEmailInput(validemail)"
+               
+                [ngClass]="{'is-invalid': validemail.invalid && (validemail.dirty || validemail.touched)}"
                 title="Veillez entrer un email au format example@test.com" 
                 />
                 <div class="invalid-feedback">
@@ -87,8 +86,8 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <input type="tel" id="typePhone" name ="telephone" placeholder="Telephone" [(ngModel)]="registreData.telephone"  required #validfone="ngModel"
-                [ngClass]="{'is-invalid': validfone.touched && !validfone.valid}"
+                <input type="tel" id="typePhone" name ="telephone" placeholder="Telephone" [(ngModel)]="registreData.telephone"  required #validfone="ngModel" (input)="onEmailInput(validfone)"
+                [ngClass]="{'is-invalid': validfone.invalid && (validfone.dirty || validfone.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="validfone.touched && validfone.errors && validfone.errors['required']" class="message-erreur" > Entrer un numero de téléphone</span>
@@ -96,8 +95,8 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="password" name ="password" placeholder="Mot de pass" [(ngModel)]="registreData.password" required #validpassword="ngModel" minlength="8"
-                [ngClass]="{'is-invalid': validpassword.touched && !validpassword.valid}"
+                <input class="" type="password" name ="password" placeholder="Mot de pass" [(ngModel)]="registreData.password" required #validpassword="ngModel" minlength="8" (input)="onEmailInput(validpassword)"
+                [ngClass]="{'is-invalid': validpassword.invalid && (validpassword.dirty || validpassword.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf=" validpassword.touched && validpassword.errors && validpassword.errors['required']" class="message-erreur">Enter un mot de passe</span>
@@ -105,8 +104,8 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="password" name="password_confirmation " placeholder="Confirmer mot de pass" [(ngModel)]="registreData.password_confirmation" required #validconfpassword="ngModel" minlength="8" 
-                [ngClass]="{'is-invalid': validconfpassword.touched && !validconfpassword.valid || registreData.password_confirmation !== registreData.password }"
+                <input class="" type="password" name="password_confirmation " placeholder="Confirmer mot de pass" [(ngModel)]="registreData.password_confirmation" required #validconfpassword="ngModel" minlength="8" (input)="onEmailInput(validconfpassword)"
+                [ngClass]="{'is-invalid': validconfpassword.invalid && (validconfpassword.dirty || validconfpassword.touched) || registreData.password_confirmation !== registreData.password }"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf=" validconfpassword.touched && validconfpassword.errors && validconfpassword.errors['required']" class="message-erreur">onfirmer votre mot de passe</span>
@@ -115,26 +114,23 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="presentation" placeholder="Adresse" [(ngModel)]="registreData.lieu" required #validlieu="ngModel"
-                [ngClass]="{'is-invalid': validlieu.touched && !validlieu.valid}"
+                <input class="" type="text" name="presentation" placeholder="Adresse" [(ngModel)]="registreData.lieu" required #validlieu="ngModel" (input)="onEmailInput(validlieu)"
+                [ngClass]="{'is-invalid': validlieu.invalid && (validlieu.dirty || validlieu.touched) }"
                 />
             <div class="invalid-feedback">
-                <span *ngIf="validlieu.touched && validlieu.errors && validlieu.errors['required']" > Enter une adresse</span>
+                <span *ngIf="validlieu.touched && validlieu.errors && validlieu.errors['required']" class="message-erreur"> Enter une adresse</span>
             </div>
             </div>
-            <div class="col-md-5">
-                <input class="form-control" type="file" (change)="getFile($event)" > 
+            <div class="col-md-5" >
+                <input class="form-control"  type="file" (change)="getFile($event)" > 
             <!-- <button  class="btn btn-outline-light mt-2"> </button> -->
             
             </div>
-            <!-- <div class="form-group mt-3">
-                <label class="mr-2">Upload your CV:</label>
-                <input type="file" name="file">
-              </div> -->
+           
             
             
             <div class="d-flex justify-content-center">
-                <input class="col-6 btn-custom " type="submit" [disabled]="!registerForm.valid"  value="S'inscrire"  required />
+                <input class="col-6 btn-custom " type="submit" [disabled]="!monForm.valid"  value="S'inscrire"  required />
             </div>
     </div>
     
@@ -153,7 +149,7 @@
     <div class="inscription" id="employesign">
     <div class="form signup">
       <header class="text-white mb-2">Incrivez-vous</header>
-      <form action="#" (ngSubmit)="registerUserEmploye(registerForm)" #registerForm="ngForm">
+      <form action="#" (ngSubmit)="registerUserEmploye()" #monForm="ngForm">
         <div class="row row-gap-3 column-gap-0">
             <div class="col-md-8 d-flex justify-content-around">
                 <i class="me-3"><span class="lnr lnr-camera"></span></i>
@@ -161,24 +157,24 @@
             <button  class="btn btn-outline-light ms-3"> <span class="lnr lnr-upload"  ></span></button>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="prenom" placeholder="prenom" required [(ngModel)]="registreEmploye.prenom" #verifPrenom="ngModel"
-                [ngClass]="{'is-invalid': verifPrenom.touched && !verifPrenom.valid}"
+                <input class="" type="text" name="prenom" placeholder="prenom" required [(ngModel)]="registreEmploye.prenom" #verifPrenom="ngModel" (input)="onEmailInput(verifPrenom)"
+                [ngClass]="{'is-invalid': verifPrenom.invalid && (verifPrenom.dirty || verifPrenom.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifPrenom.touched && verifPrenom.errors && verifPrenom.errors['required']"  class="message-erreur"> Entrer un prenom</span>
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="nom" placeholder="nom" required [(ngModel)]="registreEmploye.nom" #verifnom="ngModel"
-                [ngClass]="{'is-invalid': verifnom.touched && !verifnom.valid}"
+                <input class="" type="text" name="nom" placeholder="nom" required [(ngModel)]="registreEmploye.nom" #verifnom="ngModel" (input)="onEmailInput(verifnom)"
+                [ngClass]="{'is-invalid': verifnom.invalid && (verifnom.dirty || verifnom.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifnom.touched && verifnom.errors && verifnom.errors['required']"  class="message-erreur"> Entrer un nom</span>
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="email" placeholder="Email" required [(ngModel)]="registreEmploye.email" #verifemail="ngModel" email  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                [ngClass]="{'is-invalid': verifemail.touched && !verifemail.valid}"
+                <input class="" type="text" name="email" placeholder="Email" required [(ngModel)]="registreEmploye.email" #verifemail="ngModel" email appEmailValidation (input)="onEmailInput(verifemail)"
+                [ngClass]="{'is-invalid': verifemail.invalid && (verifemail.dirty || verifemail.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifemail.errors && verifemail.touched && verifemail.errors['required']"  class="message-erreur"> Enter un email</span>
@@ -186,24 +182,24 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <input type="tel" id="telephone" name="telephone" placeholder="Telephone" [(ngModel)]="registreEmploye.telephone"  required #veriffone="ngModel" 
-                [ngClass]="{'is-invalid': veriffone.touched && !veriffone.valid}"
+                <input type="tel" id="telephone" name="telephone" placeholder="Telephone" [(ngModel)]="registreEmploye.telephone"  required  #veriffone="ngModel" (input)="onEmailInput(veriffone)"
+                [ngClass]="{'is-invalid': veriffone.invalid && (veriffone.dirty || veriffone.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="veriffone.errors && veriffone.touched && veriffone.errors['required']"  class="message-erreur"> Enter un numéro de téléphone</span>
                 </div>
             </div>
             <div class="col-md-5">
-                <input type="text" id="lieu" placeholder="Adresse"  name="lieu" required [(ngModel)]="registreEmploye.lieu" #verifLieu="ngModel"
-                [ngClass]="{'is-invalid': verifLieu.touched && !verifLieu.valid}"
+                <input type="text" id="lieu" placeholder="Adresse"  name="lieu" required [(ngModel)]="registreEmploye.lieu" #verifLieu="ngModel" (input)="onEmailInput(verifLieu)"
+                [ngClass]="{'is-invalid': verifLieu.invalid && (verifLieu.dirty || verifLieu.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifLieu.errors && verifLieu.touched && verifLieu.errors['required']"  class="message-erreur">Enter une adresse</span>
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="date" placeholder="Date de naissance" name="dateNaissance" [(ngModel)]="registreEmploye.dateNaissance"  required #verifNaiss="ngModel"
-                [ngClass]="{'is-invalid': verifNaiss.touched && !verifNaiss.valid}"
+                <input class="" type="date" placeholder="Date de naissance" name="dateNaissance" [(ngModel)]="registreEmploye.dateNaissance"  required #verifNaiss="ngModel" (input)="onEmailInput(verifNaiss)"
+                [ngClass]="{'is-invalid': verifNaiss.invalid && (verifNaiss.dirty || verifNaiss.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifNaiss.errors && verifNaiss.touched && verifNaiss.errors['required']"  class="message-erreur">Enter une date de naissance</span>
@@ -212,8 +208,8 @@
          
             <div class="col-md-5">
                 <!-- <input class="" type="text" name="civilite" placeholder="Votre civilite" [(ngModel)]="registreEmploye .civilite"  required /> -->
-                <select class="form-select" aria-label="Votre sexe" name="civilite" [(ngModel)]="registreEmploye.civilite" #verifSexe="ngModel" required
-                [ngClass]="{'is-invalid': verifSexe.touched && !verifSexe.valid}"
+                <select class="form-select" aria-label="Votre sexe" name="civilite" [(ngModel)]="registreEmploye.civilite" #verifSexe="ngModel" required (input)="onEmailInput(verifSexe)"
+                [ngClass]="{'is-invalid': verifSexe.invalid && (verifSexe.dirty || verifSexe.touched)}"
                 >
                
                     <option value="">Votre Sexe</option>
@@ -226,24 +222,24 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="langueParler" placeholder="Langue parler" [(ngModel)]="registreEmploye .langueParler"  required #verifLangue="ngModel" 
-                [ngClass]="{'is-invalid': verifLangue.touched && !verifLangue.valid}"
+                <input class="" type="text" name="langueParler" placeholder="Langue parler" [(ngModel)]="registreEmploye .langueParler"  required #verifLangue="ngModel" (input)="onEmailInput(verifLangue)"
+                [ngClass]="{'is-invalid': verifLangue.invalid && (verifLangue.dirty || verifLangue.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifLangue.errors && verifLangue.touched && verifLangue.errors['required']"  class="message-erreur"> Entrer les langues </span>
                 </div>
             </div>
             <div class="col-md-5">
-                <input class="" type="text" name="experienceProf" placeholder="experience prpfessionnelle" [(ngModel)]="registreEmploye .experienceProf"  required #verifExperience="ngModel" 
-                [ngClass]="{'is-invalid': verifExperience.touched && !verifExperience.valid}"
+                <input class="" type="text" name="experienceProf" placeholder="experience prpfessionnelle" [(ngModel)]="registreEmploye .experienceProf"  required #verifExperience="ngModel" (input)="onEmailInput(verifExperience)"
+                [ngClass]="{'is-invalid': verifExperience.invalid && (verifExperience.dirty || verifExperience.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifExperience.errors && verifExperience.touched && verifExperience.errors['required']" class="message-erreur">  Entrer votre experience en format entier</span>
                 </div>
             </div>
             <div class="col-md-5">
-                <select class="form-select" aria-label="Sélectionner une profession" name="profession_id" [(ngModel)]="registreEmploye .profession_id" required #verifProfession="ngModel"
-                [ngClass]="{'is-invalid': verifProfession.touched && !verifProfession.valid}"
+                <select class="form-select" aria-label="Sélectionner une profession" name="profession_id" [(ngModel)]="registreEmploye .profession_id" required #verifProfession="ngModel" (input)="onEmailInput(verifProfession)"
+                [ngClass]="{'is-invalid': verifProfession.invalid && (verifProfession.dirty || verifProfession.touched)}"
                 >
                     <option value="">Sélectionner une profession</option>
                     <option *ngFor="let profession of selectOptionData" [value]="profession.id">{{ profession.nom_prof }}</option>
@@ -254,8 +250,8 @@
             </div>
            
             <div class="col-md-5">
-                <input class="" type="password" name="password" placeholder="Mot de pass" [(ngModel)]="registreEmploye .password"  required #verifPassword="ngModel" minlength="8"
-                [ngClass]="{'is-invalid': verifPassword.touched && !verifPassword.valid}"
+                <input class="" type="password" name="password" placeholder="Mot de pass" [(ngModel)]="registreEmploye .password"  required #verifPassword="ngModel" minlength="8" (input)="onEmailInput(verifPassword)"
+                [ngClass]="{'is-invalid':verifPassword.invalid && (verifPassword.dirty || verifPassword.touched)}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifPassword.errors && verifPassword.touched && verifPassword.errors['required']"  class="message-erreur">Entrer un mot de passe</span>
@@ -264,8 +260,8 @@
             </div>
             <div></div>
             <div class="col-md-5">
-                <input class="" type="password" name="password_confirmation" placeholder="Confirmer mot de pass" [(ngModel)]="registreEmploye .password_confirmation"  required #verifConfPassword="ngModel"
-                [ngClass]="{'is-invalid': verifConfPassword.errors && !verifConfPassword.valid || registreEmploye.password_confirmation !== registreEmploye.password}"
+                <input class="" type="password" name="password_confirmation" placeholder="Confirmer mot de pass" [(ngModel)]="registreEmploye .password_confirmation"  required #verifConfPassword="ngModel" (input)="onEmailInput(verifConfPassword)"
+                [ngClass]="{'is-invalid': verifConfPassword.invalid && (verifConfPassword.dirty || verifConfPassword.touched) || registreEmploye.password_confirmation !== registreEmploye.password}"
                 />
                 <div class="invalid-feedback">
                     <span *ngIf="verifConfPassword.errors && verifConfPassword.touched && verifConfPassword.errors['required']"  class="message-erreur">Confirme votre mot de passe</span>
@@ -276,15 +272,15 @@
             
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="registreEmploye .presentation" required #verifPresentation="ngModel"
-                [ngClass]="{'is-invalid': verifPresentation.touched && !verifPresentation.valid }"
+                <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="registreEmploye .presentation" required #verifPresentation="ngModel" (input)="onEmailInput(verifPresentation)"
+                [ngClass]="{'is-invalid': verifPresentation.invalid && (verifPresentation.dirty || verifPresentation.touched) }"
                 ></textarea>
                 <div class="invalid-feedback">
                     <span *ngIf="verifPresentation.errors && verifPresentation.touched && verifPresentation.errors['required']" class="message-erreur">Entrer une présentation</span>
                 </div>
               </div>
           
-            <input class=" col-md-8 btn-custom" type="submit" [disabled]="!registerForm.valid" value="S'inscrire" />
+            <input class=" col-md-8 btn-custom" type="submit" [disabled]="!monForm.valid" value="S'inscrire" />
     </div>
     
       </form>
@@ -305,7 +301,7 @@
         <div class="container">
             <h4 class="text-center text-white">Vous êtes un employeur ou a la recherche d’un emploi <br>
                 Rejoignez nous</h4>
-            <div class="row column-gap-0 mt-5">
+            <div class="row column-gap-0 row-gap-3 mt-5">
                 <div class="item col-lg-5 ">
                     <h6 class="text-center"> Je suis propriétaire à la recherche d’un employer</h6>
                     <a href="" class="d-flex justify-content-center mt-4" (click)="afficherSection('inscriptionemployeur', $event)"> <span class="lnr lnr-pointer-up me-3"></span> Cliquez ici</a>
@@ -319,7 +315,7 @@
             </div>
             <div class="d-flex justify-content-center mt-4">
 
-                <a href="" class="btn btn-light"> Créer un compte</a>
+                <!-- <a href="" class="btn btn-light" [class.btn.disabled]="!SectionCliquer" (click)="afficherSectionCliquer()" > Créer un compte</a> -->
             </div>
             <h5 class="text-center text-white mt-4">Vous avez déjà un compte? <a href="" class="text-white fw-bold text-decoration-none">Connectez-vous</a></h5>
         </div>

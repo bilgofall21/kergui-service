@@ -36,6 +36,7 @@ export class HomeCandidatComponent implements OnInit {
     })
   }
   allpublication :any[]=[]
+  publicationActiveData : any[]=[]
   recupAllOffre(){
     this.publicationservice.geyAllpublication().subscribe((respons)=>{
       this.allpublication = respons.data;
@@ -44,6 +45,10 @@ export class HomeCandidatComponent implements OnInit {
       this.allpublication.forEach((publication : any)=>{
         const nomProfession = this.getNomProfesion(publication.profession_id);
         console.log("profession", nomProfession);
+        this.publicationActiveData = this.allpublication.filter((element)=>
+        element.etat == 'nouveau'
+        )
+        console.log("voir cux active", this.publicationActiveData);
       })
     })
   }
@@ -89,7 +94,7 @@ searchpublication : string= '';
 getArticlesPage(): any[] {
 const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
 const indexFin = indexDebut + this.articlesParPage;
-this.datapublicationtrouve= this. allpublication.filter((service: { dateline: string; description: string; }) =>
+this.datapublicationtrouve= this. publicationActiveData .filter((service: { dateline: string; description: string; }) =>
   service.dateline.toLowerCase().includes(this.searchpublication.toLowerCase()) ||
   service.description.toLowerCase().includes(this.searchpublication.toLowerCase())
   );
@@ -97,13 +102,13 @@ return this.datapublicationtrouve.slice(indexDebut, indexFin);
 }
  // Méthode pour générer la liste des pages
  get pages(): number[] {
-  const totalPages = Math.ceil(this.  allpublication .length / this.articlesParPage);
+  const totalPages = Math.ceil(this.  publicationActiveData  .length / this.articlesParPage);
   return Array(totalPages).fill(0).map((_, index) => index + 1);
 }
 
 // Méthode pour obtenir le nombre total de pages
 get totalPages(): number {
-  return Math.ceil(this.  allpublication.length / this.articlesParPage);
+  return Math.ceil(this.  publicationActiveData .length / this.articlesParPage);
 }
 
 

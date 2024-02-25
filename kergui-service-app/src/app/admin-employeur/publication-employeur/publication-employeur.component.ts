@@ -4,6 +4,7 @@ import { Profession } from 'src/app/models/profession';
 import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { PublicationService } from 'src/app/services/publication.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -50,13 +51,13 @@ publication: any;
 
     
 
-  constructor( private publicationservice : PublicationService, private candidatservice : CandidatureServiceService, private professionservice : ProfessionServiceService) { }
+  constructor( private publicationservice : PublicationService, private candidatservice : CandidatureServiceService, private professionservice : ProfessionServiceService, private utilisateurservice : UtulisateurService) { }
  userConnectedId : any;
  datPublicationFiltred : any[]= [] ;
   ngOnInit(): void {
   this.afficherPublication();
   this.listeProfession ();
-  // this.publicationonly ();
+  this.afficherProfil();
  
   }
   dataOffres : any;
@@ -92,6 +93,8 @@ publication: any;
       // appel du service recuperant tpous les annonces
       this.publicationservice.geyAllpublication().subscribe((data)=>{
         this.dataPublication = data.data;
+        console.warn(this.dataPublication);
+        console.log("tous les publuvation", this.dataPublication);
       
         // fitrer les anonces en fontion du userconnecté
         this.datPublicationFiltred = this.dataPublication.filter((element: {etat: string; user_id: any; }) =>
@@ -108,6 +111,13 @@ publication: any;
 
   }
 
+  samaProfil :  any;
+  afficherProfil() :void {
+    this.utilisateurservice.getProfil().subscribe((respons)=>{
+      this.samaProfil = respons.data;
+      console.log("voir profil true", this.samaProfil );
+    })
+  }
 ajouterPublicatin (): void{
   if (this.profession_id !=="" && this.description !=="" && this.lieu !=="" && this.slaireMinimum !=="" && this.experienceMinimum !=="" && this.typeContrat !==""){
 

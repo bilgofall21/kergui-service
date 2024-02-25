@@ -167,10 +167,8 @@
           <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body  ">
-           
-              
-                  <div class="" *ngIf="utulisateurSelectionner ">
+        <div class="modal-body  "> 
+                  <!-- <div class="" *ngIf="utulisateurSelectionner ">
                    <div class="row">
                     <div class="col-4 " id="tof">
                         <img src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}" alt="">
@@ -197,7 +195,33 @@
                         </div>
                     </div>
                    </div>
+                  </div> -->
+                  <div class="">
+                      <div class="contact-box center-version" *ngIf="utulisateurSelectionner">
+                        <a href="">
+                            <img alt="image" class="img-circle" src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}">
+                            <h3 class="m-b-xs"><strong>{{utulisateurSelectionner.prenom}} {{utulisateurSelectionner.nom}}</strong></h3>
+                
+                            <div class="font-bold">{{utulisateurSelectionner.profession.nom_prof}}</div>
+                            <address class="m-t-md">
+                                <strong>  </strong><br>
+                                {{utulisateurSelectionner.lieu}}<br>
+                                {{utulisateurSelectionner.email}}<br>
+                                 {{utulisateurSelectionner.telephone}}
+                            </address>
+                
+                        </a>
+                        <div class="contact-box-footer">
+                            <div class="m-t-xs btn-group">
+                               <p> {{utulisateurSelectionner.presentation}} </p>
+                            </div>
+                        </div>
+                
+                    </div>
+
                   </div>
+                  
+                  
                   <div class="validajout d-flex justify-content-end">
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
                   </div>

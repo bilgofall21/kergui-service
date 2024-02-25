@@ -22,11 +22,11 @@
                 <h4 class="fw-bold"> Les annonces</h4>
                 <hr class="border-3 opacity-100">
               </div>
-              <div class="row gap-2">
+              <div class="row">
              
-                <div class="col-sm-12 col-md-6 col-lg-4 mb-3  shadow-sm" id="annoncecol" *ngFor="let element of  getArticlesPage()" style="width: 20rem;">
+                <!-- <div class="col-sm-12 col-md-6 col-lg-4 mb-3  shadow-sm" id="annoncecol" *ngFor="let element of  getArticlesPage()" style="width: 20rem; height: 30rem;">
                   <article class="u-shadow-v11">
-                      <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
+                      <img class="img-fluid w-100 tof" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
                       <div class="g-bg-warning " id="description">
                         <div class="d-flex justify-content-around">
                           <div class="d-flex mt-2">
@@ -46,15 +46,59 @@
                           </h3>
                           <p class="px-3">{{element.description}}</p>
                           <div class="iconegestion text-center mb-1  mt-1">
-                            <a href="" class="text-center text-decoration-none mb-3" (click)="voirDetail(element)"  [routerLink]="['/detail-offre']"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>
+                            <a href="" class="text-center text-decoration-none mb-3" (click)="voirDetail(element)"  [routerLink]="['/detail-offre', element.id]"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>
                         </div>
                           <hr class="">
                       </div>
                   </article>
-              </div>
-              </div>
+              </div> -->
+
+              <!-- <div class="col-md-6 col-lg-3 " *ngFor="let element of  getArticlesPage()" >
+                <div class="card"  id="description">
+                  <img src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-around">
+                      <div class="d-flex mt-2">
+                        <h5 class="">Date limite : </h5>   
+                        <h6 class="ms-2 "> {{element.dateline}} </h6>
+                      </div>
+                      <div class="">    
+                     <h6 class="mb-2 ms-2"> <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #3A6A7E;"></i> {{element.user.prenom}} {{element.user.nom}}</h6>
+                      </div>
+                    </div>
+                     <h5 class="card-title text-center">description</h5>
+                    <p class="card-text ">{{element.description}}  </p>
+                    <div class="text-center">
+
+                      <a href="" class="text-center text-decoration-none mb-3" (click)="voirDetail(element)"  [routerLink]="['/detail-offre', element.id]"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+             
+           
+                  <!-- <div class="row"> -->
+                    <div class="col-md-3 col-sm-6" *ngFor="let element of  getArticlesPage()">
+                      <div class="card card-block" >
+                        <h5 class="card-title mt-2 mb-2 text-center"> {{element.profession.nom_prof}} </h5>
+                        <img src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Photo of sunset">
+                        <h6 class="mb-2 ms-2 mt-2 text-center"> Auteur : {{element.user.prenom}} {{element.user.nom}}</h6>
+                        <p class="card-text px-2">{{element.description}} </p>
+                        <h5 class="card-title mt-2 mb-2 text-center"> Date limite : {{element.dateline}}  </h5>
+                         <a (click)="voirDetail(element)"  [routerLink]="['/detail-offre', element.id]">
+                          <h4 class="card-title text-center mt-2"><i class="material-icons">Voir Detail</i></h4>
+                         </a>  
+                  </div>
+                    </div>
+                       
+                  <!-- </div> -->
+                  
+                </div>  
+            
+            
+            </div>
         </div>
-    </div>
+   
 </section>
 
 

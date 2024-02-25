@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-lg " id="menu">
+    <div class="container-fluid">
+      <a class="navbar-brand  img-fluid" id="logoheader" [routerLink]="['/accueil']">
+        <img src=".\assets\image\logo kergui.png" class="img-fluid" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto w-75 mb-2 mb-lg-0  d-flex justify-content-center ">
+          <li class="nav-item">
+            <a class="nav-link" href="#" [routerLink]="['/accueil']">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/a-propos']">A propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/page-service']" >Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  [routerLink]="['/annonce']" >Annonce</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"[routerLink]="['/fonctionnement']" >Fonctionnement</a>
+          </li>
+          
+        
+        </ul>
+        <ul id="navright" class="">
+          <li>
+            <button   *ngIf="!utilisateurConnecte" class="btn text-white fw-bold"   [routerLink]="['/login']"  >Se connecter</button>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu " *ngIf="utilisateurConnecte">
+          
+          <li class="nav-item dropdown d-flex align-items-center ">
+            <h6 class="text-white me-2">{{samaProfil.prenom}} {{samaProfil.nom}} </h6>
+            <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="profile-pic">
+                  <img src="http://127.0.0.1:8000/storage/{{samaProfil.imageDeProfil}}" alt="Profile Picture">
+               </div>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item text-danger" (click)=" redirectToDashboard()"><i class="fas fa-sliders-h fa-fw"></i> Dashord</a></li>
+              <!-- <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li> -->
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="  LogOutUser()"><i class="fas fa-sign-out-alt fa-fw"></i> Deconnexion</a></li>
+            </ul>
+          </li>
+       </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu"> 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="profile-pic">
+                  <img src="https://source.unsplash.com/250x250?girl" alt="Profile Picture">
+               </div>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
+            </ul>
+          </li>
+       </ul>
+      </div>
+    </div>
+  </nav> -->
+  

@@ -15,7 +15,7 @@ this.afficherTemoignage();
   }
   dataTemoignage : any ;
   afficherTemoignage():  void{
-    this.temoignageservice.getAlltemoignage().subscribe((respons)=>{
+    this.temoignageservice.temoignageemployeur().subscribe((respons)=>{
       this.dataTemoignage = respons;
       console.log("wakhal",this.dataTemoignage);
     })

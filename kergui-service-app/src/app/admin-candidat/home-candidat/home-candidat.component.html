@@ -87,7 +87,7 @@
                         <!-- <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button> -->
                     </div>
                       <hr class="">
-                      <button href="" class="text-center validpubli text-decoration-none py-1  mb-2"   > Détail annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
+                      <button href="" class="text-center validpubli text-decoration-none py-1  mb-2" [routerLink]="['/detail-offre', element.id]"  > Voir Détails <span class="lnr lnr-arrow-right ms-2"></span></button>
                   </div>
               </article>
           </div>

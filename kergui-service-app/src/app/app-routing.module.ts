@@ -29,7 +29,7 @@ const routes: Routes = [
   {path : 'page-contact', component : PageContactComponent,},
   {path : 'login', component : LoginComponent,},
   {path : 'service-dashboard', component : ServiceDashboardComponent,},
-  {path : 'detail-offre', component : DetailOffreComponent, },
+  {path : 'detail-offre/:id', component : DetailOffreComponent, },
   { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule), canActivate: [AuthGuardService]   },
   {path : 'admin-employeur', loadChildren:() =>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule), canActivate: [AuthGuardService]   },
   {path : 'admin-candidat', loadChildren:() =>import('./admin-candidat/admin-candidat.module').then(m=>m.AdminCandidatModule,), canActivate: [AuthGuardService]  },

@@ -51,17 +51,15 @@
        
           <div class="row my-4">
             <div class="col-lg-3 col-sm-6 " *ngFor="let service of lastThreeProfession">
-              <div class="card shadow-lg" style="width: 18.5rem; height: 28rem;"*ngIf="lastThreeProfession">
+              <div class="card shadow-lg" style="width: 18.5rem; height: 26rem;"*ngIf="lastThreeProfession">
                 <div>
                   <img  src="http://127.0.0.1:8000/storage/{{service.image}}" class="card-img-top" alt="..." style="height: 14rem;">
                   <div class="titleService">
                     <h5 class="text-center mt-1">{{service.nom_prof}} </h5>
                   </div>
-                  <!-- <div class="titleService">
-                    <h5 class="text-center">{{service.nom_prof}} </h5>
-                  </div> -->
+           
                 </div>
-                <div class="card-body">
+                <div class="card-body py-2">
                   <p class="card-text"> {{service.description}} </p>
                 </div>
                 <div class="cardfooter"></div>

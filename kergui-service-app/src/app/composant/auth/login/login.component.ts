@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit{
   showPresentation = false;
   showAuthEmployeur = false;
   showAuthEmploye = false;
+  SectionCliquer = false;
+  sectionActiver = '';
+
 
   // methode pour afficher les sections
   afficherSection(view: string, event : Event): void {
@@ -42,6 +45,17 @@ export class LoginComponent implements OnInit{
     this.showAuthEmployeur = view === 'inscriptionemployeur';
     this.showAuthEmploye= view === 'inscritionemploye';
     this.showPresentation= view === 'presentationlogin';
+    this.sectionActiver = view;
+  }
+
+  // methode pour afficher avec le bouton la section cliquer
+  afficherSectionCliquer(): void{
+    if(this.sectionActiver === 'inscriptionemployeur'){
+      this.showAuthEmployeur=true;
+    }else if(this.sectionActiver === 'inscritionemploye'){
+      this.showAuthEmploye =true;
+    }
+   
   }
 
 // variable pour recuperer input
@@ -123,9 +137,15 @@ userfoundid = '';
 //   }
 // }
 
-connexion(event : Event, registerForm : NgForm): void{
+onEmailInput(control: any): void {
+  if (control.invalid && !control.touched) {
+    control.control.markAsTouched(); // Marquer le champ comme "touché" uniquement si invalide et non touché
+  }
+}
+
+connexion(event : Event): void{
   event.preventDefault();
-  console.log("voirrrrrr", JSON.stringify(registerForm.value));
+  // console.log("voirrrrrr", JSON.stringify(registerForm.value));
   // objet contenant les donneé envoye
   const loginData = {
     email: this.formData.email,
@@ -135,7 +155,7 @@ connexion(event : Event, registerForm : NgForm): void{
     this.userfoundid = user.data;
       // Stocker l'objet utilisateur recut
       console.log("connexion status", user);
-// localStorage.setItem('user_profile', JSON.stringify(user.data));
+localStorage.setItem('user_profile', JSON.stringify(user.data));
       if (user.token) {
          // Mise à jour de l'état de l'utilisateur connecté
       this.authentification.setLoggedIn(true);
@@ -235,7 +255,7 @@ imageDeProfil!: File;
 
 
 
-registerUser( registerForm :NgForm): void {
+registerUser(): void {
   if(this.registreData.email !== '' && this.registreData.password !==''  && this.registreData.nom !== '' && this.registreData.prenom !== '' && this.registreData.telephone !== '' && this.registreData.lieu !== '' && this.registreData.password_confirmation !== '' ) {
 
     // Perform additional validation if needed
@@ -300,7 +320,7 @@ registerUser( registerForm :NgForm): void {
   }
 
 }
-registerUserEmploye(registerForm :NgForm): void {
+registerUserEmploye(): void {
   // Perform additional validation if needed
     
     let formData=new FormData();
