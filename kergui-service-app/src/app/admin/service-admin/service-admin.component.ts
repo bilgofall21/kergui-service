@@ -123,7 +123,7 @@ export class ServiceAdminComponent implements OnInit {
 //   }
 // }
 
-ajouterPofession(registerForm: NgForm): void {
+ajouterPofession(): void {
   if (this.nom_prof !== '' && this.description !== '' && this.image) {
     let formData = new FormData();
     formData.append('nom_prof', this.nom_prof);
@@ -145,7 +145,7 @@ ajouterPofession(registerForm: NgForm): void {
           background: '#3A6A7E'
         });
         this.viderChamp();
-        registerForm.reset();
+        // registerForm.reset();
       },
       error => {
         console.error('Erreur lors de l\'ajout :', error);
@@ -443,6 +443,49 @@ getArticlesPage(): any[] {
   // Méthode pour obtenir le nombre total de pages
   get totalPages(): number {
     return Math.ceil(this. dataProfession.data.length / this.articlesParPage);
+  }
+
+    // Variables pour faire la vérifications
+    verifNomProfession : String  =  "";
+    verifDescrip: String = "";
+   
+  
+    // Variables si les champs sont exacts
+    exactNomProfession : boolean = false;
+    exactDescription: boolean = false;
+   
+  
+
+  // vrif champs
+  // Verification du nom
+  verifProfssion() {
+    this.exactNomProfession = false;
+    if(this.nom_prof == ""){
+      this.verifNomProfession  = "Veuillez renseigner une professon";
+    }
+    else if (this.nom_prof.length < 4 ){
+      this.verifNomProfession  = "Le nom de la profession doit contenir au moins 4 caractères";
+    }
+    else if (this.nom_prof.length >= 30 ){
+      this.verifNomProfession  = "Le nom de la profession ne doit pas dépasser 30 caractères";
+    }
+    else {
+      this.verifNomProfession  = "";
+      this.exactNomProfession = true;
+    }
+  }
+  verifDescription() {
+    this.exactDescription = false;
+    if(this.description == ""){
+      this.verifDescrip  = "Veuillez renseigner une description";
+    }
+    else if (this.description.length < 4 ){
+      this.verifDescrip  = "La description doit contenir au moins 4 caractères";
+    }
+    else {
+      this.verifDescrip  = "";
+      this.exactDescription = true;
+    }
   }
 
 

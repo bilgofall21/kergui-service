@@ -8,33 +8,27 @@
     <div class="connexion">
     <div class="form signup">
       <header class="text-white mb-2">Connectez-vous</header>
-      <form novalidate  (ngSubmit)="connexion($event)" #monForm ="ngForm">
+      <form novalidate  (ngSubmit)="connexion($event)" >
         <div class="row row-gap-4">
       
             <div class="">
-                <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required email appEmailValidation
-                #verifEmail="ngModel"
-                [ngClass]="{'is-invalid': verifEmail.invalid && (verifEmail.dirty || verifEmail.touched)}" (input)="onEmailInput(verifEmail)" />
-                <div class="invalid-feedback">
-                    <span *ngIf="  verifEmail.touched && verifEmail.errors &&  verifEmail.errors['required']"  class="message-erreur"> Entrer votre email</span>
-                    <span *ngIf=" verifEmail.touched && verifEmail.errors && verifEmail.errors['email']"  class="message-erreur"> Email invalide </span>
-                </div>
+                <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required (input)="verifEmailConFonction()"/>
+                <p class="message-erreur" *ngIf="!exactEmail"> {{verifEmail}} </p>
+                <p class="message-success" *ngIf="exactEmail"><i class="bi bi-check2-all"></i> Exact !</p>
+               
             </div>
            
             <div class="">
-                <input class=" col-12" type="password" placeholder="Mot de pass" name="password" required minlength="8" [(ngModel)]="formData.password" 
-                #verifPassword="ngModel"
-                [ngClass]="{'is-invalid': verifPassword.errors && (verifPassword.dirty || verifPassword.touched)}"  (input)="onEmailInput(verifPassword)"  />
-                <div class="invalid-feedback">
-                    <span *ngIf=" verifPassword.touched && verifPassword.errors &&  verifPassword.errors['required']"  class="message-erreur"> Entrer votre mot de passe</span>
-                    <span *ngIf=" verifPassword.touched && verifPassword.errors && verifPassword.errors['minlength']"  class="message-erreur"> Minimum 8 caractères </span>
-                </div>
+                <input class=" col-12" type="password" placeholder="Mot de pass" name="password"  [(ngModel)]="formData.password" (input)="verifPasswordFonction()"
+                />
+                <p class="message-erreur" *ngIf="!exactPassword"> {{verifPassword}} </p>
+                <p class="message-success" *ngIf="exactPassword"><i class="bi bi-check2-all"></i> Exact !</p>
             </div>
             <div>
-                <!-- <p class="text-white">mot de pass oublié ?</p> -->
+               <a class="text-decoration-none"> <p class="text-white">mot de passe oublié ?</p></a> 
             </div>
             <div>
-                <button class="col-12 btn-custom" type="submit" [disabled]="!monForm.valid"> Connexion</button>
+                <button class="col-12 btn-custom" type="submit" > Connexion</button>
             </div>
             <p class="text-center text-white"> Vous n'avez pas de compte ?</p>
           

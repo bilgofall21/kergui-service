@@ -180,13 +180,7 @@ padding-top: 50px;
     /* text-decoration: line-through; 
     text-decoration-thickness: 2px;  */
 }
-.message-erreur {
-    color: var(--kergui-green);
-    font-size: 13px;
-    font-style: italic;
-    font-weight: bold;
-    /* Ajoutez d'autres styles CSS selon vos besoins */
-}
+
 /* .invalid-field {
     border: 1px solid red;
   } */
@@ -257,6 +251,24 @@ padding-top: 50px;
         margin: 0 auto;
         
     }
+}
+
+/* css verification */
+
+.message-success {
+    color: var(--kergui-green);
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    padding-top: 0.5px;
+    /* Ajoutez d'autres styles CSS selon vos besoins */
+}
+.message-erreur {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    padding-top: 0.5px;
 }
 
 

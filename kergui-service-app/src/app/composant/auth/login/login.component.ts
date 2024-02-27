@@ -452,4 +452,49 @@ LogOutUser() : void{
   })
 }
 
+// validation
+
+  // Pour vérifier les champs pour la connexion 
+  verifEmail : String = "";
+  verifPassword: String = "";
+
+  // Variables Si les valeurs sont exactes
+  exactEmail : boolean = false;
+  exactPassword : boolean = false; 
+
+    // Fonction de Verification de l'email pour la fonctionnalité connexion
+    verifEmailConFonction(){
+      const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      this.exactEmail = false;
+      
+      if(this.formData.email === ""){
+        this.verifEmail = "Veuillez renseigner votre email";
+      }
+      else if (!emailPattern.test(this.formData.email) ){
+        this.verifEmail = "Veuillez donner un email valide";
+      }
+      else {
+        this.verifEmail = "";
+        this.exactEmail = true;
+      }
+    }
+
+    verifPasswordFonction(){
+      const passwordPattern=/^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$/;
+      this.exactPassword = false;
+      if(this.formData.password=== ""){
+        this.verifPassword = "Veuillez renseigner votre mot de passe";
+      }
+      else if (this.formData.password.length < 8 ){
+        this.verifPassword = "Mot de passe doit être supérieur ou égal à 8";
+      }
+      // else if (!passwordPattern.test(this.formData.password) ){
+      //   this.verifPassword = "Veuillez donner un mot de passe valide ";
+      // }
+      else{
+        this.verifPassword = "";
+        this.exactPassword = true;
+      }
+    }
+
 }
