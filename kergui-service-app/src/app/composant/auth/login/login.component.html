@@ -28,7 +28,7 @@
                <a class="text-decoration-none"> <p class="text-white">mot de passe oublié ?</p></a> 
             </div>
             <div>
-                <button class="col-12 btn-custom" type="submit" > Connexion</button>
+                <button class="col-12 btn-custom" type="submit" [disabled]="!exactEmail || !exactPassword" > Connexion</button>
             </div>
             <p class="text-center text-white"> Vous n'avez pas de compte ?</p>
           
