@@ -29,6 +29,11 @@ constructor(private candidaturservice : CandidatureServiceService){}
    this.recupCandidatureByUser();
   }
 
+  selectElement : any;
+  showElement(element : any): void{
+this.selectElement = element;
+  }
+
   recupCandidatureByUser() {
     this.candidaturservice.listeOffreByCandidat(User).subscribe((data)=>{
       this.candidatures = data.data;

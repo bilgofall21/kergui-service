@@ -538,7 +538,12 @@ exactImage : boolean = false;
       }
 
     }
-
+    minDate(): string {    
+       const currentDate = new Date();   
+          const isoDate = currentDate.toISOString().split('T')[0];    
+           return isoDate;  
+           }
+  
 
 
 

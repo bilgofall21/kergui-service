@@ -68,7 +68,7 @@
                     <input type="text" class="form-control" name="nom_prof" id="profession" placeholder="profession" [(ngModel)]="nom_prof" required  (input)="verifProfssion()"
                     >
                      <p class="message-erreur" *ngIf="!exactNomProfession">{{verifNomProfession}}</p>
-                     <p class="message-success" *ngIf="exactNomProfession"><i class="bi bi-check2-all"></i> Exact !</p>
+                     <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
                   
                   </div>
                   <div class="mb-3">
@@ -77,7 +77,7 @@
                     ></textarea>
                     
                       <p class="message-erreur" *ngIf="!exactDescription">{{verifDescrip}}</p>
-                      <p class="message-success" *ngIf="exactDescription"><i class="bi bi-check2-all"></i> Exact !</p>
+                      <p class="message-success" *ngIf="exactDescription"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
                   </div>
                   <div class="validajout d-flex justify-content-end">
                     <button  data-bs-dismiss="modal" type="submit" [disabled]="!exactNomProfession || !exactDescription"  class="btn-custom"> Ajouter</button>

@@ -108,7 +108,9 @@ font-weight: bold;
 .joinprofil .join-icon a{
 
   color: var(--kergui-blue);
+
 }
+
 
 
 /* style modal */
@@ -142,11 +144,10 @@ img {
 
   border-radius: 10%;
   height: 60%;
-  width: 80%;
+  width: 50%;
 }
 img {
-  vertical-align: middle;
-  border-style: none;
+ 
 }
 /* About Me 
 ---------------------*/
@@ -230,10 +231,12 @@ box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
 .about-section .counter .count-data {
 margin-top: 10px;
 margin-bottom: 10px;
+/* background-color: var(--kergui-green); */
+border-radius: 10px;
 }
 .about-section .counter .count {
 font-weight: 700;
-color: #20247b;
+color:var(--kergui-green);
 margin: 0 0 5px;
 }
 .about-section .counter p {
@@ -246,4 +249,27 @@ margin: 0;
 }
 .dark-color {
   color: #20247b;
+}
+
+/* style modal sortant de droite vers guauche */
+@keyframes slideRightToLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.modal-slide-right .modal-dialog {
+  animation: slideRightToLeft 0.60s ease;
+}
+
+#listemoignage{
+  /* box-shadow: 3px 3px 4px 0px #003668, -3px -3px 4px 0px rgba(0, 0, 0, 0.25); */
+  /* background-color: var(--kergui-green); */
+  padding: 22px 20px;
+background: #ffffff;
+border-radius: 10px;
+box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
 }

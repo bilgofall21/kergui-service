@@ -272,11 +272,11 @@ h5{
 
   /* style validation */
   .message-success {
-    color: var(--kergui-green);
+    color: green;
     font-size: 14px;
     font-style: italic;
     font-weight: bold;
-    padding-top: 0.5px;
+    padding-top: 4px;
     /* Ajoutez d'autres styles CSS selon vos besoins */
 }
 .message-erreur {

@@ -96,18 +96,21 @@
                     </div>
                     <div class="col-8 ">
                         <div class=" mb-2">
-                            <h6>contrat :  {{publicationSelect.typeContrat}} </h6>
+                            <h6>Profession :<span class="text-black fw-lighter"> {{publicationSelect.profession.nom_prof}}</span>  </h6>
+                            <h6>Contrat : <span class="text-black fw-lighter">{{publicationSelect.typeContrat}} </span> </h6>
                            
                         </div>
                         
                         <div class="d-flex mb-2">
-                            <h6> salaire:  {{publicationSelect.slaireMinimum}} </h6>
-                            <h6 class="ms-3">adresse :  {{publicationSelect.lieu}} </h6>
+                            <h6> Salaire: <span class="text-black fw-lighter">{{publicationSelect.slaireMinimum}} </span>  </h6>
+                            <h6 class="ms-3">adresse : <span class="text-black fw-lighter">{{publicationSelect.lieu}}</span>   </h6>
                         </div>
                         <div class=" mb-2">
-                            <h6> creer le: {{publicationSelect.created_at}} </h6>
-                           
+                            <h6> Créer le: <span class="text-black fw-lighter">{{publicationSelect.created_at | date : "dd/MM/yyyy"}}</span>  </h6>
+                            <h6> Expire le: <span class="text-black fw-lighter">{{publicationSelect.dateline | date : "dd/MM/yyyy"}}</span>  </h6>
+                            
                         </div>
+                        <h6> Etat: <span class="text-black fw-lighter">{{publicationSelect.etat}}</span>  </h6>
                         <div>
                             <h6>description</h6>
                         </div>
