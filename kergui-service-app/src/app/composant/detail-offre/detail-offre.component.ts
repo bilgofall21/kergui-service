@@ -20,11 +20,11 @@ export class DetailOffreComponent implements OnInit  {
 
   Candididater(id : any) : void{
     this.candidaterservice.CandidaterUser(id).subscribe((respons)=>{
-      this.affichermessageCandidater('success', 'bravo', ' candidature acceptée');
+      this.affichermessageCandidater('success', 'bravo', ' votre candidature a été enregistrée ');
       console.log("candidature reussi", respons);
     },
     (error: any) => {
-      this.affichermessageCandidater('error', 'desole', ' veiller vous connectez');
+      this.affichermessageCandidater('error', 'Désolé', ' veiller vous connectez en tant que employée');
       console.error('candidature non valide:', error);
       // Handle registration error, e.g., show an error message
     }
@@ -36,10 +36,11 @@ export class DetailOffreComponent implements OnInit  {
         position: 'center',
         icon: icone,
         title: message +"" +user,
-        showConfirmButton: true,
+        showConfirmButton: false,
         confirmButtonColor: "#3A6A7E",
-        width: 420,
-        padding: 15,
+        timer : 2500,
+        width: 480,
+        padding: 10,
         color : '#ffff',
         background: '#3A6A7E',
         // timer: 1500

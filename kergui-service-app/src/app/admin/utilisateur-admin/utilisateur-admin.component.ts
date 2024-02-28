@@ -57,9 +57,13 @@ getNomProfession(professionId : number): void{
 
 // methode voir detail utulisateu
  utulisateurSelectionner :  any;
+ employeurSelectionner :  any;
 
 afficherDeatailUser(element : any){
   this.utulisateurSelectionner = element;
+}
+afficherDeatailEmployeur(element : any){
+  this.employeurSelectionner  = element;
 }
 
 // amethode desavtiver utulisateur
@@ -86,6 +90,8 @@ desactiverUser(id : string): void {
          if (utilisateurDesactive) {
            utilisateurDesactive.statut = 'deactive';
          }
+         this.afficherAllUser();
+         this.allCandidat ();
         },
         error => {
           // console.error(`Erreur lors de la desactivation de la profession avec l'ID ${id} :`, error);
@@ -130,6 +136,8 @@ activerUser(id : string): void {
          if (utilisateurActive) {
            utilisateurActive.statut = 'activer';
          }
+         this.afficherAllUser();
+         this.allCandidat ();
   
         }, error=>{
 

@@ -332,10 +332,10 @@ height: 23rem;
         transition:0.8s;
         cursor:pointer;
         height: 26rem;
-        width: 19.5rem;
+        width: 18rem;
       }
       .card p{
-        height: 9rem;
+        height: 5rem;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -671,5 +671,8 @@ h5{
     height: 10vh;
   }
   }
+
+
+  /* kkkkkkkkkkk */
 
 

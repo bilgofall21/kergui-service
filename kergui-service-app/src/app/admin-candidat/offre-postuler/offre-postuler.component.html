@@ -44,7 +44,7 @@
                                     <td class="cell">
                                         <div class="iconegestion d-flex justify-content-around w-50   ">
                                             <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal"  ><button class="btn btn-outline-primary"> detail</button> </a> -->
-                                            <a class="btn-sm app-btn-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal"  href="">Détail</a>
+                                            <a class="btn-sm app-btn-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showElement(candidate)"  href="">Détail</a>
                                           
                                         </div>
                                     </td>
@@ -84,29 +84,32 @@
            
               
                   <div class="" >
-                   <div class="row">
+                   <div class="row" *ngIf="selectElement ">
                     <div class="col-4 " id="tof">
-                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHB1YmxpY2F0aW9uJTIwd2ViJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+                        <img src="http://127.0.0.1:8000/storage/{{selectElement.offre_emplois.image}}">
                     </div>
                     <div class="col-8 ">
                         <div class=" mb-2">
-                            <h6>contrat : </h6>
+                            <h6>Profession :<span class="text-black fw-lighter"> {{selectElement.offre_emplois.profession.nom_prof}}</span>  </h6>
+                            <h6>Contrat : <span class="text-black fw-lighter">{{selectElement.offre_emplois.profession.typeContrat}} </span> </h6>
                            
                         </div>
                         
                         <div class="d-flex mb-2">
-                            <h6> salaire:  </h6>
-                            <h6 class="ms-3">adresse :  </h6>
+                            <h6> Salaire: <span class="text-black fw-lighter">{{selectElement.offre_emplois.profession.slaireMinimum}} </span>  </h6>
+                            <h6 class="ms-3">adresse : <span class="text-black fw-lighter">{{selectElement.offre_emplois.lieu}}</span>   </h6>
                         </div>
                         <div class=" mb-2">
-                            <h6> creer le:  </h6>
-                           
+                            <h6> Créer le: <span class="text-black fw-lighter">{{selectElement.offre_emplois.created_at | date : "dd/MM/yyyy"}}</span>  </h6>
+                            <h6> Expire le: <span class="text-black fw-lighter">{{selectElement.offre_emplois.dateline | date : "dd/MM/yyyy"}}</span>  </h6>
+                            
                         </div>
+                        <h6> Etat: <span class="text-black fw-lighter">{{selectElement.offre_emplois.etat}}</span>  </h6>
                         <div>
                             <h6>description</h6>
                         </div>
                         <div>
-                            <p>  </p>
+                            <p> {{selectElement.offre_emplois.description}} </p>
                         </div>
                     </div>
                    </div>

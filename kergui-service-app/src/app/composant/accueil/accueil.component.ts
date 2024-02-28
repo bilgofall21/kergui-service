@@ -44,7 +44,7 @@ affichepublication() : void {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
       // Prendre les trois dernières publications
-      this.lastThreePublications = sortedPublications.slice(0, 3);
+      this.lastThreePublications = sortedPublications.slice(0, 4);
       console.log('vor dernietr', this.lastThreePublications);
     }
   })

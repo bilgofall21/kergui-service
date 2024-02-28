@@ -41,7 +41,6 @@ export class PublicationEmployeurComponent implements OnInit {
       description:"",
       slaireMinimum:"",
       experienceMinimum:"",
-      Profession_id:"",
       user_id: '',
       profession_id:'',
       created_at:'',
@@ -407,5 +406,145 @@ return this.datapublicationtrouve.slice(indexDebut, indexFin);
 get totalPages(): number {
   return Math.ceil(this. datPublicationFiltred.length / this.articlesParPage);
 }
+
+// validation
+
+// Variables pour faire la vérifications
+verifprofession: String  =  "";
+verifDescrip: String = "";
+verifDateLimmite : string =  "";
+verifLieu : string ="";
+verifExperince : string ="";
+verifSalaire : string = "";
+verifTypeContrat : string = "";
+verifImage : string = "";
+
+
+// Variables si les champs sont exacts
+exactNomProfession : boolean = false;
+exactDescription: boolean = false;
+exactDateLimite :  boolean= false;
+exactLieu : boolean = false;
+exactExperience : boolean =false;
+exactSalaire : boolean = false;
+exactTypeContrat : boolean = false;
+exactImage : boolean = false;
+
+    // methode pour validation
+    verifProfssion() {
+      this.verifprofession = ""; // Réinitialiser le message d'erreur.
+      this.exactNomProfession = false; // Réinitialiser l'état de validation.
+    
+      // Assurez-vous de comparer la valeur de `profession_id` à la valeur
+      // placeholder (ici, nous supposons "" pour l'exemple).
+      if (this.profession_id === "") {
+        this.verifprofession = "Veuillez sélectionner une profession.";
+      } else {
+        // Si `profession_id` a une valeur autre que la valeur placeholder,
+        // cela signifie qu'une profession valide a été sélectionnée.
+        this.exactNomProfession = true;
+      }
+    }
+    verifDescription() {
+      this.exactDescription = false;
+      if(this.description == ""){
+        this.verifDescrip  = "Veuillez renseigner une description";
+      }
+      else if (this.description.length < 4 ){
+        this.verifDescrip  = "La description doit contenir au moins 4 caractères";
+      }
+      else {
+        this.verifDescrip  = "";
+        this.exactDescription = true;
+      }
+    }
+    verifAdresse(){
+    this.exactLieu = false;
+    if(this.lieu === ""){
+      this.verifLieu = "Veuillez renseigner une adresse";
+    }
+    else if(this.lieu.length < 2){
+      this.verifLieu = "Le nom de l'adresse doit contenir au moins 2 caractères"
+    }
+    else if(this.lieu.length >= 30){
+      this.verifLieu = "Le nom de la profession ne doit pas dépasser 30 caractères"
+    }else{
+      this.verifLieu = "";
+      this.exactLieu = true;
+    }
+    }
+
+    
+    verifierSalaire() {
+      const salairePattern = /^\d+$/;
+      this.exactSalaire = false;
+    
+      if (this.slaireMinimum === "") {
+        this.verifSalaire = "Le montant du salaire est obligatoire";
+      } else if (!salairePattern.test(this.slaireMinimum)) {
+        this.verifSalaire = "Le salaire doit être un nombre entier positif";
+      } else if (parseInt(this.slaireMinimum, 10) <= 0) {
+        this.verifSalaire = "Le montant du salaire doit être supérieur à 0";
+      } else {
+        // Si toutes les vérifications sont passées, le format du salaire est correct
+        this.exactSalaire = true;
+        this.verifSalaire = ""; // Réinitialiser le message d'erreur
+      }
+    }
+
+    verifierExperience(){
+      const experiencePattern = /^\d+$/;
+      this.exactExperience = false;
+      if(this.experienceMinimum == ""){
+        this.verifExperince = "La duréé de l'experince est obligatoire"
+      }else if(!experiencePattern.test(this.experienceMinimum)){
+        this.verifExperince = "La durée de l'experince doit être un nombre entier positif"
+      }else if(parseInt(this.experienceMinimum, 10) <= 0){
+        this.verifExperince = "La durée de l'experience doit être supérieur à 0"
+      }else{
+        this.exactExperience = true;
+        this.verifExperince = "";
+      }
+    }
+
+    verifierContrat(){
+      this.exactTypeContrat  = false;
+      if(this.typeContrat == ""){
+        this.verifTypeContrat = "Veuillez renseigner le type de contrat"
+      }else if(this.typeContrat.length < 4){
+        this.verifTypeContrat = "Le type de contrat doit contenir au moins 4 caractères"
+      }else if(this.typeContrat.length >= 30){
+        this.verifTypeContrat = "Le type de contrat ne doit pas dépasser 30 caractères"
+      }else{
+        this.exactTypeContrat = true;
+        this.verifTypeContrat = "";
+      }
+    }
+
+    verifierDateLimite(){
+      this.exactDateLimite = false;
+      const aujourdHui = new Date();
+      // Réinitialiser l'heure pour une comparaison juste avec la date seule
+      aujourdHui.setHours(0, 0, 0, 0); 
+      // this.exactDateLimite = false;
+      const dateSeletionner = new Date (this.dateline);
+      if(this.dateline  ==""){
+        this.verifDateLimmite = "La date limite est obligatoire"
+      } else if(dateSeletionner < aujourdHui){
+        this.verifDateLimmite = "La date limite doit être supérieur à la date d'aujourd'hui"
+      }else{
+        this.exactDateLimite = true;
+        this.verifDateLimmite = "";
+      }
+
+    }
+    minDate(): string {    
+       const currentDate = new Date();   
+          const isoDate = currentDate.toISOString().split('T')[0];    
+           return isoDate;  
+           }
+  
+
+
 
 }

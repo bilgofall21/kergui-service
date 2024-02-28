@@ -49,11 +49,20 @@ h5{
     /* text-decoration: line-through; 
     text-decoration-thickness: 2px;  */
 }
-.message-erreur {
-    color: var(--kergui-green);
-    font-size: 13px;
+.message-success {
+    color: green;
+    font-size: 15px;
     font-style: italic;
     font-weight: bold;
+    padding-top: 4px;
+    /* Ajoutez d'autres styles CSS selon vos besoins */
+}
+.message-erreur {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    padding-top: 0.5px;
     /* Ajoutez d'autres styles CSS selon vos besoins */
 }
 
