@@ -1,6 +1,9 @@
 #mou{
   background-color: var(--kergui-blue)
 }
+#mou a{
+  cursor: pointer;
+ }
 
 
 

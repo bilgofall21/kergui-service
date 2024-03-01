@@ -28,6 +28,9 @@ margin-top: 150px;
     overflow: hidden;
     margin: 0 auto;
 }
+.connexion a{
+    cursor: pointer;
+}
 #employesign {
     position: relative;
     max-width: 570px;

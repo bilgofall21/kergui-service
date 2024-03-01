@@ -1,35 +1,22 @@
 <div class="admingestioncontainer mt-5">
-    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-        <!-- <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#list-employeur" role="tab" aria-controls="list-employeur" aria-selected="true">Liste des employeurs</a> -->
-        <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false"> Liste des postulants</a>
-       
-    </nav>
-    
-    
-    <div class="tab-content" id="orders-table-tab-content">
-
-        <!-- tableau employeur -->
-        
-        
-
-        <!-- tableau employé -->
-        <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
-            <div class="app-card app-card-orders-table mb-5">
-                <div class="app-card-body">
-                    <div class="table-responsive">
-                        
-                        <table class="table mb-0 text-left">
-                            <thead >
-                                <tr>
-                                    <th class="cellhead" >Date de publication</th>
-                                    <th class="cellhead">Derniere modification</th>
-                                    <th class="cellhead">Date de candidature</th>
-                                    <th class="cellhead">Etat</th>
-                                    <th class="cellhead"> Action</th>
-                                    <th class="cellhead"> validation</th>
-                                </tr>
-                            </thead>
-                            <tbody >
+    <!-- <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe"> -->
+        <div class="app-card app-card-orders-table mb-5">
+            <div class="app-card-body">
+                <div class="table-responsive">
+                    
+                    <table class="table mb-0 text-left">
+                        <thead >
+                            <tr>
+                                <th class="cellhead" >Date de publication</th>
+                                <th class="cellhead">Derniere modification</th>
+                                <th class="cellhead">Date de candidature</th>
+                                <th class="cellhead">Etat</th>
+                                <th class="cellhead"> Action</th>
+                                <th class="cellhead"> validation</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <ng-container *ngIf=" datacandidatOffre.length >0 ;  else noCandidat">
                                 <tr *ngFor="let candidat of datacandidatOffre">
                                     <td class="cell">{{candidat.created_at | date:'dd-MM-yyyy' }} </td>
                                     <td class="cell">{{candidat.updated_at | date:'dd-MM-yyyy' }} </td>
@@ -59,14 +46,18 @@
                                         <button class="btn btn-danger" (click)="rejeterCandidature(candidat.id)">Rejeter</button>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div><!--//table-responsive-->
-                </div><!--//app-card-body-->		
-            </div><!--//app-card-->
-        </div>
-      
-    </div>
+                            </ng-container>
+                            <ng-template #noCandidat>
+                                <h5 class="text-center">Aucune candidature sur cette offre</h5>
+
+                            </ng-template>
+                            
+                        </tbody>
+                    </table>
+                </div><!--//table-responsive-->
+            </div><!--//app-card-body-->		
+        </div><!--//app-card-->
+    <!-- </div> -->
 
 </div>
 
@@ -81,7 +72,7 @@
           <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body  ">   
+        <div class="modal-body  " id="detailprofil">   
                   <div class="">
                    <div class="row" *ngIf="candidatSelectionner">
                     <div class="col-4 " id="tof">
@@ -90,25 +81,25 @@
                     </div>
                     <div class="col-8 ">
                         <div>
-                            <h5 class="ms-3"> {{candidatSelectionner.nomProfession}} </h5>
+                            <h4 class="ms-3"> {{candidatSelectionner.nomProfession}} </h4>
                         </div>
                         
                         <div class="d-flex mb-2">
-                            <h6>prenom :  {{candidatSelectionner.prenom}} </h6>
-                            <h6 class="ms-3">nom : {{candidatSelectionner.nom}}   </h6>
+                            <h6>prenom : <span class="text-black fw-lighter"> {{candidatSelectionner.prenom}} </span>  </h6>
+                            <h6 class="ms-3">nom : <span class="text-black fw-light"> {{candidatSelectionner.nom}} </span>   </h6>
                         </div>
                         
                         <div class="d-flex mb-2">
                             <h6> mail:  {{candidatSelectionner.email}} </h6>
-                            <h6 class="ms-3"> telephone : {{candidatSelectionner.telephone}} </h6>
+                            <h6 class="ms-3"> telephone : <span class="text-black fw-lighter"> {{candidatSelectionner.telephone}} </span>   </h6>
                         </div>
                         <div class="d-flex mb-2">
-                            <h6> Adresse: {{candidatSelectionner.lieu}}  </h6>
-                            <h6 class="ms-3">Telephone : {{candidatSelectionner.dateNaissance}}  </h6>
+                            <h6> Adresse: <span class="text-black fw-lighter"> {{candidatSelectionner.lieu}}</span>   </h6>
+                            <h6 class="ms-3">Date naissance : <span class="text-black fw-lighter">  {{candidatSelectionner.dateNaissance}}</span>   </h6>
                         </div>
                         <div class="d-flex mb-2">
-                            <h6> Experience: {{candidatSelectionner.experienceProf}}  </h6>
-                            <h6 class="ms-3">Langue : {{candidatSelectionner.langueParler}}  </h6>
+                            <h6> Experience: <span class="text-black fw-lighter"> {{candidatSelectionner.experienceProf}}</span>    </h6>
+                            <h6 class="ms-3">Langue : <span class="text-black fw-lighter"> {{candidatSelectionner.langueParler}} </span>  </h6>
                         </div>
                      
                         <div>

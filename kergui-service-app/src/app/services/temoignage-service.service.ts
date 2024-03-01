@@ -15,14 +15,26 @@ export class TemoignageServiceService {
     return this.http.get<Evaluation>(`${url}/ListeEvaluation`)
   }
 
+    // methode pour ajouter temoignage par l'employeur
   addTemoignage(id : any, appreciation : any) : Observable<any>{
     return this.http.post<Evaluation>(`${url}/AjoutEvaluation/${id}`, appreciation )
   }
 
+  // methode pour supprimer temoignage par l'employeur
+  deleteTemoignage() : Observable<any>{
+    return this.http.delete<any>(`${url}/SupprimerEvaluation`)
+  }
+    // lister temoignage pour chaque emloye
+
+  temoignageinconue(): Observable<any>{
+    return this.http.get<any>(`${url}/ListeEvaluationParCandidat`)
+   }
+    // lister temoignage pour chaque emloye
+
   temoignageemploye(): Observable<any>{
     return this.http.get<any>(`${url}/ListeEvaluationCandidat`)
    }
-
+  //  listertemoignege pour chaque mployeur
   temoignageemployeur(): Observable<any>{
     return this.http.get<any>(`${url}/ListeEvaluationEmployeur`)
    }

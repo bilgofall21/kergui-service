@@ -166,6 +166,9 @@ body {
   #mou{
     background-color: var(--kergui-blue)
   }
+  #mou a{
+   cursor: pointer;
+  }
   .dropdown-menu .dropdown-item:hover {
     color: #252930;
   }

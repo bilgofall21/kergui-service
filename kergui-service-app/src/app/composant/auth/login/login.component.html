@@ -24,8 +24,8 @@
                 <p class="message-erreur" *ngIf="!exactPassword"> {{verifPassword}} </p>
                 <p class="message-success" *ngIf="exactPassword"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
             </div>
-            <div>
-               <a class="text-decoration-none"> <p class="text-white">mot de passe oublié ?</p></a> 
+            <div id="mdp">
+               <a class="text-decoration-none text-white"  (click)="afficherSection('forgetpassword', $event)" > mot de passe oublié ?</a> 
             </div>
             <div>
                 <button class="col-12 btn-custom" type="submit" [disabled]="!exactEmail || !exactPassword" > Connexion</button>
@@ -42,6 +42,35 @@
 </div>
 </section>
 <!-- section connexion fin -->
+<!-- section mot de passe oublie debut -->
+<section class="connexionuser" *ngIf="showForgetPassword">
+    <div class="connexion">
+    <div class="form signup">
+      <header class="text-white mb-2">Entrer votre email</header>
+      <form novalidate  >
+        <div class="row row-gap-4">
+      
+            <div class="" id="validation">
+                <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="email" required    (input)="verifEmaiMdpo()" />
+                <p class="message-erreur" *ngIf="!exactEmail"> {{verifEmail}} </p>
+                <p class="message-success" *ngIf="exactEmail"><i class="bi bi-check-square-fill ms-1" ></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
+               
+            </div>  
+            <div>
+                <button class="col-12 btn-custom" type="submit" (click)="changeMotDePass()"  > Envoyer</button>
+            </div>
+          
+          
+    </div>
+    
+      </form>
+    </div>
+    <div class="footerform">
+        <header><a href=""  class="text-decoration-none" (click)="afficherSection('presentationlogin', $event)"> S'inscrire</a></header>
+    </div>
+</div>
+</section>
+<!-- section mot de pass oublie fin -->
 
 
 <!-- section authentification employeur debut -->

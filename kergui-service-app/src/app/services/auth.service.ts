@@ -49,7 +49,8 @@ export class AuthService  {
         return response;
       }),
       catchError(error => {
-        // En cas d'erreur, vous pouvez gérer l'erreur ici ou la propager
+       // En cas d'erreur, vous pouvez gérer l'erreur ici ou la propager
+       console.error('Une erreur s\'est produite lors de la connexion :', error);
         return throwError(error);
       })
     );
