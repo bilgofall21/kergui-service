@@ -22,6 +22,7 @@ export class DetailEmployerComponent implements OnInit {
   this.allTemognage();
   this.temoignageForEmploye();
   this.recupCandidatureByUser();
+  this.inconu();
 
   }
   elementdetailselected : any;
@@ -38,12 +39,12 @@ this.temoinnew = {
 }
 this.temoignageservice.addTemoignage(id, this.temoinnew).subscribe((respons)=>{
   this.affichermessagetemoignage('success', 'bravo', 'temoignage ajouté')
-  console.log("test", this.temoinnew);
-  console.log("voir avis", respons);
+  // console.log("test", this.temoinnew);
+  // console.log("voir avis", respons);
 },
 (error : any)=>{
   this.affichermessagetemoignage('error', 'desole', ' veillez vous connectez')
-  console.error('temoignage non ajoute', error);
+  // console.error('temoignage non ajoute', error);
   
 }
 )
@@ -66,22 +67,27 @@ trueTemoignage :  any;
     this.dataEmployeTemoignage=respons;
     for (let i = 0; i < this.dataEmployeTemoignage.length; i++) {
       this.trueTemoignage  = this.dataEmployeTemoignage[i]
-      console.log("eeeeeeeee", this.trueTemoignage );
+      // console.log("eeeeeeeee", this.trueTemoignage );
     }
-    console.log("mes hhhhhhhhh temoignage", this.dataEmployeTemoignage);
+    // console.log("mes hhhhhhhhh temoignage", this.dataEmployeTemoignage);
   })
  }   
 
  allTemognage(){
   this.temoignageservice.getAlltemoignage().subscribe((Response)=>{
-    console.log("voir tous les tmoignage", Response);
+    // console.log("voir tous les tmoignage", Response);
+  })
+ }
+ inconu(): void{
+  this.temoignageservice.temoignageinconue().subscribe((respons)=>{
+    console.log("inconnueee", respons);
   })
  }
  candidatures: any[] = []
  recupCandidatureByUser() {
   this.candidaturservice.listeOffreByCandidat(User).subscribe((data)=>{
     this.candidatures = data.data;
-    console.log("ssssss", this.candidatures);
+    // console.log("ssssss", this.candidatures);
   })
 }
 

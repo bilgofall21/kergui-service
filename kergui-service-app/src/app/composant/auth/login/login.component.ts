@@ -6,6 +6,7 @@ import { ProfessionServiceService } from 'src/app/services/profession-service.se
 import { SelectOption } from 'src/app/models/select-option.model';
 import { Observable } from 'rxjs';
 import { NgForm, NgModel } from '@angular/forms';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 
 
 
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit{
 
   constructor( private authentification : AuthService ,
                private router : Router,
-               private professionservice : ProfessionServiceService     
+               private professionservice : ProfessionServiceService,
+               private utilisateurservice : UtulisateurService     
                ){}
                utilisateurConnecte : boolean = false;
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit{
   showPresentation = false;
   showAuthEmployeur = false;
   showAuthEmploye = false;
+  showForgetPassword = false;
   SectionCliquer = false;
   sectionActiver = '';
 
@@ -45,6 +48,7 @@ export class LoginComponent implements OnInit{
     this.showAuthEmployeur = view === 'inscriptionemployeur';
     this.showAuthEmploye= view === 'inscritionemploye';
     this.showPresentation= view === 'presentationlogin';
+    this.showForgetPassword= view === 'forgetpassword';
     this.sectionActiver = view;
   }
 
@@ -143,51 +147,48 @@ onEmailInput(control: any): void {
   }
 }
 
-connexion(event : Event): void{
+connexion(event: Event): void {
   event.preventDefault();
-  // console.log("voirrrrrr", JSON.stringify(registerForm.value));
-  // objet contenant les donneé envoye
+
   const loginData = {
     email: this.formData.email,
     password: this.formData.password
   };
-  this.authentification.loginUser(loginData,).subscribe((user : any)=>{
-    this.userfoundid = user.data;
-      // Stocker l'objet utilisateur recut
+
+  this.authentification.loginUser(loginData).subscribe(
+    (user: any) => {
+      this.userfoundid = user.data;
       console.log("connexion status", user);
-localStorage.setItem('user_profile', JSON.stringify(user.data));
+
+      localStorage.setItem('user_profile', JSON.stringify(user.data));
+
       if (user.token) {
-         // Mise à jour de l'état de l'utilisateur connecté
-      this.authentification.setLoggedIn(true);
-        this.affichermessage('success', 'Bienvenue ',  user.data.prenom);
-          // redirection suivant le role
-          if (user.data.role == "admin" && user.data.statut  == "activer"){
-            localStorage.setItem("dashboard_type", 'admina'); 
-            // stockage du token sur le local storage
-            localStorage.setItem('access_Token', user.token);
-              // rediriger vers dashbord admin
-            this.router.navigate(['/admin']);
-          } else if (user.data.role == "candidat" && user.data.statut  == "activer"){
-            localStorage.setItem("dashboard_type", 'candidat');
-            // stockage du token sur le local storage
-            localStorage.setItem('access_Token', user.token);
-              // rediriger vers dashbord admin-candidat
-            this.router.navigate(['/admin-candidat']);
-          }else if (user.data.role == "employeur" && user.data.statut  == "activer"){
-            localStorage.setItem("dashboard_type", 'employeur');
-              // stockage du token sur le local storage
-              localStorage.setItem('access_Token', user.token);
-              // rediriger vers dashbord admin-employeur
-            this.router.navigate(['/admin-employeur']);
-          } else {
-            this.affichermessage('error', 'Ce compte a été désactive', 'désolé');
-          }
-        };
-        (error: any) => {
-          console.error('Erreur lors de la connexion :', error);
-          this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
+        this.authentification.setLoggedIn(true);
+        this.affichermessage('success', 'Bienvenue ', user.data.prenom);
+
+        if (user.data.role == "admin" && user.data.statut == "activer") {
+          localStorage.setItem("dashboard_type", 'admina');
+          localStorage.setItem('access_Token', user.token);
+          this.router.navigate(['/admin']);
+        } else if (user.data.role == "candidat" && user.data.statut == "activer") {
+          localStorage.setItem("dashboard_type", 'candidat');
+          localStorage.setItem('access_Token', user.token);
+          this.router.navigate(['/admin-candidat']);
+        } else if (user.data.role == "employeur" && user.data.statut == "activer") {
+          localStorage.setItem("dashboard_type", 'employeur');
+          localStorage.setItem('access_Token', user.token);
+          this.router.navigate(['/admin-employeur']);
+        } else {
+          this.affichermessage('error', 'Ce compte désactivé', 'désolé');
         }
-  })
+      }
+    },
+    (error: any) => {
+      console.error('Erreur lors de la connexion :', error);
+      
+      this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
+    }
+  );
 }
 
 affichermessage(icone: any, message: string,user:string) {
@@ -197,8 +198,8 @@ affichermessage(icone: any, message: string,user:string) {
       title: message +"" +user,
       showConfirmButton: false,
       timer: 1500,
-      width: 400,
-      padding: 15,
+      width: 480,
+      padding: 10,
       color : '#ffff',
       background: '#3A6A7E',
   })
@@ -452,6 +453,49 @@ LogOutUser() : void{
   })
 }
 
+changeMotDePass(): void{
+  const newEmail = {
+    email : this.email,
+  }
+  this.utilisateurservice.changePassword(newEmail ).subscribe((resons)=>{
+    console.log("what password", Response);
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Email envoyé',
+      text: 'Consultez votre boîte e-mail pour réinitialiser votre mot de passe.',
+      // confirmButtonText: 'OK',
+      showConfirmButton: false,
+      // timer: 1500,
+      width: 500,
+      padding: 10,
+      color : '#ffff',
+      background: '#3A6A7E',
+    });
+     // Rediriger l'utilisateur vers sa boîte e-mail (exemple pour Gmail)
+    setTimeout(()=>{
+      window.location.href = 'https://mail.google.com/mail/u/0/#inbox';
+    }, 3000);
+  
+  },
+  (error) => {
+    console.error('Erreur lors de la réinitialisation du mot de passe', error);
+    // Afficher une alerte SweetAlert pour informer l'utilisateur de l'erreur
+    Swal.fire({
+      icon: 'error',
+      title: 'Erreur',
+      text: 'Une erreur s\'est produite. Veuillez réessayer plus tard.',
+      confirmButtonText: 'OK',
+      // showConfirmButton: false,
+      // timer: 1500,
+      width: 400,
+      padding: 15,
+      color : '#ffff',
+      background: '#3A6A7E',
+    });
+  }
+  )
+}
 // validation
 
   // Pour vérifier les champs pour la connexion 
@@ -484,6 +528,21 @@ LogOutUser() : void{
         this.verifEmail = "Veuillez renseigner votre email";
       }
       else if (!emailPattern.test(this.formData.email) ){
+        this.verifEmail = "Veuillez donner un email valide";
+      }
+      else {
+        this.verifEmail = "";
+        this.exactEmail = true;
+      }
+    }
+    verifEmaiMdpo(){
+      const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      this.exactEmail = false;
+      
+      if(this.email === ""){
+        this.verifEmail = "Veuillez renseigner votre email";
+      }
+      else if (!emailPattern.test(this.email) ){
         this.verifEmail = "Veuillez donner un email valide";
       }
       else {

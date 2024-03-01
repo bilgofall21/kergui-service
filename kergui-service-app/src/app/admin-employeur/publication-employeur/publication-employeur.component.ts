@@ -273,6 +273,7 @@ chargerPublication( publication : any){
               });
               // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
               this.afficherPublication(); // mettre à jour la liste
+              this.viderChamps();
             },
             error => {
               console.error('Erreur lors de la modification :', error);
@@ -544,7 +545,9 @@ exactImage : boolean = false;
            return isoDate;  
            }
   
-
-
+           ouvrirFormulaireAjout(): void {
+            this.viderChamp(); // S'assurer que le formulaire est réinitialisé
+            // Afficher le formulaire d'ajout
+          }
 
 }

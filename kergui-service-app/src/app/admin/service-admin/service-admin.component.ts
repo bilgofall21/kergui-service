@@ -32,14 +32,14 @@ export class ServiceAdminComponent implements OnInit {
       // newProfession : any ;
       nom_prof :string = "";
       description :string = "";
-      image!: File;
+      image!: any;
       created_at :string = "";
       updated_at :string = ""; 
-      viderChamp(): void{
-        this.nom_prof = "";
-        this.description = "";
-
-      
+      viderChamp(): void {
+        this.nom_prof = '';
+        this.description = '';
+        this.image = null; // Assurez-vous que cela est cohérent avec la façon dont vous initialisez `image` ailleurs dans votre code.
+        this.selectedProfession = null; // Réinitialiser l'ID de profession sélectionnée si utilisé pour la modification.
       }
 
       // initiliser objet crer pour ajout
@@ -264,7 +264,6 @@ chargerProfession( formation : any){
 
 
   modifierProfession(): void {
-    // Vérifier si tous les champs requis sont remplis, y compris l'image
     if (!this.nom_prof || !this.description || !this.image) {
       Swal.fire({
         title: "Erreur!",
@@ -275,7 +274,7 @@ chargerProfession( formation : any){
         color: '#ffff',
         background: '#3A6A7E'
       });
-      return; // Sortir de la fonction si un champ requis est manquant
+      return;
     }
   
     let formData = new FormData();
@@ -283,7 +282,6 @@ chargerProfession( formation : any){
     formData.append('description', this.description);
     formData.append('image', this.image);
   
-    // Si tous les champs requis sont remplis, continuer avec la modification de la profession
     Swal.fire({
       title: "Voulez-vous vraiment modifier ce service?",
       icon: "warning",
@@ -298,10 +296,8 @@ chargerProfession( formation : any){
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.selectedProfession) {
-          // Modification d'une profession existante
           this.professionService.editProfession(this.selectedProfession, formData).subscribe(
             (data: any) => {
-              console.log("Modification réussie :", data);
               Swal.fire({
                 title: "Service modifié!",
                 text: "Ce service a été modifié.",
@@ -313,10 +309,10 @@ chargerProfession( formation : any){
                 color: '#ffff',
                 background: '#3A6A7E'
               });
-              this.recupAllProfession();  // Mettre à jour la liste
+              this.recupAllProfession();
+              this.viderChamp();
             },
             error => {
-              console.error('Erreur lors de la modification :', error);
               Swal.fire({
                 title: "Erreur!",
                 text: "Une erreur est survenue lors de la modification.",
@@ -328,18 +324,10 @@ chargerProfession( formation : any){
               });
             }
           );
-        } else {
-          console.error("Erreur: Aucune profession sélectionnée pour la modification");
-          Swal.fire({
-            title: "Erreur!",
-            text: "Aucune profession sélectionnée pour la modification.",
-            icon: "error",
-            showConfirmButton: false,
-            timer: 1500,
-            color: '#ffff',
-            background: '#3A6A7E'
-          });
         }
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // L'utilisateur a cliqué sur le bouton d'annulation
+        this.viderChamp(); // Vider les champs du formulaire pour s'assurer qu'aucune donnée n'est conservée
       }
     });
   }
@@ -487,6 +475,10 @@ getArticlesPage(): any[] {
       this.exactDescription = true;
     }
   }
-
+  
+  ouvrirFormulaireAjout(): void {
+    this.viderChamp(); // S'assurer que le formulaire est réinitialisé
+    // Afficher le formulaire d'ajout
+  }
 
 }

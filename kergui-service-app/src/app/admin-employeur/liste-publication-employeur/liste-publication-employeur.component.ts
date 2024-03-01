@@ -20,6 +20,11 @@ this.afficherTemoignage();
       console.log("wakhal",this.dataTemoignage);
     })
   }
+  supprimerTemoignage (): void{
+    this.temoignageservice.deleteTemoignage().subscribe((respons)=>{
+      console.log('eat de le canfidature', respons);
+    })
+  }
 
   // Attribut pour la pagination
   articlesParPage = 10; // Nombre d'articles par page

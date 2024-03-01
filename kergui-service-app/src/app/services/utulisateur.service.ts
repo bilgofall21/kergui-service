@@ -50,4 +50,8 @@ updateProfilEmployeur(updateEmployeur : any): Observable<any>{
   return this.http.post<User>(`${url}/user/modificationProfilEmployeur` , updateEmployeur)
 }
 
+changePassword(user : any) : Observable<any>{
+  return this.http.post<User>(`${url}/user/initialisaionMotDePasse`, user)
+}
+
 }

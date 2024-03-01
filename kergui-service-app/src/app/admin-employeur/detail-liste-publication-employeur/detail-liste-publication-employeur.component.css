@@ -4,6 +4,9 @@
     /* margin: 0 auto; */
    
 }
+#detailprofil h4{
+  color: var(--kergui-green);
+}
 .iconegestion a{
     text-decoration: none;
     color: var(--kergui-blue);
