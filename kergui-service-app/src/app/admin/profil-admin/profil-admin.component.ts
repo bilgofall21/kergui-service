@@ -94,8 +94,16 @@ export class ProfilAdminComponent implements OnInit{
   samaProfil :  any;
   afficherProfil() :void {
     this.utilisateurservice.getProfil().subscribe((respons)=>{
+      const dataprof = respons.data
       this.samaProfil = respons.data;
       console.log("voir profil", this.samaProfil );
+
+      this.prenom = dataprof.prenom;
+      this.nom = dataprof.nom;
+      this.telephone = dataprof.telephone;
+        this.password = dataprof.password;
+        this.lieu = dataprof.lieu;
+        this.image = dataprof.image;
     })
   }
 
