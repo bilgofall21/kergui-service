@@ -49,6 +49,10 @@ updateProfilAdmin(updateAmin : any): Observable<any>{
 updateProfilEmployeur(updateEmployeur : any): Observable<any>{
   return this.http.post<User>(`${url}/user/modificationProfilEmployeur` , updateEmployeur)
 }
+// methode pour modifier profil employé
+updateProfilEmploye(updateCandidat : any): Observable<any>{
+  return this.http.post<User>(`${url}/user/modificationProfil` , updateCandidat)
+}
 
 changePassword(user : any) : Observable<any>{
   return this.http.post<User>(`${url}/user/initialisaionMotDePasse`, user)
