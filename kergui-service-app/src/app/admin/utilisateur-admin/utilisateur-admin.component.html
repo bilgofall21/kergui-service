@@ -36,27 +36,34 @@
                                     <th class="cell"></th> -->
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let element of getArticlesPageEmployeur()">
-                                <tr>
-                                    <td class="cell"> {{element.prenom}} </td>
-                                    <td class="cell">  {{element.nom}} </td>
-                                    <td class="cell"> {{element.email}} </td>
-                                    <td class="cell"> {{element.lieu}} </td>
-                                    <td class="cell" >
-                                        <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
-                                        <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
-                                      </td>
-                                  
-                                    <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
-                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal-detailEmployeur" title="detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailEmployeur(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
-                                            <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
-                                            <button class="btn btn-outline-success ms-2 border-1" (click)="activerUser(element.id)"><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
-                                        </div>
-                                    </td>
-                                   
-                                </tr>
-                            </tbody>
+
+                            <ng-container *ngIf="getArticlesPageEmployeur().length >0 , else noEmployeur">
+                                <tbody *ngFor="let element of getArticlesPageEmployeur()">
+                                    <tr>
+                                        <td class="cell"> {{element.prenom}} </td>
+                                        <td class="cell">  {{element.nom}} </td>
+                                        <td class="cell"> {{element.email}} </td>
+                                        <td class="cell"> {{element.lieu}} </td>
+                                        <td class="cell" >
+                                            <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
+                                            <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
+                                          </td>
+                                      
+                                        <td class="cell">
+                                            <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
+                                                <button data-bs-toggle="modal" data-bs-target="#exampleModal-detailEmployeur" title="detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailEmployeur(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
+                                                <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
+                                                <button class="btn btn-outline-success ms-2 border-1" (click)="activerUser(element.id)"><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
+                                            </div>
+                                        </td>
+                                       
+                                    </tr>
+                                </tbody>
+                            </ng-container>
+                            <ng-template #noEmployeur>
+                                <h4 class="text-center">Liste des employeurs vide</h4>
+                            </ng-template>
+                            
                         </table>
                     </div><!--//table-responsive-->
                    
@@ -107,27 +114,34 @@
                                     <th class="cellhead">Action</th>
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let element of getArticlesPage()">
-                                <tr  *ngIf=" element.role == 'candidat' ">
-                                    <td class="cell"> {{element.prenom}} </td>
-                                    <td class="cell">  {{element.nom}} </td>
-                                    <td class="cell"> {{element.email}} </td>
-                                    <td class="cell"> {{element.profession.nom_prof}} </td>
-                                    <td class="cell"> {{element.lieu}} </td>
-                                    <td class="cell" >
-                                       
-                                        <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
-                                        <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
-                                      </td>
-                                    <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
-                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal-detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailUser(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
-                                            <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
-                                            <button class="btn btn-outline-success ms-2" (click)="activerUser(element.id)" ><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>                        
-                            </tbody>
+                            <ng-container *ngIf="getArticlesPage().length >0 , else noEmploye">
+                                <tbody *ngFor="let element of getArticlesPage()">
+                                    <tr  *ngIf=" element.role == 'candidat' ">
+                                        <td class="cell"> {{element.prenom}} </td>
+                                        <td class="cell">  {{element.nom}} </td>
+                                        <td class="cell"> {{element.email}} </td>
+                                        <td class="cell"> {{element.profession.nom_prof}} </td>
+                                        <td class="cell"> {{element.lieu}} </td>
+                                        <td class="cell" >
+                                           
+                                            <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
+                                            <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
+                                          </td>
+                                        <td class="cell">
+                                            <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
+                                                <button data-bs-toggle="modal" data-bs-target="#exampleModal-detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailUser(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
+                                                <button class="btn btn-outline-danger" (click)="desactiverUser(element.id)" ><i class="bi bi-person-fill-x" style="font-size: 20px;"></i></button>
+                                                <button class="btn btn-outline-success ms-2" (click)="activerUser(element.id)" ><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>                        
+                                </tbody>
+                            </ng-container>
+                            <ng-template #noEmploye>
+                                <h4 class="text-center">Liste des employés vide</h4>
+                            </ng-template>
+                            
+                            
                         </table>
                     </div><!--//table-responsive-->
                 </div><!--//app-card-body-->		

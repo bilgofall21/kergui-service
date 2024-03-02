@@ -13,7 +13,9 @@
       </div>
     </div>
     <h4 class="mt-4">Liste des services</h4>
+    
     <div class="row mt-4 mb-4" >
+      <ng-container *ngIf="getArticlesPage().length >0 , else noService">
         <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage()" >
           <div class="card shadow-lg" style="width: 18.5rem; height: 28rem;" >
             <div>
@@ -33,6 +35,11 @@
             <div class="cardfooter mt-1"></div>
           </div>
         </div>
+      </ng-container>
+      <ng-template #noService>
+        <h4 class="text-center">Liste des services recents vide</h4>
+      </ng-template>
+      
         
         
        
