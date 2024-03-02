@@ -18,6 +18,9 @@ h6,
   color:var(--kergui-blue);
   font-weight: 600;
 }
+.app-nav .nav-item a {
+  cursor: pointer;
+}
 a {
   color: #15a362;
   text-decoration: none;

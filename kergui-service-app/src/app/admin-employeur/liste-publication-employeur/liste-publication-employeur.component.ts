@@ -27,7 +27,7 @@ this.afficherTemoignage();
   }
 
   // Attribut pour la pagination
-  articlesParPage = 10; // Nombre d'articles par page
+  articlesParPage = 4; // Nombre d'articles par page
   pageActuelle = 1; // Page actuelle
 
   // pagination

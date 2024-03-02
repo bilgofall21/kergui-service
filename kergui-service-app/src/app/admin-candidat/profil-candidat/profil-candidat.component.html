@@ -1,109 +1,139 @@
- 
- <div class="admingestioncontainer mt-5">
+<div class="admingestioncontainer mt-5">
+  <div class="page-profil">
+    <div class="container-fluid">
+      <div class="row mb-3">
+        <div class="col-lg-4 col-xlg-3" *ngIf="samaProfil">
+          <div class="card">
+            <div class="card-body text-center" id="imgProfil">
+              <img
+                src="http://127.0.0.1:8000/storage/{{
+                  samaProfil.imageDeProfil
+                }}"
+                class="rounded-circle"
+                width="150"
+              />
+              <h4 class="card-title mt-2">
+                {{ samaProfil.prenom }} {{ samaProfil.nom }}
+              </h4>
+              <h6 class="card-subtitle">profession</h6>
+              <div class="row text-center justify-content-md-center">
+                <div class="col-4">
+                  <a class="link"> <i class=""></i> </a>
+                </div>
+                <div class="col-4">
+                  <a class="link"> <i class="mdi mdi-camera"></i> </a>
+                </div>
+              </div>
+            </div>
+            <div>
+              <hr />
+            </div>
+            <div class="card-body">
+              <small class="contact">Email</small>
+              <h6>{{ samaProfil.email }}</h6>
+              <small class="pt-4 db">telephone</small>
+              <h6>{{ samaProfil.telephone }}</h6>
+              <small class="pt-4 db">Address</small>
+              <h6>{{ samaProfil.lieu }}</h6>
+              <small class="pt-4 db">Date de naissance</small>
+              <h6>{{ samaProfil.dateNaissance }}</h6>
+              <small class="pt-4 db">Sexe</small>
+              <h6>{{ samaProfil.civilite}}</h6>
+              <small class="pt-4 db">Langue</small>
+              <h6>{{ samaProfil.langueParler }}</h6>
+            </div>
+          </div>
+        </div>
 
- 
-    <div class="page-profil">
-             
-               <div class="container-fluid">
-                
-                   <div class="row">
-                     
-                       <div class="col-lg-4 col-xlg-3" *ngIf="userProfile">
-                           <div class="card">
-                               <div class="card-body text-center" id="imgProfil" >
-                                  <img src="http://127.0.0.1:8000/storage/{{userProfile.imageDeProfil}}"
-                                           class="rounded-circle" width="150" />
-                                       <h4 class="card-title mt-2"> {{userProfile.prenom}} {{userProfile.nom}} </h4>
-                                       <h6 class="card-subtitle">profession</h6>
-                                       <div class="row text-center justify-content-md-center">
-                                           <div class="col-4"><a  class="link"> <i
-                                                       class=""></i>
-                                                  
-                                               </a></div>
-                                           <div class="col-4"><a class="link"> <i
-                                                       class="mdi mdi-camera"></i>
-                                                  
-                                               </a></div>
-                                       </div>
-                                  
-                               </div>
-                               <div>
-                                   <hr>
-                               </div>
-                               <div class="card-body"> <small class="contact">Email</small>
-                                   <h6>{{userProfile.email}}  </h6> <small class=" pt-4 db">telephone</small>
-                                   <h6> {{userProfile.nom}} </h6> <small class=" pt-4 db">Address</small>
-                                   <h6> {{userProfile.lieu}} </h6>
-                                   
-                                  
-                               </div>
-                           </div>
-                       </div>
-                      
-                       <div class="col-lg-8 col-xlg-9" >
-                           <div class="card">
-                               <div class="card-body">
-                                   <form class="form-horizontal form-material mx-2">
-                                       <div class="form-group">
-                                        <div class="mb-3">
-                                            <label for="prenom" class="form-label">Prenom</label>
-                                            <input type="text" class="form-control" name="prenom" id="prenom" placeholder="prenom"  >
-                                          </div>
-                                       </div>
-                                       <div class="form-group">
-                                           <label for="example-email" class="col-md-12">Email</label>
-                                           <div class="col-md-12">
-                                               <input type="email" placeholder="johnathan@admin.com"
-                                                   class="form-control form-control-line" name="example-email"
-                                                   id="example-email">
-                                           </div>
-                                       </div>
-                                       <div class="form-group">
-                                           <label class="col-md-12">mot de pass</label>
-                                           <div class="col-md-12">
-                                               <input type="password" value="password"
-                                                   class="form-control form-control-line">
-                                           </div>
-                                       </div>
-                                       <div class="form-group">
-                                           <label class="col-md-12">telephone</label>
-                                           <div class="col-md-12">
-                                               <input type="text" placeholder="123 456 7890"
-                                                   class="form-control form-control-line">
-                                           </div>
-                                       </div>
-                                       <!-- <div class="form-group">
-                                           <label class="col-md-12">Message</label>
-                                           <div class="col-md-12">
-                                               <textarea rows="5" class="form-control form-control-line"></textarea>
-                                           </div>
-                                       </div> -->
-                                       <div class="form-group">
-                                           <label class="col-sm-12">Select Country</label>
-                                           <div class="col-sm-12">
-                                               <select class="form-select shadow-none form-control-line">
-                                                   <option>London</option>
-                                                   <option>India</option>
-                                                   <option>Usa</option>
-                                                   <option>Canada</option>
-                                                   <option>Thailand</option>
-                                               </select>
-                                           </div>
-                                       </div>
-                                       <div class="form-group ">
-                                           <div class="col-sm-12">
-                                               <button class="btn text-white mt-3">modifier profil</button>
-                                           </div>
-                                       </div>
-                                   </form>
-                               </div>
-                           </div>
-                       </div>
+        <div class="col-lg-8 col-xlg-9">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material mx-2">
+                        <div class="form-group">
+                            <div class="col-md-8 d-flex justify-content-around">
+                                <i class="me-3"><span class="lnr lnr-camera"></span></i>
+                                <input class="form-control" type="file" (change)="getFile($event)" > 
+                            <button  class="btn btn-outline-light ms-3"> <span class="lnr lnr-upload"  ></span></button>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex justify-content-center ">
+                            <div class="mb-3 col-md-5 ">
+                                <label for="prenom" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" [(ngModel)]="prenom" >
+                              </div>
+                              <div class="mb-3 col-md-5 ms-5">
+                                <label for="nom" class="form-label">nom</label>
+                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom" [(ngModel)]="nom" >
+                              </div>
+                        </div>
+                        <div class="form-group d-flex justify-content-center ">
+                            <div class="mb-3 col-md-5 ">
+                                <label for="telephone" class="form-label">téléphone</label>
+                                <input type="text" class="form-control" name="telephone" id="telephone" placeholder="Téléphone" [(ngModel)]="telephone" >
+                              </div>
+                              <div class="mb-3 col-md-5 ms-5">
+                                <label for="lieu" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" name="lieu" id="lieu" placeholder="Adresse" [(ngModel)]="lieu" >
+                              </div>
+                        </div>
+                        <div class="form-group d-flex justify-content-center ">
+                            <div class="mb-3 col-md-5 ">
+                                <label for="telephone" class="form-label">Langue</label>
+                                <input type="text" class="form-control" name="langueParler" id="telephone" placeholder="Langue" [(ngModel)]="langueParler" >
+                              </div>
+                              <div class="mb-3 col-md-5 ms-5">
+                                <label for="lieu" class="form-label">Séxe</label>
+                                <select class="form-select" aria-label="Votre sexe" name="civilite" [(ngModel)]="civilite" required  >                             
+                                    <option value="">Votre Sexe</option>
+                                    <option value="homme">Homme</option>
+                                    <option value="femme">Femme</option>
+                                  </select>
+                              </div>
+                        </div>
+                        <div class="form-group d-flex justify-content-center ">
+                            <div class="mb-3 col-md-5 ">
+                                <label for="telephone" class="form-label">Expérience</label>
+                                <input type="text" class="form-control" name="experienceProf" id="telephone" placeholder="Experience profesionnel" [(ngModel)]="experienceProf" >
+                              </div>
+                              <div class="mb-3 col-md-5 ms-5">
+                                <label for="lieu" class="form-label">Date de naissance</label>
+                                <input type="date" class="form-control" name="dateNaissance" id="lieu" placeholder="Date de naissance" [(ngModel)]="dateNaissance" >
+                              </div>
+                        </div>
                     
+                        <div class="form-group d-flex justify-content-center " >
+                            <div class="mb-3 col-md-5">
+                                <label for="lieu" class="form-label">Profession</label>
+                                <select class="form-select" aria-label="Sélectionner une profession" name="profession_id" [(ngModel)]="profession_id" required >
+                                    <option value="">Sélectionner une profession</option>
+                                    <option *ngFor="let profession of selectOptionData" [value]="profession.id">{{ profession.nom_prof }}</option>
+                                  </select>
+                              </div>
+                            <div class="mb-3 col-md-5 ms-5">
+                                <label for="password" class="form-label">Mot de pass</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="mot de pass" [(ngModel)]="password" >
+                              </div>
+                        </div>
+                        <div class="form-group d-flex justify-content-center " >
+                            <div class="mb-3 col-md-11 ">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="presentation" required ></textarea>
+                              </div>
+                         
+                        </div>
+    
+                      
+                        
+                        <div class="form-group ">
+                            <div class="col-sm-12">
+                                <button class="btn text-white mt-3" (click)=" modifierProfil()">modifier profil</button>
+                            </div>
+                        </div>
+                    </form>
                    </div>
-                  
-               </div>
-             
-           </div>
-   
-       </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

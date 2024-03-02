@@ -1,71 +1,60 @@
 <div class="admingestioncontainer mt-5">
-    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-        <!-- <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#list-employeur" role="tab" aria-controls="list-employeur" aria-selected="true">Liste des employeurs</a> -->
-        <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false">Liste des publications</a>
-       
-    </nav>
-    
-    
-    <div class="tab-content" id="orders-table-tab-content">
-
-        <!-- tableau employeur -->
-        
-        
-
-        <!-- tableau employé -->
-        <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
-           
-            <div class="app-card app-card-orders-table mb-5">
-                <div class="app-card-body">
-                    <div class="table-responsive">
+    <h4 class="mt-4 "> La liste des publications</h4>
+    <div class="app-card app-card-orders-table mb-5">
+        <div class="app-card-body">
+            <div class="table-responsive">
+                
+                <table class="table mb-0 text-left">
+                    <thead >
+                        <tr>
+                            <th class="cellhead" >Prénom Auteur</th>
+                            <th class="cellhead">Nom Auteur</th>
+                            <th class="cellhead">Profession</th>
+                            <th class="cellhead">Date Publication</th>
+                            <th class="cellhead">Etat</th>
+                            <!-- <th class="cellhead"> Details</th> -->
+                            <th class="cellhead"> Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf=" dataPublictions.length >0 , else noPublication">
+                            <tr *ngFor=" let publication of dataPublictions">
+                                <td class="cell"> {{publication.user?.prenom}} </td>
+                                <td class="cell"> {{publication.user?.nom}}</td>
+                                <td class="cell"> {{publication.profession?.nom_prof}} </td>
+                                <td class="cell">  {{publication.created_at | date:'dd-MM-yyyy' }} </td>
+                                <td class="cell">  
+                                    <span class="badge bg-success" *ngIf="publication.etat === 'nouveau'">Nouveau</span>
+                                    <span class="badge bg-danger" *ngIf="publication.etat === 'archiver'">Archivé</span>
+                                </td>
                         
-                        <table class="table mb-0 text-left">
-                            <thead >
-                                <tr>
-                                    <th class="cellhead" >Prénom Auteur</th>
-                                    <th class="cellhead">Nom Auteur</th>
-                                    <th class="cellhead">Profession</th>
-                                    <th class="cellhead">Date Publication</th>
-                                    <th class="cellhead">Etat</th>
-                                    <!-- <th class="cellhead"> Details</th> -->
-                                    <th class="cellhead"> Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor=" let publication of dataPublictions">
-                                    <td class="cell"> {{publication.user?.prenom}} </td>
-                                    <td class="cell"> {{publication.user?.nom}}</td>
-                                    <td class="cell"> {{publication.profession?.nom_prof}} </td>
-                                    <td class="cell">  {{publication.created_at | date:'dd-MM-yyyy' }} </td>
-                                    <td class="cell">  
-                                        <span class="badge bg-success" *ngIf="publication.etat === 'nouveau'">Nouveau</span>
-                                        <span class="badge bg-danger" *ngIf="publication.etat === 'archiver'">Archivé</span>
-                                    </td>
-                            
-                                    <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye" ></i></a> -->
-                                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye"style="font-size: 20px;" ></i></button>
-                                            <button class="btn btn-outline-danger ms-2" (click)="archiverOffre (publication.id)"> <i class="bi bi-save"style="font-size: 20px;"></i></button>
-
-                                        </div>
-                                    </td>
-                                    <!-- <td class="cell" >
-                                        <button class="btn btn-outline-danger"> <i class="bi bi-save"></i></button>
-                                        <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="archiverOffre (publication.id)"  ><i class="bi bi-save-fill"></i></a>
-                                    </td> -->
-                                   
-                                </tr>
-                                
+                                <td class="cell">
+                                    <div class="iconegestion d-flex justify-content-around w-50   ">
+                                        <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye" ></i></a> -->
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye"style="font-size: 20px;" ></i></button>
+                                        <button class="btn btn-outline-danger ms-2" (click)="archiverOffre (publication.id)"> <i class="bi bi-save"style="font-size: 20px;"></i></button>
+    
+                                    </div>
+                                </td>
+                                <!-- <td class="cell" >
+                                    <button class="btn btn-outline-danger"> <i class="bi bi-save"></i></button>
+                                    <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="archiverOffre (publication.id)"  ><i class="bi bi-save-fill"></i></a>
+                                </td> -->
+                               
+                            </tr>
+                        </ng-container>
                         
+                        <ng-template #noPublication>
+                            <h4 class="text-center">Aucune publication disponible</h4>
+                        </ng-template>
+                        
+                        
+                
 
-                            </tbody>
-                        </table>
-                    </div><!--//table-responsive-->
-                </div><!--//app-card-body-->		
-            </div><!--//app-card-->
+                    </tbody>
+                </table>
+            </div>
         </div>
-      
     </div>
 
 </div>

@@ -1,0 +1,114 @@
+.imagecard img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+  .temoignage .crochet{
+    color: var(--kergui-blue);
+    font-size: 80px;
+    font-style: italic;
+  }
+  .temoignage .crochet{
+    color: var(--kergui-blue);
+    font-size: 30px;
+   
+  }
+  .temoignage .crochet1{
+    color: var(--kergui-blue);
+    font-size: 20px;
+   
+  }
+  
+  
+  .card-body{
+    height: 18rem;
+      
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-y: auto;
+  }
+  i, p{
+    color: var(--kergui-blue);
+    font-size: 21px;
+  }
+  .card-text{
+    color: #000;
+    font-size: 16px;
+  }
+   /* style pagination debut */
+  
+   .pagiColor {
+    background-color: var(--kergui-blue);
+    color: white;
+  }
+  .pagiColore.current {
+    background-color: var(--kergui-blue);
+    color: white;
+  }
+  .pagiColore {
+    border:1px solid  var(--kergui-blue);
+    color: var(--kergui-blue);
+  }
+  #pagination{
+    margin-left: 120px;
+    margin-top: 20px;
+  }
+  .searchbar button{
+    background-color: var(--kergui-blue);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* style bouton action */
+  
+  .iconegestion {
+      /* margin: 0 auto; */
+     
+  }
+  .iconegestion a{
+      text-decoration: none;
+      color: var(--kergui-blue);
+      font-weight: bold;
+      font-size: 18px;
+  }
+  .iconegestion a:hover{
+     color: var(--kergui-green);
+  }
+  
+  
+  
+  /* style dash template */
+  
+  
+  body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: #5d6778;
+    }
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6 {
+      color:var(--kergui-blue);
+      font-weight: 600;
+    }
+   

@@ -1,67 +1,54 @@
 <div class="admingestioncontainer mt-5">
-    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-        <!-- <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#list-employeur" role="tab" aria-controls="list-employeur" aria-selected="true">Liste des employeurs</a> -->
-        <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false">Liste des offres postulés</a>
-       
-    </nav>
-    
-    
-    <div class="tab-content" id="orders-table-tab-content">
-
-        <!-- tableau employeur -->
-        
-        
-
-        <!-- tableau employé -->
-        <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
-           
-            <div class="app-card app-card-orders-table mb-5">
-                <div class="app-card-body">
-                    <div class="table-responsive">
+    <div class="app-card app-card-orders-table mb-5">
+        <div class="app-card-body">
+            <div class="table-responsive">
+                
+                <table class="table mb-0 text-left">
+                    <thead >
+                        <tr >
+                            <th class="cellhead" >Auteur</th>
+                            <th class="cellhead">Profession</th>
+                            <th class="cellhead">Date Publication</th>
+                            <th class="cellhead">Date de cloture</th>
+                            <th class="cellhead">Etat</th>
+                            <th class="cellhead"> Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="candidatures.length >0; else noCandidature">
+                            <tr *ngFor=" let candidate of  candidatures " >
+                                <td class="cell"> {{candidate.offre_emplois.user.prenom}}  {{candidate.offre_emplois.user.nom}}  </td>
+                                <td class="cell">   {{candidate.offre_emplois.profession.nom_prof}}  </td>
+                                <td class="cell">   {{candidate.offre_emplois.created_at | date:'dd-MM-yyyy' }}  </td>
+                                <td class="cell">   {{candidate.offre_emplois.dateline}}  </td>
+                                <td class="cell">  
+                                <span class="badge text-bg-success" *ngIf=" candidate.etatCan === 'accepter'  "> {{candidate.etatCan}} </span>    
+                                <span class="badge text-bg-danger"  *ngIf=" candidate.etatCan === 'rejeter'  "> {{candidate.etatCan}} </span>    
+                                <span class="badge text-bg-secondary"  *ngIf=" candidate.etatCan === 'attente'  "> {{candidate.etatCan}} </span>    
+                                </td>                            
+                                <td class="cell">
+                                    <div class="iconegestion d-flex justify-content-around w-50   ">
+                                        <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal"  ><button class="btn btn-outline-primary"> detail</button> </a> -->
+                                        <a class="btn-sm app-btn-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showElement(candidate)"  href="">Détail</a>
+                                      
+                                    </div>
+                                </td>
+                               
+                            </tr>
+                        </ng-container>
+                        <ng-template #noCandidature>
+                            <h4 class="text-center"> Liste des candidatures vides</h4>
+                        </ng-template>
                         
-                        <table class="table mb-0 text-left">
-                            <thead >
-                                <tr >
-                                    <th class="cellhead" >Auteur</th>
-                                    <th class="cellhead">Profession</th>
-                                    <th class="cellhead">Date Publication</th>
-                                    <th class="cellhead">Date de cloture</th>
-                                    <th class="cellhead">Etat</th>
-                                    <th class="cellhead"> Détails</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor=" let candidate of  candidatures " >
-                                    <td class="cell"> {{candidate.offre_emplois.user.prenom}}  {{candidate.offre_emplois.user.nom}}  </td>
-                                    <td class="cell">   {{candidate.offre_emplois.profession.nom_prof}}  </td>
-                                    <td class="cell">   {{candidate.offre_emplois.created_at | date:'dd-MM-yyyy' }}  </td>
-                                    <td class="cell">   {{candidate.offre_emplois.dateline}}  </td>
-                                    <td class="cell">  
-                                    <span class="badge text-bg-success" *ngIf=" candidate.etatCan === 'accepter'  "> {{candidate.etatCan}} </span>    
-                                    <span class="badge text-bg-danger"  *ngIf=" candidate.etatCan === 'rejeter'  "> {{candidate.etatCan}} </span>    
-                                    <span class="badge text-bg-secondary"  *ngIf=" candidate.etatCan === 'attente'  "> {{candidate.etatCan}} </span>    
-                                    </td>                            
-                                    <td class="cell">
-                                        <div class="iconegestion d-flex justify-content-around w-50   ">
-                                            <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal"  ><button class="btn btn-outline-primary"> detail</button> </a> -->
-                                            <a class="btn-sm app-btn-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showElement(candidate)"  href="">Détail</a>
-                                          
-                                        </div>
-                                    </td>
-                                   
-                                </tr>
-                                
                         
+                        
+                
 
-                            </tbody>
-                        </table>
-                    </div><!--//table-responsive-->
-                </div><!--//app-card-body-->		
-            </div><!--//app-card-->
-        </div>
-      
+                    </tbody>
+                </table>
+            </div><!--//table-responsive-->
+        </div><!--//app-card-body-->		
     </div>
-
 </div>
 
 
