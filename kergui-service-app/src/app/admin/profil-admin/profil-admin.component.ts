@@ -48,12 +48,12 @@ export class ProfilAdminComponent implements OnInit{
         this.profileservice.chargerProfilData(response.data);
         
         // Vider les champs
-        this.prenom = '';
-        this.nom = '';
-        this.telephone = '';
-        this.password = '';
-        this.lieu = '';
-        this.image = null;
+        // this.prenom = '';
+        // this.nom = '';
+        // this.telephone = '';
+        // this.password = '';
+        // this.lieu = '';
+        // this.image = null;
   
         // Afficher une alerte de succès
         Swal.fire({

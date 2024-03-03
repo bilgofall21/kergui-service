@@ -8,6 +8,10 @@ hr{
   .title h4{
     color: var(--kergui-blue);
   }
+   h4{
+    color: var(--kergui-blue);
+      }
+     
   
   
   /* style baniere */
@@ -97,12 +101,28 @@ font-size: 16px;
   
   }
 
-  /* style pagination */
-  .pagiColor{
-	background-color: #00225A;
-	color: white;
-	font-weight: bold;
+
+ /* style pagination debut */
+
+
+ .pagiColor {
+  background-color: var(--kergui-blue);
+  color: white;
 }
+.pagiColore.current {
+  background-color: var(--kergui-blue);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--kergui-blue);
+  color: var(--kergui-blue);
+}
+#pagination{
+  /* margin-left: 180px; */
+  margin-top: 20px;
+}
+
+ /* style pagination fin */
 
 /* media query baniere */
 

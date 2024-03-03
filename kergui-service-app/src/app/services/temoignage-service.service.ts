@@ -26,8 +26,8 @@ export class TemoignageServiceService {
   }
     // lister temoignage pour chaque emloye
 
-  temoignageinconue(): Observable<any>{
-    return this.http.get<any>(`${url}/ListeEvaluationParCandidat`)
+  temoignageinconue(id : any): Observable<any>{
+    return this.http.get<any>(`${url}/ListeEvaluationParCandidat/${id}`)
    }
     // lister temoignage pour chaque emloye
 

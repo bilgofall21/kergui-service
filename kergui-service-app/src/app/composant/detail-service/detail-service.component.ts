@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DetalProfilServiceService } from 'src/app/services/detal-profil-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
 
@@ -16,23 +17,24 @@ export class DetailServiceComponent implements OnInit {
   userprofData: any;
 
      
-  constructor(private utilisateurservice : UtulisateurService ,  private professionservice : ProfessionServiceService, private activatedRoute: ActivatedRoute ) { }
+  constructor(private utilisateurservice : UtulisateurService ,  private professionservice : ProfessionServiceService, private activatedRoute: ActivatedRoute, private detailprofilservice : DetalProfilServiceService ) { }
 
 
   recupDataUser : any;
   userDataByProfession : any; 
   ngOnInit(): void {
+    this.candidatprofession();
 //  this.afficherutilisteur();
 
-  this.professionservice.GetUserByProfession(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{
-    this.userprofData =data.data;
-    console.log("voir mes user specifique", this.userprofData);
-    localStorage.setItem('uer_byprof', JSON.stringify(this.userprofData))
-  })
+
+
 
 
 
   }
+
+  
+
    // declaration tableau employe
   
 
@@ -51,9 +53,23 @@ chargementdonne ():  void{
   // }
   selectedProfil : any;
 
-  voirdetailProfil (element : any) : void {
-    this.selectedProfil = element;
-    localStorage.setItem('data_profil', JSON.stringify(this.selectedProfil));
+  // voirdetailProfil (element : any) : void {
+  //   this.selectedProfil = element;
+  //   localStorage.setItem('data_profil', JSON.stringify(this.selectedProfil));
+  // }
+
+  candidatprofession(): void{
+    this.professionservice.GetUserByProfession(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{
+      this.userprofData =data.data;
+      const dataDetail = data.data;
+      // console.log("voir mes user specifique", this.userprofData);
+      // localStorage.setItem('uer_byprof', JSON.stringify(this.userprofData))
+  
+      // appel du service pourr partager les donne du profile vdans un autre composant
+      this.detailprofilservice.updateUserProfilData(dataDetail);
+  
+    })
+  
   }
 
 

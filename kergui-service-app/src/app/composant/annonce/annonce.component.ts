@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Publication } from 'src/app/models/publication';
+import { DetalAnnonceServiceService } from 'src/app/services/detal-annonce-service.service';
 import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { PublicationService } from 'src/app/services/publication.service';
   styleUrls: ['./annonce.component.css']
 })
 export class AnnonceComponent implements OnInit {
-constructor(public publicationservice : PublicationService){}
+constructor(public publicationservice : PublicationService, private detailAnnoceservice : DetalAnnonceServiceService){}
 detailOffre :[]= [];
   ngOnInit(): void {
    this.afficherAllPublication();
@@ -22,6 +23,9 @@ afficherAllPublication(){
     this.publicationFiltred = this.dataPublications.filter((element : {etat : string})=>
     element.etat == 'nouveau',)
     console.log("voir publi affiché", this.publicationFiltred)
+    const dataDetail = respons.data;
+    // this.detailAnnoceservice.updateDetailAnnonce(dataDetail);
+
     // this.dataPublications.forEach((publication : any)=>{
     //   const nomProfession = this.getNomProfesion(publication.profession_id);
     //   console.log('professs', nomProfession);
@@ -35,8 +39,10 @@ afficherAllPublication(){
 // }
 voirDetail(element : any){
   this.detailOffre = element;
-  console.log("lou khew" ,this.detailOffre);
-  localStorage.setItem('detail_offre', JSON.stringify(this.detailOffre))
+  const datail = element;
+  // console.log("lou khew" ,this.detailOffre);
+  // localStorage.setItem('detail_offre', JSON.stringify(this.detailOffre))
+  this.detailAnnoceservice.updateDetailAnnonce(datail);
 
 }
 

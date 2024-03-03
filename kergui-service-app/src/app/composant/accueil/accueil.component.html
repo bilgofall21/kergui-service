@@ -133,7 +133,7 @@
             <p class="card-text"> {{element.description}} </p>
           </div>
           <div class="iconegestion text-center mb-1 ">
-            <a href="#"  id="iconegestion " class=" text-decoration-none me-4 d-flex justify-content-center" [routerLink]="['/page-service']" >  <span class="lnr lnr-arrow-right me-2 fs-5" ></span> Voir Plus</a>
+            <a href="#"  id="iconegestion " class=" text-decoration-none me-4 d-flex justify-content-center" [routerLink]="['/detail-service', element.id]">  <span class="lnr lnr-arrow-right me-2 fs-5" ></span> Voir Plus</a>
 
           </div>
 
@@ -199,7 +199,7 @@
           </div>
 
           <div class="container">
-            <div class="row " id="carteannonce">
+            <div class="row row-gap-4" id="carteannonce">
               <!-- <div class="col-sm-12 col-md-6 col-lg-4 mb-3  shadow-sm" id="annoncecol" *ngFor="let element of lastThreePublications" style="width: 24rem;">
                 <article class="u-shadow-v11">
                     <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
@@ -229,7 +229,7 @@
                 </article>
             </div> -->
   
-            <div class="col-md-3 col-sm-6" *ngFor="let element of lastThreePublications">
+            <div class="col-md-6 col-lg-3" *ngFor="let element of lastThreePublications">
               <div class="card card-block" >
                 <h5 class="card-title mt-2 mb-2 text-center"> {{element.profession.nom_prof}} </h5>
                 <img src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Photo of sunset">

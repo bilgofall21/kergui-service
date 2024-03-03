@@ -32,40 +32,30 @@
                     <hr class="border-3 opacity-100">
                   </div>
                 <div class="row ">
-                    <!-- <div class="col-lg-3 col-sm-6 "*ngFor="let service of getArticlesPage()">
-                        <div class="card shadow-lg" style="width: 19rem;">
-                          <div>
-                            <img  src="./assets/image/carte1.png" class="card-img-top" alt="..." style="height: 12rem;">
-                            <div class="titleService">
-                              <h5 class="text-center">  {{service.nom_prof}} </h5>
-                            </div>
+                  <ng-container *ngIf=" getArticlesPage().length >0 ; else noService">
+                    <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage() " >
+                      <div class="card shadow-lg"  id="thiscard" >
+                        <div>
+                          <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 14rem;">
+                          <div class="titleService">
+                            <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
                           </div>
-                          <div class="card-body">
-                            <p class="card-text">  {{service.description}}  </p>
-                          </div>
-                          <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', service.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
-                       
-                          <div class="cardfooter"></div>
                         </div>
-                      </div> -->
-                      <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage() " >
-                        <div class="card shadow-lg"  id="thiscard" >
-                          <div>
-                            <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 14rem;">
-                            <div class="titleService">
-                              <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
-                            </div>
-                          </div>
-                          <div class="card-body " >
-                            <p class="card-text"> {{element.description}} </p>
-                          </div>
-                          <div class="iconegestion text-center mb-1 ">
-                            <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', element.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>                
-                          </div>
-                
-                          <div class="cardfooter mt-1"></div>
+                        <div class="card-body " >
+                          <p class="card-text"> {{element.description}} </p>
                         </div>
+                        <div class="iconegestion text-center mb-1 ">
+                          <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', element.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>                
+                        </div>
+              
+                        <div class="cardfooter mt-1"></div>
                       </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #noService>
+                    <h4 class="text-center">Aucune service disponible</h4>
+                  </ng-template>
+                  
                       
                     
                 </div>

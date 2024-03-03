@@ -26,6 +26,9 @@ hr{
       position: relative;
   
   }
+h4{
+color: var(--kergui-blue);
+  }
  
  
   .banner h2{

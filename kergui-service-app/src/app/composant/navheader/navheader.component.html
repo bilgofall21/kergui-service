@@ -7,7 +7,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto w-75 mb-2 mb-lg-0  d-flex justify-content-center ">
+        <ul class="navbar-nav me-auto w-100 mb-2 mb-lg-0  d-flex justify-content-center ">
           <li class="nav-item">
             <a class="nav-link" href="#" [routerLink]="['/accueil']">Accueil</a>
           </li>
@@ -28,10 +28,10 @@
         </ul>
         <ul id="navright" class="">
           <li>
-            <button   *ngIf="!utilisateurConnecte" class="btn text-white fw-bold"   [routerLink]="['/login']"  >Se connecter</button>
+            <!-- <button   *ngIf="!utilisateurConnecte" class="btn text-white fw-bold"   [routerLink]="['/login']"  >Se connecter</button> -->
           </li>
         </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu " *ngIf="utilisateurConnecte">
+        <!-- <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu " *ngIf="utilisateurConnecte">
           
           <li class="nav-item dropdown d-flex align-items-center ">
             <h6 class="text-white me-2">{{samaProfil.prenom}} {{samaProfil.nom}} </h6>
@@ -42,12 +42,11 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item text-danger" (click)=" redirectToDashboard()"><i class="fas fa-sliders-h fa-fw"></i> Dashord</a></li>
-              <!-- <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li> -->
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" (click)="  LogOutUser()"><i class="fas fa-sign-out-alt fa-fw"></i> Deconnexion</a></li>
             </ul>
           </li>
-       </ul>
+       </ul> -->
       </div>
     </div>
   </nav>
