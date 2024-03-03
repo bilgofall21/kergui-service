@@ -45,12 +45,7 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
         this.profileservice.chargerProfilData(response.data);
   
         // Réinitialiser les champs du formulaire
-        this.prenom = '';
-        this.nom = '';
-        this.telephone = '';
-        this.password = '';
-        this.lieu = '';
-        this.image = null;
+     
   
         // Afficher une alerte de succès
         Swal.fire({
@@ -91,8 +86,16 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
   samaProfil :  any;
   afficherProfil() :void {
     this.utilisateurservice.getProfil().subscribe((respons)=>{
+      const profData = respons.data
       this.samaProfil = respons.data;
       console.log("voir profil", this.samaProfil );
+
+      this.prenom = profData.prenom;
+      this.nom = profData.nom;
+      this.telephone = profData.telephone;
+      this.password = profData.password;
+      this.lieu = profData.lieu;
+      this.image = profData.image;
     })
   }
 

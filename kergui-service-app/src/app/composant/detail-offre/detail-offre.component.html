@@ -13,43 +13,7 @@
                 <h4 class="fw-bold"> Les annonces</h4>
                 <hr class="border-3 opacity-100">
               </div>
-              <!-- <article *ngIf="dataDetail" >
              
-                <header class="mb-4">
-                  
-                    <h1 class="fw-bolder mb-1">Detail de l'annoce</h1>
-                   
-                    <div class="text-muted fst-italic mb-2">Poster le {{dataDetail.created_at | date:'dd-MM-yyyy'  }} </div>
-                 
-             
-                    <a class="badge bg-secondary text-decoration-none link-light" href="#!"> Profession</a>
-              
-                </header>
-            
-                <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
-              
-                <section class="mb-5">
-                    <p class="fs-5 mb-4"> {{dataDetail.description}} </p>
-            
-                    
-                </section>
-
-                <footer class="d-flex justify-content-between">
-                    <div>
-                        <h6 class="badge bg-primary " > Experince Profession : {{dataDetail.experienceMinimum}} </h6>
-                    </div>
-                    <div>
-                        <h6 class="badge bg-primary " > Salaire :  {{dataDetail.slaireMinimum}}</h6>
-                    </div>
-                    <div>
-                        <h6 class="badge bg-primary " > Adresse :  {{dataDetail.lieu}} </h6>
-                    </div>
-                </footer>
-
-                <div class="postulation text-center">
-                    <button class="postuler mt-4 mb-4" (click)="Candididater(dataDetail.id)">Postuler à cette offre</button>
-                </div>
-            </article> -->
 
             <div class="detailcontainer  p-5 mb-3">
                 <div class="well p-5"  *ngIf="dataDetail">
@@ -76,7 +40,7 @@
                     </div>
                     <footer class="d-flex justify-content-around">
                         <div>
-                            <h6 class="badge  " > Experince Profession : {{dataDetail.experienceMinimum}} </h6>
+                            <h6 class="badge  " > Experince Profession : {{dataDetail.experienceMinimum}} année </h6>
                         </div>
                         <div>
                             <h6 class="badge  " > Salaire :  {{dataDetail.slaireMinimum}}</h6>

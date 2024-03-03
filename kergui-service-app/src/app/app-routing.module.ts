@@ -21,7 +21,7 @@ const routes: Routes = [
   {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
   {path : 'page-service' , component : PageServiceComponent},
   {path : 'detail-service/:id', component : DetailServiceComponent,},
-  {path : 'detail-employer', component : DetailEmployerComponent, },
+  {path : 'detail-employer/:id', component : DetailEmployerComponent, },
   {path : 'fonctionnement' , component : FonctionnementComponent,},
   {path : 'accueil' , component : AccueilComponent,},
   {path : 'a-propos' , component : AProposComponent},

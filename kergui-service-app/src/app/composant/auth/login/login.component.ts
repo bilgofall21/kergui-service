@@ -506,6 +506,12 @@ changeMotDePass(): void{
   verifPasswordConf : String = "";
   verifLieu : string ="";
   verifTelephone : String = "";
+  verifDescrip : string = "";
+  verifprofession  : String = "";
+  verifExperince : string = "";
+  verifLangue : string = "";
+  verifCivilite : string = "";
+  verifDateNaiss : string = "";
 
   // Variables Si les valeurs sont exactes
   exactEmail : boolean = false;
@@ -515,6 +521,12 @@ changeMotDePass(): void{
   exactPasswordConf : boolean = false;
   exactTelephone : boolean = false;
   exactLieu : boolean = false;
+  exactNomProfession : boolean = false;
+exactDescription: boolean = false;
+exactExperience : boolean = false;
+exactLangue : boolean = false;
+exactCivilite : boolean = false;
+exactNaissance : boolean = false;
 
 
   // ---------=========verification login=========------------------- //
@@ -535,6 +547,7 @@ changeMotDePass(): void{
         this.exactEmail = true;
       }
     }
+    //  Verification de l'email mot de passe oublié
     verifEmaiMdpo(){
       const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       this.exactEmail = false;
@@ -625,7 +638,7 @@ changeMotDePass(): void{
   verifNomEmployeur() {
     this.exactNom = false;
     if(this.registreData.nom == ""){
-      this.verifNom = "Veuillez renseigner votre registreData.";
+      this.verifNom = "Veuillez renseigner votre nom";
     }
     else if (this.registreData.nom.length < 2 ){
       this.verifNom = "Le nom doit contenir au moins 2 caractères";
@@ -675,10 +688,12 @@ changeMotDePass(): void{
       this.exactTelephone = false;
       if(this.registreData.telephone == ""){
         this.verifTelephone = "Veuillez renseigner votre numéro de téléphone";
+      }else if(this.registreData.telephone.length < 8){
+        this.verifTelephone = "le numero de telephone doit contenir 8 caractères";
       }
-      // else if(!phonePattern.test(this.registreData.telephone)){
-      //   this.verifTelephone = "Veuillez donner un numéro de téléphone valide";
-      // }
+      else if(!phonePattern.test(this.registreData.telephone)){
+        this.verifTelephone = "Veuillez donner un numéro de téléphone mobile valide";
+      }
       else{
         this.verifTelephone = "";
         this.exactTelephone = true; 
@@ -686,21 +701,214 @@ changeMotDePass(): void{
     }
 
     // ---------=========verification inscription employé=========------------------- //
+    // verfication email employé
+    verifEmailEmploye(){
+      const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      this.exactEmail = false;
+      
+      if(this.registreEmploye.email === ""){
+        this.verifEmail = "Veuillez renseigner votre email";
+      }
+      else if (!emailPattern.test(this.registreEmploye.email) ){
+        this.verifEmail = "Veuillez donner un email valide";
+      }
+      else {
+        this.verifEmail = "";
+        this.exactEmail = true;
+      }
+    }
+      // verification mot de passe inscription employé
+    verifPasswordEmploye(){
+      const passwordPattern=/^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$/;
+      this.exactPassword = false;
+      if(this.registreEmploye.password=== ""){
+        this.verifPassword = "Veuillez renseigner votre mot de passe";
+      }
+      else if (this.registreEmploye.password.length < 8 ){
+        this.verifPassword = "Mot de passe doit être supérieur ou égal à 8";
+      }
+      // else if (!passwordPattern.test(this.registreEmploye.password) ){
+      //   this.verifPassword = "Veuillez donner un mot de passe valide ";
+      // }
+      else{
+        this.verifPassword = "";
+        this.exactPassword = true;
+      }
+    }
+
+    // verification confimation password Employé
+    verifPasswordConfEmploye(){
+      this.exactPasswordConf = false;
+      if(this.registreEmploye.password_confirmation  == ""){
+        this.verifPasswordConf = "Veuillez renseigner à nouveau votre mot de passe";
+      }
+      else if (this.registreEmploye.password_confirmation.length < 8 ){
+        this.verifPassword = "Mot de passe doit être supérieur ou égal à 8";
+      }
+      else if (this.registreEmploye.password != this.registreEmploye.password_confirmation ){
+        this.verifPasswordConf = "Les deux mots de passe doivent etre conformes";
+      }
+      else {
+        this.verifPasswordConf = "";
+        this.exactPasswordConf = true;
+      }
+    }
+
+          // Verification du nom employé
+  verifNomEmploye() {
+    this.exactNom = false;
+    if(this.registreEmploye.nom == ""){
+      this.verifNom = "Veuillez renseigner votre nom.";
+    }
+    else if (this.registreEmploye.nom.length < 2 ){
+      this.verifNom = "Le nom doit contenir au moins 2 caractères";
+    }
+    else {
+      this.verifNom = "";
+      this.exactNom = true;
+    }
+  }
+          // Verification de la  langue de d'employé
+  verifLangueEmploye() {
+    this.exactLangue= false;
+    if(this.registreEmploye.langueParler == ""){
+      this.verifLangue = "Veuillez renseigner vos langues";
+    }
+    else if (this.registreEmploye.langueParler.length < 2 ){
+      this.verifLangue = "Le nom de la langue doit contenir au moins 2 caractères";
+    }
+    else {
+      this.verifLangue = "";
+      this.exactLangue= true;
+    }
+  }
+          // Verification civilite de d'employé
+  verifCiviliteEmploye() {
+    this.exactCivilite= false;
+    if(this.registreEmploye.civilite == ""){
+      this.verifCivilite = "Veuillez choisir votre sexe";
+    }
+    // else if (this.registreEmploye.civilite.length < 2 ){
+    //   this.verifLangue = "Le nom de la langue doit contenir au moins 2 caractères";
+    // }
+    else {
+      this.verifLangue = "";
+      this.exactCivilite= true;
+    }
+  }
+
+   // verification du telephone Employeur
+   verifNumeroEmploye(){
+    const phonePattern=/^(77|78|76|70|75)[0-9]{7}$/;
+    this.exactTelephone = false;
+    if(this.registreEmploye.telephone == ""){
+      this.verifTelephone = "Veuillez renseigner votre numéro de téléphone";
+    }else if(this.registreEmploye.telephone.length < 8){
+      this.verifTelephone = "le numero de telephone doit contenir 8 caractères";
+    }
+    else if(!phonePattern.test(this.registreEmploye.telephone)){
+      this.verifTelephone = "Veuillez donner un numéro de téléphone mobile valide";
+    }
+    else{
+      this.verifTelephone = "";
+      this.exactTelephone = true; 
+    }
+  }
+
+  // Verification du prenom employeur
+  verifPrenomEmploye() {
+    this.exactPrenom = false;
+    if(this.registreEmploye.prenom == ""){
+      this.verifPrenom = "Veuillez renseigner votre prenom";
+    }
+    else if (this.registreEmploye.prenom.length < 2 ){
+      this.verifPrenom = "Le prenom doit contenir au moins 2 caractères";
+      
+    }
+    else{
+      this.verifPrenom = "";
+      this.exactPrenom = true;
+    }
+  }
+
   // verif adresse Employe
   verifAdresseEmploye(){
     this.exactLieu = false;
-    if(this.lieu === ""){
+    if(this.registreEmploye.lieu === ""){
       this.verifLieu = "Veuillez renseigner une adresse";
     }
-    else if(this.lieu.length < 2){
+    else if(this.registreEmploye.lieu.length < 2){
       this.verifLieu = "Le nom de l'adresse doit contenir au moins 2 caractères"
     }
-    else if(this.lieu.length >= 30){
-      this.verifLieu = "Le nom de la profession ne doit pas dépasser 30 caractères"
+    else if(this.registreEmploye.lieu.length >= 30){
+      this.verifLieu = "Le nom de l'adresse ne doit pas dépasser 30 caractères"
     }else{
       this.verifLieu = "";
       this.exactLieu = true;
     }
+    }
+
+    // verif description employe
+    verifDescription() {
+      this.exactDescription = false;
+      if(this.registreEmploye.presentation == ""){
+        this.verifDescrip  = "Veuillez renseigner une description";
+      }
+      else if (this.registreEmploye.presentation.length < 4 ){
+        this.verifDescrip  = "La description doit contenir au moins 4 caractères";
+      }
+      else {
+        this.verifDescrip  = "";
+        this.exactDescription = true;
+      }
+    }
+    // Verification profession employe
+    verifProfssion() {
+      this.verifprofession = ""; // Réinitialiser le message d'erreur.
+      this.exactNomProfession = false; // Réinitialiser l'état de validation.
+    
+      // Assurez-vous de comparer la valeur de `profession_id` à la valeur
+      // placeholder (ici, nous supposons "" pour l'exemple).
+      if (this.registreEmploye.profession_id === "") {
+        this.verifprofession = "Veuillez sélectionner une profession.";
+      } else {
+        // Si `profession_id` a une valeur autre que la valeur placeholder,
+        // cela signifie qu'une profession valide a été sélectionnée.
+        this.exactNomProfession = true;
+      }
+    }
+    // verification experience empliye
+    verifierExperience(){
+      const experiencePattern = /^\d+$/;
+      this.exactExperience = false;
+      if(this.registreEmploye.experienceProf == ""){
+        this.verifExperince = "La duréé de l'experince est obligatoire"
+      }else if(!experiencePattern.test(this.registreEmploye.experienceProf)){
+        this.verifExperince = "La durée de l'experince doit être un nombre entier positif"
+      }else if(parseInt(this.registreEmploye.experienceProf, 10) <= 0){
+        this.verifExperince = "La durée de l'experience doit être supérieur à 0"
+      }else{
+        this.exactExperience = true;
+        this.verifExperince = "";
+      }
+    }
+    // verification date de naissance
+    verifierDateNaissance(){
+      this.exactNaissance = false;
+      const aujourdHui = new Date();
+      // Réinitialiser l'heure pour une comparaison juste avec la date seule
+      aujourdHui.setHours(0, 0, 0, 0); 
+      // this.exactDateLimite = false;
+      const dateSeletionner = new Date (this.registreEmploye.dateNaissance);
+      if(this.registreEmploye.dateNaissance   ==""){
+        this.verifDateNaiss = "La date de naissance  est obligatoire"
+      } else if(dateSeletionner > aujourdHui){
+        this.verifDateNaiss = "La date de naissance doit être inférieur à la date d'aujourd'hui"
+      }else{
+        this.exactNaissance = true;
+        this.verifDateNaiss = "";
+      }
+
     }
     
 

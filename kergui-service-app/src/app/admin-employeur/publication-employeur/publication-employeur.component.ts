@@ -421,6 +421,7 @@ verifTypeContrat : string = "";
 verifImage : string = "";
 
 
+
 // Variables si les champs sont exacts
 exactNomProfession : boolean = false;
 exactDescription: boolean = false;
