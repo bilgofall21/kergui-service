@@ -14,6 +14,7 @@ import { DashbordAdminComponent } from './composant/dashbord-admin/dashbord-admi
 import { DetailOffreComponent } from './composant/detail-offre/detail-offre.component';
 import { AuthGuard } from './models/auth-guard';
 import { AuthGuardService } from './services/auth-guard.service';
+import { PolitiqueConfidentialiteComponent } from './composant/politique-confidentialite/politique-confidentialite.component';
 
 
 
@@ -21,12 +22,13 @@ const routes: Routes = [
   {path : '',redirectTo : 'accueil', pathMatch :'full' ,},
   {path : 'page-service' , component : PageServiceComponent},
   {path : 'detail-service/:id', component : DetailServiceComponent,},
-  {path : 'detail-employer/:id', component : DetailEmployerComponent, },
+  {path : 'detail-employer', component : DetailEmployerComponent, },
   {path : 'fonctionnement' , component : FonctionnementComponent,},
   {path : 'accueil' , component : AccueilComponent,},
   {path : 'a-propos' , component : AProposComponent},
   {path : 'annonce', component : AnnonceComponent,},
   {path : 'page-contact', component : PageContactComponent,},
+  {path : 'politique-confidentialite', component : PolitiqueConfidentialiteComponent,},
   {path : 'login', component : LoginComponent,},
   {path : 'service-dashboard', component : ServiceDashboardComponent,},
   {path : 'detail-offre/:id', component : DetailOffreComponent, },

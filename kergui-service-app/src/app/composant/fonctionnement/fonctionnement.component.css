@@ -169,3 +169,156 @@ font-size: 15px;
 }
 
   /* style section employeur fonctionnemnt fin */
+
+  /* media query baniere */
+    /* media query baniere */
+    @media screen and (max-width:1200px) {
+      .banner {
+        height: 40vh;
+      }
+      }
+      @media screen and (max-width:900px) {
+      .banner {
+        height: 30vh;
+      }
+      }
+      @media screen and (max-width:700px) {
+      .banner {
+        height: 20vh;
+      }
+      }
+      @media screen and (max-width:470px) {
+      .banner {
+        height: 15vh;
+      }
+      }
+      @media screen and (max-width:350px) {
+      .banner {
+        height: 12vh;
+      }
+      }
+      @media screen and (max-width:280px) {
+      .banner {
+        height: 10vh;
+      }
+      }
+
+      /* responsivite card */
+      @media screen and (max-width:1000px) {
+        .bigdiv{
+          border: 3px solid var(--kergui-green);
+          height: 360px;
+          width: 270px;
+          margin-top: 40px;
+          
+      }
+      .petitdiv{
+          border: 4px solid var(--kergui-blue);
+          height: 370px;
+          width: 280px;
+          background-color: white;
+          position: relative;
+          bottom: 30px;
+          right: 40px;
+      }
+      }
+      @media screen and (max-width:990px) {
+        .bigdiv{
+          border: 3px solid var(--kergui-green);
+          height: 360px;
+          width: 310px;
+          margin-top: 40px;
+          
+      }
+      .petitdiv{
+          border: 4px solid var(--kergui-blue);
+          height: 370px;
+          width: 320px;
+          background-color: white;
+          position: relative;
+          bottom: 30px;
+          right: 40px;
+      }
+      }
+      @media screen and (max-width:765px) {
+        .bigdiv{
+          border: 3px solid var(--kergui-green);
+          height: 360px;
+          width: 310px;
+          margin-top: 40px;
+          margin: 40px auto 0 auto;
+          
+      }
+      .petitdiv{
+          border: 4px solid var(--kergui-blue);
+          height: 370px;
+          width: 320px;
+          background-color: white;
+          position: relative;
+          bottom: 30px;
+          right: 40px;
+          
+      }
+      
+      }
+      @media screen and (max-width:430px) {
+        .bigdiv{
+          height: 360px;
+          width: 280px; 
+      }
+      .petitdiv{
+          height: 370px;
+          width: 290px;
+      }
+      }
+      @media screen and (max-width:390px) {
+        .bigdiv{
+          height: 360px;
+          width: 240px; 
+      }
+      .petitdiv{
+          height: 370px;
+          width: 250px;
+      }
+      }
+      @media screen and (max-width:350px) {
+        .bigdiv{
+          height: 360px;
+          width: 210px; 
+          margin: 40px auto 0 auto;
+      }
+      .petitdiv{
+          height: 370px;
+          width: 220px;
+      }
+      .choicecontainer .topimage{
+        border-radius: 150px 600px 195px 200px;
+        /* border: 2px solid gold; */
+        width: 280px;
+        height: 217px;
+        margin: 0 auto;
+    }
+      }
+      @media screen and (max-width:330px) {
+        .choicecontainer .topimage{
+          border-radius: 150px 600px 195px 200px;
+          /* border: 2px solid gold; */
+          width: 200px;
+          height: 217px;
+          margin: 0 auto;
+      }
+      }
+      @media screen and (max-width:300px) {
+        .bigdiv{
+          height: 360px;
+          width: 180px; 
+          margin: 40px auto 0 auto;
+      }
+      .petitdiv{
+          height: 370px;
+          width: 190px;
+      }
+      #toto{
+        width: 100%;
+      }
+      }

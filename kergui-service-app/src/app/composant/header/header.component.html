@@ -26,6 +26,17 @@
               <li class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link  fw-bold" [routerLink]="['/fonctionnement']" >Fonctionnement</a>
               </li>
+
+                <li *ngIf="showDetailLinks" class="nav-item" [routerLinkActive]="['active']">
+                  <a class="nav-link fw-bold" [routerLink]="['/detail-service']">Detail Service</a>
+                </li>
+                <li *ngIf="showDetailLinks" class="nav-item" [routerLinkActive]="['active']">
+                  <a class="nav-link fw-bold" [routerLink]="['/detail-employer']">Detail Employer</a>
+                </li>
+                <li  *ngIf="showDetailLinks"class="nav-item" [routerLinkActive]="['active']">
+                  <a class="nav-link fw-bold" [routerLink]="['/detail-offre']">Detail Offre</a>
+                </li>
+         
               
             </ul>
             <div class=" d-flex w-25" id="navright"  >

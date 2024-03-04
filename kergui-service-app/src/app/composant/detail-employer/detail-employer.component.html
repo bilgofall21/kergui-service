@@ -124,55 +124,55 @@
 
   <section class="section about-section gray-bg" id="about">
     <div class="container">
-        <div class="row align-items-center flex-row-reverse" >
-            <div class="col-lg-6" *ngFor=" let element of dataDetailProfil" >
+        <div class="row align-items-center flex-row-reverse" *ngIf=" dataDetailProfil">
+            <div class="col-lg-6">
                 <div class="about-text go-to">
-                    <h3 class="dark-color">{{element.prenom}} {{element.nom}} </h3>
+                    <h3 class="dark-color">{{dataDetailProfil.prenom}} {{dataDetailProfil.nom}} </h3>
                     <h6 class="theme-color lead"> Presentation </h6>
-                    <p>{{element.presentation}}</p>
+                    <p>{{dataDetailProfil.presentation}}</p>
                     <div class="row about-list">
                         <div class="col-md-6">
                             <div class="media">
                                 <label>naissance</label>
-                                <p>{{element.dateNaissance  | date:'dd/MM/yyyy'}}</p>
+                                <p>{{dataDetailProfil.dateNaissance  | date:'dd/MM/yyyy'}}</p>
                             </div>
                             <div class="media">
                                 <label>Civilité</label>
-                                <p>  {{element.civilite}} </p>
+                                <p>  {{dataDetailProfil.civilite}} </p>
                             </div>
                             <div class="media">
                                 <label>Adresse</label>
-                                <p> {{element.lieu}}</p>
+                                <p> {{dataDetailProfil.lieu}}</p>
                             </div>
                             <div class="media">
                                 <label>Langue</label>
-                                <p> {{element.langueParler}} </p>
+                                <p> {{dataDetailProfil.langueParler}} </p>
                             </div>
                         </div>
-                        <div class="col-md-6" >
+                        <div class="col-md-6">
                             <div class="media">
                                 <label>E-mail</label>
-                                <p>{{element.email}}</p>
+                                <p>{{dataDetailProfil.email}}</p>
                             </div>
                             <div class="media">
                                 <label>telephone</label>
-                                <p>{{element.telephone}}</p>
+                                <p>{{dataDetailProfil.telephone}}</p>
                             </div>
                             <div class="media">
                                 <label>Expérience</label>
-                                <p> {{element.experienceProf}} année</p>
+                                <p> {{dataDetailProfil.experienceProf}} année</p>
                             </div>
                             <div class="media">
                                 <label>inscription</label>
-                                <p>{{element.created_at | date : 'dd/MM/yyyy' }}  </p>
+                                <p>{{dataDetailProfil.created_at | date : 'dd/MM/yyyy' }}  </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 " *ngFor=" let element of dataDetailProfil">
+            <div class="col-lg-6 ">
                 <div class="about-avatar">
-                    <img src="http://127.0.0.1:8000/storage/{{element.imageDeProfil}}" title="" alt="">
+                    <img src="http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}}" title="" alt="">
                 </div>
             </div>
         </div>
@@ -194,15 +194,15 @@
                     <div class="count-data text-center">
                       <p class="m-0px font-w-600">liste des commentaires</p>
                         <!-- <h6 class="count h2" data-to="850" data-speed="850">850</h6> -->
-                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-list" > <i class="bi bi-card-checklist count" style="font-size: 24px ;"></i> </a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-list"> <i class="bi bi-card-checklist count" style="font-size: 24px ;"></i> </a>
                         
                     </div>
                 </div>
-                <div class="col-6 col-lg-4" *ngFor=" let element of dataDetailProfil" >
+                <div class="col-6 col-lg-3">
                     <div class="count-data text-center">
                       <p class="m-0px font-w-600">Faite un commentaire</p>
                       <div class="temoignege join-icon">
-                        <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-temoignage"  (click)="  showElement(element)" > 
+                        <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-temoignage"  (click)="  showElement(dataDetailProfil)" > 
                           <!-- <i class="bi bi-chat-dots-fill" style="font-size: 24px ;" ></i> -->
                           <i class="bi bi-chat-square-text-fill count" style="font-size: 24px ;"></i>
                         </a>
