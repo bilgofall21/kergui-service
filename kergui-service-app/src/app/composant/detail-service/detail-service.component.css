@@ -51,6 +51,10 @@ hr{
 
   /* style carte detail service */
 
+  .searchbar .input-group{
+    width: 50%;
+  
+  }
  
   .detailservicecontainer .titleService h5{
     color: var(--kergui-blue);
@@ -81,6 +85,9 @@ font-size: 16px;
   .detailservicecontainer .cardfooter{
     background-color: var(--kergui-blue);
     height: 8px;
+  }
+  .card{
+    width: 19rem;
   }
   .card-body{
     height: 6.5rem;
@@ -155,4 +162,84 @@ font-size: 16px;
   .banner {
     height: 10vh;
   }
+  }
+  /* media deatail service card */
+  @media screen and (max-width:570px) {
+  
+    .card {
+      margin: 0 auto;
+      width: 20rem;
+    }
+  }
+  @media screen and (max-width:550px) {
+    .searchbar .input-group{
+      width: 100%;
+    }
+    .card {
+      margin: 0 auto;
+      width: 20rem;
+    }
+  }
+  @media screen and (max-width:340px) {
+    
+    .card {
+      margin: 0 auto;
+      width: 18rem;
+    }
+  }
+  @media screen and (max-width:290px) {
+    
+    .card {
+      margin: 0 auto;
+      width: 15rem;
+    }
+  }
+  @media screen and (max-width:250px) {
+    
+    .card {
+      margin: 0 auto;
+      width: 13rem;
+    }
+    .title h4{
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width:235px) {
+    
+    .pagiColor, .pagiColore  {
+      font-size: 10px;
+    }
+    
+  }
+  @media screen and (max-width:220px) {
+    
+    .card {
+      margin: 0 auto;
+      width: 10rem;
+    }
+    .nameprofil h6{
+      font-size: 13px;
+    }
+    .profilinfo .itemdetail {
+      font-size: 9px;
+    }
+    
+    
+  }
+  @media screen and (max-width:198px) {
+    
+    .title h4{
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width:187px) {
+    
+    .pagiColor, .pagiColore  {
+      font-size: 9px;
+    }
+    .title h4{
+      font-size: 12px;
+    }
+    
   }

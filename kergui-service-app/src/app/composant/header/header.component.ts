@@ -1,6 +1,7 @@
 import { NgIfContext } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   userProfile: any;
   utilisateurConnecte: boolean = false;
   isLoggedInSubscription: any;
-  constructor(private authservice : AuthService, private router : Router, private  utilisateurservice : UtulisateurService){}
+  constructor(private authservice : AuthService, private router : Router, private  utilisateurservice : UtulisateurService, private activatedRoute: ActivatedRoute){}
   
   ngOnInit(): void {
     this.afficherProfil();
@@ -35,8 +36,22 @@ export class HeaderComponent implements OnInit {
     // console.log("Utilisateur connecté :", this.utilisateurConnecte);
 
     // this.utilisateurConnecte = this.authservice.isLoggedIn();
+    this.otherLink();
+    
   }
-
+  // methode pour injecter dynamiquement des lien au menu en fontion de l'itineraire
+  
+  showDetailLinks: boolean = false; 
+  // currentRoute: string = ''; 
+ 
+    otherLink(): void{
+      this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+        // Check the current route to determine whether to show detail links
+        const currentRoute : string = this.activatedRoute.firstChild?.snapshot.routeConfig?.path ?? '';
+        this.showDetailLinks = ['detail-service', 'detail-employer', 'detail-offre'].includes(currentRoute);
+      });
+   }
+ 
 
   LogOutUser(): void {
     this.authservice.deconnexion().subscribe((respons)=>{

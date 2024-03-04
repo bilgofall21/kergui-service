@@ -153,7 +153,7 @@
 <!-- section service fin -->
 
  <!-- Section nos chiffres debut -->
- <section class="chiffres m-5">
+ <!-- <section class="chiffres m-5">
   <div class="chiffrecontainer" appBlueFont>
     <div class="chiffre">
       <div class="chiffreleft ">
@@ -185,6 +185,71 @@
       </div>
     </div>
   </div>
+</section> -->
+
+<section class="counters-area site-section ">
+  <div class="containere">
+
+   <div class="row mb-5 justify-content-center">
+    <div class="col-md-7 text-center">
+      <h2 class="section-title mb-2 text-white">Les chiffres de Ker gui service</h2>
+      <p class="lead text-white">Les statistiques des  differents utilisateurs et des entités clés qui composenent la plateforme Ker gui service.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row ">
+  
+      <div class="col-lg-3 col-sm-6 ">
+        <div class="counter d-flex justify-content-center">
+          <div class="counter-icon">
+            <i class="bi bi-briefcase-fill"></i>
+          </div>
+          <div class="counter-content ms-3" *ngIf="allprofession">
+            <div class="number  "> {{allprofession.length}} </div>
+            <div class="mb-0 total">Total service</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="counter d-flex  justify-content-center ">
+          <div class="counter-icon">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <div class="counter-content ms-3" *ngIf="allCandidat">
+            <div class="number  "> {{allCandidat.length}} </div>
+            <div class="mb-0 total ">Total employé</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="counter d-flex  justify-content-center ">
+          <div class="counter-icon">
+            <i class="bi bi-person-lines-fill"></i>
+          </div>
+          <div class="counter-content ms-3">
+            <div class="number "> {{tailleEmployeur}} </div>
+            <div class="mb-0 total">Total employeur</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="counter d-flex justify-content-center">
+          <div class="counter-icon">
+            <i class="bi bi-file-earmark-text-fill"></i>
+          </div>
+          <div class="counter-content ms-3" *ngIf="allpublication">
+            <div class="number"> {{allpublication.length}} </div>
+            <div class="mb-0 total">Total publication</div>
+          </div>
+        </div>
+      </div>
+      
+  
+  
+    </div>
+
+  </div>
+</div>
 </section>
 <!-- section npns chiffres fin -->
 

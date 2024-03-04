@@ -3,6 +3,7 @@ import { Profession } from 'src/app/models/profession';
 import { Publication } from 'src/app/models/publication';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { PublicationService } from 'src/app/services/publication.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 
 @Component({
   selector: 'app-accueil',
@@ -11,14 +12,32 @@ import { PublicationService } from 'src/app/services/publication.service';
 })
 export class AccueilComponent implements OnInit {
   detailOffre: []=[];
+  tailleEmployeur: number=0;
   // utilisateurConnecte: boolean=false;
+  // variable de l'animation
+  animatedProfessionCount: number = 0;
+  animatedCandidatCount: number = 0;
+  animatedEmployeurCount: number = 0;
+  animatedPublicationCount: number = 0;
 
-constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService) {}
+constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService, private utilisateurservice : UtulisateurService) {}
   ngOnInit(): void {
 this.affichepublication();
 this.afficherservice();
 // this.utilisateurConnecte = true;
 // console.log('ttt eta', this.utilisateurConnecte);
+    this.recupAllService();
+    this.recupAllCandidat();
+    this.recupAllOffre();
+    this.tousutili();
+    this.animateProfessionCount(this.allprofession.length, 1000);
+  this.animateCandidatCount(this.allCandidat.length, 1000);
+  this.animatePublicationCount(this.allpublication.length, 1000);
+    this.tailleEmployeur = this.nombreEmployeur();
+    this.animation();
+
+   
+
   }
 
   // methode pour afficher 3 dernier publications au niveau de l'accueil
@@ -72,5 +91,88 @@ voirDetail(element : any){
 
 }
 
+// recuperr les services
+allprofession :[]=[]
+recupAllService(){
+  this.professionservice.getProfession().subscribe((respons)=>{
+    this.allprofession = respons.data;
+    console.log('rrrrrrrr', this.allprofession);
+    // localStorage.setItem('all_profession', JSON.stringify(this.allprofession.data))
+  })
+}
+// recuperer all candidats
+allCandidat : []=[];
+recupAllCandidat(){
+  this.utilisateurservice.getAllCandidat().subscribe((data)=>{
+    this.allCandidat = data.data;
+  })
+}
 
+// recuperer all offre
+allpublication : any [] = [];
+
+recupAllOffre(){
+  this.publicationservice.geyAllpublication().subscribe((respons)=>{
+    this.allpublication = respons.data;
+    console.log("eeee", this.allpublication);
+    console.log("hhhhhhhh", this.allpublication);
+    // localStorage.setItem('all_publication', JSON.stringify(this.allpublication.data))
+  })
+}
+// recupalluser
+recupAlluser : any;
+allUseData : any;
+tousutili(): void{
+  this.recupAlluser = localStorage.getItem('all_user')
+  this.allUseData = this.recupAlluser ? JSON.parse(this.recupAlluser) : null;
+}
+nombreEmployeur() {
+  let employeurtaille = 0;
+  for (let i = 0; i < this.allUseData.length; i++){
+    if (this.allUseData[i].role == "employeur") {
+      employeurtaille ++;
+    }
+  }
+  return employeurtaille;
+}
+
+// methode pour animer affichage chiffres
+animateValue(end: number, duration: number, setValue: (val: number) => void) {
+  if (end > 0) {
+    const start = 0;
+    const range = end - start;
+    const startTime = new Date().getTime();
+    const endTime = startTime + duration;
+    const timer = setInterval(() => {
+      const timeNow = new Date().getTime();
+      const time = Math.min(1, (timeNow - startTime) / duration);
+      
+      setValue(Math.ceil(time * range));
+      if (timeNow >= endTime) {
+        clearInterval(timer);
+      }
+    }, 20);
+  }
+  }
+
+  animateProfessionCount(end: number, duration: number) {
+    this.animateValue(end, duration, (val: number) => this.animatedProfessionCount = val);
+  }
+  animateCandidatCount(end: number, duration: number) {
+    this.animateValue(end, duration, (val: number) => this.animatedCandidatCount = val);
+  }
+  animateEmployeurCount(end: number, duration: number) {
+    this.animateValue(end, duration, (val: number) => this.animatedEmployeurCount = val);
+  }
+  animatePublicationCount(end: number, duration: number) {
+    this.animateValue(end, duration, (val: number) => this.animatedPublicationCount = val);
+  }
+
+// fonction d'animation de tous les elements
+animation(): void {
+  this.animateProfessionCount(this.allprofession.length, 1000);
+  this.animateCandidatCount(this.allCandidat.length, 1000);
+  this.animateEmployeurCount(this.tailleEmployeur, 1000);
+  this.animatePublicationCount(this.allpublication.length, 1000);
+}
 }

@@ -15,6 +15,10 @@ hr{
     text-overflow: ellipsis;
     /* overflow-y: auto; */
 }
+.searchbar .input-group{
+  width: 50%;
+
+}
   
   /* style baniere */
   .banner{
@@ -159,11 +163,18 @@ color: var(--kergui-blue);
   @media screen and (max-width:560px) {
     #thiscard{
      margin: 0 auto;
+     width: 20rem
+    }
+    .searchbar .input-group{
+      width: 100%;
+    
     }
   }
   @media screen and (max-width:390px) {
     #thiscard{
      margin: 0 auto;
+     width: 18rem
+
     }
   }
   @media screen and (max-width:365px) {
@@ -187,13 +198,17 @@ color: var(--kergui-blue);
   @media screen and (max-width:290px) {
     #thiscard{
       margin: 0 auto;
-     width: 12rem
+     /* width: 12rem */
+     width: 100%;
     }
   }
   @media screen and (max-width:250px) {
     #thiscard{
       margin: 0 auto;
      width: 100%;
+    }
+    .title h4{
+      font-size: 16px;
     }
   }
 

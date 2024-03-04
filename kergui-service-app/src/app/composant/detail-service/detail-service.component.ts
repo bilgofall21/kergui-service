@@ -25,12 +25,6 @@ export class DetailServiceComponent implements OnInit {
   ngOnInit(): void {
     this.candidatprofession();
 //  this.afficherutilisteur();
-
-
-
-
-
-
   }
 
   
@@ -53,10 +47,10 @@ chargementdonne ():  void{
   // }
   selectedProfil : any;
 
-  // voirdetailProfil (element : any) : void {
-  //   this.selectedProfil = element;
-  //   localStorage.setItem('data_profil', JSON.stringify(this.selectedProfil));
-  // }
+  voirdetailProfil (element : any) : void {
+    this.selectedProfil = element;
+    localStorage.setItem('data_profil', JSON.stringify(this.selectedProfil));
+  }
 
   candidatprofession(): void{
     this.professionservice.GetUserByProfession(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{

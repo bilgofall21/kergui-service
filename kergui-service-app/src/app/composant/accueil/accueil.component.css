@@ -675,4 +675,64 @@ h5{
 
   /* kkkkkkkkkkk */
 
+  .containere {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 
+mb-5, .my-5 {
+  margin-bottom: 3rem!important;
+}
+.containere .justify-content-center {
+
+  justify-content: center!important;
+}
+.containere .row {
+  display: -webkit-box;
+  /* display: -ms-flexbox;
+  display: flex; */
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  /* margin-right: -15px;
+  margin-left: -15px; */
+}
+.containere .row .col-md-7 {
+  /* position: relative; */
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  
+}
+
+.counters-area {
+ 
+  background: var(--kergui-blue);
+  /* height: 25rem; */
+  /* z-index: 1; */
+}
+.site-section {
+  padding: 5rem 0;
+}
+.pb-5, .py-5 {
+  padding-bottom: 3rem!important;
+}
+.pt-5, .py-5 {
+  padding-top: 3rem!important;
+}
+.counter-icon i{
+  font-size: 48px;
+  color: var(--kergui-green);
+}
+.number {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--kergui-green);
+}
+.total {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--kergui-green);
+}

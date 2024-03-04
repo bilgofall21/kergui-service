@@ -36,7 +36,7 @@ this.subscription = this.detailAnnonceservice.detailDataAnnonce$.subscribe(data 
       console.log("candidature reussi", respons);
     },
     (error: any) => {
-      this.affichermessageCandidater('error', 'Désolé', ' veiller vous connectez en tant que employée');
+      this.affichermessageCandidater('error', 'Désolé', ' veiller vous connectez en tant qu \ employé');
       console.error('candidature non valide:', error);
       // Handle registration error, e.g., show an error message
     }
@@ -51,7 +51,7 @@ this.subscription = this.detailAnnonceservice.detailDataAnnonce$.subscribe(data 
         showConfirmButton: false,
         confirmButtonColor: "#3A6A7E",
         timer : 2500,
-        width: 480,
+        width: 550,
         padding: 10,
         color : '#ffff',
         background: '#3A6A7E',

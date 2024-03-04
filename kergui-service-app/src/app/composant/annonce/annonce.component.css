@@ -45,6 +45,12 @@ hr{
       
   }
 
+
+  .searchbar .input-group{
+    width: 50%;
+  
+  }
+    
   /* style annonce debut */
 .annoncecartecontainer .card-img-top{
     height: 225px;
@@ -344,4 +350,73 @@ hr{
     }
     .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
       transform: scale3d(1, 1, 1);
+    }
+
+    /* media query */
+    @media screen and (max-width:1300px) {
+      .card{
+        transition:0.8s;
+        cursor:pointer;
+        height: 26rem;
+        width: 17rem;
+      }
+    }
+    @media screen and (max-width:990px) {
+      .card{
+        transition:0.8s;
+        cursor:pointer;
+        height: 26rem;
+        width: 19.5rem;
+      }
+    }
+    @media screen and (max-width:765px) {
+      .card{
+        transition:0.8s;
+        cursor:pointer;
+        height: 26rem;
+        width: 19.5rem;
+        margin: 0 auto;
+      }
+    }
+    @media screen and (max-width:550px) {
+      .card{
+        transition:0.8s;
+        cursor:pointer;
+        height: 26rem;
+        width: 19.5rem;
+        margin: 0 auto;
+      }
+      .searchbar .input-group{
+        width: 100%;
+      }
+    }
+    @media screen and (max-width:320px) {
+      .card{
+        width: 17.5rem;
+      }
+     
+    }
+    @media screen and (max-width:266px) {
+      .card{
+        width: 12.5rem;
+      }
+     
+    }
+    @media screen and (max-width:235px) {
+      .card{
+        width: 12.5rem;
+      }
+      .pagiColor, .pagiColore  {
+        font-size: 11px;
+      }
+     
+    }
+    @media screen and (max-width:196px) {
+      .card{
+        width: 10.5rem;
+      }
+      .pagiColor, .pagiColore  {
+        font-size: 9px;
+      }
+     
     }

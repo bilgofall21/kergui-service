@@ -11,7 +11,7 @@
             
             <div class="searchbar mb-5">
                 <div class="d-flex justify-content-end">
-                    <div class="input-group w-50 ">
+                    <div class="input-group ">
                         <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon" [(ngModel)]="searchPublication" (input)="getArticlesPage()" />
                         <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
                       </div>
@@ -78,7 +78,7 @@
              
            
                   <!-- <div class="row"> -->
-                    <div class="col-md-3 col-sm-6" *ngFor="let element of  getArticlesPage()">
+                    <div class="col-md-6 col-lg-3" *ngFor="let element of  getArticlesPage()">
                       <div class="card card-block" >
                         <h5 class="card-title mt-2 mb-2 text-center"> {{element.profession.nom_prof}} </h5>
                         <img src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Photo of sunset">

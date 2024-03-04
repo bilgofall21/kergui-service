@@ -18,5 +18,6 @@ export class User {
     imageDeProfil!: File; 
     createdAt!: string;
     updatedAt!: string;
+    
   }
 

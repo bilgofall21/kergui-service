@@ -63,6 +63,17 @@ hr{
   .badge{
     background-color: #3A6A7E;
   }
+  footer{
+ display: flex;
+ justify-content: space-around;
+
+  }
+  .annconcedetail{
+ display: flex;
+ justify-content: space-between;
+
+  }
+  
 
   /* media query baniere */
   @media screen and (max-width:1200px) {
@@ -94,5 +105,124 @@ hr{
     .banner {
       height: 10vh;
     }
+    }
+
+    /* mediaquery annonce */
+    @media screen and (max-width:996px) {
+      h6{
+        font-size: 12px;
+      }
+    }
+    @media screen and (max-width:750px) {
+      h6{
+        font-size: 14px;
+      }
+      footer{
+        display: grid;
+      }
+      .annconcedetail{
+        display: grid;
+         }
+      .postuler{
+        font-size: 16px;
+      }
+      #headtitle{
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+    @media screen and (max-width:515px) {
+    
+      .postuler{
+        font-size: 13px;
+      }
+      
+    }
+    @media screen and (max-width:480px) {
+    
+      .postuler{
+        font-size: 11px;
+        padding: 10px 10px;
+      }
+      
+    }
+    @media screen and (max-width:425px) {
+    
+      .postuler{
+        font-size: 11px;
+        padding: 10px 4px;
+      }
+      
+    }
+    @media screen and (max-width:415px) {
+      #headtitle  h5{
+        font-size: 16px;
+      }
+      .postuler{
+        font-size: 9px;
+        padding: 10px 4px;
+      }
+      
+    }
+    @media screen and (max-width:370px) {
+      #headtitle  h5{
+        font-size: 14px;
+      }
+      .postuler{
+        font-size: 7px;
+        padding: 5px 1px;
+        margin: 0 auto;
+      }
+      /* #divpostuler{
+       width: 100%;
+      } */
+    }
+    @media screen and (max-width:350px) {
+      #headtitle  h5{
+        font-size: 12px;
+      }
+      h6{
+        font-size: 12px;
+      }
+      .postuler{
+        font-size: 7px;
+        padding: 5px 1px;
+        margin: 0 auto;
+      }
+      /* #divpostuler{
+       width: 100%;
+      } */
+    }
+    @media screen and (max-width:325px) {
+      #headtitle  h5{
+        font-size: 8px;
+      }
+      h6{
+        font-size: 10px;
+      }
+      .postuler{
+        font-size: 4px;
+        padding: 5px 1px;
+        margin: 0 auto;
+      }
+      /* #divpostuler{
+       width: 100%;
+      } */
+    }
+    @media screen and (max-width:295px) {
+      #headtitle  h5{
+        font-size: 6px;
+      }
+      h6{
+        font-size: 8px;
+      }
+      .postuler{
+        font-size: 2px;
+        padding: 5px 1px;
+        margin: 0 auto;
+      }
+      /* #divpostuler{
+       width: 100%;
+      } */
     }
 
