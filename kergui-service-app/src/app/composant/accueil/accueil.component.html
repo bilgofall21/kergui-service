@@ -121,10 +121,10 @@
           <div class="cardfooter"></div>
         </div>
       </div> -->
-      <div class="col-lg-3 col-sm-6 " *ngFor=" let element of lastFourService " >
-        <div class="card shadow-lg" style="width: 19rem; height: 28rem;" >
+      <div class="col-lg-3 col-sm-6 " id="cardservic" *ngFor=" let element of lastFourService " >
+        <div class="card shadow-lg" >
           <div>
-            <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 14rem;">
+            <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 13rem;">
             <div class="titleService">
               <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
             </div>
@@ -258,7 +258,7 @@
     <section class="annonce">
       <div class="annoncecontainer">
         <div class="container">
-          <div class="title text-center mb-3">
+          <div class="title text-center mb-3 mt-4">
             <h4 class="fw-bold"> Les récentes annonces</h4>
             <hr class="border-3 opacity-100">
           </div>

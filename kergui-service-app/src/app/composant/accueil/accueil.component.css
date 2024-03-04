@@ -407,7 +407,7 @@ height: 23rem;
   /* max-height: 5rem; */
   font-size: 15px;
  
-  height: 7rem;
+  height: 5.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -421,7 +421,7 @@ color: var(--kergui-green);
 
 .services .cardfooter{
   background-color: var(--kergui-blue);
-  height: 8px;
+  height: 6px;
 }
 
 .validservice button{
@@ -736,3 +736,35 @@ mb-5, .my-5 {
   font-weight: bold;
   color: var(--kergui-green);
 }
+
+#cardservic .card{
+  width: 19rem;
+   }
+
+
+/* media querfy carte */
+
+@media screen and (max-width:575px) {
+ #carteannonce .card, #cardservic .card{
+margin: 0 auto;
+ }
+
+  }
+  
+  @media screen and (max-width:375px) {
+    #carteannonce .card{
+      width: 100%;
+      
+    }
+    #carteannonce {
+      margin-left: 0px;
+      
+    }
+    
+    @media screen and (max-width:315px) {
+    #cardservic .card{
+    width: 100%;
+     }
+    
+      }
+  }

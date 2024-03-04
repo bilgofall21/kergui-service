@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageContactComponent } from './page-contact.component';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PageContactComponent', () => {
   let component: PageContactComponent;
@@ -8,7 +13,8 @@ describe('PageContactComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PageContactComponent]
+      declarations: [PageContactComponent, HeaderComponent, FooterComponent],
+      imports: [FormsModule, HttpClientModule, RouterTestingModule]
     });
     fixture = TestBed.createComponent(PageContactComponent);
     component = fixture.componentInstance;
