@@ -792,7 +792,7 @@ exactNaissance : boolean = false;
     //   this.verifLangue = "Le nom de la langue doit contenir au moins 2 caractères";
     // }
     else {
-      this.verifLangue = "";
+      this.verifCivilite = "";
       this.exactCivilite= true;
     }
   }
@@ -867,8 +867,6 @@ exactNaissance : boolean = false;
       this.verifprofession = ""; // Réinitialiser le message d'erreur.
       this.exactNomProfession = false; // Réinitialiser l'état de validation.
     
-      // Assurez-vous de comparer la valeur de `profession_id` à la valeur
-      // placeholder (ici, nous supposons "" pour l'exemple).
       if (this.registreEmploye.profession_id === "") {
         this.verifprofession = "Veuillez sélectionner une profession.";
       } else {

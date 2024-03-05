@@ -31,6 +31,7 @@ candidatId: any;
     this.publicationservice.getCandidatByOffre(this.activatedRoute.snapshot.params['id']).subscribe((respons)=>{
       this.datacandidatOffre = respons.data;
       console.log("voir candidatureeeee", this.datacandidatOffre)
+      this.allcandidat();
     })
   }
   dataBouvle : any;
