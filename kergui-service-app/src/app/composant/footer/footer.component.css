@@ -32,3 +32,19 @@ hr{
     width: 80%;
     margin: 30px auto;
 }
+.socialreseau{
+    display: flex;
+}
+.socialreseau .social{
+height: 40px;
+width: 40px;
+border-radius: 50%;
+background-color: var(--kergui-green);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.socialreseau .social i{
+color: white;
+font-size: 20px;
+}

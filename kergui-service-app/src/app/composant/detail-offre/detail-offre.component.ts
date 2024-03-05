@@ -36,7 +36,7 @@ this.subscription = this.detailAnnonceservice.detailDataAnnonce$.subscribe(data 
       console.log("candidature reussi", respons);
     },
     (error: any) => {
-      this.affichermessageCandidater('error', 'Désolé', ' veiller vous connectez en tant qu \ employé');
+      this.affichermessageCandidater('error', 'Désolé', ' veiller vous connectez comme employé');
       console.error('candidature non valide:', error);
       // Handle registration error, e.g., show an error message
     }

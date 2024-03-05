@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Profession } from 'src/app/models/profession';
 import { Publication } from 'src/app/models/publication';
+import { DetalAnnonceServiceService } from 'src/app/services/detal-annonce-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { PublicationService } from 'src/app/services/publication.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
@@ -20,7 +21,7 @@ export class AccueilComponent implements OnInit {
   animatedEmployeurCount: number = 0;
   animatedPublicationCount: number = 0;
 
-constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService, private utilisateurservice : UtulisateurService) {}
+constructor( private publicationservice : PublicationService, private professionservice : ProfessionServiceService, private utilisateurservice : UtulisateurService, private detailAnnoceservice : DetalAnnonceServiceService) {}
   ngOnInit(): void {
 this.affichepublication();
 this.afficherservice();
@@ -84,12 +85,7 @@ afficherservice(){
     }
   })
 }
-voirDetail(element : any){
-  this.detailOffre = element;
-  console.log("lou khew" ,this.detailOffre);
-  localStorage.setItem('detail_offre', JSON.stringify(this.detailOffre))
 
-}
 
 // recuperr les services
 allprofession :[]=[]
@@ -174,5 +170,16 @@ animation(): void {
   this.animateCandidatCount(this.allCandidat.length, 1000);
   this.animateEmployeurCount(this.tailleEmployeur, 1000);
   this.animatePublicationCount(this.allpublication.length, 1000);
+}
+
+// methode por voi detail annonce
+
+voirDetail(element : any){
+  this.detailOffre = element;
+  const datail = element;
+  // console.log("lou khew" ,this.detailOffre);
+  // localStorage.setItem('detail_offre', JSON.stringify(this.detailOffre))
+  this.detailAnnoceservice.updateDetailAnnonce(datail);
+
 }
 }
