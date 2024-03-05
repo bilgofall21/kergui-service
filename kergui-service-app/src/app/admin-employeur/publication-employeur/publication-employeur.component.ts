@@ -439,7 +439,7 @@ exactImage : boolean = false;
     
       // Assurez-vous de comparer la valeur de `profession_id` à la valeur
       // placeholder (ici, nous supposons "" pour l'exemple).
-      if (this.profession_id === "") {
+      if (this.profession_id == "") {
         this.verifprofession = "Veuillez sélectionner une profession.";
       } else {
         // Si `profession_id` a une valeur autre que la valeur placeholder,
