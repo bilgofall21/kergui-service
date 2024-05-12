@@ -14,9 +14,9 @@
             </div>
             <div class="col-6 col-lg-3">
               <div class="app-card app-card-stat shadow-sm h-100">
-                <div class="app-card-body p-3 p-lg-4">
+                <div class="app-card-body p-3 p-lg-4" *ngIf="employeurData">
                   <h4 class="stats-type mb-1">Total Employeurs</h4>
-                  <div class="stats-figure"> {{tailleEmployeur}} </div>
+                  <div class="stats-figure"> {{employeurData.length}} </div>
                   <div class="stats-meta text-success">
           </div>
                 </div><!--//app-card-body-->
@@ -46,19 +46,20 @@
               </div><!--//app-card-->
             </div>
           </div>
-        
+
           <h4 class="mt-4 "> Les services récents</h4>
-       
+
           <div class="row my-4">
-            <ng-container *ngIf="lastThreeProfession.length >0 , else noProfession">   
-              <div class="col-lg-3 col-sm-6 " *ngFor="let service of lastThreeProfession">
-                <div class="card shadow-lg" style="width: 18.5rem; height: 26rem;"*ngIf="lastThreeProfession">
+            <ng-container *ngIf="lastThreeProfession.length >0 , else noProfession">
+
+              <div class="col-lg-4 col-sm-6 gap-2" *ngFor="let service of lastThreeProfession">
+                <div class="card shadow-lg" style="width: 18rem; height: 25rem;"*ngIf="lastThreeProfession">
                   <div>
-                    <img  src="http://127.0.0.1:8000/storage/{{service.image}}" class="card-img-top" alt="..." style="height: 14rem;">
+                    <img  src="http://127.0.0.1:8000/storage/{{service.image}}" class="card-img-top" alt="..." style="height: 11rem;">
                     <div class="titleService">
                       <h5 class="text-center mt-1">{{service.nom_prof}} </h5>
                     </div>
-             
+
                   </div>
                   <div class="card-body py-2">
                     <p class="card-text"> {{service.description}} </p>
@@ -69,13 +70,22 @@
             </ng-container>
 
             <ng-template #noProfession>
-              <h4 class="text-center">Liste des services vide</h4>
+              <!-- <h4 class="text-center">Liste des services vide</h4> -->
+              <div class="text-center mt-5" *ngIf="loadingCard">
+                <div class="spinner-indicator">
+
+                </div>
+                <div class="spinner"></div>
+                <div class="mt2">Chargement en cour...</div>
+                </div>
+
+
             </ng-template>
-            
-            
-            
-            
-           
+
+
+
+
+
           </div>
     <!-- </div> -->
 

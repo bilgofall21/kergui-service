@@ -7,7 +7,7 @@ import { ProfessionServiceService } from 'src/app/services/profession-service.se
   styleUrls: ['./page-service.component.css']
 })
 export class PageServiceComponent implements OnInit {
- 
+
 id!: number;
   constructor(private professionservice : ProfessionServiceService ){}
   ngOnInit(): void {
@@ -15,7 +15,7 @@ id!: number;
 
   }
 
-  dataprofessions : any;
+  dataprofessions : [] = [];
   afficherAllprofession():void{
     this.professionservice.getProfession().subscribe((data)=>{
       this.dataprofessions=data.data;
@@ -33,35 +33,20 @@ id!: number;
     })
   }
 
-
-  // recherche
-
-  // filterservice (){
-  //   this.dataprofessiontrouve = this.dataprofessions;
-  //   if (this.searchQuery.trim() === '') {
-  //     this.dataprofessiontrouve = this.dataprofessions;
-  //   }else{
-  //     this.dataprofessiontrouve = this.dataprofessions.filter((profession: { nom_prof: string; description: string; }) =>
-  //       profession.nom_prof.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-  //       profession.description.toLowerCase().includes(this.searchQuery.toLowerCase())
-  //       );
-  //   }
-  // }
-
    // Attribut pour la pagination
    articlesParPage = 4; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 
   // pagination
-  
+
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
   this.dataprofessiontrouve = this.dataprofessions.filter((service: { nom_prof: { toLowerCase: () => {
-    includes: any; (): any; new(): any; include: { (arg0: string): any; new(): any; }; 
+    includes: any; (): any; new(): any; include: { (arg0: string): any; new(): any; };
 }; }; description: { toLowerCase: () => {
-  includes(arg0: string): any; (): any; new(): any; include: { (arg0: string): any; new(): any; }; 
+  includes(arg0: string): any; (): any; new(): any; include: { (arg0: string): any; new(): any; };
 }; }; }) =>
     service.nom_prof.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
     service.description.toLowerCase().includes(this.searchQuery.toLowerCase())

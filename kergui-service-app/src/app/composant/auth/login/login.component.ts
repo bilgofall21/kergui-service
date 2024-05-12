@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit{
   constructor( private authentification : AuthService ,
                private router : Router,
                private professionservice : ProfessionServiceService,
-               private utilisateurservice : UtulisateurService     
+               private utilisateurservice : UtulisateurService
                ){}
                utilisateurConnecte : boolean = false;
   ngOnInit(): void {
@@ -30,6 +30,9 @@ export class LoginComponent implements OnInit{
     // this.utilisateurConnecte = AuthService.utilisateurConnecte()
     // this.utilisateurConnecte = this.authentification.isLoggedIn();
   }
+
+  // variable pour le spinner vdu boutton submit
+  currentConnexion : boolean = false;
 
   // variable pour cacher ou afficherles sections
   showConnexion = true;
@@ -43,7 +46,7 @@ export class LoginComponent implements OnInit{
 
   // methode pour afficher les sections
   afficherSection(view: string, event : Event): void {
-    event.preventDefault(); // Empêche le rechargement de la page 
+    event.preventDefault(); // Empêche le rechargement de la page
     this.showConnexion= view === 'connexionuser';
     this.showAuthEmployeur = view === 'inscriptionemployeur';
     this.showAuthEmploye= view === 'inscritionemploye';
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit{
     }else if(this.sectionActiver === 'inscritionemploye'){
       this.showAuthEmploye =true;
     }
-   
+
   }
 
 // variable pour recuperer input
@@ -71,75 +74,6 @@ formData = {
 userfoundid = '';
 
 
-// connexion methode
-// submitFunction(event: Event, registerForm :NgForm): void {
-//   event.preventDefault();
-//   console.log("voirrrrrr", JSON.stringify(registerForm.value));
-
-//   if (this.formData.email !== '' && this.formData.password !== '') {
-//     const loginData = {
-//       email: this.formData.email,
-//       password: this.formData.password
-//     };
-//     this.authentification.loginUser(loginData).subscribe(
-//       (user: any) => {
-      
-//         this.utilisateurConnecte = true;
-//         console.log("etat anomouu", this.utilisateurConnecte);
-       
-//         this.userfoundid = user.data;
-   
-// localStorage.setItem('user_profile', JSON.stringify(user.data));
-
-//         if (user.token) {
-//           this.affichermessage('success', 'Bienvenue ',  user.data.prenom);
-      
-
-//           if (user.data.role == "admin" && user.data.statut  == "activer") {
-         
-//             this.utilisateurConnecte = true;
-//             this.authentification.setLoggedIn(true);
-        
-//             localStorage.setItem("dashboard_type", 'admina'); 
-//             localStorage.setItem('access_Token', user.token);
-//             this.router.navigate(['/admin']);
-//           this.authentification.setUserId(user.data.id);
-//           }
-//           else if (user.data.role == "candidat" && user.data.statut  == "activer") {
-     
-//             this.authentification.setLoggedIn(true);
-//             this.utilisateurConnecte = true;
-
-//             localStorage.setItem("dashboard_type", 'candidat');
-//             localStorage.setItem('access_Token', user.token);          
-//             this.router.navigate(['/admin-candidat']);
-//           }
-//           else if (user.data.role == "employeur" && user.data.statut  == "activer") {
-       
-//             localStorage.setItem('access_Token', user.token);
-//               localStorage.setItem("dashboard_type", 'candidat');
-//             this.utilisateurConnecte = true;
-//             this.authentification.setLoggedIn(true);
-
-//             this.router.navigate(['/admin-employeur']);
-//           }
-//           else {
-//             this.affichermessage('error', 'Ce compte a été désactive', 'error');
-//           }
-//         } else {
-//           this.affichermessage('error', 'Oops', 'Login ou mot de passe incorrecte');
-//         }
-//       },
-//       (error: any) => {
-//         console.error('Erreur lors de la connexion :', error);
-//         this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
-//       }
-//     );
-
-//   } else {
-//     this.affichermessage('error', 'Désolé', ' Les Informations que vous avez saisies sont incorrectes!');
-//   }
-// }
 
 onEmailInput(control: any): void {
   if (control.invalid && !control.touched) {
@@ -157,8 +91,9 @@ connexion(event: Event): void {
 
   this.authentification.loginUser(loginData).subscribe(
     (user: any) => {
+      this.currentConnexion = true;
       this.userfoundid = user.data;
-      console.log("connexion status", user);
+      // console.log("connexion status", user);
 
       localStorage.setItem('user_profile', JSON.stringify(user.data));
 
@@ -185,7 +120,8 @@ connexion(event: Event): void {
     },
     (error: any) => {
       console.error('Erreur lors de la connexion :', error);
-      
+      this.currentConnexion = false;
+
       this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
     }
   );
@@ -237,7 +173,7 @@ presentation:"",
 
 // inscription debut
 
-nom: string =""; 
+nom: string ="";
 prenom: string ="";
 email: string ="";
 password: string = "";
@@ -250,7 +186,7 @@ profession_id : string ="";
 experienceProf:string ="";
 dateNaissance :string ="";
 lieu:string ="";
-imageDeProfil!: File; 
+imageDeProfil!: File;
 
 
 
@@ -270,13 +206,13 @@ registerUser(): void {
     formData.append('password', this.registreData.password);
     formData.append('password_confirmation', this.registreData.password_confirmation);
     formData.append('imageDeProfil', this.image);
-  
-    
+
+
     // Call the registration method in your authentication service
     this.authentification.registerUser(formData).subscribe(
       (response: any) => {
-        console.log(  "inscription successfully", response);
-       
+        // console.log(  "inscription successfully", response);
+
         Swal.fire({
           icon: 'success',
           title: 'Inscription réussie',
@@ -313,17 +249,17 @@ registerUser(): void {
         console.error('Erreur durant inscription:', error);
         // Handle registration error, e.g., show an error message
       }
-      
+
     );
   }else{
     this.affichermessage('error', 'Verifiez', ' information manquante ou incorrect');
-   
+
   }
 
 }
 registerUserEmploye(): void {
   // Perform additional validation if needed
-    
+
     let formData=new FormData();
     formData.append('nom', this.registreEmploye.nom);
     formData.append('prenom', this.registreEmploye.prenom);
@@ -339,11 +275,11 @@ registerUserEmploye(): void {
     formData.append('profession_id', this.registreEmploye.profession_id);
     formData.append('experienceProf', this.registreEmploye.experienceProf);
     formData.append('imageDeProfil', this.image);
-  
-    console.log("voir info rentrer", this.registreData);
+
+    // console.log("voir info rentrer", this.registreData);
     // Call the registration method in your authentication service
     this.authentification.registerEmploye(formData).subscribe(
-      
+
       (response: any) => {
 
         Swal.fire({
@@ -374,7 +310,7 @@ registerUserEmploye(): void {
             dateNaissance :"",
             presentation:"",
             }
-           
+
             this.showConnexion = true;
             this.showPresentation = false;
             this.showAuthEmployeur = false;
@@ -382,16 +318,16 @@ registerUserEmploye(): void {
           }
         })
         // this.affichermessageregister('success', 'Bravo', ' Inscription reussie');
-        // console.log(  "inscription successfully", response); 
+        // console.log(  "inscription successfully", response);
       },
       (error: any) => {
         this.affichermessageregister('error', 'desole', ' Inscription non validé');
         console.error('Erreur durant inscription:', error);
         // Handle registration error, e.g., show an error message
       }
-     
+
     );
-  
+
 
 }
 
@@ -441,15 +377,15 @@ this.selectOptionData = data.data;
 
 
 LogOutUser() : void{
-  this.authentification.deconnexion().subscribe((respons)=>{ 
+  this.authentification.deconnexion().subscribe((respons)=>{
     this.authentification.setLoggedIn(false);
     console.log("byyy byyyy", respons);
     localStorage.removeItem('access_Token');
     localStorage.removeItem('user_profile');
     this.router.navigate(['/login']);
- 
+
     // return new Observable<any>();
-    
+
   })
 }
 
@@ -476,7 +412,7 @@ changeMotDePass(): void{
     setTimeout(()=>{
       window.location.href = 'https://mail.google.com/mail/u/0/#inbox';
     }, 3000);
-  
+
   },
   (error) => {
     console.error('Erreur lors de la réinitialisation du mot de passe', error);
@@ -498,7 +434,7 @@ changeMotDePass(): void{
 }
 // validation
 
-  // Pour vérifier les champs pour la connexion 
+  // Pour vérifier les champs pour la connexion
   verifEmail : String = "";
   verifPassword: String = "";
   verifNom : String  =  "";
@@ -515,7 +451,7 @@ changeMotDePass(): void{
 
   // Variables Si les valeurs sont exactes
   exactEmail : boolean = false;
-  exactPassword : boolean = false; 
+  exactPassword : boolean = false;
   exactNom : boolean = false;
   exactPrenom : boolean = false;
   exactPasswordConf : boolean = false;
@@ -535,7 +471,7 @@ exactNaissance : boolean = false;
     verifEmailConFonction(){
       const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       this.exactEmail = false;
-      
+
       if(this.formData.email === ""){
         this.verifEmail = "Veuillez renseigner votre email";
       }
@@ -551,7 +487,7 @@ exactNaissance : boolean = false;
     verifEmaiMdpo(){
       const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       this.exactEmail = false;
-      
+
       if(this.email === ""){
         this.verifEmail = "Veuillez renseigner votre email";
       }
@@ -588,7 +524,7 @@ exactNaissance : boolean = false;
     verifEmailEmployeur(){
       const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       this.exactEmail = false;
-      
+
       if(this.registreData.email === ""){
         this.verifEmail = "Veuillez renseigner votre email";
       }
@@ -633,7 +569,7 @@ exactNaissance : boolean = false;
         this.exactPasswordConf = true;
       }
     }
-  
+
       // Verification du nom employeur
   verifNomEmployeur() {
     this.exactNom = false;
@@ -657,7 +593,7 @@ exactNaissance : boolean = false;
     }
     else if (this.registreData.prenom.length < 2 ){
       this.verifPrenom = "Le prenom doit contenir au moins 2 caractères";
-      
+
     }
     else{
       this.verifPrenom = "";
@@ -681,7 +617,7 @@ exactNaissance : boolean = false;
       this.exactLieu = true;
     }
     }
-  
+
      // verification du telephone Employeur
      verifNumeroEmployeur(){
       const phonePattern=/^(77|78|76|70|75)[0-9]{7}$/;
@@ -696,7 +632,7 @@ exactNaissance : boolean = false;
       }
       else{
         this.verifTelephone = "";
-        this.exactTelephone = true; 
+        this.exactTelephone = true;
       }
     }
 
@@ -705,7 +641,7 @@ exactNaissance : boolean = false;
     verifEmailEmploye(){
       const emailPattern =   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       this.exactEmail = false;
-      
+
       if(this.registreEmploye.email === ""){
         this.verifEmail = "Veuillez renseigner votre email";
       }
@@ -811,7 +747,7 @@ exactNaissance : boolean = false;
     }
     else{
       this.verifTelephone = "";
-      this.exactTelephone = true; 
+      this.exactTelephone = true;
     }
   }
 
@@ -823,7 +759,7 @@ exactNaissance : boolean = false;
     }
     else if (this.registreEmploye.prenom.length < 2 ){
       this.verifPrenom = "Le prenom doit contenir au moins 2 caractères";
-      
+
     }
     else{
       this.verifPrenom = "";
@@ -866,7 +802,7 @@ exactNaissance : boolean = false;
     verifProfssion() {
       this.verifprofession = ""; // Réinitialiser le message d'erreur.
       this.exactNomProfession = false; // Réinitialiser l'état de validation.
-    
+
       if (this.registreEmploye.profession_id === "") {
         this.verifprofession = "Veuillez sélectionner une profession.";
       } else {
@@ -895,7 +831,7 @@ exactNaissance : boolean = false;
       this.exactNaissance = false;
       const aujourdHui = new Date();
       // Réinitialiser l'heure pour une comparaison juste avec la date seule
-      aujourdHui.setHours(0, 0, 0, 0); 
+      aujourdHui.setHours(0, 0, 0, 0);
       // this.exactDateLimite = false;
       const dateSeletionner = new Date (this.registreEmploye.dateNaissance);
       if(this.registreEmploye.dateNaissance   ==""){
@@ -908,6 +844,6 @@ exactNaissance : boolean = false;
       }
 
     }
-    
+
 
 }

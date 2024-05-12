@@ -5,7 +5,7 @@
     <div class="ajoutservicebutton">
         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="ouvrirFormulaireAjout()"> Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
     </div>
-   
+
     <div class="ajoutservicebutton">
         <!-- <a routerLink="/admin-employeur/liste-publication-employeur" > Suivie des publications <span class="lnr lnr-paperclip ms-2"></span></a> -->
     </div>
@@ -14,7 +14,7 @@
 
         <div class="row mt-4">
             <!-- <div class="col-lg-4 cardannonce" *ngFor="let element of datPublicationFiltred ">
-            
+
 
                 <div class="cardcontain">
                   <div class="card border-0" style="width: 20rem;">
@@ -26,11 +26,11 @@
                       </div>
                     </div>
                     <div class="card-body ">
-                    
+
                       <p class="card-text text-center">{{element.description}}</p>
                     </div>
                     <div class="cardfooter d-flex justify-content-around">
-                    
+
                       <div class="mt-4 mb-2">
                         <span class="lnr lnr-calendar-full me-2 "></span> {{element.created_at | date:'dd-MM-yyyy'  }}
                       </div>
@@ -42,55 +42,24 @@
                   </div>
                     <button href="" class="text-center validpubli text-decoration-none py-1  mt-1"  [routerLink]="['/admin-employeur/detail-liste-publication-employeur',element.id]" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
                   </div>
-  
+
                 </div>
-     
-              
+
+
             </div> -->
-           
+
             <div class="searchbar mb-5 mt-5">
               <div class="d-flex justify-content-end">
                   <div class="input-group w-50 ">
                       <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Rechercher"  aria-describedby="search-addon" [(ngModel)]="searchpublication" (input)="getArticlesPage()"  />
                       <button type="button   " class="btn text-white" data-mdb-ripple-init  >rechercher</button>
                     </div>
-        
+
               </div>
             </div>
             <ng-container *ngIf="getArticlesPage().length >0; else noPublication">
-              <!-- <div class="col-sm-12 col-md-6 col-lg-4 mb-3 shadow-sm" *ngFor="let element of getArticlesPage()">
-                <article class="u-shadow-v11">
-                    <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
-                    <div class="g-bg-warning g-px-30 g-py-20" id="description">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex mt-2">
-                          <h5 class="">Date limite : </h5>   
-                          <h6 class="ms-2 "> {{element.dateline}} </h6>
-                        </div>
-                        <div class="">    
-                       <h6 class="mb-2 ms-2"> <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #3A6A7E;"></i> {{element.user.prenom}} {{element.user.nom}}</h6>
-                        </div>
-  
-                      </div>
-                      <div class="text-center my-1">
-                        <h5> {{element.profession.nom_prof}} </h5>
-                      </div>
-                        <h3 class="h5 g-color-black font-weight-400 font-size-1 mb-2">
-                           Description
-                        </h3>
-                        <p class="g-color-gray-dark-v4 g-line-height-1_8">{{element.description}}</p>
-                        <div class="iconegestion d-flex justify-content-around w-50 mb-1  mt-1">
-                          <a href=""   data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="detailPublication(element)"><i class="bi bi-eye"></i></a>
-                          <a   data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerPublication(element)" ><span class="lnr lnr-pencil"></span></a>
-                          <button class="bg-white"  (click)="supprimerProfession(element.id)" > <span class="lnr lnr-trash"></span></button>
-                      </div>
-                        <hr class="">
-                        <button href="" class="text-center validpubli text-decoration-none py-1  mb-2"  [routerLink]="['/admin-employeur/detail-liste-publication-employeur',element.id]" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
-                    </div>
-                </article>
-            </div> -->
-            
-          
+
+
             <div class="col-md-4 col-sm-6" *ngFor="let element of getArticlesPage()">
               <div class="card card-block" >
                 <h5 class="card-title mt-2 mb-2 text-center"> {{element.profession.nom_prof}} </h5>
@@ -107,19 +76,20 @@
                 <button href="" class="text-center validpubli text-decoration-none py-1  mb-2"  [routerLink]="['/admin-employeur/detail-liste-publication-employeur',element.id]" > Suivie Annonce <span class="lnr lnr-arrow-right ms-2"></span></button>
           </div>
             </div>
-          
+
           </ng-container>
 
 
-            <ng-template #noPublication>          
+            <ng-template #noPublication>
               <h4 class="text-center">Aucune publication disponible</h4>
+              <app-spinneremployeur [loadingemployeur]="loadingemplyeur" ></app-spinneremployeur>
             </ng-template>
-            
-            
-            
+
+
+
           </div>
-        
-    
+
+
 </div>
 <!-- Modal ajout debut -->
 
@@ -133,7 +103,7 @@
         <div class="modal-body  ">
             <form  >
               <div class="mb-3">
-                <Label class = "form-label"> Sélectionnez la photo 
+                <Label class = "form-label"> Sélectionnez la photo
                 <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)" >
                </Label>
                </div>
@@ -145,16 +115,16 @@
                     </select>
                     <p class="message-erreur" *ngIf="!exactNomProfession">{{verifprofession}}</p>
                     <p class="message-success" *ngIf="exactNomProfession"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
-                 
+
                     <!-- <input type="number" class="form-control" placeholder="profession"  name = "profession_id" [(ngModel)]="profession_id"> -->
                   </div>
-                <div class="mb-3"> 
+                <div class="mb-3">
                     <label for="lieu" class="form-label">Date Limite</label>
                     <input type="date" class="form-control" name="dataline" id="dateline" placeholder="adresse" [(ngModel)]="dateline" [min]="minDate()" required (input)="verifierDateLimite()" >
                     <p class="message-erreur" *ngIf="!exactDateLimite">{{verifDateLimmite}}</p>
                     <p class="message-success" *ngIf="exactDateLimite"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
                   </div>
-                <div class="mb-3"> 
+                <div class="mb-3">
                     <label for="lieu" class="form-label">Adresse</label>
                     <input type="text" class="form-control" name="lieu" id="lieu" placeholder="adresse" [(ngModel)]="lieu" required (input)="verifAdresse()" >
                     <p class="message-erreur" *ngIf="!exactLieu">{{verifLieu}}</p>
@@ -190,7 +160,7 @@
                   </div>
             </form>
         </div>
-     
+
       </div>
     </div>
   </div>
@@ -209,7 +179,7 @@
       <div class="modal-body  ">
           <form action="">
             <div class="mb-3">
-              <Label class = "form-label"> Sélectionnez la photo 
+              <Label class = "form-label"> Sélectionnez la photo
               <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)" >
              </Label>
              </div>
@@ -221,16 +191,16 @@
                     </select>
                     <p class="message-erreur" *ngIf="!exactNomProfession">{{verifprofession}}</p>
                     <p class="message-success" *ngIf="exactNomProfession"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
-                 
+
                     <!-- <input type="number" class="form-control" placeholder="profession"  name = "profession_id" [(ngModel)]="profession_id"> -->
                   </div>
-                <div class="mb-3"> 
+                <div class="mb-3">
                     <label for="lieu" class="form-label">Date Limite</label>
                     <input type="date" class="form-control" name="dataline" id="dateline" placeholder="adresse" [(ngModel)]="dateline" [min]="minDate()" required (input)="verifierDateLimite()" >
                     <p class="message-erreur" *ngIf="!exactDateLimite">{{verifDateLimmite}}</p>
                     <p class="message-success" *ngIf="exactDateLimite"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
                   </div>
-                <div class="mb-3"> 
+                <div class="mb-3">
                     <label for="lieu" class="form-label">Adresse</label>
                     <input type="text" class="form-control" name="lieu" id="lieu" placeholder="adresse" [(ngModel)]="lieu" required (input)="verifAdresse()" >
                     <p class="message-erreur" *ngIf="!exactLieu">{{verifLieu}}</p>
@@ -260,14 +230,14 @@
                     <p class="message-erreur" *ngIf="!exactDescription">{{verifDescrip}}</p>
                       <p class="message-success" *ngIf="exactDescription"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
                   </div>
-          
+
                 <div class="validajout d-flex justify-content-end">
                   <button data-bs-dismiss="modal" class="btn-custom"   (click)="modifierProfession()" > Modifier</button>
                   <a href="" class="btn bg-secondary text-white" data-bs-dismiss="modal"> Annuler</a>
                 </div>
           </form>
       </div>
-   
+
     </div>
   </div>
 </div>
@@ -283,8 +253,8 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body  ">
-         
-            
+
+
                 <div class="" >
                  <div class="row" *ngIf="publcationselect">
                   <div class="col-4 " id="tof">
@@ -293,20 +263,20 @@
                   <div class="col-8 ">
                       <div class="mb-2">
                           <h6>date publication :{{publcationselect.created_at | date:'dd-MM-yyyy'  }}   </h6>
-                        
+
                       </div>
-                      
+
                       <div class="d-flex mb-2">
                           <h6> experience: {{publcationselect.experienceMinimum}} </h6>
                           <h6 class="ms-3">  </h6>
                       </div>
                       <div class="mb-2">
                           <h6> Adresse:  {{publcationselect.lieu}} </h6>
-                        
+
                       </div>
                       <div class="mb-2">
                           <h6> Contrat :  {{publcationselect.typeContrat}} </h6>
-                        
+
                       </div>
                       <div>
                           <h6>presentation</h6>
@@ -321,10 +291,10 @@
                   <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
                 </div>
 
-                
-         
+
+
       </div>
-   
+
     </div>
   </div>
 </div>
@@ -335,14 +305,14 @@
   <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
     Précédent
   </button>
-  <button class="btn pagiColore ms-2" 
-          *ngFor="let page of pages" 
-          [class.current]="page === pageActuelle" 
+  <button class="btn pagiColore ms-2"
+          *ngFor="let page of pages"
+          [class.current]="page === pageActuelle"
           (click)="pageActuelle = page">
     {{ page }}
   </button>
-  <button class="btn pagiColor ms-2" 
-          [disabled]="pageActuelle === totalPages" 
+  <button class="btn pagiColor ms-2"
+          [disabled]="pageActuelle === totalPages"
           (click)="pageActuelle = pageActuelle + 1">
     Suivant
   </button>

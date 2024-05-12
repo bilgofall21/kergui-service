@@ -1,3 +1,4 @@
+import { filter } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Publication } from 'src/app/models/publication';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
@@ -11,32 +12,31 @@ import { UtulisateurService } from 'src/app/services/utulisateur.service';
 })
 export class HomeAdminComponent implements OnInit {
   dataHomeService: any;
+  loadingCard = true;
 constructor(private utulisateurservice : UtulisateurService, public professionservice : ProfessionServiceService, public publicationservice : PublicationService ){}
   ngOnInit(): void {
     this.recupAllutulisateur();
-    this.recupAlluser = localStorage.getItem('all_user')
-    this.allUseData = this.recupAlluser ? JSON.parse(this.recupAlluser) : null;
+    // this.recupAlluser = localStorage.getItem('all_user')
+    // this.allUseData = this.recupAlluser ? JSON.parse(this.recupAlluser) : null;
     // console.log("dataanow", this.allUseData);
-    console.log("yyyyyy", this.allUseData);
+    // console.log("yyyyyy", this.allUseData);
 
     this.recupAllService();
     this.recupAllCandidat()
-
-    this.tailleEmployeur = this.nombreEmployeur();
-    
-  
     this.afficheService();
     this.recupAllOffre();
   }
 alldata : any;
 recupAlluser : any;
 allUseData : any;
+employeurData : [] = [];
 tailleEmployeur : any ;
 tailletCandidat : any;
 recupAllutulisateur(){
   this.utulisateurservice.getAllUser().subscribe((data)=>{
-    this.alldata = data;
-   localStorage.setItem('all_user', JSON.stringify(this.alldata.data))
+    this.alldata = data.data;
+    this.employeurData = this.alldata.filter((item : {role : string}) => item.role === 'employeur');
+    // console.log("mpes employuer",this.employeurData)
   })
 }
 allprofession : []= []
@@ -46,7 +46,7 @@ tailleProfession : any ;
 recupAllService(){
   this.professionservice.getProfession().subscribe((respons)=>{
     this.allprofession = respons.data;
-    console.log('rrrrrrrr', this.allprofession);
+    // console.log('rrrrrrrr', this.allprofession);
     // localStorage.setItem('all_profession', JSON.stringify(this.allprofession.data))
   })
 }
@@ -56,7 +56,7 @@ taillePublication : any;
 recupAllOffre(){
   this.publicationservice.geyAllpublication().subscribe((respons)=>{
     this.allpublication = respons.data;
-    console.log("eeee", this.allpublication);
+    // console.log("eeee", this.allpublication);
     // localStorage.setItem('all_publication', JSON.stringify(this.allpublication.data))
   })
 }
@@ -66,48 +66,13 @@ recupAllCandidat(){
     this.allCandidat = data.data;
   })
 }
-nombreEmployeur() {
-  let employeurtaille = 0;
-  for (let i = 0; i < this.allUseData.length; i++){
-    if (this.allUseData[i].role == "employeur") {
-      employeurtaille ++;
-    }
-  }
-  return employeurtaille;
-}
-// nombreCandidat() {
-//   let candidattaille = 0;
-//   for (let i = 0; i < this.allUseData.length; i++){
-//     if (this.allUseData[i].role == "candidat") {
-//       candidattaille ++;
-//     }
-//   }
-//   return candidattaille;
-// }
-// nombreService(){
-//   let servicetaille = 0;
-//   for (let i = 0; i < this.allProfessionData.length; i++) {
-//    servicetaille ++;
-    
-//   }
-//   return servicetaille;
-// }
-// nombrePublication(){
-//   let publicationtaille = 0;
-//   for (let i = 0; i < this.allPublicationData.length; i++) {
-//     publicationtaille ++;
-//     console.log("taille bi", publicationtaille);
-//   }
-//   return publicationtaille;
-// }
+
 lastname : any;
 lastThreeProfession: any[] = [];
 afficheService() : void {
   this.professionservice.getProfession().subscribe((homepublic)=>{
     this.dataHomeService = homepublic.data;
-    console.log(  "les profession",this.dataHomeService);
-    
-    // virifier si les donnee sont null
+
     if (this.dataHomeService ){
 
        // Trier les profession par date de création dans l'ordre décroissant
@@ -115,12 +80,12 @@ afficheService() : void {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
       // Prendre les trois dernières profession
-      this.lastThreeProfession = sortedProfession.slice(0, 4);
-      console.log("blemmmm", this.lastThreeProfession);
-      console.warn( this.lastThreeProfession);
-      
-  
-    
+      this.lastThreeProfession = sortedProfession.slice(0, 3 );
+     
+      this.loadingCard = false;
+
+
+
     }
   })
 }

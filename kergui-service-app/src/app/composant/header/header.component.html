@@ -8,12 +8,12 @@
       </button>
       <div class="collapse navbar-collapse  " id="navbarNav">
         <div class="d-flex justify-content-around w-100" id="contenumenu">
-            
+
             <ul class="navbar-nav " id="navigationTitle">
               <li class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link  fw-bold" aria-current="page" [routerLink]="['/accueil']" >Accueil</a>
               </li>
-              
+
               <li class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link  fw-bold" [routerLink]="['/a-propos']" >A propos</a>
               </li>
@@ -27,17 +27,9 @@
                 <a class="nav-link  fw-bold" [routerLink]="['/fonctionnement']" >Fonctionnement</a>
               </li>
 
-                <li *ngIf="showDetailLinks" class="nav-item" [routerLinkActive]="['active']">
-                  <a class="nav-link fw-bold" [routerLink]="['/detail-service']">Detail Service</a>
-                </li>
-                <li *ngIf="showDetailLinks" class="nav-item" [routerLinkActive]="['active']">
-                  <a class="nav-link fw-bold" [routerLink]="['/detail-employer']">Detail Employer</a>
-                </li>
-                <li  *ngIf="showDetailLinks"class="nav-item" [routerLinkActive]="['active']">
-                  <a class="nav-link fw-bold" [routerLink]="['/detail-offre']">Detail Offre</a>
-                </li>
-         
-              
+             
+
+
             </ul>
             <div class=" d-flex w-25" id="navright"  >
               <ul id="navright" class="">
@@ -46,8 +38,8 @@
                 </li>
               </ul>
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu " *ngIf="utilisateurConnecte">
-          
-                <li class="nav-item dropdown d-flex align-items-center ">
+
+                <li class="nav-item dropdown d-flex align-items-center " *ngIf="samaProfil">
                   <h6 class="text-white me-2">{{samaProfil.prenom}} {{samaProfil.nom}} </h6>
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="profile-pic">
@@ -69,4 +61,3 @@
   </nav>
 
 
-  

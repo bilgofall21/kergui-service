@@ -11,6 +11,7 @@ import { HomeAdminEmployeureComponent } from './home-admin-employeure/home-admin
 import { ListePublicationEmployeurComponent } from './liste-publication-employeur/liste-publication-employeur.component';
 import { DetailListePublicationEmployeurComponent } from './detail-liste-publication-employeur/detail-liste-publication-employeur.component';
 import { FormsModule } from '@angular/forms';
+import { SpinneremployeurComponent } from './loaderemployeur/spinneremployeur/spinneremployeur.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     MainEmployeurComponent,
     HomeAdminEmployeureComponent,
     ListePublicationEmployeurComponent,
-    DetailListePublicationEmployeurComponent
+    DetailListePublicationEmployeurComponent,
+    SpinneremployeurComponent
   ],
   imports: [
     CommonModule,

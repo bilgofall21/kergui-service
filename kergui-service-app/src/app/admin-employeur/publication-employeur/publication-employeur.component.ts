@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./publication-employeur.component.css']
 })
 export class PublicationEmployeurComponent implements OnInit {
+
+  loadingemplyeur : boolean = false;
     //variable de publication
     // nom_prof:string="";
     lieu:string ="";
@@ -31,9 +33,9 @@ export class PublicationEmployeurComponent implements OnInit {
     this.experienceMinimum ="";
     this.profession_id ="";
     this.dateline = "";
-   
+
     }
-    
+
     newPublication : any ={
       // nom_prof: "",
       lieu:"",
@@ -48,7 +50,7 @@ export class PublicationEmployeurComponent implements OnInit {
     }
 publication: any;
 
-    
+
 
   constructor( private publicationservice : PublicationService, private candidatservice : CandidatureServiceService, private professionservice : ProfessionServiceService, private utilisateurservice : UtulisateurService) { }
  userConnectedId : any;
@@ -57,7 +59,7 @@ publication: any;
   this.afficherPublication();
   this.listeProfession ();
   this.afficherProfil();
- 
+
   }
   dataOffres : any;
   afficherOfrreUser(): void{
@@ -78,7 +80,7 @@ publication: any;
     })
   }
 
-  
+
 
 
   userId = localStorage.getItem('userId');
@@ -90,22 +92,20 @@ publication: any;
     this.userConnect = recupuserConnecte ? JSON.parse(recupuserConnecte) : null;
     if(this.userConnect){
       // appel du service recuperant tpous les annonces
+      this.loadingemplyeur = true;
       this.publicationservice.geyAllpublication().subscribe((data)=>{
         this.dataPublication = data.data;
         console.warn(this.dataPublication);
-        console.log("tous les publuvation", this.dataPublication);
-      
+        // console.log("tous les publuvation", this.dataPublication);
+
+
         // fitrer les anonces en fontion du userconnecté
         this.datPublicationFiltred = this.dataPublication.filter((element: {etat: string; user_id: any; }) =>
          element.user_id == this.userConnect.id && element.etat == 'nouveau') ;
-        
-        console.log("mes pubiiiii", this.datPublicationFiltred);
-        // this.datPublicationFiltred.forEach((publication : any)=>{
-        //   const nomProfession = this.getNomProfesion(publication.profession_id);
-        //   console.log("profession", nomProfession);
-        // })
+
+        this.loadingemplyeur = false;
       })
-      
+
     }
 
   }
@@ -114,7 +114,7 @@ publication: any;
   afficherProfil() :void {
     this.utilisateurservice.getProfil().subscribe((respons)=>{
       this.samaProfil = respons.data;
-      console.log("voir profil true", this.samaProfil );
+      // console.log("voir profil true", this.samaProfil );
     })
   }
 ajouterPublicatin (): void{
@@ -133,7 +133,7 @@ ajouterPublicatin (): void{
       confirmButtonText: "Oui ajouter!"
     }).then((result) => {
       if(result.isConfirmed){
-        
+
         let formData = new FormData();
         formData.append('lieu', this.lieu);
         formData.append('typeContrat', this.typeContrat);
@@ -144,9 +144,9 @@ ajouterPublicatin (): void{
         formData.append('dateline', this.dateline);
         formData.append('image', this.image);
         this.publicationservice.addPubication(formData).subscribe((datapubli : any) =>{
-          console.log("champ", formData);
-          console.log("ajout bien", datapubli);
-          this.viderChamp();   
+          // console.log("champ", formData);
+          // console.log("ajout bien", datapubli);
+          this.viderChamp();
           window.location.reload();
         },
         error =>{
@@ -184,7 +184,7 @@ viderChamp(): void{
   this.experienceMinimum  = "";
   this.profession_id = "";
   this.dateline = "";
-  
+
 }
 
 selectedPublication : any;
@@ -195,7 +195,7 @@ chargerPublication( publication : any){
   if(publication && publication.id){
 
     this.selectedPublication = publication.id;
-    console.log("id publication", this.selectedPublication);
+    // console.log("id publication", this.selectedPublication);
     this.lieu =publication.lieu;
     this.dateline = publication.dateline;
     this.image = publication.image;
@@ -208,7 +208,7 @@ chargerPublication( publication : any){
     // this.userId = publication.userId;
   }else {
     console.error("Erreur: ID de la formation non défini");
-    
+
   }
   }
 
@@ -230,7 +230,7 @@ chargerPublication( publication : any){
       });
       return; // Sortir de la fonction si un champ requis est manquant
     }
-  
+
     let formData = new FormData();
     formData.append('lieu', this.lieu);
     formData.append('typeContrat', this.typeContrat);
@@ -240,7 +240,7 @@ chargerPublication( publication : any){
     formData.append('profession_id', this.profession_id);
     formData.append('dateline', this.dateline);
     formData.append('image', this.image);
-  
+
     Swal.fire({
       title: "Voulez-vous vraiment modifier cette publication?",
       icon: "warning",
@@ -258,7 +258,7 @@ chargerPublication( publication : any){
           // Modification d'une publication existante
           this.publicationservice.editPublication(this.selectedPublication, formData).subscribe(
             (data: any) => {
-              console.log(" what:", data);
+              // console.log(" what:", data);
               // Afficher le message de succès si la modification réussit
               Swal.fire({
                 title: "Publication modifiée!",
@@ -308,7 +308,7 @@ chargerPublication( publication : any){
 // methode pour supprimer publication
 // methode pour supprmer un element
 supprimerProfession(id: any): void {
-  
+
   Swal.fire({
     title: "Voulez vous vraiment supprime cette publication ?",
     icon: "warning",
@@ -320,12 +320,12 @@ supprimerProfession(id: any): void {
     color : '#ffff',
     background: '#3A6A7E',
     confirmButtonText: "Oui supprimer!"
-  }).then((result) => { 
+  }).then((result) => {
     if(result.isConfirmed){
 
       this.publicationservice.deletePublication(id).subscribe(
         (reponse: any) => {
-          console.log("supprimer success", reponse);
+          // console.log("supprimer success", reponse);
           // Mettez à jour la liste locale des professions après la suppression
           this.afficherPublication();
         },
@@ -343,12 +343,12 @@ supprimerProfession(id: any): void {
             background: '#3A6A7E',
             });
         }
-        
+
       );
-    } 
+    }
    })
 
- 
+
 }
 
 publcationselect : any;
@@ -360,7 +360,7 @@ professionData : any;
 listeProfession () :  void{
   this.professionservice.getProfession().subscribe((data)=>{
 this.professionData = data.data;
-console.log("voir profession", this.professionData);
+// console.log("voir profession", this.professionData);
   })
 }
 
@@ -436,7 +436,7 @@ exactImage : boolean = false;
     verifProfssion() {
       this.verifprofession = ""; // Réinitialiser le message d'erreur.
       this.exactNomProfession = false; // Réinitialiser l'état de validation.
-    
+
       // Assurez-vous de comparer la valeur de `profession_id` à la valeur
       // placeholder (ici, nous supposons "" pour l'exemple).
       if (this.profession_id == "") {
@@ -476,11 +476,11 @@ exactImage : boolean = false;
     }
     }
 
-    
+
     verifierSalaire() {
       const salairePattern = /^\d+$/;
       this.exactSalaire = false;
-    
+
       if (this.slaireMinimum === "") {
         this.verifSalaire = "Le montant du salaire est obligatoire";
       } else if (!salairePattern.test(this.slaireMinimum)) {
@@ -527,7 +527,7 @@ exactImage : boolean = false;
       this.exactDateLimite = false;
       const aujourdHui = new Date();
       // Réinitialiser l'heure pour une comparaison juste avec la date seule
-      aujourdHui.setHours(0, 0, 0, 0); 
+      aujourdHui.setHours(0, 0, 0, 0);
       // this.exactDateLimite = false;
       const dateSeletionner = new Date (this.dateline);
       if(this.dateline  ==""){
@@ -540,12 +540,12 @@ exactImage : boolean = false;
       }
 
     }
-    minDate(): string {    
-       const currentDate = new Date();   
-          const isoDate = currentDate.toISOString().split('T')[0];    
-           return isoDate;  
+    minDate(): string {
+       const currentDate = new Date();
+          const isoDate = currentDate.toISOString().split('T')[0];
+           return isoDate;
            }
-  
+
            ouvrirFormulaireAjout(): void {
             this.viderChamp(); // S'assurer que le formulaire est réinitialisé
             // Afficher le formulaire d'ajout

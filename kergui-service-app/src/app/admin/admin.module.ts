@@ -12,6 +12,7 @@ import { UtilisateurAdminComponent } from './utilisateur-admin/utilisateur-admin
 import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
 import { PublicationAdminComponent } from './publication-admin/publication-admin.component';
 import { FormsModule } from '@angular/forms';
+import { SpinneradminComponent } from './loaderadmin/spinneradmin/spinneradmin.component';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     ServiceAdminComponent,
     UtilisateurAdminComponent,
     ProfilAdminComponent,
-    PublicationAdminComponent
+    PublicationAdminComponent,
+    SpinneradminComponent,
+    
   ],
   imports: [
     CommonModule,

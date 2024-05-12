@@ -33,6 +33,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { EmailValidationDirective } from './validations/email-validation.directive';
 import { PasswordValidationDirective } from './validations/password-validation.directive';
 import { NavheaderComponent } from './composant/navheader/navheader.component';
+import { SpinnerComponent } from './loader/spinner/spinner.component';
 
 // import { AuthInterceptor } from './interceptors/interceptor';
 
@@ -72,15 +73,17 @@ import { NavheaderComponent } from './composant/navheader/navheader.component';
     EmailValidationDirective,
     PasswordValidationDirective,
     NavheaderComponent,
-   
+    SpinnerComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxPaginationModule,
     HttpClientModule,
-    FormsModule
-   
+    FormsModule,
+
+
   ],
   providers: [
    TokenInterceptorProvider,

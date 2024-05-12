@@ -10,6 +10,7 @@ import { UtulisateurService } from 'src/app/services/utulisateur.service';
 })
 export class HomeAdminEmployeureComponent implements OnInit {
   dataProfession: any ;
+  loadingemployeur : boolean = false;
   constructor( private professionservice : ProfessionServiceService, private utulisateurservice : UtulisateurService, public publicationservice : PublicationService) { }
   ngOnInit(): void {
     this.afficherProfession();
@@ -22,6 +23,7 @@ export class HomeAdminEmployeureComponent implements OnInit {
 afficherProfession(){
   this.professionservice.getProfession().subscribe((data)=>{
     this.professionData = data.data;
+
     console.log("voir profession", this.professionData);
       })
     }
@@ -59,27 +61,27 @@ afficherProfession(){
         // appel du service recuperant tpous les annonces
         this.publicationservice.geyAllpublication().subscribe((data)=>{
           this.dataPublication = data.data;
-        
+
           // fitrer les anonces en fontion du userconnecté
           this.datPublicationFiltred = this.dataPublication.filter((element: { user_id: any; }) => element.user_id == this.userConnect.id);
-          
+
           console.log("mes pubiiiii", this.datPublicationFiltred);
           // this.datPublicationFiltred.forEach((publication : any)=>{
           //   const nomProfession = this.getNomProfesion(publication.profession_id);
           //   console.log("profession", nomProfession);
           // })
         })
-        
+
       }
-  
+
     }
-  
+
 
 
      // Attribut pour la pagination
-     articlesParPage = 4; // Nombre d'articles par page
+     articlesParPage = 3; // Nombre d'articles par page
      pageActuelle = 1; // Page actuelle
-  
+
 
   // pagination
   dataprofessiontrouve : any []=[];

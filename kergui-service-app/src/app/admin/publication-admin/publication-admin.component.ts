@@ -8,15 +8,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./publication-admin.component.css']
 })
 export class PublicationAdminComponent implements OnInit {
+loadingadmin: boolean = false;
   constructor(public publicationservice : PublicationService){}
   ngOnInit(): void {
     this.afficherPublication();
   }
 dataPublictions : any;
   afficherPublication(){
+    this.loadingadmin = true;
     this.publicationservice.geyAllpublication().subscribe((data)=>{
       this.dataPublictions = data.data;
-      console.log( "voir publica ====", this.dataPublictions);
+      this.loadingadmin = false;
     })
   }
 publicationSelect :  any;
@@ -56,7 +58,7 @@ if(result.isConfirmed){
         width: 400,
         padding: 15,
         color : '#ffff',
-        background: '#3A6A7E', 
+        background: '#3A6A7E',
         });
         console.log("offre demna", respons.data);
     }

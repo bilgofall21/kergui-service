@@ -1,13 +1,13 @@
 .logincontainer{
-margin-top: 150px;
+margin-top: 100px;
 }
 
 .connexion {
     position: relative;
-    max-width: 470px;
+    max-width: 480px;
     width: 100%;
-    border-radius: 37px 37px 0px 0px;
-    padding: 20px 30px 100px;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px 20px 40px;
     background: var(--kergui-blue);
     box-shadow: 0 5px 10px #3a6a7e94;
     margin-top: 100px;
@@ -61,30 +61,30 @@ margin-top: 150px;
     height: 40px;
     outline: none;
     border: none;
-    padding: 0 15px;
-    font-size: 16px;
-    font-weight: 400;
+    padding: 0 10px;
+    font-size: 15px;
+    font-weight: 200;
     color: #333;
     border-radius: 5px;
     background: #fff;
-    
+
 }
 .inscription form .form-select, .inscription form  .datNaiss {
     height: 40px;
     outline: none;
     border: none;
-    padding: 0 25px;
-    font-size: 16px;
-    font-weight: 400;
+    padding: 0 10px;
+    font-size: 15px;
+    font-weight: 200;
     color: #333;
-    border-radius: 5px;
+    border-radius: 10px;
     background: #fff;
     width: 108%;
-    
+
 }
 .inscription form .col-md-5, .inscription form .col-md-8, .inscription form .col-md-11 {
    margin: 0 auto;
-    
+
 }
 .inscription .footerform{
     position: absolute;
@@ -97,6 +97,22 @@ margin-top: 150px;
     height: 100%;
     background: #fff;
     transition: all 0.6s ease;
+}
+.inscription .footerform:hover{
+  background-color: var(--kergui-green);
+  color: white;
+}
+.inscription .footerform a:hover{
+  color: white;
+}
+.inscription .footerform a{
+  color: var(--kergui-blue);
+}
+#mdp a {
+  color: white;
+}
+#mdp a:hover{
+  color: var(--kergui-green);
 }
 #forgetmdp  .footerform{
     position: absolute;
@@ -122,32 +138,46 @@ margin-top: 150px;
     background: #fff;
     transition: all 0.6s ease;
 }
+#employesign  .footerform:hover{
+   background-color: var(--kergui-green);
+   color: white;
+}
+#employesign  .footerform a:hover{
+   color: white;
+}
+#employesign  .footerform {
+   color: var(--kergui-blue);
+}
+
 
 
 .connexion form input, .connexion button , #selectOption{
-    height: 45px;
+    height: 40px;
     outline: none;
     border: none;
-    padding: 0 15px;
-    font-size: 16px;
-    font-weight: 400;
+    padding: 0 10px;
+    font-size: 15px;
+    /* font-weight: 200; */
     color: #333;
     border-radius: 10px;
     background: #fff;
 
 }
 .connexion button{
-    height: 45px;
+    height: 40px;
     outline: none;
     border: none;
-    padding: 0 15px;
-    font-size: 22px;
-    font-weight: 400;
+    padding: 0 10px;
+    font-size: 18px;
     color:var(--kergui-blue);
     border-radius: 10px;
     background: #fff;
     font-weight: bold;
 
+}
+.connexion button:hover{
+    color:white;
+    background: var(--kergui-green);
 }
 
 .form header , .inscription header, i {
@@ -169,6 +199,16 @@ margin-top: 150px;
     background: #fff;
     transition: all 0.6s ease;
 }
+.connexion .footerform:hover{
+    height: 100%;
+    background: var(--kergui-green);
+}
+.connexion .footerform a{
+color: var(--kergui-blue);
+}
+.connexion .footerform a:hover{
+color: white;
+}
 
 .footerform header {
     font-size: 30px;
@@ -182,25 +222,33 @@ margin-top: 150px;
 
 /* style presentation login debut */
 .presentationlogincontainer{
-    height: 550px;
+    height: 450px;
     width : 70%;
-    border-radius: 21px;
+    border-radius: 10px;
     background-color: var(--kergui-blue);
-    padding: 100px;
+    padding: 40px;
     margin: 0 auto;
-    
+
 }
 .presentationlogincontainer .item{
-    /* width: 470px; */
-    height: 200px;
-    border-radius: 14px;
+    height: 150px;
+    border-radius: 10px;
 background: #fff;
 margin: 0 auto;
-padding-top: 50px;
+padding-top: 20px;
+}
+.presentationlogincontainer .item:hover{
+   background-color: var(--kergui-green);
+   color: white;
+   cursor: pointer;
 }
 .presentationlogincontainer .item a{
    color: var(--kergui-green);
    text-decoration: none;
+}
+.presentationlogincontainer .item a:hover{
+   color: white;
+
 }
 
 /* style presentation login fin */
@@ -218,7 +266,7 @@ padding-top: 50px;
     opacity: 0.7; /* Réduire l'opacité du bouton */
     cursor: not-allowed; /* Changer le curseur en "non autorisé" */
     background-color: var(--kergui-green);
-    /* text-decoration: line-through; 
+    /* text-decoration: line-through;
     text-decoration-thickness: 2px;  */
 }
 
@@ -230,18 +278,18 @@ padding-top: 50px;
     border-color: #dc3545; /* Couleur rouge */
     background-image: none;
   }
-  
+
   .is-invalid:focus {
     border-color: #dc3545;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
   }
-  
+
   .invalid-feedback {
     width: 100%;
     margin-top: .25rem;
     font-size: .875em;
     color: #dc3545;
-    
+
   }
 
 
@@ -253,7 +301,7 @@ padding-top: 50px;
         background-color: var(--kergui-blue);
         padding: 100px;
         margin: 0 auto;
-        
+
     }
 }
    @media screen and (max-width: 680px){
@@ -268,7 +316,7 @@ padding-top: 50px;
         color: #333;
         border-radius: 5px;
         background: #ffffff;
-        
+
     }
 }
    @media screen and (max-width: 470px){
@@ -279,7 +327,7 @@ padding-top: 50px;
         background-color: var(--kergui-blue);
         padding: 100px;
         margin: 0 auto;
-        
+
     }
 }
    @media screen and (max-width: 380px){
@@ -290,7 +338,7 @@ padding-top: 50px;
         background-color: var(--kergui-blue);
         padding: 100px;
         margin: 0 auto;
-        
+
     }
 }
 

@@ -1,7 +1,8 @@
 <app-header></app-header>
 
 <div class="logincontainer">
-    
+
+
 
 <!-- section connexion debut -->
 <section class="connexionuser" *ngIf="showConnexion">
@@ -10,30 +11,33 @@
       <header class="text-white mb-2">Connectez-vous</header>
       <form novalidate  (ngSubmit)="connexion($event)" >
         <div class="row row-gap-4">
-      
+
             <div class="" id="validation">
                 <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="formData.email" required    (input)="verifEmailConFonction()" />
                 <p class="message-erreur" *ngIf="!exactEmail"> {{verifEmail}} </p>
                 <p class="message-success" *ngIf="exactEmail"><i class="bi bi-check-square-fill ms-1" ></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
-               
+
             </div>
-           
+
             <div class="" id="validation">
-                <input class=" col-12" type="password" placeholder="Mot de pass" name="password" [(ngModel)]="formData.password" (input)="verifPasswordFonction()"  
+                <input class=" col-12" type="password" placeholder="Mot de pass" name="password" [(ngModel)]="formData.password" (input)="verifPasswordFonction()"
                 />
                 <p class="message-erreur" *ngIf="!exactPassword"> {{verifPassword}} </p>
                 <p class="message-success" *ngIf="exactPassword"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
             </div>
             <div id="mdp">
-               <a class="text-decoration-none text-white"  (click)="afficherSection('forgetpassword', $event)" > mot de passe oublié ?</a> 
+               <a class="text-decoration-none text-white"  (click)="afficherSection('forgetpassword', $event)" > mot de passe oublié ?</a>
             </div>
             <div>
-                <button class="col-12 btn-custom" type="submit" [disabled]="!exactEmail || !exactPassword" > Connexion</button>
+                <button class="col-12 btn-custom" type="submit" [disabled]="!exactEmail || !exactPassword" >
+                  <ng-container *ngIf="!currentConnexion"> Connexion</ng-container>
+                  <span class="spinner-border spinner-border-sm" *ngIf="currentConnexion"></span>
+                </button>
             </div>
             <p class="text-center text-white"> Vous n'avez pas de compte ?</p>
-          
+
     </div>
-    
+
       </form>
     </div>
     <div class="footerform">
@@ -49,20 +53,20 @@
       <header class="text-white mb-2">Entrer votre email</header>
       <form novalidate  >
         <div class="row row-gap-4">
-      
+
             <div class="" id="validation">
                 <input class="col-12" type="email" placeholder="Email" name="email"  [(ngModel)]="email" required    (input)="verifEmaiMdpo()" />
                 <p class="message-erreur" *ngIf="!exactEmail"> {{verifEmail}} </p>
                 <p class="message-success" *ngIf="exactEmail"><i class="bi bi-check-square-fill ms-1" ></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
-               
-            </div>  
-            <div>
-                <button class="col-12 btn-custom" type="submit" (click)="changeMotDePass()"  > Envoyer</button>
+
             </div>
-          
-          
+            <div>
+                <button class="col-12 btn-custom" type="submit" (click)="changeMotDePass()"  >   Envoyer</button>
+            </div>
+
+
     </div>
-    
+
       </form>
     </div>
     <div class="footerform">
@@ -80,7 +84,7 @@
       <header class="text-white mb-2">Inscrivez-vous</header>
       <form novalidate (ngSubmit)="registerUser()"  >
         <div class="row row-gap-4 column-gap-2">
-          
+
             <div class="col-md-5" id="validation">
                 <input class="" type="text" name="prenom" placeholder="prenom" required  [(ngModel)]="registreData.prenom" required (input)="verifPrenomEmployeur()"  />
                 <p class="message-erreur" *ngIf="!exactPrenom"> {{verifPrenom}} </p>
@@ -117,18 +121,18 @@
                 <p class="message-success"*ngIf="exactLieu">  <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
             </div>
             <div class="col-md-5" >
-                <input class="form-control datNaiss "  type="file" (change)="getFile($event)" > 
+                <input class="form-control datNaiss "  type="file" (change)="getFile($event)" >
             <!-- <button  class="btn btn-outline-light mt-2"> </button> -->
-            
+
             </div>
-           
-            
-            
+
+
+
             <div class="d-flex justify-content-center">
                 <input class="col-6 btn-custom " type="submit" [disabled]="!exactPrenom || !exactNom || !exactEmail || !exactLieu || !exactTelephone || !exactPassword || !exactPasswordConf" value="S'inscrire"  required />
             </div>
     </div>
-    
+
       </form>
     </div>
     <div class="footerform">
@@ -148,7 +152,7 @@
         <div class="row row-gap-3 ">
             <div class="col-md-8 d-flex justify-content-around">
                 <i class="me-3"><span class="lnr lnr-camera"></span></i>
-                <input class="form-control" type="file" (change)="getFile($event)" > 
+                <input class="form-control" type="file" (change)="getFile($event)" >
             <button  class="btn btn-outline-light ms-3"> <span class="lnr lnr-upload"  ></span></button>
             </div>
             <div class="col-md-5" id="validation">
@@ -159,29 +163,29 @@
             <div class="col-md-5"  id="validation">
                 <input class="" type="text" name="nom" placeholder="nom" required [(ngModel)]="registreEmploye.nom" (input)="verifNomEmploye()" />
                 <p class="message-erreur" *ngIf="!exactNom"> {{verifNom}} </p>
-                <p class="message-success" *ngIf="exactNom"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactNom"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5" id="validation">
                 <input class="" type="text" name="email" placeholder="Email" required [(ngModel)]="registreEmploye.email" (input)="verifEmailEmploye()" />
                 <p class="message-erreur" *ngIf="!exactEmail"> {{verifEmail}} </p>
-                <p class="message-success" *ngIf="exactEmail"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactEmail"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5" id="validation">
                 <input type="tel" id="telephone" name="telephone" placeholder="Telephone" [(ngModel)]="registreEmploye.telephone" (input)="verifNumeroEmploye()"  required  />
                 <p class="message-erreur" *ngIf="!exactTelephone"> {{verifTelephone}} </p>
-                <p class="message-success" *ngIf="exactTelephone"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactTelephone"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5" id="validation">
                 <input type="text" id="lieu" placeholder="Adresse"  name="lieu" required [(ngModel)]="registreEmploye.lieu" (input)="verifAdresseEmploye()" />
                 <p class="message-erreur" *ngIf="!exactLieu"> {{verifLieu}} </p>
-                <p class="message-success" *ngIf="exactLieu"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactLieu"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5" id="validation">
                 <input class="datNaiss" type="date" placeholder="Date de naissance" name="dateNaissance" [(ngModel)]="registreEmploye.dateNaissance" (input)="verifierDateNaissance()"  required  />
                 <p class="message-erreur" *ngIf="!exactNaissance"> {{verifDateNaiss}} </p>
-                <p class="message-success" *ngIf="exactNaissance"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactNaissance"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
-         
+
             <div class="col-md-5" id="validation">
                 <!-- <input class="" type="text" name="civilite" placeholder="Votre civilite" [(ngModel)]="registreEmploye .civilite"  required /> -->
                 <select class="form-select" aria-label="Votre sexe" name="civilite" [(ngModel)]="registreEmploye.civilite"  required>
@@ -190,17 +194,17 @@
                     <option value="femme">Femme</option>
                   </select>
                   <p class="message-erreur" *ngIf="!exactCivilite"> {{verifCivilite}} </p>
-                  <p class="message-success" *ngIf="exactCivilite"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                  <p class="message-success" *ngIf="exactCivilite"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5" id="validation">
                 <input class="" type="text" name="langueParler" placeholder="Langue parler" [(ngModel)]="registreEmploye .langueParler" (input)=" verifLangueEmploye()" required  />
                 <p class="message-erreur" *ngIf="!exactLangue"> {{verifLangue}} </p>
-                <p class="message-success" *ngIf="exactLangue"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactLangue"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5" id="validation">
                 <input class="" type="text" name="experienceProf" placeholder="experience prpfessionnelle" [(ngModel)]="registreEmploye .experienceProf" (input)="verifierExperience()"  required  />
                 <p class="message-erreur" *ngIf="!exactExperience"> {{verifExperince}} </p>
-                <p class="message-success" *ngIf="exactExperience"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactExperience"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5 " id="validation">
                 <select class="form-select" aria-label="Sélectionner une profession" name="profession_id" [(ngModel)]="registreEmploye .profession_id"  required >
@@ -208,31 +212,31 @@
                     <option *ngFor="let profession of selectOptionData" [value]="profession.id">{{ profession.nom_prof }}</option>
                   </select>
                   <p class="message-erreur" *ngIf="!exactNomProfession"> {{verifprofession}} </p>
-                <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
-                 
+                <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
+
             </div>
-           
+
             <div class="col-md-5" id="validation">
                 <input class="" type="password" name="password" placeholder="Mot de pass" [(ngModel)]="registreEmploye.password" (input)="verifPasswordEmploye()"  required  />
                 <p class="message-erreur" *ngIf="!exactPassword"> {{verifPassword}} </p>
-                <p class="message-success" *ngIf="exactPassword"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactPassword"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
-            
+
             <div class="col-md-5" id="validation">
                 <input class="" type="password" name="password_confirmation" placeholder="Confirmer mot de pass" [(ngModel)]="registreEmploye.password_confirmation" (input)="verifPasswordConfEmploye()" required />
                 <p class="message-erreur" *ngIf="!exactPasswordConf"> {{verifPasswordConf}} </p>
-                <p class="message-success" *ngIf="exactPasswordConf"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactPasswordConf"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
-            
+
             <div class="mb-3 col-md-11" id="validation">
                 <!-- <label for="description" class="form-label">Description</label> -->
                 <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="registreEmploye .presentation" required (input)=" verifDescription()"  ></textarea>
                 <p class="message-erreur" *ngIf="!exactDescription"> {{verifDescrip}} </p>
-                <p class="message-success" *ngIf="exactDescription"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>  
+                <p class="message-success" *ngIf="exactDescription"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
               </div>
             <input class=" col-md-8 btn-custom" type="submit" [disabled]="!exactPrenom || !exactNom || !exactEmail || !exactLieu || !exactTelephone || !exactPassword || !exactPasswordConf  || !exactDescription || !exactLangue || !exactExperience || !exactNaissance  "  value="S'inscrire" />
     </div>
-    
+
       </form>
     </div>
     <div class="footerform">
@@ -260,8 +264,8 @@
                     <h6 class="text-center"> Je suis un professionnel  à la recherche d’un emploi</h6>
                     <a href=""  class="d-flex justify-content-center mt-4" (click)="afficherSection('inscritionemploye', $event)"> <span class="lnr lnr-pointer-up me-3"></span> Cliquez ici</a>
                 </div>
-            
-                
+
+
             </div>
             <div class="d-flex justify-content-center mt-4">
 
@@ -318,4 +322,4 @@
     wrapper.classList.remove("active");
   });
 </script> -->
-  
+

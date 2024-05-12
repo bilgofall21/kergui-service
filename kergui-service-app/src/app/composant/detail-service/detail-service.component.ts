@@ -14,23 +14,23 @@ export class DetailServiceComponent implements OnInit {
      // Attribut pour la pagination
      articlesParPage = 4; // Nombre d'articles par page
      pageActuelle = 1; // Page actuelle
-  userprofData: any;
+  userprofData: [] = [];
 
-     
+
   constructor(private utilisateurservice : UtulisateurService ,  private professionservice : ProfessionServiceService, private activatedRoute: ActivatedRoute, private detailprofilservice : DetalProfilServiceService ) { }
 
 
   recupDataUser : any;
-  userDataByProfession : any; 
+  userDataByProfession : any;
   ngOnInit(): void {
     this.candidatprofession();
 //  this.afficherutilisteur();
   }
 
-  
+
 
    // declaration tableau employe
-  
+
 
   dataUers : any;
 chargementdonne ():  void{
@@ -58,12 +58,12 @@ chargementdonne ():  void{
       const dataDetail = data.data;
       // console.log("voir mes user specifique", this.userprofData);
       // localStorage.setItem('uer_byprof', JSON.stringify(this.userprofData))
-  
+
       // appel du service pourr partager les donne du profile vdans un autre composant
       this.detailprofilservice.updateUserProfilData(dataDetail);
-  
+
     })
-  
+
   }
 
 
@@ -93,10 +93,10 @@ searchElement: string = '';
       const totalPages = Math.ceil(this.userprofData.length / this.articlesParPage);
       return Array(totalPages).fill(0).map((_, index) => index + 1);
     }
-  
+
     // Méthode pour obtenir le nombre total de pages
     get totalPages(): number {
       return Math.ceil(this.userprofData.length / this.articlesParPage);
     }
- 
+
 }

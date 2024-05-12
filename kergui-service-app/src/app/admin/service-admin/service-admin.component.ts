@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class ServiceAdminComponent implements OnInit {
 [x: string]: any;
   selectedProfession: any;
+  loadingadmin : boolean = false;
 
   constructor(private professionService : ProfessionServiceService ){}
   ngOnInit(): void {
@@ -20,11 +21,11 @@ export class ServiceAdminComponent implements OnInit {
   }
 
    // Attribut pour la pagination
-   articlesParPage = 4; // Nombre d'articles par page
+   articlesParPage = 3; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 
-  
+
 //  variables pour methodes
  dataProfession : any = { data: [] };
     // objet profession
@@ -34,7 +35,7 @@ export class ServiceAdminComponent implements OnInit {
       description :string = "";
       image!: any;
       created_at :string = "";
-      updated_at :string = ""; 
+      updated_at :string = "";
       viderChamp(): void {
         this.nom_prof = '';
         this.description = '';
@@ -43,7 +44,7 @@ export class ServiceAdminComponent implements OnInit {
       }
 
       // initiliser objet crer pour ajout
-   
+
 
       newmodifProfession : any = {
         nom_prof: "",
@@ -52,11 +53,11 @@ export class ServiceAdminComponent implements OnInit {
         created_at: ""
       }
 
-    
-   
+
+
  // methode pour recuperer profession depuis api
  recupAllProfession():  void{
-  
+this.loadingadmin = true;
    this.professionService.getProfession().subscribe(data =>{
     console.log("all profession",data);
      this.dataProfession = data;
@@ -144,6 +145,7 @@ ajouterPofession(): void {
           color: '#ffff',
           background: '#3A6A7E'
         });
+        console.log("voir ajou", response)
         this.viderChamp();
         // registerForm.reset();
       },
@@ -175,16 +177,6 @@ getFile(event: any) {
   this.image= event.target.files[0] as File ;
 }
 
-// getFile(event: any) {
-//   const selectedFile = event.target.files[0] as File;
-//   if (selectedFile) {
-//     console.warn("fichier selectionne",selectedFile);
-//     this.image = selectedFile;
-//   } else {
-//     console.error("Aucun fichier sélectionné");
-
-//   }
-// }
   // methode pour charger element a modifier dans formulaire
 
 chargerProfession( formation : any){
@@ -203,65 +195,6 @@ chargerProfession( formation : any){
     // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
   }
   }
-  // methode pour modifier l'element selectionner
-
-  // modifierProfession(): void {
-  //   let formData = new FormData();
-  //   formData.append('nom_prof', this.nom_prof);
-  //   formData.append('description', this.description);
-  //   formData.append('image', this.image);
-    
-  //   Swal.fire({
-  //     title: "Voulez vous vraiment modifié ce service?",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3A6A7E",
-  //     cancelButtonColor: "#FF9A00",
-  //     width: 450,
-  //     padding: 15,
-  //     color : '#ffff',
-  //     background: '#3A6A7E',
-  //     confirmButtonText: "Oui modifier!"
-      
-  //   }).then((result) => {
-  //     if(result.isConfirmed){
-  //       if (this.selectedProfession) {
-  //         // Modification d'une profession existante
-  //         this.professionService.editProfession(this.selectedProfession,formData).subscribe(
-  //           (data: any) => {
-  //             console.log("Modification réussie :", data);
-  //             // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
-  //             // window.location.reload(); ou mieux, mettre à jour la liste localement
-              
-  //             this.recupAllProfession();  // mettre a jour la liste
-  //           },
-  //           error => {
-  //             console.error('Erreur lors de la modification :', error);
-  //           }
-  //         );
-  //       } else {
-  //         console.error("Erreur: Aucune profession sélectionnée pour la modification");
-  //         // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
-  //         Swal.fire({
-  //           title: "service modifié!",
-  //           text: "Ce service a été modifié .",
-  //           icon: "success",
-  //           showConfirmButton: false,
-  //           timer: 1500,
-  //           width: 400,
-  //           padding: 15,
-  //           color : '#ffff',
-  //           background: '#3A6A7E',
-  //           });
-  //       }
-
-  //     }
-  //     }
-  //   )
-    
-  // }
-
-
 
   modifierProfession(): void {
     if (!this.nom_prof || !this.description || !this.image) {
@@ -276,12 +209,12 @@ chargerProfession( formation : any){
       });
       return;
     }
-  
+
     let formData = new FormData();
     formData.append('nom_prof', this.nom_prof);
     formData.append('description', this.description);
     formData.append('image', this.image);
-  
+
     Swal.fire({
       title: "Voulez-vous vraiment modifier ce service?",
       icon: "warning",
@@ -298,6 +231,7 @@ chargerProfession( formation : any){
         if (this.selectedProfession) {
           this.professionService.editProfession(this.selectedProfession, formData).subscribe(
             (data: any) => {
+              console.log("pour la modification", data)
               Swal.fire({
                 title: "Service modifié!",
                 text: "Ce service a été modifié.",
@@ -331,7 +265,7 @@ chargerProfession( formation : any){
       }
     });
   }
-  
+
   // methode pour supprmer un element
   supprimerProfession(id: any): void {
     Swal.fire({
@@ -347,7 +281,7 @@ chargerProfession( formation : any){
       confirmButtonText: "Oui supprimer!"
     }).then((result) => {
       if(result.isConfirmed){
-        
+
         this.professionService.deleteProfession(id).subscribe(
           (reponse: any) => {
             console.log("supprimer success", reponse);
@@ -357,7 +291,7 @@ chargerProfession( formation : any){
           error => {
             console.error(`Erreur lors de la suppression de la profession avec l'ID ${id} :`, error);
           }
-          
+
         );
         Swal.fire({
           title: "service supprimé!",
@@ -436,13 +370,13 @@ getArticlesPage(): any[] {
     // Variables pour faire la vérifications
     verifNomProfession : String  =  "";
     verifDescrip: String = "";
-   
-  
+
+
     // Variables si les champs sont exacts
     exactNomProfession : boolean = false;
     exactDescription: boolean = false;
-   
-  
+
+
 
   // vrif champs
   // Verification du nom
@@ -475,7 +409,7 @@ getArticlesPage(): any[] {
       this.exactDescription = true;
     }
   }
-  
+
   ouvrirFormulaireAjout(): void {
     this.viderChamp(); // S'assurer que le formulaire est réinitialisé
     // Afficher le formulaire d'ajout

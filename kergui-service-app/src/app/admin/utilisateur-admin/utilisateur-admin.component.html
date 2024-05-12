@@ -3,10 +3,10 @@
     <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
         <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#list-employeur" role="tab" aria-controls="list-employeur" aria-selected="true">Liste des employeurs</a>
         <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#list-employe" role="tab" aria-controls="list-employe" aria-selected="false">Liste des employés</a>
-       
+
     </nav>
-    
-    
+
+
     <div class="tab-content" id="orders-table-tab-content">
 
         <!-- tableau employeur -->
@@ -18,7 +18,7 @@
                             <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Rechercher"  aria-describedby="search-addon" [(ngModel)]="searchEmployeur" (input)="getArticlesPageEmployeur()" />
                             <button type="button" class="btn text-white" data-mdb-ripple-init   appBlueFont>Rechercher</button>
                           </div>
-    
+
                     </div>
                   </div>
                 <div class="app-card-body">
@@ -48,7 +48,7 @@
                                             <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
                                             <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
                                           </td>
-                                      
+
                                         <td class="cell">
                                             <div class="iconegestion d-flex justify-content-around w-50 " id="toto">
                                                 <button data-bs-toggle="modal" data-bs-target="#exampleModal-detailEmployeur" title="detail"  class="btn btn-outline-info ms-1" (click)="afficherDeatailEmployeur(element )"><i class="bi bi-eye"style="font-size: 20px; color:#3A6A7E"></i></button>
@@ -56,38 +56,40 @@
                                                 <button class="btn btn-outline-success ms-2 border-1" (click)="activerUser(element.id)"><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
                                             </div>
                                         </td>
-                                       
+
                                     </tr>
                                 </tbody>
                             </ng-container>
                             <ng-template #noEmployeur>
                                 <h4 class="text-center">Liste des employeurs vide</h4>
+
                             </ng-template>
-                            
+
                         </table>
                     </div><!--//table-responsive-->
-                   
-                </div><!--//app-card-body-->		
-            </div><!--//app-card-->
+
+                </div>
+                <app-spinneradmin [loadingadmin]="loadingadmin" ></app-spinneradmin>
+            </div>
          <!-- pagination -->
          <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
             <button class="btn pagiColor me-2" [disabled]="  pageEmActuelle === 1" (click)="  pageEmActuelle =   pageEmActuelle - 1">
               Précédent
             </button>
-            <button class="btn pagiColore ms-2" 
-                    *ngFor="let page of pagesEmployeur" 
-                    [class.current]="page ===   pageEmActuelle" 
+            <button class="btn pagiColore ms-2"
+                    *ngFor="let page of pagesEmployeur"
+                    [class.current]="page ===   pageEmActuelle"
                     (click)="  pageEmActuelle = page">
               {{ page }}
             </button>
-            <button class="btn pagiColor ms-2" 
-                    [disabled]="  pageEmActuelle === totalEmPages" 
+            <button class="btn pagiColor ms-2"
+                    [disabled]="  pageEmActuelle === totalEmPages"
                     (click)="  pageEmActuelle =   pageEmActuelle + 1">
               Suivant
             </button>
           </div>
         </div>
-        
+
 
         <!-- tableau employé -->
         <div class="tab-pane fade" id="list-employe" role="tabpanel" aria-labelledby="list-employe">
@@ -101,7 +103,7 @@
                 </div>
                 <div class="app-card-body">
                     <div class="table-responsive">
-                        
+
                         <table class="table mb-0 text-center">
                             <thead >
                                 <tr>
@@ -123,7 +125,7 @@
                                         <td class="cell"> {{element.profession.nom_prof}} </td>
                                         <td class="cell"> {{element.lieu}} </td>
                                         <td class="cell" >
-                                           
+
                                             <span class="badge bg-success" *ngIf="element.statut === 'activer'" > Activé</span>
                                             <span class="badge bg-danger" *ngIf="element.statut === 'deactive'" > Desactivé</span>
                                           </td>
@@ -134,38 +136,39 @@
                                                 <button class="btn btn-outline-success ms-2" (click)="activerUser(element.id)" ><i class="bi bi-person-check" style="font-size: 20px;"></i></button>
                                             </div>
                                         </td>
-                                    </tr>                        
+                                    </tr>
                                 </tbody>
                             </ng-container>
                             <ng-template #noEmploye>
                                 <h4 class="text-center">Liste des employés vide</h4>
                             </ng-template>
-                            
-                            
+
+
                         </table>
                     </div><!--//table-responsive-->
-                </div><!--//app-card-body-->		
-            </div><!--//app-card-->
+                </div>
+                <app-spinneradmin [loadingadmin]="loadingadmin" ></app-spinneradmin>
+            </div>
 
                      <!-- pagination -->
                      <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
                         <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
                           Précédent
                         </button>
-                        <button class="btn pagiColore ms-2" 
-                                *ngFor="let page of pages" 
-                                [class.current]="page === pageActuelle" 
+                        <button class="btn pagiColore ms-2"
+                                *ngFor="let page of pages"
+                                [class.current]="page === pageActuelle"
                                 (click)="pageActuelle = page">
                           {{ page }}
                         </button>
-                        <button class="btn pagiColor ms-2" 
-                                [disabled]="pageActuelle === totalPages" 
+                        <button class="btn pagiColor ms-2"
+                                [disabled]="pageActuelle === totalPages"
                                 (click)="pageActuelle = pageActuelle + 1">
                           Suivant
                         </button>
                       </div>
         </div>
-      
+
     </div>
 
 </div>
@@ -181,14 +184,14 @@
           <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
           <!-- <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
-        <div class="modal-body  "> 
-  
+        <div class="modal-body  ">
+
                   <!-- <div class="">
                       <div class="contact-box center-version" *ngIf="utulisateurSelectionner">
                         <a href="">
                             <img alt="image" class="img-circle" src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}">
                             <h3 class="m-b-xs"><strong>{{utulisateurSelectionner.prenom}} {{utulisateurSelectionner.nom}}</strong></h3>
-                
+
                             <div class="font-bold">{{utulisateurSelectionner.profession.nom_prof}}</div>
                             <address class="m-t-md">
                                 <strong>  </strong><br>
@@ -196,14 +199,14 @@
                                 {{utulisateurSelectionner.email}}<br>
                                  {{utulisateurSelectionner.telephone}}
                             </address>
-                
+
                         </a>
                         <div class="contact-box-footer">
                             <div class="m-t-xs btn-group">
                                <p> {{utulisateurSelectionner.presentation}} </p>
                             </div>
                         </div>
-                
+
                     </div>
 
                   </div> -->
@@ -212,12 +215,12 @@
                             <div class="col-md-6">
                                 <div class="image-container">
                                     <img src="http://127.0.0.1:8000/storage/{{utulisateurSelectionner.imageDeProfil}}" class="avatar img-responsive" alt="avatar">
-                                </div>  
+                                </div>
                             </div>
-                            <div class="col-md-6"> 
+                            <div class="col-md-6">
                                 <div class="details">
                                     <h4>{{utulisateurSelectionner.prenom}} {{utulisateurSelectionner.nom}}</h4>
-                                    <hr> 
+                                    <hr>
                                     <h6 class="text-center"> {{utulisateurSelectionner.profession.nom_prof}}</h6>
                                     <h6>adresse :<span class="text-black fw-lighter"> {{utulisateurSelectionner.lieu}}</span></h6>
                                     <h6 class="pt-1">email : <span class="text-black fw-lighter"> {{utulisateurSelectionner.email}}</span> </h6>
@@ -228,16 +231,16 @@
                             </div>
                         </div>
                     </div>
-                  
-                  
+
+
                   <div class="validajout d-flex justify-content-end">
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
                   </div>
 
-                  
-           
+
+
         </div>
-     
+
       </div>
     </div>
   </div>
@@ -251,7 +254,7 @@
           <h5 class="modal-title  " id="exampleModalLabel">Detail profession</h5>
           <!-- <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" ></button> -->
         </div>
-        <div class="modal-body  "> 
+        <div class="modal-body  ">
                   <!-- <div class="" *ngIf="utulisateurSelectionner ">
                    <div class="row">
                     <div class="col-4 " id="tof">
@@ -262,7 +265,7 @@
                             <h6>prenom :  {{utulisateurSelectionner.prenom}} </h6>
                             <h6 class="ms-3">nom :  {{utulisateurSelectionner.nom}} </h6>
                         </div>
-                        
+
                         <div class="d-flex mb-2">
                             <h6> mail:  {{utulisateurSelectionner.email}} </h6>
                             <h6 class="ms-3"> {{utulisateurSelectionner.telephone}} </h6>
@@ -280,38 +283,38 @@
                     </div>
                    </div>
                   </div> -->
-                 
+
                   <div class="well well-white mini-profile-widget bootdey.com" *ngIf="employeurSelectionner">
                 <div class="row">
                         <div class="col-md-6">
                             <div class="image-container">
                                 <img src="http://127.0.0.1:8000/storage/{{employeurSelectionner.imageDeProfil}}" class="avatar img-responsive" alt="avatar">
-                            </div>  
+                            </div>
                         </div>
-                        <div class="col-md-6"> 
+                        <div class="col-md-6">
                             <div class="details">
                                 <h4>{{employeurSelectionner.prenom}} {{employeurSelectionner.nom}}</h4>
-                                <hr> 
+                                <hr>
                                 <h6>adresse :<span class="text-black fw-lighter"> {{employeurSelectionner.lieu}}</span></h6>
                                 <h6 class="pt-1">Email : <span class="text-black fw-lighter"> {{employeurSelectionner.email}}</span> </h6>
                                 <h6 class="pt-1"> Telephone : <span class="text-black fw-lighter"> {{employeurSelectionner.telephone}}</span></h6>
                                 <h6 class="pt-1"> Statut : <span class="text-black fw-lighter"> {{employeurSelectionner.statut}}</span></h6>
-                                <!-- <p class="mg-top-20"> 
+                                <!-- <p class="mg-top-20">
                                 </p> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                  
-                  
+
+
                   <div class="validajout d-flex justify-content-end">
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
                   </div>
 
-                  
-           
+
+
         </div>
-     
+
       </div>
     </div>
   </div>

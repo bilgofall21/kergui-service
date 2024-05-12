@@ -62,8 +62,8 @@ color: var(--kergui-blue);
   row-gap: 20px;
   }
   #thiscard{
-    width: 18.5rem; 
-    height: 30rem;
+    width: 17rem; 
+    height: 26rem;
   }
   .carteservicecontainer .titleService h5{
     color: var(--kergui-green);

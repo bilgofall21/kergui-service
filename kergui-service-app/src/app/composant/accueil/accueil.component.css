@@ -55,8 +55,8 @@ hr{
     width: 100%;
     height: 100%;
     /* background: rgba(0, 54, 104, 0.5); */
-    
- 
+
+
   }
 .banner h2{
     font-size: 40px;
@@ -66,8 +66,8 @@ hr{
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
-    
-    
+
+
 }
 .banner button{
     font-size: 25px;
@@ -79,8 +79,8 @@ hr{
     margin: 0;
     font-weight: bold;
     background-color : var(--kergui-green);
-    
-    
+
+
 }
 /* suite baniere  debut*/
 .presentation P{
@@ -127,7 +127,7 @@ hr{
     position: relative;
     left: 120px;
     bottom: 80px;
- 
+
 }
 .employeurbottom .item{
    width: 60%;
@@ -145,7 +145,7 @@ hr{
    color: var(--kergui-blue);
    font-weight: bold;
    font-size: 20px;
-   text-decoration: none;  
+   text-decoration: none;
 }
 
 .title h3{
@@ -165,7 +165,7 @@ hr{
    width: 80px;
    background-color: var(--kergui-blue);
    border-radius: 50%;
-   
+
 }
 .lnr-apartment{
   font-size: 40px;
@@ -179,6 +179,7 @@ hr{
 width: 19rem;
 height: 23rem;
 }
+
 
 /* baiere fin */
 
@@ -320,7 +321,7 @@ height: 23rem;
         height:12rem;
         width:100%;
       }
-      
+
       div [class^="col-"]{
         padding-left:5px;
         padding-right:5px;
@@ -332,38 +333,38 @@ height: 23rem;
         transition:0.8s;
         cursor:pointer;
         height: 26rem;
-        width: 18rem;
+        width: 17rem;
       }
       .card p{
         height: 5rem;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      .card-title{  
+      .card-title{
         font-size:15px;
         transition:1s;
         cursor:pointer;
       }
-      .card-title i{  
+      .card-title i{
         font-size:18px;
         transition:1s;
         cursor:pointer;
-       
+
         color:var(--kergui-green)
       }
       .card-title i:hover{
-        transform: scale(1.25) rotate(100deg); 
+        transform: scale(1.25) rotate(100deg);
         color:var(--kergui-blue)
-        
+
       }
       .card:hover{
         transform: scale(1.05);
         box-shadow: 10px 10px 15px  #3a6a7ec4;
       }
       .card-text{
-        height:80px;  
+        height:80px;
       }
-      
+
       .card::before, .card::after {
         position: absolute;
         top: 0;
@@ -406,7 +407,7 @@ height: 23rem;
 .services .card-body p{
   /* max-height: 5rem; */
   font-size: 15px;
- 
+
   height: 5.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -429,7 +430,7 @@ color: var(--kergui-green);
   color: white;
   font-size: 18px;
   border: none;
-  border-radius: 10px; 
+  border-radius: 10px;
   width: 25%;
 
 }
@@ -441,17 +442,17 @@ color: var(--kergui-green);
   background-color :#14a80092;
   height: 100px;
   width: 15%;
-   position: relative; 
+   position: relative;
    top: 70px;
-  right: 40px; 
+  right: 40px;
 }
 .end{
   background-color: var( --kergui-blue);
   height: 250px;
   width: 10%;
-  position: relative; 
+  position: relative;
    left: 450px;
-  bottom: 380px; 
+  bottom: 380px;
 
 }
 .contain{
@@ -475,19 +476,19 @@ color: var(--kergui-green);
   color: white;
   font-weight: bold;
   font-size: 40px;
-  
+
 }
 .chiffre h1{
   color: white;
   font-size: 65px;
   font-weight: bold;
-  
+
 }
 .chiffre h3{
 color: white;
 font-weight: regular;
 font-size: 22px;
-  
+
 }
 .chiffre .chiffreleft{
 display: grid;
@@ -524,10 +525,11 @@ justify-content: space-evenly;
 /* section candidat fin */
 #carteannonce{
   margin-left: 50px;
+  gap: 20px;
 
 }
 #annoncecol{
- 
+
   box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
   transition: .5s ease;
 }
@@ -549,12 +551,12 @@ justify-content: space-evenly;
 .temoignage .crochet{
   color: var(--kergui-blue);
   font-size: 30px;
- 
+
 }
 .temoignage .crochet1{
   color: var(--kergui-blue);
   font-size: 20px;
- 
+
 }
 .temoignage p{
   font-size: 14px;
@@ -590,13 +592,13 @@ justify-content: space-evenly;
     font-size: 15px;
   }
 
-  
+
 }
 
 
 #description p {
   height: 7.5rem;
-  
+
   overflow: hidden;
   text-overflow: ellipsis;
   /* overflow-y: auto; */
@@ -616,7 +618,7 @@ justify-content: space-evenly;
 
 #description h5 {
   font-size: 16px;
-  
+
 }
 
 
@@ -626,7 +628,7 @@ justify-content: space-evenly;
 }
 #description p {
   height: 7.5rem;
-  
+
   overflow: hidden;
   text-overflow: ellipsis;
   /* overflow-y: auto; */
@@ -704,11 +706,11 @@ mb-5, .my-5 {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  
+
 }
 
 .counters-area {
- 
+
   background: var(--kergui-blue);
   /* height: 25rem; */
   /* z-index: 1; */
@@ -738,8 +740,11 @@ mb-5, .my-5 {
 }
 
 #cardservic .card{
-  width: 19rem;
+  width: 17rem;
    }
+.services .row{
+/* row-gap: 10px; */
+}
 
 
 /* media querfy carte */
@@ -750,21 +755,21 @@ margin: 0 auto;
  }
 
   }
-  
+
   @media screen and (max-width:375px) {
     #carteannonce .card{
       width: 100%;
-      
+
     }
     #carteannonce {
       margin-left: 0px;
-      
+
     }
-    
+
     @media screen and (max-width:315px) {
     #cardservic .card{
     width: 100%;
      }
-    
+
       }
   }

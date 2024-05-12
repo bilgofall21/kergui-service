@@ -17,12 +17,10 @@ export class HeaderComponent implements OnInit {
   utilisateurConnecte: boolean = false;
   isLoggedInSubscription: any;
   constructor(private authservice : AuthService, private router : Router, private  utilisateurservice : UtulisateurService, private activatedRoute: ActivatedRoute){}
-  
+
   ngOnInit(): void {
     this.afficherProfil();
-    // const userProfileData = localStorage.getItem('user_profile');
-    // this.userProfile = userProfileData ? JSON.parse(userProfileData) : null;
-    // console.log("fffffff", this.userProfile)
+
     this.isLoggedInSubscription = this.authservice.isLoggedIn$.subscribe(isLoggedIn => {
       this.utilisateurConnecte = isLoggedIn;
       if (isLoggedIn) {
@@ -32,26 +30,20 @@ export class HeaderComponent implements OnInit {
     });
 
     const access_token = localStorage.getItem('access_token');
-    // this.utilisateurConnecte = access_token ? true : false;
-    // console.log("Utilisateur connecté :", this.utilisateurConnecte);
-
-    // this.utilisateurConnecte = this.authservice.isLoggedIn();
     this.otherLink();
-    
+
   }
   // methode pour injecter dynamiquement des lien au menu en fontion de l'itineraire
-  
-  showDetailLinks: boolean = false; 
-  // currentRoute: string = ''; 
- 
+
+
+
     otherLink(): void{
       this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
         // Check the current route to determine whether to show detail links
         const currentRoute : string = this.activatedRoute.firstChild?.snapshot.routeConfig?.path ?? '';
-        this.showDetailLinks = ['detail-service', 'detail-employer', 'detail-offre'].includes(currentRoute);
       });
    }
- 
+
 
   LogOutUser(): void {
     this.authservice.deconnexion().subscribe((respons)=>{
@@ -72,7 +64,7 @@ export class HeaderComponent implements OnInit {
         localStorage.removeItem('user_profile');
         localStorage.removeItem('dashboard_type');
         this.router.navigate(['/login']);
-    });  
+    });
     })
   }
 
@@ -92,7 +84,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
-  
+
   samaProfil :  any;
 afficherProfil() :void {
   this.utilisateurservice.getProfil().subscribe((respons)=>{

@@ -13,13 +13,13 @@
       </div>
     </div>
     <h4 class="mt-4">Liste des services</h4>
-    
+
     <div class="row mt-4 mb-4" >
       <ng-container *ngIf="getArticlesPage().length >0 , else noService">
-        <div class="col-lg-3 col-sm-6 " *ngFor=" let element of getArticlesPage()" >
-          <div class="card shadow-lg" style="width: 18.5rem; height: 28rem;" >
+        <div class="col-lg-4 col-sm-6 " *ngFor=" let element of getArticlesPage()" >
+          <div class="card shadow-lg" style="width: 18rem; height: 26rem;" >
             <div>
-              <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 14rem;">
+              <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 11rem;">
               <div class="titleService">
                 <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
               </div>
@@ -38,11 +38,13 @@
       </ng-container>
       <ng-template #noService>
         <h4 class="text-center">Liste des services recents vide</h4>
+        <app-spinneradmin [loadingadmin]="loadingadmin" ></app-spinneradmin>
+
       </ng-template>
-      
-        
-        
-       
+
+
+
+
       </div>
 
 <!-- Modal ajout services -->
@@ -51,8 +53,8 @@
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
   </button> -->
-  
-  
+
+
 </div>
 <!-- Modal ajout debut -->
 
@@ -66,7 +68,7 @@
         <div class="modal-body  ">
             <form (ngSubmit)="ajouterPofession ()" #registerForm="ngForm">
               <div class="mb-3">
-                <Label class = "form-label"> Sélectionnez la photo 
+                <Label class = "form-label"> Sélectionnez la photo
                 <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)" >
                </Label>
                </div>
@@ -76,13 +78,13 @@
                     >
                      <p class="message-erreur" *ngIf="!exactNomProfession">{{verifNomProfession}}</p>
                      <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
-                  
+
                   </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description" placeholder="description ici" rows="4" [(ngModel)]="description" required  (input)="verifDescription()"
                     ></textarea>
-                    
+
                       <p class="message-erreur" *ngIf="!exactDescription">{{verifDescrip}}</p>
                       <p class="message-success" *ngIf="exactDescription"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
                   </div>
@@ -91,10 +93,10 @@
                     <a href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</a>
                   </div>
             </form>
-            
-            
+
+
         </div>
-     
+
       </div>
     </div>
   </div>
@@ -115,7 +117,7 @@
         <div class="modal-body  ">
             <form action=""  enctype="multipart/form-data" >
               <div class="mb-3">
-                <Label class = "form-label"> Sélectionnez la photo 
+                <Label class = "form-label"> Sélectionnez la photo
                 <input id = "uploader" name = "image" type = "file" classe multiple = "file-chargement" (change)="getFile($event)">
                </Label>
                </div>
@@ -135,10 +137,10 @@
                     <button href="" type="submit" data-bs-dismiss="modal" (click)="modifierProfession()"> Modifier</button>
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Annuler</button>
                   </div>
-                  
+
             </form>
         </div>
-     
+
       </div>
     </div>
   </div>
@@ -155,8 +157,8 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body  ">
-           
-              
+
+
                   <div class="" *ngIf="voirDetailProfession">
                     <h5> {{voirDetailProfession.nom_prof}} </h5>
                     <p class="text-start mt-4">{{voirDetailProfession.description}} </p>
@@ -164,9 +166,9 @@
                   <div class="validajout d-flex justify-content-end">
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
                   </div>
-           
+
         </div>
-     
+
       </div>
     </div>
   </div>
@@ -190,14 +192,14 @@
   <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
     Précédent
   </button>
-  <button class="btn pagiColore ms-2" 
-          *ngFor="let page of pages" 
-          [class.current]="page === pageActuelle" 
+  <button class="btn pagiColore ms-2"
+          *ngFor="let page of pages"
+          [class.current]="page === pageActuelle"
           (click)="pageActuelle = page">
     {{ page }}
   </button>
-  <button class="btn pagiColor ms-2" 
-          [disabled]="pageActuelle === totalPages" 
+  <button class="btn pagiColor ms-2"
+          [disabled]="pageActuelle === totalPages"
           (click)="pageActuelle = pageActuelle + 1">
     Suivant
   </button>

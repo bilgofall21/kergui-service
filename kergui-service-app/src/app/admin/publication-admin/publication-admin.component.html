@@ -3,7 +3,7 @@
     <div class="app-card app-card-orders-table mb-5">
         <div class="app-card-body">
             <div class="table-responsive">
-                
+
                 <table class="table mb-0 text-left">
                     <thead >
                         <tr>
@@ -16,45 +16,50 @@
                             <th class="cellhead"> Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngIf="dataPublictions">
                         <ng-container *ngIf=" dataPublictions.length >0 , else noPublication">
                             <tr *ngFor=" let publication of dataPublictions">
                                 <td class="cell"> {{publication.user?.prenom}} </td>
                                 <td class="cell"> {{publication.user?.nom}}</td>
                                 <td class="cell"> {{publication.profession?.nom_prof}} </td>
                                 <td class="cell">  {{publication.created_at | date:'dd-MM-yyyy' }} </td>
-                                <td class="cell">  
+                                <td class="cell">
                                     <span class="badge bg-success" *ngIf="publication.etat === 'nouveau'">Nouveau</span>
                                     <span class="badge bg-danger" *ngIf="publication.etat === 'archiver'">Archivé</span>
                                 </td>
-                        
+
                                 <td class="cell">
                                     <div class="iconegestion d-flex justify-content-around w-50   ">
                                         <!-- <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye" ></i></a> -->
                                         <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectionnerpublication(publication)" ><i class="bi bi-eye"style="font-size: 20px;" ></i></button>
                                         <button class="btn btn-outline-danger ms-2" (click)="archiverOffre (publication.id)"> <i class="bi bi-save"style="font-size: 20px;"></i></button>
-    
+
                                     </div>
                                 </td>
                                 <!-- <td class="cell" >
                                     <button class="btn btn-outline-danger"> <i class="bi bi-save"></i></button>
                                     <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="archiverOffre (publication.id)"  ><i class="bi bi-save-fill"></i></a>
                                 </td> -->
-                               
+
                             </tr>
+
                         </ng-container>
-                        
+
                         <ng-template #noPublication>
                             <h4 class="text-center">Aucune publication disponible</h4>
                         </ng-template>
-                        
-                        
-                
+
+
+
 
                     </tbody>
                 </table>
+
+
             </div>
         </div>
+        <app-spinneradmin [loadingadmin]="loadingadmin" ></app-spinneradmin>
+
     </div>
 
 </div>
@@ -64,9 +69,9 @@
 
 <!-- Button trigger modal -->
 
-  
+
   <!-- Modal -->
-  
+
 
   <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
@@ -76,8 +81,8 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body  ">
-           
-              
+
+
                   <div class="" *ngIf="publicationSelect ">
                    <div class="row">
                     <div class="col-4 " id="tof">
@@ -87,9 +92,9 @@
                         <div class=" mb-2">
                             <h6>Profession :<span class="text-black fw-lighter"> {{publicationSelect.profession.nom_prof}}</span>  </h6>
                             <h6>Contrat : <span class="text-black fw-lighter">{{publicationSelect.typeContrat}} </span> </h6>
-                           
+
                         </div>
-                        
+
                         <div class="d-flex mb-2">
                             <h6> Salaire: <span class="text-black fw-lighter">{{publicationSelect.slaireMinimum}} </span>  </h6>
                             <h6 class="ms-3">adresse : <span class="text-black fw-lighter">{{publicationSelect.lieu}}</span>   </h6>
@@ -97,7 +102,7 @@
                         <div class=" mb-2">
                             <h6> Créer le: <span class="text-black fw-lighter">{{publicationSelect.created_at | date : "dd/MM/yyyy"}}</span>  </h6>
                             <h6> Expire le: <span class="text-black fw-lighter">{{publicationSelect.dateline | date : "dd/MM/yyyy"}}</span>  </h6>
-                            
+
                         </div>
                         <h6> Etat: <span class="text-black fw-lighter">{{publicationSelect.etat}}</span>  </h6>
                         <div>
@@ -113,10 +118,10 @@
                     <button href="" class="bg-secondary" data-bs-dismiss="modal"> Fermer</button>
                   </div>
 
-                  
-           
+
+
         </div>
-     
+
       </div>
     </div>
   </div>

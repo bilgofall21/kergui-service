@@ -22,7 +22,7 @@ h5{
 }
 .iconegestion {
     margin: 0 auto;
-   
+
 }
 .iconegestion a , .iconegestion button{
     text-decoration: none;
@@ -37,7 +37,7 @@ h5{
 
 #description p {
     height: 7.5rem;
-    
+
     overflow: hidden;
     text-overflow: ellipsis;
     /* overflow-y: auto; */
@@ -64,7 +64,7 @@ h5{
     border-radius: 5px;
     text-decoration: none;
     margin-right: 20px;
-   
+
 }
 .modal-header{
     background-color: var(--kergui-blue);
@@ -79,10 +79,10 @@ h5{
 }
 .modal-title{
     /* color: var(--kergui-green); */
-   
+
 }
 .validajout a{
-   
+
 }
 
 /* style carte */
@@ -90,7 +90,7 @@ h5{
     height: 14rem;
   }
   .cardcontain {
-   
+
       margin-bottom: 30px;
       box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
       transition: .5s ease;
@@ -98,23 +98,23 @@ h5{
       padding: 45px;
       /* background-color: red; */
   }
-  
+
    .cardannonce{
    position: relative;
-   
+
   }
    .cardcontain:hover{
     position: relative;
       transform: translateY(-5px);
       box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.16);
-   
+
   }
-  
-  
-  
+
+
+
    .annoncetitle{
   background-color: var(--kergui-blue);
-  padding: 2px 2px; 
+  padding: 2px 2px;
   width: 50%;
   border-radius: 8px;
   position: relative;
@@ -138,20 +138,20 @@ h5{
     width: 50%;
     border-radius: 5px;
     margin: 0 auto;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     /* padding: 4px 2px; */
     background-color: var(--kergui-green);
-   
+
   }
   /* style annonce fin */
 
 
   #description p {
     height: 7.5rem;
-    
+
     overflow: hidden;
     text-overflow: ellipsis;
     /* overflow-y: auto; */
@@ -169,7 +169,7 @@ h5{
 .searchbar  button{
     background-color: var(--kergui-blue);
   }
-  
+
 
  /* style pagination debut */
 
@@ -192,22 +192,22 @@ h5{
   }
 
    /* style pagination fin */
-  
+
 
    .btn-custom:disabled {
     opacity: 0.7; /* Réduire l'opacité du bouton */
     cursor: not-allowed; /* Changer le curseur en "non autorisé" */
     background-color: var(--kergui-green);
-    /* text-decoration: line-through; 
+    /* text-decoration: line-through;
     text-decoration-thickness: 2px;  */
   }
- 
+
 
   img{
     height:12rem;
     width:100%;
   }
-  
+
   div [class^="col-"]{
     padding-left:5px;
     padding-right:5px;
@@ -215,39 +215,39 @@ h5{
   .card{
     transition:0.8s;
     cursor:pointer;
-    height: 30rem;
-    width: 22rem;
+    height: 28rem;
+    width: 20rem;
   }
   .card p{
     height: 12rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .card-title{  
+  .card-title{
     font-size:15px;
     transition:1s;
     cursor:pointer;
   }
-  .card-title i{  
+  .card-title i{
     font-size:18px;
     transition:1s;
     cursor:pointer;
-   
+
     color:var(--kergui-green)
   }
   .card-title i:hover{
-    transform: scale(1.25) rotate(100deg); 
+    transform: scale(1.25) rotate(100deg);
     color:var(--kergui-blue)
-    
+
   }
   .card:hover{
     transform: scale(1.05);
     box-shadow: 10px 10px 15px  #3a6a7ec4;
   }
   .card-text{
-    height:80px;  
+    height:80px;
   }
-  
+
   .card::before, .card::after {
     position: absolute;
     top: 0;

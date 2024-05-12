@@ -16,6 +16,8 @@ constructor(private utulisateurservice : UtulisateurService, private professions
    this.allProfession();
    this.allCandidat ();
   }
+
+  loadingadmin : boolean = false;
    // Attribut pour la pagination
    articlesParPage = 4; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
@@ -24,13 +26,15 @@ constructor(private utulisateurservice : UtulisateurService, private professions
 userData : any []= [];
 employeurData: any[]=[];
 afficherAllUser () : void {
+  this.loadingadmin = true;
   this.utulisateurservice.getAllUser().subscribe((repons)=>{
 this.userData = repons.data;
-console.log("voir les utilisateurs", this.userData);
+// console.log("voir les utilisateurs", this.userData);
 this.employeurData = this.userData.filter((element : {role : string})=>
 element.role == "employeur"
 );
-console.log('data emplouer', this.employeurData);
+this.loadingadmin = false;
+// console.log('data emplouer', this.employeurData);
 this.userData.forEach((element : any) =>{
   const nomProfession = this.getNomProfession(element.profession_id);
 })
@@ -40,14 +44,14 @@ dataCandidat : any []=[];
 allCandidat (): void{
   this.utulisateurservice.getAllCandidat().subscribe((data)=>{
     this.dataCandidat = data.data;
-    console.log("poutguihiljk", this.dataCandidat);
+    // console.log("poutguihiljk", this.dataCandidat);
   })
 }
-dataProfession :  any
+dataProfession : any[] = [];
 allProfession(): void{
   this.professionservice.getProfession().subscribe((data)=>{
     this.dataProfession = data.data;
-    console.log("voir profession", this.dataProfession);
+    // console.log("voir profession", this.dataProfession);
   })
 }
 getNomProfession(professionId : number): void{
@@ -84,7 +88,7 @@ desactiverUser(id : string): void {
   }).then((result) => {
     if(result.isConfirmed){
       this.utulisateurservice.archiverUser(id).subscribe((repons)=>{
-        console.log("desactiver compte user", repons);
+        // console.log("desactiver compte user", repons);
          // Mettez à jour l'interface en recherchant l'utilisateur dans la liste
          const utilisateurDesactive = this.userData.find((element) => element.id === id);
          if (utilisateurDesactive) {
@@ -130,7 +134,7 @@ activerUser(id : string): void {
   }).then((result) => {
     if(result.isConfirmed){
       this.utulisateurservice.desaciverUser(id).subscribe((repons)=>{
-        console.log("desactiver compte user", repons);
+        // console.log("desactiver compte user", repons);
          // Mettez à jour l'interface en recherchant l'utilisateur dans la liste
          const utilisateurActive = this.userData.find((element) => element.id === id);
          if (utilisateurActive) {
@@ -138,7 +142,7 @@ activerUser(id : string): void {
          }
          this.afficherAllUser();
          this.allCandidat ();
-  
+
         }, error=>{
 
         }
@@ -169,7 +173,7 @@ getArticlesPage(): any[] {
   const indexFin = indexDebut + this.articlesParPage;
   this.utulisateurTrouve = this.dataCandidat.filter((element :{prenom : string; nom : string})=>
   element.prenom.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) ||
-  element.nom.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) 
+  element.nom.toLowerCase().includes(this.searchUtulisateur.toLowerCase())
 
   );
   return this.utulisateurTrouve.slice(indexDebut, indexFin);
@@ -197,7 +201,7 @@ getArticlesPageEmployeur(): any[] {
   const indexFin = indexDebut + this.articlesParPage;
   this.EmployerTrouve  = this.employeurData.filter((element :{prenom : string; nom : string})=>
   element.prenom.toLowerCase().includes(this. searchEmployeur.toLowerCase()) ||
-  element.nom.toLowerCase().includes(this. searchEmployeur.toLowerCase()) 
+  element.nom.toLowerCase().includes(this. searchEmployeur.toLowerCase())
 
   );
   return this.EmployerTrouve .slice(indexDebut, indexFin);

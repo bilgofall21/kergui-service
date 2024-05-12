@@ -6,7 +6,7 @@ body {
     font-family: 'Poppins', sans-serif;
   }
 
-  
+
 :root{
   --kergui-blue: #3A6A7E;
   --kergui-green: #FF9A00;
@@ -17,6 +17,7 @@ body {
   margin: 0 auto;
   margin-left: 18%;
   width: 80%;
+  /* background-color: red; */
 }
 
 /* Profile Picture */
@@ -49,8 +50,98 @@ body {
 
 /* media queryy baniere */
 
+@media screen and (max-width:1350px)  {
+  .admingestioncontainer {
+    margin: 0 auto;
+    margin-left: 18%;
+    width: 75%;
+    /* background-color: rgb(0, 123, 255); */
+  }
+}
+@media screen and (max-width:1290px)  {
+  .admingestioncontainer {
+    margin: 0 auto;
+    margin-left: 20%;
+    width: 76%;
+    /* background-color: rgb(0, 123, 255); */
+  }
+}
+@media screen and (max-width:1200px)  {
+  .admingestioncontainer {
+    margin: 0 auto;
+    margin-left: 22%;
+    width: 76%;
+    /* background-color: rgb(0, 123, 255); */
+  }
+}
+@media screen and (max-width:990px)  {
+  .admingestioncontainer {
+    margin: 0 auto;
+    margin-left: 27%;
+    width: 72%;
+    /* background-color: rgb(0, 123, 255); */
+  }
+}
+@media screen and (max-width:835px)  {
+  .admingestioncontainer {
+    margin: 0 auto;
+    margin-left: 32%;
+    width: 65%;
+    /* background-color: rgb(0, 123, 255); */
+  }
+}
+@media screen and (max-width:745px)  {
+  .admingestioncontainer {
+    margin: 0 auto;
+    margin-left: 35%;
+    width: 63%;
+    /* background-color: rgb(0, 123, 255); */
+  }
+}
 
 
+/* style loader */
+.spinner {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 80px;
+	height: 80px;
+  margin: 0 auto;
+	border-radius: 50%;
+	border: 4px solid #3A6A7E;
+	border-top-color: #FF9A00;
+	animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+@-webkit-keyframes spinner {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(1turn);
+	}
+}
+
+.spinner-indicator {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0000004a;
+  z-index: 9999;
+}
 
 
 

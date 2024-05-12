@@ -1,6 +1,6 @@
 <div class="admingestioncontainer mt-5">
     <div class="container">
-      
+
         <div class="row g-4 ">
             <div class="col-6 col-lg-3">
               <div class="app-card app-card-stat shadow-sm h-100">
@@ -54,31 +54,36 @@
                     <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon"  [(ngModel)]="searchservice" (input)="getArticlesPage()" />
                     <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
                   </div>
-      
+
             </div>
           </div>
-          
+          <app-spinneremployeur [loadingemployeur]="loadingemployeur" ></app-spinneremployeur>
+
           <div class="row mt-4">
-            <div class="col-lg-3 col-sm-6 " *ngFor="let profession of getArticlesPage()">
-              <div class="card shadow-lg" style="width: 18.5rem; height: 30rem;">
-                <div>
-                  <img  src="http://127.0.0.1:8000/storage/{{profession.image}}" class="card-img-top" alt="..." style="height: 14rem;">
-                  <div class="titleService">
-                    <h5 class="text-center"> {{profession.nom_prof}} </h5>
+              <div class="col-lg-4 col-sm-6" *ngFor="let profession of getArticlesPage()">
+                <div class="card shadow-lg" style="width: 18rem; height: 28rem;">
+                  <div>
+                    <img  src="http://127.0.0.1:8000/storage/{{profession.image}}" class="card-img-top" alt="..." style="height: 12rem;">
+                    <div class="titleService">
+                      <h5 class="text-center"> {{profession.nom_prof}} </h5>
+                    </div>
                   </div>
+                  <div class="card-body">
+                    <p class="card-text"> {{profession.description}} </p>
+                  </div>
+                  <div class="iconegestion text-center mb-1 ">
+                    <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', profession.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>
+                  </div>
+                  <div class="cardfooter"></div>
                 </div>
-                <div class="card-body">
-                  <p class="card-text"> {{profession.description}} </p>
-                </div>
-                <div class="iconegestion text-center mb-1 ">
-                  <a  class=" text-decoration-none me-4 d-flex justify-content-center mb-3" [routerLink]="['/detail-service', profession.id]" >  <span class="lnr lnr-arrow-right me-2 fs-5"></span> Voir Plus</a>                
-                </div>
-                <div class="cardfooter"></div>
               </div>
-            </div>
-            
-            
-           
+
+
+
+
+
+
+
           </div>
     </div>
 
@@ -90,14 +95,14 @@
   <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
     Précédent
   </button>
-  <button class="btn pagiColore ms-2" 
-          *ngFor="let page of pages" 
-          [class.current]="page === pageActuelle" 
+  <button class="btn pagiColore ms-2"
+          *ngFor="let page of pages"
+          [class.current]="page === pageActuelle"
           (click)="pageActuelle = page">
     {{ page }}
   </button>
-  <button class="btn pagiColor ms-2" 
-          [disabled]="pageActuelle === totalPages" 
+  <button class="btn pagiColor ms-2"
+          [disabled]="pageActuelle === totalPages"
           (click)="pageActuelle = pageActuelle + 1">
     Suivant
   </button>

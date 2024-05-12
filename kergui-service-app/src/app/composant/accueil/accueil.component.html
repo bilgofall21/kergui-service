@@ -4,13 +4,13 @@
 <div class="homecontainer">
     <!-- baniere debut -->
     <section class="bannercontainer">
-       
+
         <!-- <div class="banner">
-            
+
             <div class="overlay"></div>
             <h2 class="text-center  w-50">Finis les tracasserie pour  vos recherche de
                 personnel de qualité pour votre maison</h2>
-                
+
                 <button class="btn "> commencer</button>
         </div> -->
 
@@ -52,7 +52,7 @@
           Les besoins des propriétaires demeurent récurent.Ce plateforme  se veut le point de rencontre qui facilite le contact  entre le propriétaire et tous professionnels des travaux  de maison. Un gain de temp et d’efficacité est la garantie de trouver le bon emploi ou employeur. En plus des annonces et offres  interessant.
         </p>
         <div class="d-flex justify-content-center ">  <button class="btn text-white mt-4 "   [routerLink]="['/fonctionnement']" >Consulter le guide</button> </div>
-    
+
       </div>
     </section>
     <!--  section presentation par text fin -->
@@ -90,14 +90,14 @@
                 <a href="#" class="theme-btn btn-style-one"  [routerLink]="['/login']" >Commencer</a>
               </div>
             </div>
-          
+
           </div>
         </div>
       </div>
 
     </section>
     <!-- section dees informations plateformes fin -->
-   
+
  <!--  section service  debut -->
  <section class="services mt-5">
   <div class="container">
@@ -105,26 +105,11 @@
       <h4 class="fw-bold"> Les services recents</h4>
       <hr class="border-3 opacity-100">
     </div>
-    <div class="row mt-4 row-gap-3">
-      <!-- <div class="col-lg-3 col-sm-6 " *ngFor=" let service of lastFourService ">
-        <div class="card shadow-lg" style="width: 19rem;" >
-          <div>
-            <img  src="./assets/image/carte1.png" class="card-img-top" alt="..." style="height: 12rem;">
-            <div class="titleService">
-              <h5 class="text-center"> {{service.nom_prof}} </h5>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="card-text">  {{service.description}}  </p>
-            <a href="#" class=" text-decoration-none me-4 d-flex justify-content-center" [routerLink]="['/page-service']" >  <span class="lnr lnr-arrow-right me-2 fs-5" ></span> Voir Plus</a>
-          </div>
-          <div class="cardfooter"></div>
-        </div>
-      </div> -->
+    <div class="row mt-4">
       <div class="col-lg-3 col-sm-6 " id="cardservic" *ngFor=" let element of lastFourService " >
         <div class="card shadow-lg" >
           <div>
-            <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 13rem;">
+            <img  src="http://127.0.0.1:8000/storage/{{element.image}}" class="card-img-top" alt="..." style="height: 12rem;">
             <div class="titleService">
               <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
             </div>
@@ -140,52 +125,17 @@
           <div class="cardfooter mt-1"></div>
         </div>
       </div>
-      
-      
-     
+
+
+
     </div>
-    
+
     <div class="validservice text-center m-4">
       <button class="btn fw-bold " [routerLink]="['/page-service']"> <span class="lnr lnr-arrow-right  me-2 fs-5"  ></span> Tous les services</button>
     </div>
   </div>
 </section>
 <!-- section service fin -->
-
- <!-- Section nos chiffres debut -->
- <!-- <section class="chiffres m-5">
-  <div class="chiffrecontainer" appBlueFont>
-    <div class="chiffre">
-      <div class="chiffreleft ">
-        <div class="leftimageleft">
-          <img class="img-fluid rounded-4" src=" https://media.istockphoto.com/id/1187582500/photo/hello-can-i-help-you.jpg?s=612x612&w=0&k=20&c=5knMS-vZABVJtXGGBvJx4q4WH1EKtqeJy8tvJIoA-L8=" alt="">
-        </div>
-        <div class="rightimageright">
-          <img class="img-fluid rounded-4" src="https://media.istockphoto.com/id/1390084757/photo/one-black-woman-doing-domestic-housework-cleaning-stove.jpg?s=612x612&w=0&k=20&c=BBXRYQTOVFBC-2_fEFf3vKQk5X9D7enG-2YbVbwjw7g=" alt="">
-        </div>
-      </div>
-      <div class="chiffreright mt-3">
-        <h4 class="text-center">Nos Chiffres Réalisés</h4>
-        <div class="statistique mt-5">
-          
-          <div class="item">
-            <div class="pppp"><h1>650</h1></div>
-            
-            <h3>Employeur</h3>
-          </div>
-          <div class="item">
-            <h1>800</h1>
-            <h3>Candidats</h3>
-          </div>
-          <div class="item">
-            <h1>450</h1>
-            <h3>Mise en relations</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
 <section class="counters-area site-section ">
   <div class="containere">
@@ -198,7 +148,7 @@
   </div>
   <div class="container">
     <div class="row ">
-  
+
       <div class="col-lg-3 col-sm-6 ">
         <div class="counter d-flex justify-content-center">
           <div class="counter-icon">
@@ -226,8 +176,8 @@
           <div class="counter-icon">
             <i class="bi bi-person-lines-fill"></i>
           </div>
-          <div class="counter-content ms-3">
-            <div class="number "> {{tailleEmployeur}} </div>
+          <div class="counter-content ms-3" *ngIf="employeurData">
+            <div class="number "> {{employeurData.length}} </div>
             <div class="mb-0 total">Total employeur</div>
           </div>
         </div>
@@ -243,9 +193,9 @@
           </div>
         </div>
       </div>
-      
-  
-  
+
+
+
     </div>
 
   </div>
@@ -264,36 +214,7 @@
           </div>
 
           <div class="container">
-            <div class="row row-gap-4" id="carteannonce">
-              <!-- <div class="col-sm-12 col-md-6 col-lg-4 mb-3  shadow-sm" id="annoncecol" *ngFor="let element of lastThreePublications" style="width: 24rem;">
-                <article class="u-shadow-v11">
-                    <img class="img-fluid w-100" src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Gravity">
-                    <div class="g-bg-warning " id="description">
-                      <div class="d-flex justify-content-around">
-                        <div class="d-flex mt-2">
-                          <h5 class="">Date limite : </h5>   
-                          <h6 class="ms-2 "> {{element.dateline}} </h6>
-                        </div>
-                        <div class="">    
-                       <h6 class="mb-2 ms-2"> <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #3A6A7E;"></i> {{element.user.prenom}} {{element.user.nom}}</h6>
-                        </div>
-  
-                      </div>
-                      <div class="text-center my-1">
-                        <h5> {{element.profession.nom_prof}} </h5>
-                      </div>
-                        <h3 class="h5 p-md-4 ">
-                           Description
-                        </h3>
-                        <p class="px-3">{{element.description}}</p>
-                        <div class="iconegestion text-center mb-1  mt-1">
-                          <a href="" class="text-center text-decoration-none mb-3"  [routerLink]="['/detail-offre', element.id]"> Voir annonce <span class="lnr lnr-arrow-right"></span></a>
-                      </div>
-                        <hr class="">
-                    </div>
-                </article>
-            </div> -->
-  
+            <div class="row" id="carteannonce">
             <div class="col-md-6 col-lg-3" *ngFor="let element of lastThreePublications">
               <div class="card card-block" >
                 <h5 class="card-title mt-2 mb-2 text-center"> {{element.profession.nom_prof}} </h5>
@@ -303,11 +224,11 @@
                 <h5 class="card-title mt-2 mb-2 text-center"> Date limite : {{element.dateline | date:'dd/MM/yyyy'}}  </h5>
                  <a (click)="voirDetail(element)"  [routerLink]="['/detail-offre', element.id]">
                   <h4 class="card-title text-center mt-2"><i class="material-icons">Voir Detail</i></h4>
-                 </a>  
+                 </a>
           </div>
             </div>
-            
-             
+
+
             </div>
 
           </div>
@@ -327,7 +248,7 @@
         <div class="annoncecontainerpub">
           <img src=".\assets\image\2.png" class="img-fluid rounded-4 shadow-lg" alt="">
         </div>
-    
+
       </div>
     </section>
     <!-- section publiciteé fin -->
@@ -344,7 +265,7 @@
         <div class="container mt-4">
 
           <div class="row">
-            
+
             <div class="col-md-3">
               <div class="card shadow-lg border-0" style="width: 18rem;">
                 <div class="d-flex justify-content-around mt-2">
@@ -354,10 +275,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -378,10 +299,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -402,10 +323,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -426,10 +347,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -448,7 +369,7 @@
         <div class="container mt-3">
 
           <div class="row">
-            
+
             <div class="col-3">
               <div class="card shadow-lg border-0" style="width: 18rem;">
                 <div class="d-flex justify-content-around mt-2">
@@ -458,10 +379,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -482,10 +403,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -506,10 +427,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -530,10 +451,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -552,7 +473,7 @@
         <div class="container mt-3">
 
           <div class="row">
-            
+
             <div class="col-3">
               <div class="card shadow-lg border-0" style="width: 18rem;">
                 <div class="d-flex justify-content-around mt-2">
@@ -562,10 +483,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -586,10 +507,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -610,10 +531,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -634,10 +555,10 @@
                   <div class="namecardtop">
                     <p>Ami Fall</p>
                   </div>
-        
+
                 </div>
                 <div class="card-body">
-                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>  
+                  <i class="bi bi-quote crochet"></i> <p class="card-text lead">  Some quick example text to build on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. on the card title and make up the bulk of the card's content. <i class="bi bi-quote crochet1"></i></p>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
                       <i class="bi bi-person-fill me-3 align-items-center"></i>
@@ -662,11 +583,11 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  
+
 </section> -->
 
 
- 
+
 </div>
 
 <app-footer></app-footer>
