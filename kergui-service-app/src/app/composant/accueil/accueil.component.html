@@ -5,22 +5,9 @@
     <!-- baniere debut -->
     <section class="bannercontainer">
 
-        <!-- <div class="banner">
-
-            <div class="overlay"></div>
-            <h2 class="text-center  w-50">Finis les tracasserie pour  vos recherche de
-                personnel de qualité pour votre maison</h2>
-
-                <button class="btn "> commencer</button>
-        </div> -->
-
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner" id="carouselcontainer">
-            <!-- <div class="carousel-item active">
-              <div class="banner img-fluid">
-                <div class="overlay"></div>
-            </div>
-            </div> -->
+
             <div class="carousel-item active">
               <div class="banner2">
                 <div class="overlay"></div>
@@ -40,9 +27,12 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
+
         </div>
+
     </section>
     <!-- baniere fin -->
+
 
     <!-- section presentation par text  debut-->
     <section class="presentation text-center">
@@ -137,6 +127,7 @@
 </section>
 <!-- section service fin -->
 
+
 <section class="counters-area site-section ">
   <div class="containere">
 
@@ -215,7 +206,7 @@
 
           <div class="container">
             <div class="row" id="carteannonce">
-            <div class="col-md-6 col-lg-3" *ngFor="let element of lastThreePublications">
+            <div class="col-md-6 col-lg-4" *ngFor="let element of lastThreePublications">
               <div class="card card-block" >
                 <h5 class="card-title mt-2 mb-2 text-center"> {{element.profession.nom_prof}} </h5>
                 <img src="http://127.0.0.1:8000/storage/{{element.image}}" alt="Photo of sunset">

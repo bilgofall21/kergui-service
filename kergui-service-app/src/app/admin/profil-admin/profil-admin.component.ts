@@ -40,21 +40,14 @@ export class ProfilAdminComponent implements OnInit{
     if(this.image) {
       formData.append('imageDeProfil', this.image);
     }
-  
+
     this.utilisateurservice.updateProfilAdmin(formData).subscribe({
       next: (response) => {
         console.log("Élément modifié du profil", response);
         this.afficherProfil();
         this.profileservice.chargerProfilData(response.data);
         
-        // Vider les champs
-        // this.prenom = '';
-        // this.nom = '';
-        // this.telephone = '';
-        // this.password = '';
-        // this.lieu = '';
-        // this.image = null;
-  
+
         // Afficher une alerte de succès
         Swal.fire({
           icon: 'success',
@@ -70,7 +63,7 @@ export class ProfilAdminComponent implements OnInit{
       },
       error: (error) => {
         console.error("Erreur lors de la modification du profil", error);
-        
+
         // Afficher une alerte d'erreur
         Swal.fire({
           icon: 'error',

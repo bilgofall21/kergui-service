@@ -16,10 +16,7 @@ export class HomeAdminComponent implements OnInit {
 constructor(private utulisateurservice : UtulisateurService, public professionservice : ProfessionServiceService, public publicationservice : PublicationService ){}
   ngOnInit(): void {
     this.recupAllutulisateur();
-    // this.recupAlluser = localStorage.getItem('all_user')
-    // this.allUseData = this.recupAlluser ? JSON.parse(this.recupAlluser) : null;
-    // console.log("dataanow", this.allUseData);
-    // console.log("yyyyyy", this.allUseData);
+
 
     this.recupAllService();
     this.recupAllCandidat()
@@ -46,8 +43,7 @@ tailleProfession : any ;
 recupAllService(){
   this.professionservice.getProfession().subscribe((respons)=>{
     this.allprofession = respons.data;
-    // console.log('rrrrrrrr', this.allprofession);
-    // localStorage.setItem('all_profession', JSON.stringify(this.allprofession.data))
+
   })
 }
 allpublication : any [] = [];
@@ -56,8 +52,7 @@ taillePublication : any;
 recupAllOffre(){
   this.publicationservice.geyAllpublication().subscribe((respons)=>{
     this.allpublication = respons.data;
-    // console.log("eeee", this.allpublication);
-    // localStorage.setItem('all_publication', JSON.stringify(this.allpublication.data))
+   
   })
 }
 allCandidat : []=[]
@@ -81,7 +76,7 @@ afficheService() : void {
       });
       // Prendre les trois dernières profession
       this.lastThreeProfession = sortedProfession.slice(0, 3 );
-     
+
       this.loadingCard = false;
 
 

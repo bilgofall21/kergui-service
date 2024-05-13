@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
 import { DetalAnnonceServiceService } from 'src/app/services/detal-annonce-service.service';
+import { PublicationService } from 'src/app/services/publication.service';
+import { SaveDetailEmployeServiceService } from 'src/app/services/save-detail-employe-service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,19 +16,24 @@ export class DetailOffreComponent implements OnInit  {
   dataDetail : any;
   subscription!: Subscription;
   ngOnInit(): void {
-    // const recupDetail = localStorage.getItem('detail_offre');
-    // this.dataDetail = recupDetail? JSON.parse(recupDetail) : null;
-    // console.log("uuuuu", this.dataDetail);
-    this.showDetailAnnonce();
+   this.getAllPublication()
 
-    
+
   }
-  constructor(private candidaterservice : CandidatureServiceService, private detailAnnonceservice : DetalAnnonceServiceService){}
+  constructor(private candidaterservice : CandidatureServiceService, private detailAnnonceservice : DetalAnnonceServiceService, private annoceServices : PublicationService, private detailAnnonce :SaveDetailEmployeServiceService, private activatedRoute : ActivatedRoute){}
   // methode pour recupere detail annonce
 showDetailAnnonce(): void{
-this.subscription = this.detailAnnonceservice.detailDataAnnonce$.subscribe(data =>{
-  this.dataDetail = data;
-  console.log("voir new detail annonce",this.dataDetail);
+
+this.detailAnnonce.currentAnnonce.subscribe((data)=>{
+  if(data){
+    this.dataDetail = data;
+    console.log("dddddd", this.dataDetail)
+  }else{
+    const idAnnonce = this.activatedRoute.snapshot.paramMap.get('id');
+    if(idAnnonce && this.publicationData){
+      this.dataDetail = this.publicationData.find((annonce: { id: any; }) => annonce.id === +idAnnonce);
+    }
+  }
 })
 }
 
@@ -58,7 +66,15 @@ this.subscription = this.detailAnnonceservice.detailDataAnnonce$.subscribe(data 
         // timer: 1500
     })
   }
-  
+
+publicationData :any;
+  getAllPublication(): void{
+    this.annoceServices.geyAllpublication().subscribe((data)=>{
+      this.publicationData = data.data;
+      console.log("voir tpus les annonces", this.publicationData)
+      this.showDetailAnnonce();
+    })
+  }
 
 }
 

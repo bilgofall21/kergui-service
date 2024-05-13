@@ -10,8 +10,8 @@ export class DetalProfilServiceService {
 
   constructor() { }
   private loadInitilialDetail(){
-    const savaDetail = localStorage.getItem('detail_profil');
-    return savaDetail ? JSON.parse(savaDetail) : null;
+    // const savaDetail = localStorage.getItem('detail_profil');
+    // return savaDetail ? JSON.parse(savaDetail) : null;
   }
 
   updateUserProfilData(data: any) {

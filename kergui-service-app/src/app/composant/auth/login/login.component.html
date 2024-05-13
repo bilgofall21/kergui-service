@@ -2,8 +2,6 @@
 
 <div class="logincontainer">
 
-
-
 <!-- section connexion debut -->
 <section class="connexionuser" *ngIf="showConnexion">
     <div class="connexion">
@@ -46,6 +44,7 @@
 </div>
 </section>
 <!-- section connexion fin -->
+
 <!-- section mot de passe oublie debut -->
 <section class="connexionuser" *ngIf="showForgetPassword">
     <div class="connexion" id="forgetmdp">
@@ -121,7 +120,7 @@
                 <p class="message-success"*ngIf="exactLieu">  <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p>
             </div>
             <div class="col-md-5" >
-                <input class="form-control datNaiss "  type="file" (change)="getFile($event)" >
+                <input class="form-control"  type="file" (change)="getFile($event)" >
             <!-- <button  class="btn btn-outline-light mt-2"> </button> -->
 
             </div>
@@ -181,7 +180,7 @@
                 <p class="message-success" *ngIf="exactLieu"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
             <div class="col-md-5" id="validation">
-                <input class="datNaiss" type="date" placeholder="Date de naissance" name="dateNaissance" [(ngModel)]="registreEmploye.dateNaissance" (input)="verifierDateNaissance()"  required  />
+                <input class="" type="date" placeholder="Date de naissance" name="dateNaissance" [(ngModel)]="registreEmploye.dateNaissance" (input)="verifierDateNaissance()"  required  />
                 <p class="message-erreur" *ngIf="!exactNaissance"> {{verifDateNaiss}} </p>
                 <p class="message-success" *ngIf="exactNaissance"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide </p>
             </div>
@@ -245,7 +244,6 @@
 </div>
 </section>
 <!-- section authentification employé fin -->
-
 
 
 <!-- section presentation connexion debut -->

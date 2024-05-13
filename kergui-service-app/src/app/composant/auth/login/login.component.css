@@ -4,7 +4,7 @@ margin-top: 100px;
 
 .connexion {
     position: relative;
-    max-width: 480px;
+    max-width: 450px;
     width: 100%;
     border-radius: 10px 10px 0px 0px;
     padding: 20px 20px 40px;
@@ -190,10 +190,10 @@ margin-top: 100px;
 .connexion .footerform{
     position: absolute;
     left: 50%;
-    bottom: -86%;
+    bottom: -90%;
     transform: translateX(-50%);
     width: calc(100% + 220px);
-    padding: 20px 140px;
+    padding: 5px 140px;
     border-radius: 50%;
     height: 100%;
     background: #fff;

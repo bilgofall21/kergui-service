@@ -15,7 +15,7 @@ export class HomeCandidatComponent implements OnInit {
     this.recupAllOffre();
 
     this.recupAllutulisateur();
-    this.recupAlluser = localStorage.getItem('all_user')
+    // this.recupAlluser = localStorage.getItem('all_user')
     this.allUseData = this.recupAlluser ? JSON.parse(this.recupAlluser) : null;
     this.tailleEmployeur = this.nombreEmployeur();
   }
@@ -60,7 +60,7 @@ tailletCandidat : any;
 recupAllutulisateur(){
   this.utulisateurservice.getAllUser().subscribe((data)=>{
     this.alldata = data;
-   localStorage.setItem('all_user', JSON.stringify(this.alldata.data))
+  //  localStorage.setItem('all_user', JSON.stringify(this.alldata.data))
   })
 }
 nombreEmployeur() {
@@ -75,9 +75,9 @@ nombreEmployeur() {
 
 getNomProfesion (professionId : number) : void{
   console.log("dfhgbjkn,l", this.allprofession);
-  const profession = this.allprofession.find((profess: { id: any; }) => profess.id ==professionId); 
+  const profession = this.allprofession.find((profess: { id: any; }) => profess.id ==professionId);
 
-  return profession ? profession.nom_prof :  'profession inconue'                                                        
+  return profession ? profession.nom_prof :  'profession inconue'
 }
 
 

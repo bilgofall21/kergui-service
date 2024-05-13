@@ -2,36 +2,32 @@
 <section class="baniere">
     <div class="banner">
         <div class="overlay"></div>
-        <!-- <h2 class="text-center  w-50"> Detail offre</h2>   -->
     </div>
 </section>
 
-<section class="detailannonce">
+<!-- <section class="detailannonce">
     <div class="detailcontainer">
         <div class="container">
             <div class="title text-center mb-3">
                 <h4 class="fw-bold"> Les annonces</h4>
                 <hr class="border-3 opacity-100">
               </div>
-             
-
             <div class="detailcontainer  p-5 mb-3">
                 <div class="well p-5"  *ngIf="dataDetail">
                     <div class="annconcedetail ">
                        <div id="headtitle">
-                           <h5>{{dataDetail.profession.nom_prof}}</h5> 
-    
+                           <h5>{{dataDetail.profession.nom_prof}}</h5>
                        </div>
                             <div id="headtitle">
                                 <h6> <i class="bi bi-person-circle me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.user.prenom}} {{dataDetail.user.nom}} </h6>
                             </div>
                             <div id="headtitle">
-                              <h6>  <i class="bi bi-calendar me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.created_at | date:'dd-MM-yyyy'  }}</h6> 
+                              <h6>  <i class="bi bi-calendar me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.created_at | date:'dd-MM-yyyy'  }}</h6>
                             </div>
                             <div id="headtitle">
                                 <h6>  <i class="fa fa-map-marker me-3"  style="font-size: 1.5em; color: #3A6A7E;" aria-hidden="true"></i> {{dataDetail.lieu}}</h6>
                             </div>
-                        
+
                     </div>
                     <div class="annocedescription">
                         <p class="lead text-center mt-5 py-5">
@@ -49,17 +45,95 @@
                             <h6 class="badge  " > Adresse :  {{dataDetail.lieu}} </h6>
                         </div>
                     </footer>
-                    
+
                     <div class="text-center m-4" id="divpostuler">
                         <button class="postuler " (click)="Candididater(dataDetail.id)"> Postuler a cette annonce</button>
                     </div>
 
                 </div>
-                
+
             </div>
-       
+
         </div>
     </div>
+</section> -->
+
+<section class="page-detail-new">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="detailcontainer  p-5 mb-3">
+
+          <div class="well p-5"  *ngIf="dataDetail">
+            <div class="imageDeatil mb-3">
+              <img src="http://127.0.0.1:8000/storage/{{dataDetail.image}}" alt="">
+            </div>
+            <div class="annconcedetail ">
+                 <div id="headtitle">
+                     <h5>{{dataDetail.profession.nom_prof}}</h5>
+
+                 </div>
+                      <div id="headtitle">
+                          <h6> <i class="bi bi-person-circle me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.user.prenom}} {{dataDetail.user.nom}} </h6>
+                      </div>
+                      <div id="headtitle">
+                        <h6>  <i class="bi bi-calendar me-3" style="font-size: 1.5em; color: #3A6A7E;"></i> {{dataDetail.created_at | date:'dd-MM-yyyy'  }}</h6>
+                      </div>
+                      <div id="headtitle">
+                          <h6>  <i class="fa fa-map-marker me-3"  style="font-size: 1.5em; color: #3A6A7E;" aria-hidden="true"></i> {{dataDetail.lieu}}</h6>
+                      </div>
+
+              </div>
+              <div class="annocedescription">
+                  <p class="lead text-center mt-1 py-3">
+                      {{dataDetail.description}}
+                  </p>
+              </div>
+              <footer class="">
+                  <div>
+                      <h6 class="badge  " > Experince Profession : {{dataDetail.experienceMinimum}} année </h6>
+                  </div>
+                  <div>
+                      <h6 class="badge  " > Salaire :  {{dataDetail.slaireMinimum}}</h6>
+                  </div>
+                  <div>
+                      <h6 class="badge  " > Adresse :  {{dataDetail.lieu}} </h6>
+                  </div>
+              </footer>
+
+              <div class="text-center mt-2" id="divpostuler">
+                  <button class="postuler " (click)="Candididater(dataDetail.id)"> Postuler</button>
+              </div>
+
+          </div>
+
+      </div>
+      </div>
+      <div class="col-lg-3 mt-5 scroll-container">
+        <h5> Nos annonces</h5>
+        <hr id="titleother" class="border-2 opacity-100">
+        <div class="row">
+          <div class="col-lg-12 mt-3 " *ngFor=" let element of publicationData" >
+            <div class="card " style="height: 7rem;">
+              <div class="row"  id="otherAnnonce">
+
+                <div class="col-5 p-0">
+                  <img class="card-img-top" src="http://127.0.0.1:8000/storage/{{element.image}} " alt="" id="detail-img">
+                </div>
+                <div class="card-body col-7">
+                 <a href="">
+                  <p class="card-title text-start "> {{element.profession.nom_prof}} </p>
+                 </a>
+                 <span class="badge badge-primary"> {{element.dateline}} </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 

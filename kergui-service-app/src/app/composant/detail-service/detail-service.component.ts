@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { DetalProfilServiceService } from 'src/app/services/detal-profil-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
+import { SaveDetailEmployeServiceService } from 'src/app/services/save-detail-employe-service.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
 
 @Component({
@@ -17,64 +18,28 @@ export class DetailServiceComponent implements OnInit {
   userprofData: [] = [];
 
 
-  constructor(private utilisateurservice : UtulisateurService ,  private professionservice : ProfessionServiceService, private activatedRoute: ActivatedRoute, private detailprofilservice : DetalProfilServiceService ) { }
+  constructor(private utilisateurservice : UtulisateurService ,  private professionservice : ProfessionServiceService, private activatedRoute: ActivatedRoute, private detailprofilservice : DetalProfilServiceService, private router :Router,private saveProfilService :SaveDetailEmployeServiceService ) { }
 
 
   recupDataUser : any;
   userDataByProfession : any;
   ngOnInit(): void {
     this.candidatprofession();
-//  this.afficherutilisteur();
   }
 
-
-
-   // declaration tableau employe
-
-
-  dataUers : any;
-chargementdonne ():  void{
-  this.recupDataUser = localStorage.getItem('uer_byprof');
-  this.userprofData = this.recupDataUser ? JSON.parse(this.recupDataUser) : null
-  console.log("nos utulisaturs", this.userprofData);
-  // this.afficherutilisteur()
-}
-  // afficherutilisteur(): void{
-  //   this.utilisateurservice.getAllCandidat().subscribe((repons)=>{
-  //     this.dataUers = repons;
-  //     // console.log("voir utilisateur tay",this.dataUers);
-  //   })
-  // }
-  selectedProfil : any;
-
   voirdetailProfil (element : any) : void {
-    this.selectedProfil = element;
-    localStorage.setItem('data_profil', JSON.stringify(this.selectedProfil));
+    this.saveProfilService.chargeDetail(element);
+    this.router.navigate(['/detail-employer', element.id]);
   }
 
   candidatprofession(): void{
     this.professionservice.GetUserByProfession(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{
       this.userprofData =data.data;
       const dataDetail = data.data;
-      // console.log("voir mes user specifique", this.userprofData);
-      // localStorage.setItem('uer_byprof', JSON.stringify(this.userprofData))
-
-      // appel du service pourr partager les donne du profile vdans un autre composant
       this.detailprofilservice.updateUserProfilData(dataDetail);
-
     })
 
   }
-
-
-
-
-
-
-
-
-
-
 
 // pagination
 searchElement: string = '';

@@ -1,4 +1,6 @@
+import { SaveDetailEmployeServiceService } from './../../services/save-detail-employe-service.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { error } from 'jquery';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -6,6 +8,7 @@ import { CandidatureServiceService } from 'src/app/services/candidature-service.
 import { DetalProfilServiceService } from 'src/app/services/detal-profil-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { TemoignageServiceService } from 'src/app/services/temoignage-service.service';
+import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,38 +18,52 @@ import Swal from 'sweetalert2';
 })
 export class DetailEmployerComponent implements OnInit  {
 
-    constructor( public temoignageservice : TemoignageServiceService, private candidaturservice : CandidatureServiceService, private detailprofilservice : DetalProfilServiceService){}
-    dataDetailProfil : any;
+    constructor( public temoignageservice : TemoignageServiceService, private candidaturservice : CandidatureServiceService, private detailprofilservice : DetalProfilServiceService, private activatedRoute : ActivatedRoute, private detailProfilservice : SaveDetailEmployeServiceService, private utilisateurservice : UtulisateurService){}
+
     // subscription ! : Subscription
   ngOnInit(): void {
-  const recupDataProfil = localStorage.getItem('data_profil') ;
-  this.dataDetailProfil = recupDataProfil ? JSON.parse(recupDataProfil) : null;
-  console.log("dtail profil", this.dataDetailProfil);
+    this.allCanfdidat();
   this.allTemognage();
   this.temoignageForEmploye();
   this.recupCandidatureByUser();
   this.inconu();
-  // this.ShowDetailProfil();
+
+
 
   }
 
-  // ShowDetailProfil(): void{
-  // this.subscription = this.detailprofilservice.userProfilData$.subscribe(dataDetail=>{
-  //   this.dataDetailProfil = dataDetail;
-  //   console.log("nouveau detail profil", this.dataDetailProfil);
-  // })
-  // }
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
   idcomment : any
   elementdetailselected : any;
   showElement (element : any) : void{
     this.elementdetailselected = element;
     this.idcomment = this.elementdetailselected.id;
-    console.log('virlllllllllll', this.idcomment);
+    // console.log('virlllllllllll', this.idcomment);
   }
-  
+
+  dataDetailProfil : any;
+  uploadDetailProfil(){
+    this.detailProfilservice.currentDetail.subscribe(data =>{
+      // console.log("voir real info", dataDetailProfil)
+      if(data){
+        this.dataDetailProfil = data;
+        console.log("voir real info", this.dataDetailProfil)
+      }else{
+        const idProfil = this.activatedRoute.snapshot.paramMap.get('id');
+        if(idProfil && this.dataCandidat){
+          this.dataDetailProfil = this.dataCandidat.find((candidat : {id : any;}) => candidat.id === +idProfil);
+        }
+      }
+    })
+  }
+
+dataCandidat : any;
+  allCanfdidat(){
+this.utilisateurservice.getAllCandidat().subscribe((data)=>{
+this.dataCandidat = data.data;
+console.log("zzzzzz", this.dataCandidat)
+this.uploadDetailProfil();
+})
+  }
 
   appreciation : string ="";
   temoinnew :  any;
@@ -56,13 +73,11 @@ this.temoinnew = {
 }
 this.temoignageservice.addTemoignage(id, this.temoinnew).subscribe((respons)=>{
   this.affichermessagetemoignage('success', 'Bravo ', ' temoignage ajouté')
-  // console.log("test", this.temoinnew);
-  // console.log("voir avis", respons);
+
 },
 (error : any)=>{
   this.affichermessagetemoignage('error', 'desole', ' veillez vous connectez')
-  // console.error('temoignage non ajoute', error);
-  
+
 }
 )
 }
@@ -81,7 +96,7 @@ affichermessagetemoignage(icone: any, message: string,user:string) {
       background: '#3A6A7E',
       // timer: 1500
   })
-   
+
 }
 dataEmployeTemoignage : any;
 trueTemoignage :  any;
@@ -90,32 +105,25 @@ trueTemoignage :  any;
     this.dataEmployeTemoignage=respons;
     for (let i = 0; i < this.dataEmployeTemoignage.length; i++) {
       this.trueTemoignage  = this.dataEmployeTemoignage[i]
-      // console.log("eeeeeeeee", this.trueTemoignage );
     }
-    // console.log("mes hhhhhhhhh temoignage", this.dataEmployeTemoignage);
   })
- }   
+ }
 
  allTemognage(){
   this.temoignageservice.getAlltemoignage().subscribe((Response)=>{
-    // console.log("voir tous les tmoignage", Response);
   })
  }
  inconu(): void{
   this.temoignageservice.temoignageinconue(this.idcomment).subscribe((respons)=>{
-    console.log("idddd", this.idcomment);
-    console.log("inconnueee", respons);
+
   })
  }
  candidatures: any[] = []
  recupCandidatureByUser() {
   this.candidaturservice.listeOffreByCandidat(User).subscribe((data)=>{
     this.candidatures = data.data;
-    // console.log("ssssss", this.candidatures);
   })
 }
-allCandidat(): void{
-  
-}
+
 
 }

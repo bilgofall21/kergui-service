@@ -15,6 +15,7 @@ import { UtulisateurService } from 'src/app/services/utulisateur.service';
 export class AccueilComponent implements OnInit {
   detailOffre: []=[];
   tailleEmployeur: number=0;
+loaderuser: boolean  = false;
   // utilisateurConnecte: boolean=false;
   // variable de l'animation
 
@@ -23,8 +24,7 @@ constructor( private publicationservice : PublicationService, private profession
   ngOnInit(): void {
 this.affichepublication();
 this.afficherservice();
-// this.utilisateurConnecte = true;
-// console.log('ttt eta', this.utilisateurConnecte);
+
     this.recupAllService();
     this.recupAllCandidat();
     this.recupAllOffre();
@@ -35,6 +35,7 @@ this.afficherservice();
 
   }
 
+
   // methode pour afficher 3 dernier publications au niveau de l'accueil
 dataHomepublication : any;
 lastThreePublications: Publication[] = [];
@@ -42,14 +43,9 @@ publicationFiltred : []=[];
 affichepublication() : void {
   this.publicationservice.geyAllpublication().subscribe((homepublic)=>{
     this.dataHomepublication = homepublic;
-    // console.log(  "les publications",this.dataHomepublication);
-
-
     this.publicationFiltred = this.dataHomepublication.data.filter((element:{etat: string})=>
     element.etat == 'nouveau'
-    )
-    // console.log("pblication dne", this.publicationFiltred);
-
+    )    // console.log("pblication dne", this.publicationFiltred);
 
     // virifier si les donnee sont null
     if (this.publicationFiltred){
@@ -58,7 +54,7 @@ affichepublication() : void {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
       // Prendre les trois dernières publications
-      this.lastThreePublications = sortedPublications.slice(0, 4);
+      this.lastThreePublications = sortedPublications.slice(0, 3);
       // console.log('vor dernietr', this.lastThreePublications);
     }
   })
@@ -84,6 +80,7 @@ afficherservice(){
 // recuperr les services
 allprofession :[]=[]
 recupAllService(){
+
   this.professionservice.getProfession().subscribe((respons)=>{
     this.allprofession = respons.data;
     // console.log('rrrrrrrr', this.allprofession);
@@ -124,11 +121,7 @@ getAllUsers(){
   })
 }
 
-
-
-
 // fonction d'animation de tous les elements
-
 
 // methode por voi detail annonce
 

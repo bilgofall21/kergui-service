@@ -333,7 +333,8 @@ height: 23rem;
         transition:0.8s;
         cursor:pointer;
         height: 26rem;
-        width: 17rem;
+        width: 20rem;
+        box-shadow: 1px 1px 1px 0px #9fa1a4, -1px -1px 1px 0px #d2d4d6;
       }
       .card p{
         height: 5rem;
@@ -359,7 +360,7 @@ height: 23rem;
       }
       .card:hover{
         transform: scale(1.05);
-        box-shadow: 10px 10px 15px  #3a6a7ec4;
+        box-shadow: 10px 10px 15px 10px  #aab1b5c4;
       }
       .card-text{
         height:80px;
@@ -388,16 +389,7 @@ height: 23rem;
       }
 /* style annonce fin */
 
-/* Service section */
-/* .services .titleService{
-  background-color: white;
-  height: 25px;
-  width: 50%;
-  border-radius: 4px;
-  padding: 3px;
-  position: relative;
-  bottom: 180px;
-} */
+
 .services .titleService h5{
   color: var(--kergui-green);
   /* font-size: 14px; */
@@ -524,8 +516,8 @@ justify-content: space-evenly;
 
 /* section candidat fin */
 #carteannonce{
-  margin-left: 50px;
-  gap: 20px;
+  margin-left: 20px;
+  /* gap: 50px; */
 
 }
 #annoncecol{
@@ -581,10 +573,7 @@ justify-content: space-evenly;
 }
 /*  style annonce fin*/
 
-/* .card-body{
-  height: 10rem;
-  overflow: hidden;
-} */
+
 
 @media screen and (max-width: 962px){
   .validservice button {
@@ -773,3 +762,6 @@ margin: 0 auto;
 
       }
   }
+
+  /* style loader homme */
+  

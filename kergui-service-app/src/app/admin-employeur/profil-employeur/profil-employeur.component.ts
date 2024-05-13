@@ -15,7 +15,7 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
   ngOnInit(): void {
     this.modifierProfil();
     this.afficherProfil();
-  
+
   }
   public image : any;
   // declaration cariable
@@ -37,16 +37,14 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
     formData.append('password', this.password); // Assurez-vous que cela est nécessaire avant d'ajouter
     formData.append('lieu', this.lieu);
     formData.append('imageDeProfil', this.image); // Ajoutez conditionnellement si `this.image` n'est pas null
-  
+
     this.utilisateurservice.updateProfilEmployeur(formData).subscribe({
       next: (response) => {
         console.log("Élément modifié du profil", response);
         this.afficherProfil();
         this.profileservice.chargerProfilData(response.data);
-  
+
         // Réinitialiser les champs du formulaire
-     
-  
         // Afficher une alerte de succès
         Swal.fire({
           icon: 'success',
@@ -62,7 +60,7 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
       },
       error: (error) => {
         console.error("Erreur lors de la modification du profil", error);
-  
+
         // Afficher une alerte d'erreur
         Swal.fire({
           icon: 'error',
@@ -78,7 +76,7 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
       }
     });
   }
-  
+
   getFile(event: any) {
     console.warn(event.target.files[0]);
     this.image= event.target.files[0] as File ;

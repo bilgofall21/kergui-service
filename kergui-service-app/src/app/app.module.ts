@@ -33,7 +33,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { EmailValidationDirective } from './validations/email-validation.directive';
 import { PasswordValidationDirective } from './validations/password-validation.directive';
 import { NavheaderComponent } from './composant/navheader/navheader.component';
-import { SpinnerComponent } from './loader/spinner/spinner.component';
+import { LoaderHomeComponent } from './composant/loader-home/loader-home.component';
 
 // import { AuthInterceptor } from './interceptors/interceptor';
 
@@ -73,7 +73,7 @@ import { SpinnerComponent } from './loader/spinner/spinner.component';
     EmailValidationDirective,
     PasswordValidationDirective,
     NavheaderComponent,
-    SpinnerComponent,
+    LoaderHomeComponent,
 
   ],
   imports: [

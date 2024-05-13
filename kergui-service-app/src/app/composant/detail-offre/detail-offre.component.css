@@ -5,11 +5,18 @@ hr{
     width: 10%;
     margin: 0 auto;
   }
+#titleother{
+    height: 14px !important;
+    border-color: var(--kergui-green) !important;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+  }
   .title h4{
     color: var(--kergui-blue);
   }
-  
-  
+
+
   /* style baniere */
   .banner{
       background: url(src\assets\image\annonce4.png);
@@ -18,7 +25,7 @@ hr{
       background-size: cover;
       background-position: center center;
       position: relative;
-  
+
   }
   #carouselcontainer{
       height: 80vh;
@@ -30,8 +37,8 @@ hr{
       width: 100%;
       height: 100%;
       /* background: rgba(0, 54, 104, 0.5); */
-      
-   
+
+
     }
   .banner h2{
       font-size: 40px;
@@ -41,39 +48,83 @@ hr{
       left: 50%;
       transform: translate(-50%, -50%);
       margin: 0;
-      
-      
+
+
   }
   h6{
-    font-size: 17px;
+    font-size: 12px;
+  }
+  .imageDeatil{
+    height: 200px;
+  }
+  .imageDeatil img{
+    height: 200px;
+    width: 100%;
   }
   .postuler{
     background-color: var(--kergui-blue);
     color: white;
-    padding: 10px 30px;
-    font-size: 22px;
+    padding: 5px 20px;
+    font-size: 18px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 5px;
+    margin: 0 auto;
+  }
+  .postuler:hover{
+    background-color: var(--kergui-green);
+    color: white;
+    padding: 5px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
     margin: 0 auto;
   }
   .well{
     border-radius: 15px;
     box-shadow: 4px -4px 0px 0px #3A6A7E, 4px 4px 4px 0px #3A6A7E, 0px 4px 4px 0px #3A6A7E;
   }
+  #headtitle  h5{
+    font-size: 14px;
+    font-weight: bold;
+  }
+
   .badge{
     background-color: #3A6A7E;
   }
   footer{
  display: flex;
  justify-content: space-around;
-
+  }
+  footer h6{
+font-size: 14px;
+  }
+  .annocedescription p{
+    font-size: 16px;
   }
   .annconcedetail{
  display: flex;
  justify-content: space-between;
 
   }
-  
+
+  #detail-img{
+    height: 7rem;
+    /* width: 50px; */
+    /* border-radius: 50%; */
+  }
+  #otherAnnonce a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+  }
+  #otherAnnonce a:hover{
+    color: var(--kergui-green);
+  }
+  .scroll-container{
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 450px;
+  }
 
   /* media query baniere */
   @media screen and (max-width:1200px) {
@@ -130,29 +181,30 @@ hr{
         margin: 0 auto;
         width: 100%;
       }
+
     }
     @media screen and (max-width:515px) {
-    
+
       .postuler{
         font-size: 13px;
       }
-      
+
     }
     @media screen and (max-width:480px) {
-    
+
       .postuler{
         font-size: 11px;
         padding: 10px 10px;
       }
-      
+
     }
     @media screen and (max-width:425px) {
-    
+
       .postuler{
         font-size: 11px;
         padding: 10px 4px;
       }
-      
+
     }
     @media screen and (max-width:415px) {
       #headtitle  h5{
@@ -162,7 +214,7 @@ hr{
         font-size: 9px;
         padding: 10px 4px;
       }
-      
+
     }
     @media screen and (max-width:370px) {
       #headtitle  h5{

@@ -54,8 +54,8 @@ constructor(public authservice: AuthService, private router: Router, private pro
 afficherProfil() :void {
   this.utilisateurservice.getProfil().subscribe((respons)=>{
     this.samaProfil = respons.data;
-    console.log("voir profil", this.samaProfil );
+    // console.log("voir profil", this.samaProfil );
   })
 }
-  
+
 }
