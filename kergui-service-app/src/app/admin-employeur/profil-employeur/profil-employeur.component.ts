@@ -40,9 +40,9 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
 
     this.utilisateurservice.updateProfilEmployeur(formData).subscribe({
       next: (response) => {
-        console.log("Élément modifié du profil", response);
+        // console.log("Élément modifié du profil", response);
         this.afficherProfil();
-        this.profileservice.chargerProfilData(response.data);
+        // this.profileservice.chargerProfilData(response.data);
 
         // Réinitialiser les champs du formulaire
         // Afficher une alerte de succès

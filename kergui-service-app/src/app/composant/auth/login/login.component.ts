@@ -113,7 +113,8 @@ connexion(event: Event): void {
           localStorage.setItem("dashboard_type", 'employeur');
           localStorage.setItem('access_Token', user.token);
           this.router.navigate(['/admin-employeur']);
-        } else {
+        }
+        else {
           this.affichermessage('error', 'Ce compte désactivé', 'désolé');
         }
       }

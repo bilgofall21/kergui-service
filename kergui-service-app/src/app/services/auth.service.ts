@@ -8,17 +8,17 @@ import { url } from '../models/apiUrl';
   providedIn: 'root'
 })
 export class AuthService  {
-  
+
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
   // variable super global
-  // isAuth$ = new BehaviorSubject<boolean>(false); 
+  // isAuth$ = new BehaviorSubject<boolean>(false);
   userID : string ='';
   utilisateurConnecte: boolean =false;
   setUserId(id: string) {
    this.userID = id;
   }
-  constructor( private http : HttpClient) { 
+  constructor( private http : HttpClient) {
      // Récupérer l'état d'authentification depuis le localStorage lors de l'initialisation du service
      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
      this.isLoggedInSubject.next(isLoggedIn)
@@ -36,9 +36,9 @@ export class AuthService  {
 
 // methode pour login
   // loginUser(user : any) : Observable<any> {
-    
+
   //   return this.http.post<any>('http://127.0.0.1:8000/api/login',user);
-    
+
   // }
   loginUser(user: any): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/login', user).pipe(
@@ -91,7 +91,7 @@ deconnexion() : Observable<any>{
 
 // Méthode pour récupérer l'état de connexion actuel
 isLoggedIn(): boolean {
-  
+
   return this.isLoggedInSubject.value;
 
 }

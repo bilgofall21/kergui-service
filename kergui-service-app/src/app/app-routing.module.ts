@@ -31,7 +31,7 @@ const routes: Routes = [
   {path : 'politique-confidentialite', component : PolitiqueConfidentialiteComponent,},
   {path : 'login', component : LoginComponent,},
   {path : 'service-dashboard', component : ServiceDashboardComponent,},
-  {path : 'detail-offre/:id', component : DetailOffreComponent, },
+  {path : 'detail-offre/:id', component : DetailOffreComponent, canActivate: [AuthGuardService]   },
   { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule), canActivate: [AuthGuardService]   },
   {path : 'admin-employeur', loadChildren:() =>import('./admin-employeur/admin-employeur.module').then(m=>m.AdminEmployeurModule), canActivate: [AuthGuardService]   },
   {path : 'admin-candidat', loadChildren:() =>import('./admin-candidat/admin-candidat.module').then(m=>m.AdminCandidatModule,), canActivate: [AuthGuardService]  },
