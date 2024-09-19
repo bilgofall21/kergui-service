@@ -10,7 +10,7 @@
     background-color: var(--kergui-blue);
     height: 6px;
   }
-  
+
 
 h4{
     color: var(--kergui-blue);
@@ -22,6 +22,12 @@ h5{
 }
 .searchbar button{
     background-color: var(--kergui-blue);
+}
+.searchbar input{
+  all: unset;
+  flex-grow: 1;
+  box-shadow: 3px 3px 10px -3px rgb(99, 97, 97);
+  padding: 5px 20px;
 }
  /* style pagination debut */
 
@@ -40,13 +46,13 @@ h5{
 #pagination{
     margin-left: 180px;
     margin-top: 20px;
-    
+
 }
 .btn-custom:disabled {
     opacity: 0.7; /* Réduire l'opacité du bouton */
     cursor: not-allowed; /* Changer le curseur en "non autorisé" */
     background-color: var(--kergui-green);
-    /* text-decoration: line-through; 
+    /* text-decoration: line-through;
     text-decoration-thickness: 2px;  */
 }
 .message-success {
@@ -75,7 +81,7 @@ h5{
 }
 .iconegestion {
     margin: 0 auto;
-   
+
 }
 .iconegestion a , .iconegestion button{
     text-decoration: none;
@@ -83,7 +89,7 @@ h5{
     font-weight: bold;
     font-size: 18px;
     border: none;
-    
+
 }
 .iconegestion a:hover{
    color: var(--kergui-green);
@@ -102,7 +108,7 @@ h5{
     border-radius: 5px;
     text-decoration: none;
     margin-right: 20px;
-   
+
 }
 .modal-header{
     background-color: var(--kergui-blue);
@@ -117,8 +123,8 @@ h5{
 }
 .modal-title{
     /* color: var(--kergui-green); */
-   
+
 }
 .validajout a{
-   
+
 }

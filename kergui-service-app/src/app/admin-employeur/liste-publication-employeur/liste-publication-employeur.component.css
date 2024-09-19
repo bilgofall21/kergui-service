@@ -11,18 +11,18 @@
 .temoignage .crochet{
   color: var(--kergui-blue);
   font-size: 30px;
- 
+
 }
 .temoignage .crochet1{
   color: var(--kergui-blue);
   font-size: 20px;
- 
+
 }
 
 
 .card-body{
   height: 18rem;
-    
+
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: auto;
@@ -56,6 +56,12 @@ i, p{
 .searchbar button{
   background-color: var(--kergui-blue);
 }
+.searchbar input{
+  all: unset;
+  flex-grow: 1;
+  box-shadow: 3px 3px 10px -3px rgb(99, 97, 97);
+  padding: 5px 20px;
+}
 
 
 
@@ -74,7 +80,7 @@ i, p{
 
 .iconegestion {
     /* margin: 0 auto; */
-   
+
 }
 .iconegestion a{
     text-decoration: none;
@@ -111,4 +117,3 @@ body {
     color:var(--kergui-blue);
     font-weight: 600;
   }
- 

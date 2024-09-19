@@ -15,7 +15,7 @@
 #pagination{
   margin-left: 180px;
   margin-top: 20px;
-  
+
 }
 .cardfooter{
   background-color: var(--kergui-blue);
@@ -23,7 +23,7 @@
 }
 
 .card-body p{
-  font-size: 15px;  
+  font-size: 15px;
     height: 8.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -31,13 +31,19 @@
 .iconegestion  a{
   font-size: 15px;
   color: var(--kergui-green);
-  
+
   }
 .titleService h5{
   color: var(--kergui-green);
 }
 .searchbar  button{
   background-color: var(--kergui-blue);
+}
+.searchbar input{
+  all: unset;
+  flex-grow: 1;
+  box-shadow: 3px 3px 10px -3px rgb(99, 97, 97);
+  padding: 5px 20px;
 }
 
 /* style dash template */
@@ -233,7 +239,7 @@ body {
     background: #fff;
     margin-left: 250px;
     /* background-color: red; */
-    
+
   }
   .app-header-inner {
     /* position: relative; */
@@ -495,7 +501,7 @@ body {
   .logo-dashboard img{
     height: 90px;
   }
-  
+
   .app-nav {
     color: #5d6778;
     display: block;
@@ -528,7 +534,7 @@ body {
     /* border-left: 3px solid var(--kergui-green); */
     font-weight: bold;
   }
-  
+
   .app-nav .nav-link:hover {
     border-left: 4px solid var(--kergui-green);
     color: var(--kergui-green);
@@ -543,19 +549,19 @@ body {
     width: 1.25rem;
     height: 1.25rem;
   }
-  
+
   .app-card-stat{
       border-left: 6px solid var(--kergui-blue);
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
   @media (max-width: 1199.98px) {
     .app-sidepanel {
       transition: all 0.4s ease-in-out;
@@ -599,7 +605,7 @@ body {
     padding-top: 56px;
     overflow-x: hidden;
   }
-  
+
   .app-wrapper {
     transition: all 0.4s ease-in-out;
   }
@@ -663,7 +669,7 @@ body {
     font-size: 2rem;
     color: #252930;
   }
-  
+
   .app-card-progress-list .item {
     position: relative;
     border-bottom: 1px solid #e7e9ed;
@@ -1141,4 +1147,3 @@ body {
       width: 100%;
     }
   }
-  

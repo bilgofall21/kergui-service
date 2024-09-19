@@ -8,8 +8,8 @@ hr{
   .title h4{
     color: var(--kergui-blue);
   }
-  
-  
+
+
   /* style baniere */
   .banner{
       background: url(src\assets\image\annonce4.png);
@@ -18,7 +18,7 @@ hr{
       background-size: cover;
       background-position: center center;
       position: relative;
-  
+
   }
   #carouselcontainer{
       height: 80vh;
@@ -30,8 +30,8 @@ hr{
       width: 100%;
       height: 100%;
       /* background: rgba(0, 54, 104, 0.5); */
-      
-   
+
+
     }
   .banner h2{
       font-size: 40px;
@@ -41,22 +41,28 @@ hr{
       left: 50%;
       transform: translate(-50%, -50%);
       margin: 0;
-      
-      
+
+
   }
 
 
   .searchbar .input-group{
     width: 50%;
-  
   }
-    
+  .searchbar input{
+    all: unset;
+    flex-grow: 1;
+    box-shadow: 3px 3px 10px -3px rgb(99, 97, 97);
+    padding: 5px 20px;
+  }
+
+
   /* style annonce debut */
 .annoncecartecontainer .card-img-top{
     height: 225px;
   }
   .cardcontain {
-   
+
       margin-bottom: 30px;
       box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
       transition: .5s ease;
@@ -65,23 +71,23 @@ hr{
       padding-left: 45px;
       /* background-color: red; */
   }
-  
+
   .annoncecartecontainer .cardannonce{
    position: relative;
-   
+
   }
   .annoncecartecontainer .cardcontain:hover{
     position: relative;
       transform: translateY(-5px);
       box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.16);
-   
+
   }
-  
-  
-  
+
+
+
   .annoncecartecontainer .annoncetitle{
   background-color: var(--kergui-blue);
-  padding: 2px 2px; 
+  padding: 2px 2px;
   width: 50%;
   border-radius: 8px;
   position: relative;
@@ -102,16 +108,16 @@ hr{
   .annoncecartecontainer a{
     color: var(--kergui-green);
     text-decoration: none;
-   
+
   }
   /* style annonce fin */
 
   #carteannonce{
     margin-left: 50px;
-  
+
   }
   #annoncecol{
-   
+
     box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
     transition: .5s ease;
   }
@@ -122,12 +128,12 @@ hr{
 
   #description p {
     height: 9rem;
-    
+
     overflow: hidden;
     text-overflow: ellipsis;
     /* overflow-y: auto; */
   }
-  
+
   .u-shadow-v11 {
     -webkit-box-shadow: 0 0 2px #ccc;
     box-shadow: 0 0 2px #cccccc66;
@@ -139,20 +145,20 @@ hr{
   .g-bg-white {
     background-color: #fff !important;
   }
-  
+
   #description h5 {
     font-size: 14px;
-    
+
   }
-  
-  
+
+
   #description h6 {
     font-size: 14px;
     color: #000;
   }
   #description p {
     height: 7.5rem;
-    
+
     overflow: hidden;
     text-overflow: ellipsis;
     /* overflow-y: auto; */
@@ -164,13 +170,13 @@ hr{
     color: var(--kergui-blue);
     font-weight: bold;
   }
-  
+
   #carteannonce{
     margin-left: 50px;
-  
+
   }
   #annoncecol{
-   
+
     box-shadow: 0px 0px 45px 5px rgba(89, 83, 76, 0.08);
     transition: .5s ease;
   }
@@ -250,25 +256,25 @@ hr{
     #description{
       margin: 0 auto;
     }
-  
+
     }
   @media screen and (max-width:330px) {
     #description{
       width: 16rem;
     }
-  
+
     }
   @media screen and (max-width:270px) {
     #description{
       width: 14rem;
     }
-  
+
     }
   @media screen and (max-width:240px) {
     #description{
       width: 12rem;
     }
-  
+
     }
   @media screen and (max-width:210px) {
     #description{
@@ -277,7 +283,7 @@ hr{
     #description img{
       display: none;
     }
-  
+
     }
 
 
@@ -289,7 +295,7 @@ hr{
       height:12rem;
       width:100%;
     }
-    
+
     div [class^="col-"]{
       padding-left:5px;
       padding-right:5px;
@@ -305,31 +311,31 @@ hr{
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .card-title{  
+    .card-title{
       font-size:15px;
       transition:1s;
       cursor:pointer;
     }
-    .card-title i{  
+    .card-title i{
       font-size:18px;
       transition:1s;
       cursor:pointer;
-     
+
       color:var(--kergui-green)
     }
     .card-title i:hover{
-      transform: scale(1.25) rotate(100deg); 
+      transform: scale(1.25) rotate(100deg);
       color:var(--kergui-blue)
-      
+
     }
     .card:hover{
       transform: scale(1.05);
       box-shadow: 10px 10px 15px  #3a6a7ec4;
     }
     .card-text{
-      height:80px;  
+      height:80px;
     }
-    
+
     .card::before, .card::after {
       position: absolute;
       top: 0;
@@ -394,13 +400,13 @@ hr{
       .card{
         width: 17.5rem;
       }
-     
+
     }
     @media screen and (max-width:266px) {
       .card{
         width: 12.5rem;
       }
-     
+
     }
     @media screen and (max-width:235px) {
       .card{
@@ -409,7 +415,7 @@ hr{
       .pagiColor, .pagiColore  {
         font-size: 11px;
       }
-     
+
     }
     @media screen and (max-width:196px) {
       .card{
@@ -418,5 +424,6 @@ hr{
       .pagiColor, .pagiColore  {
         font-size: 9px;
       }
-     
+
+
     }

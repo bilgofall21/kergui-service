@@ -17,12 +17,12 @@ this.afficherTemoignage();
   afficherTemoignage():  void{
     this.temoignageservice.temoignageemployeur().subscribe((respons)=>{
       this.dataTemoignage = respons;
-      console.log("wakhal",this.dataTemoignage);
+      // console.log("wakhal",this.dataTemoignage);
     })
   }
   supprimerTemoignage (): void{
     this.temoignageservice.deleteTemoignage().subscribe((respons)=>{
-      console.log('eat de le canfidature', respons);
+      // console.log('eat de le canfidature', respons);
     })
   }
 
@@ -38,7 +38,7 @@ getArticlesPage(): any[] {
   const indexFin = indexDebut + this.articlesParPage;
   this.utulisateurTrouve = this.dataTemoignage.filter((element :{prenom : string; appreciation : string})=>
   element.prenom.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) ||
-  element.appreciation.toLowerCase().includes(this.searchUtulisateur.toLowerCase()) 
+  element.appreciation.toLowerCase().includes(this.searchUtulisateur.toLowerCase())
 
   );
   return this.utulisateurTrouve.slice(indexDebut, indexFin);
@@ -56,4 +56,4 @@ getArticlesPage(): any[] {
 }
 
 
- 
+

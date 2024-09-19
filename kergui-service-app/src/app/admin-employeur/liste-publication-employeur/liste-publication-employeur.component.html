@@ -4,7 +4,7 @@
   <div class="searchbar mb-5 mt-5">
     <div class="d-flex justify-content-end">
         <div class="input-group w-50 ">
-            <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search"  aria-describedby="search-addon"[(ngModel)]="searchUtulisateur" (input)="getArticlesPage()"   />
+            <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon"[(ngModel)]="searchUtulisateur" (input)="getArticlesPage()"   />
             <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
           </div>
 
@@ -19,7 +19,7 @@
                       <h5 class="text-center">Témoignage</h5>
                   </div>
                   <div class="card-body">
-                    <i class="bi bi-quote crochet"></i> <p class="card-text lead">  {{element.appreciation}} <i class="bi bi-quote crochet1"></i></p>  
+                    <i class="bi bi-quote crochet"></i> <p class="card-text lead">  {{element.appreciation}} <i class="bi bi-quote crochet1"></i></p>
                   </div>
                   <div class="d-flex justify-content-center align-items-center ">
                     <div class="">
@@ -43,14 +43,14 @@
         <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
           Précédent
         </button>
-        <button class="btn pagiColore ms-2" 
-                *ngFor="let page of pages" 
-                [class.current]="page === pageActuelle" 
+        <button class="btn pagiColore ms-2"
+                *ngFor="let page of pages"
+                [class.current]="page === pageActuelle"
                 (click)="pageActuelle = page">
           {{ page }}
         </button>
-        <button class="btn pagiColor ms-2" 
-                [disabled]="pageActuelle === totalPages" 
+        <button class="btn pagiColor ms-2"
+                [disabled]="pageActuelle === totalPages"
                 (click)="pageActuelle = pageActuelle + 1">
           Suivant
         </button>

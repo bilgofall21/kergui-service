@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ProfilServiceService } from 'src/app/services/profil-service.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
 import Swal from 'sweetalert2';
@@ -14,7 +15,7 @@ export class ProfilAdminComponent implements OnInit{
     this.afficherProfil();
     // this.modifierProfil();
   }
-  constructor(public utilisateurservice : UtulisateurService , private profileservice : ProfilServiceService){}
+  constructor(public utilisateurservice : UtulisateurService , private profileservice : ProfilServiceService, private toasterService : ToastrService){}
   public image : any;
   // declaration cariable
   prenom : string ="";
@@ -43,23 +44,24 @@ export class ProfilAdminComponent implements OnInit{
 
     this.utilisateurservice.updateProfilAdmin(formData).subscribe({
       next: (response) => {
-        console.log("Élément modifié du profil", response);
+        // console.log("Élément modifié du profil", response);
         this.afficherProfil();
         this.profileservice.chargerProfilData(response.data);
-        
+
 
         // Afficher une alerte de succès
-        Swal.fire({
-          icon: 'success',
-          title: 'Succès',
-          text: 'Votre profil a été mis à jour avec succès!',
-          showConfirmButton: false,
-      timer: 1500,
-      width: 480,
-      padding: 10,
-      color : '#ffff',
-      background: '#3A6A7E',
-        });
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: 'Succès',
+      //     text: 'Votre profil a été mis à jour avec succès!',
+      //     showConfirmButton: false,
+      // timer: 1500,
+      // width: 480,
+      // padding: 10,
+      // color : '#ffff',
+      // background: '#3A6A7E',
+      //   });
+      this.toasterService.success('Profil mis à jour avec succès')
       },
       error: (error) => {
         console.error("Erreur lors de la modification du profil", error);
@@ -89,7 +91,7 @@ export class ProfilAdminComponent implements OnInit{
     this.utilisateurservice.getProfil().subscribe((respons)=>{
       const dataprof = respons.data
       this.samaProfil = respons.data;
-      console.log("voir profil", this.samaProfil );
+      // console.log("voir profil", this.samaProfil );
 
       this.prenom = dataprof.prenom;
       this.nom = dataprof.nom;

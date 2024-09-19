@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Profession } from 'src/app/models/profession';
 import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
@@ -52,7 +53,7 @@ publication: any;
 
 
 
-  constructor( private publicationservice : PublicationService, private candidatservice : CandidatureServiceService, private professionservice : ProfessionServiceService, private utilisateurservice : UtulisateurService) { }
+  constructor( private publicationservice : PublicationService, private candidatservice : CandidatureServiceService, private professionservice : ProfessionServiceService, private utilisateurservice : UtulisateurService, private toatrService : ToastrService) { }
  userConnectedId : any;
  datPublicationFiltred : any[]= [] ;
   ngOnInit(): void {
@@ -148,26 +149,29 @@ ajouterPublicatin (): void{
           // console.log("ajout bien", datapubli);
           this.viderChamp();
           window.location.reload();
+          this.toatrService.success("Publication ajoutée avec succée")
         },
         error =>{
           console.error('Erreur lors de l\'ajout :', error);
-          Swal.fire({
-            title: "publication ajouté!",
-            text: "Cet publicaion  a été ajouté.",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 1500,
-            width: 400,
-            padding: 15,
-            color : '#ffff',
-            background: '#3A6A7E',
-            });
+          // Swal.fire({
+          //   title: "publication ajouté!",
+          //   text: "Cet publicaion  a été ajouté.",
+          //   icon: "success",
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          //   width: 400,
+          //   padding: 15,
+          //   color : '#ffff',
+          //   background: '#3A6A7E',
+          //   });
+
         }
         )
       }
     })
   }else{
-    this.affichermessage('error', 'Désolé ', 'veillez remplir tous les champs');
+    // this.affichermessage('error', 'Désolé ', 'veillez remplir tous les champs');
+    this.toatrService.error("veillez remplir tous les champs")
   }
 }
 
@@ -258,50 +262,20 @@ chargerPublication( publication : any){
           // Modification d'une publication existante
           this.publicationservice.editPublication(this.selectedPublication, formData).subscribe(
             (data: any) => {
-              // console.log(" what:", data);
-              // Afficher le message de succès si la modification réussit
-              Swal.fire({
-                title: "Publication modifiée!",
-                text: "Cette publication a été modifiée avec succès.",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500,
-                width: 400,
-                padding: 15,
-                color: '#ffff',
-                background: '#3A6A7E',
-              });
+
               // Effectuez les actions nécessaires après la modification, par exemple, actualiser la liste
               this.afficherPublication(); // mettre à jour la liste
               this.viderChamps();
-            },
-            error => {
-              console.error('Erreur lors de la modification :', error);
-              // Afficher un message d'erreur en cas d'échec de la modification
-              Swal.fire({
-                title: "Erreur!",
-                text: "Une erreur est survenue lors de la modification.",
-                icon: "error",
-                showConfirmButton: false,
-                timer: 1500,
-                color: '#ffff',
-                background: '#3A6A7E'
-              });
+              this.toatrService.success("Publication modifiée avec succée")
+
             }
+
           );
-        } else {
-          console.error("Erreur: Aucune publication sélectionnée pour la modification");
-          // Gérez l'erreur ou fournissez un message à l'utilisateur si nécessaire
-          Swal.fire({
-            title: "Erreur!",
-            text: "Aucune publication sélectionnée pour la modification.",
-            icon: "error",
-            showConfirmButton: false,
-            timer: 1500,
-            color: '#ffff',
-            background: '#3A6A7E'
-          });
         }
+      }else {
+        this.toatrService.warning('modification annulée')
+
+        // this.toatrService.warning('Aucune publication sélectionnée pour la modification')
       }
     });
   }
@@ -328,23 +302,28 @@ supprimerProfession(id: any): void {
           // console.log("supprimer success", reponse);
           // Mettez à jour la liste locale des professions après la suppression
           this.afficherPublication();
+
+          this.toatrService.success("publication supprime avec succée")
+
         },
         error => {
           console.error(`Erreur lors de la suppression de la profession avec l'ID ${id} :`, error);
-          Swal.fire({
-            title: "publication supprime!",
-            text: "Cette publication  a été supprimé .",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 1500,
-            width: 400,
-            padding: 15,
-            color : '#ffff',
-            background: '#3A6A7E',
-            });
+          // Swal.fire({
+          //   title: "publication supprime!",
+          //   text: "Cette publication  a été supprimé .",
+          //   icon: "success",
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          //   width: 400,
+          //   padding: 15,
+          //   color : '#ffff',
+          //   background: '#3A6A7E',
+          //   });
         }
 
       );
+    }else{
+      this.toatrService.error('Supression annulée')
     }
    })
 

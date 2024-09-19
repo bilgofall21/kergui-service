@@ -9,6 +9,9 @@ hr{
 .title h4{
   color: var(--kergui-blue);
 }
+.homecontainer{
+  margin-top: 80px;
+}
 #momo{
   border-bottom:  4px solid var(--kergui-blue);
 }
@@ -764,4 +767,4 @@ margin: 0 auto;
   }
 
   /* style loader homme */
-  
+

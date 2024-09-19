@@ -14,11 +14,11 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const userOnline = localStorage.getItem('access_Token') ;
+    // Récupération du token dans le localStorage
+    const token = JSON.parse(localStorage.getItem('access_token') || '{}');
 
-    // Assurez-vous que userOnline et userOnline.authorization sont définis
-    if ( userOnline && userOnline) {
-      const token = userOnline;
+    // Vérifiez si le token existe avant de l'ajouter aux en-têtes
+    if (token) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
@@ -29,8 +29,9 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 }
-export const TokenInterceptorProvider={
-  provide:HTTP_INTERCEPTORS,
-  useClass:AuthInterceptor,
-  multi:true
-}
+
+export const TokenInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthInterceptor,
+  multi: true,
+};

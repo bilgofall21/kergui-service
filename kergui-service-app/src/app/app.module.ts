@@ -34,6 +34,8 @@ import { EmailValidationDirective } from './validations/email-validation.directi
 import { PasswordValidationDirective } from './validations/password-validation.directive';
 import { NavheaderComponent } from './composant/navheader/navheader.component';
 import { LoaderHomeComponent } from './composant/loader-home/loader-home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 // import { AuthInterceptor } from './interceptors/interceptor';
 
@@ -82,6 +84,8 @@ import { LoaderHomeComponent } from './composant/loader-home/loader-home.compone
     NgxPaginationModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
 
   ],

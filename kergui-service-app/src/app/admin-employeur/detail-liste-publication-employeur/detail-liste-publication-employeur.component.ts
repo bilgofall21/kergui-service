@@ -1,6 +1,7 @@
 import { JsonpInterceptor } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CandidatureServiceService } from 'src/app/services/candidature-service.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { PublicationService } from 'src/app/services/publication.service';
@@ -16,12 +17,12 @@ export class DetailListePublicationEmployeurComponent implements OnInit {
   datacandidatOffre: any;
 candidatId: any;
 
-  constructor(private candidatureservice : CandidatureServiceService, private publicationservice: PublicationService,private activatedRoute: ActivatedRoute, private utulisateurservice : UtulisateurService, private professionservice : ProfessionServiceService) { }
+  constructor(private candidatureservice : CandidatureServiceService, private publicationservice: PublicationService,private activatedRoute: ActivatedRoute, private utulisateurservice : UtulisateurService, private professionservice : ProfessionServiceService, private toasterService : ToastrService) { }
   mycandidatData: any[]=[];
   recupOnly : any;
   ngOnInit(): void {
       this.loadCanditures();
-      this.allcandidat();  
+      this.allcandidat();
 
     this.showProfilCandidat();
     this.allProfssion();
@@ -30,7 +31,7 @@ candidatId: any;
   loadCanditures(){
     this.publicationservice.getCandidatByOffre(this.activatedRoute.snapshot.params['id']).subscribe((respons)=>{
       this.datacandidatOffre = respons.data;
-      console.log("voir candidatureeeee", this.datacandidatOffre)
+      // console.log("voir candidatureeeee", this.datacandidatOffre)
       this.allcandidat();
     })
   }
@@ -41,7 +42,7 @@ candidatId: any;
   allcandidat(): void{
     this.candidatureservice.showCadidature().subscribe((respons)=>{
       this.dataCanactif = respons;
-      console.log("voir mes candidature speci", this.dataCanactif);
+      // console.log("voir mes candidature speci", this.dataCanactif);
       // localStorage.setItem('moi', JSON.stringify(this.dataCanactif))
     })
   }
@@ -49,13 +50,13 @@ candidatId: any;
   etatCan : string ="";
   newEtatCan : any = {
 etatCan : '',
-  } 
+  }
   id!: any;
   accepterCandidature(id: any): void {
     this.etatCan = "accepter"; // Définir l'état sur accepter
     this.validationCandidat(id);
   }
-  
+
   rejeterCandidature(id: any): void {
     this.etatCan = "rejeter"; // Définir l'état sur rejeter
     this.validationCandidat(id);
@@ -64,7 +65,7 @@ etatCan : '',
     this.newEtatCan = {
       etatCan: this.etatCan,
     };
-  
+
     Swal.fire({
       title: 'Êtes-vous sûr?',
       text: 'Voulez-vous vraiment changer l\'état de cette candidature?',
@@ -90,38 +91,44 @@ etatCan : '',
             // this.datacandidatOffre
           }
           // Afficher le message de succès
-          Swal.fire({
-            icon: 'success',
-            title: 'État modifié avec succès!',
-            showConfirmButton: false,
-            timer: 1500,
-            width: 480,
-            padding: 10,
-            color : '#ffff',
-            background: '#3A6A7E',
-          });
+          // Swal.fire({
+          //   icon: 'success',
+          //   title: 'État modifié avec succès!',
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          //   width: 480,
+          //   padding: 10,
+          //   color : '#ffff',
+          //   background: '#3A6A7E',
+          // });
+
+          this.toasterService.success('Etat de la candidature modifiée avec succès')
+
       this.loadCanditures();
 
           // this.
         }, error => {
           console.error('Erreur lors de la validation de la candidature:', error);
           // Afficher une alerte en cas d'erreur
-          Swal.fire({
-            icon: 'error',
-            title: 'Erreur!',
-            text: 'Une erreur s\'est produite lors de la validation de la candidature.',
-          });
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Erreur!',
+          //   text: 'Une erreur s\'est produite lors de la validation de la candidature.',
+          // });
         });
+      }else{
+        this.toasterService.warning('Changement etat de la candidature annulé')
       }
+
     });
   }
 
 
- 
+
 
   // getNomProfesion (professionId : number) : void{
-  //   const profession = this.professionData.find((profess: { id: any; }) => profess.id ==professionId); 
-  //   return profession ? profession.nom_prof :  'profession inconue'                                                        
+  //   const profession = this.professionData.find((profess: { id: any; }) => profess.id ==professionId);
+  //   return profession ? profession.nom_prof :  'profession inconue'
   // }
 
 
@@ -144,62 +151,65 @@ etatCan : '',
       color : '#ffff',
       background: '#3A6A7E',
       confirmButtonText: "Oui supprimer!"
-    }).then((result) => { 
+    }).then((result) => {
       if(result.isConfirmed){
         this.candidatureservice.delteCandidature(id).subscribe((respons)=>{
           console.log("bien supprimer", respons);
            // Mettre à jour la liste datacandidatOffre après la suppression de la candidature
         this.datacandidatOffre = this.datacandidatOffre.filter((candidat: { id: any; }) => candidat.id !== id);
-        Swal.fire({
-          title: "candidature supprime!",
-          text: "Cette candidature  a été supprimé .",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-          width: 480,
-          padding: 10,
-          color : '#ffff',
-          background: '#3A6A7E',
-          });
+        // Swal.fire({
+        //   title: "candidature supprime!",
+        //   text: "Cette candidature  a été supprimé .",
+        //   icon: "success",
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        //   width: 480,
+        //   padding: 10,
+        //   color : '#ffff',
+        //   background: '#3A6A7E',
+        //   });
+        this.toasterService.success('candidature supprimé avec succée');
         })
+      }else{
+        this.toasterService.warning('Suppression annulé');
       }
       })
-   
+
   }
 
   dataProfil : any;
   showProfilCandidat() : void {
     this.utulisateurservice.getProfilCandidat().subscribe((data)=>{
       this.dataProfil = data;
-      console.log("profilCandidat", this.dataProfil);
+      // console.log("profilCandidat", this.dataProfil);
     })
   }
 
   // methode pour afficher profil candidat
   candidatSelectionner : any;
   afficherDetailCandidat(candidatId : number) : void {
-    console.log("eeeee", candidatId);
+    // console.log("eeeee", candidatId);
     const candidatTrouve = this.dataProfil.find((candidat: { id: number; }) => candidat.id === candidatId);
-    console.log("dddddd",  );
+    // console.log("dddddd",  );
     if(candidatTrouve){
       this.candidatSelectionner = candidatTrouve;
-      console.log("guissnala", this.candidatSelectionner);
+      // console.log("guissnala", this.candidatSelectionner);
       const nomProfession = this.professionsMap.get(candidatTrouve.profession_id);
       if (nomProfession) {
-        console.log("Nom de la profession du candidat :", nomProfession);
+        // console.log("Nom de la profession du candidat :", nomProfession);
         // Ajouter le nom de la profession aux informations du candidat sélectionné
         this.candidatSelectionner.nomProfession = nomProfession;
-       
+
       } else {
-        console.log("Profession non trouvée pour l'ID :", candidatTrouve.profession_id);
+        // console.log("Profession non trouvée pour l'ID :", candidatTrouve.profession_id);
       }
     }
     else {
-      console.log("candidat non trouver");
+      // console.log("candidat non trouver");
     }
 
     // recuper le nom de la profession
-   
+
   }
 
    // Créez une carte pour mapper les IDs de profession aux noms de profession
@@ -220,7 +230,7 @@ etatCan : '',
     })
   }
 
-  
+
 
 
 

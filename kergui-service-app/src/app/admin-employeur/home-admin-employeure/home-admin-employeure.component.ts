@@ -24,7 +24,7 @@ afficherProfession(){
   this.professionservice.getProfession().subscribe((data)=>{
     this.professionData = data.data;
 
-    console.log("voir profession", this.professionData);
+    // console.log("voir profession", this.professionData);
       })
     }
 
@@ -32,7 +32,7 @@ afficherProfession(){
     recupAllOffre(){
       this.publicationservice.geyAllpublication().subscribe((respons)=>{
         this.allpublication = respons.data;
-        console.log("eeee", this.allpublication);
+        // console.log("eeee", this.allpublication);
         // localStorage.setItem('all_publication', JSON.stringify(this.allpublication.data))
       })
     }
@@ -46,7 +46,7 @@ afficherProfession(){
     recupAllService(){
       this.professionservice.getProfession().subscribe((respons)=>{
         this.allprofession = respons.data;
-        console.log('rrrrrrrr', this.allprofession);
+        // console.log('rrrrrrrr', this.allprofession);
         // localStorage.setItem('all_profession', JSON.stringify(this.allprofession.data))
       })
     }
@@ -65,7 +65,7 @@ afficherProfession(){
           // fitrer les anonces en fontion du userconnecté
           this.datPublicationFiltred = this.dataPublication.filter((element: { user_id: any; }) => element.user_id == this.userConnect.id);
 
-          console.log("mes pubiiiii", this.datPublicationFiltred);
+          // console.log("mes pubiiiii", this.datPublicationFiltred);
           // this.datPublicationFiltred.forEach((publication : any)=>{
           //   const nomProfession = this.getNomProfesion(publication.profession_id);
           //   console.log("profession", nomProfession);

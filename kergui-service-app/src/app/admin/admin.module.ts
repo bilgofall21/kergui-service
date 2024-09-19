@@ -13,6 +13,8 @@ import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
 import { PublicationAdminComponent } from './publication-admin/publication-admin.component';
 import { FormsModule } from '@angular/forms';
 import { SpinneradminComponent } from './loaderadmin/spinneradmin/spinneradmin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -26,12 +28,14 @@ import { SpinneradminComponent } from './loaderadmin/spinneradmin/spinneradmin.c
     ProfilAdminComponent,
     PublicationAdminComponent,
     SpinneradminComponent,
-    
+
+
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
   ]
 })
 export class AdminModule { }

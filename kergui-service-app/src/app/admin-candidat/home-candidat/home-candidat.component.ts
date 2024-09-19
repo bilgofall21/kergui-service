@@ -16,8 +16,7 @@ export class HomeCandidatComponent implements OnInit {
 
     this.recupAllutulisateur();
     // this.recupAlluser = localStorage.getItem('all_user')
-    this.allUseData = this.recupAlluser ? JSON.parse(this.recupAlluser) : null;
-    this.tailleEmployeur = this.nombreEmployeur();
+    // this.allUseData = this.recupAlluser ? JSON.parse(this.recupAlluser) : null;
   }
   constructor(private professionservice : ProfessionServiceService, private utulisateurservice : UtulisateurService, public publicationservice : PublicationService){}
   allprofession : any []= [];
@@ -54,24 +53,21 @@ export class HomeCandidatComponent implements OnInit {
   }
   alldata : any;
 recupAlluser : any;
-allUseData : any;
+// allUseData : any;
 tailleEmployeur : any ;
 tailletCandidat : any;
+employeurData : [] = [];
+
 recupAllutulisateur(){
   this.utulisateurservice.getAllUser().subscribe((data)=>{
-    this.alldata = data;
+    this.alldata = data.data;
+    this.employeurData = this.alldata.filter((item : {role : string}) => item.role === 'employeur');
+
   //  localStorage.setItem('all_user', JSON.stringify(this.alldata.data))
   })
 }
-nombreEmployeur() {
-  let employeurtaille = 0;
-  for (let i = 0; i < this.allUseData.length; i++){
-    if (this.allUseData[i].role == "employeur") {
-      employeurtaille ++;
-    }
-  }
-  return employeurtaille;
-}
+
+
 
 getNomProfesion (professionId : number) : void{
   console.log("dfhgbjkn,l", this.allprofession);

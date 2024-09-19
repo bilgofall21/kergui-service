@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./utilisateur-admin.component.css']
 })
 export class UtilisateurAdminComponent implements OnInit{
-constructor(private utulisateurservice : UtulisateurService, private professionservice : ProfessionServiceService){}
+constructor(private utulisateurservice : UtulisateurService, private professionservice : ProfessionServiceService, private toaterService : ToastrService){}
   ngOnInit(): void {
    this.afficherAllUser();
    this.allProfession();
@@ -101,18 +102,20 @@ desactiverUser(id : string): void {
           // console.error(`Erreur lors de la desactivation de la profession avec l'ID ${id} :`, error);
         }
         );
-        Swal.fire({
-          title: "Utilisateur desactiver!",
-          text: "Cet utlisateur a été desactivé .",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-          width: 410,
-          padding: 15,
-          color : '#ffff',
-          background: '#3A6A7E',
-          });
-
+        // Swal.fire({
+        //   title: "Utilisateur desactiver!",
+        //   text: "Cet utlisateur a été desactivé .",
+        //   icon: "success",
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        //   width: 410,
+        //   padding: 15,
+        //   color : '#ffff',
+        //   background: '#3A6A7E',
+        //   });
+this.toaterService.success("Utilisateur désactivé avec succée")
+    }else{
+      this.toaterService.warning("Utilisateur toujour active")
     }
 
   }
@@ -147,18 +150,18 @@ activerUser(id : string): void {
 
         }
         )
-        Swal.fire({
-          title: "Utilisateur réactiver!",
-          text: "Cet utilisateur a été réactivé .",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-          width: 400,
-          padding: 15,
-          color : '#ffff',
-          background: '#3A6A7E',
-          });
-
+        // Swal.fire({
+        //   title: "Utilisateur réactiver!",
+        //   text: "Cet utilisateur a été réactivé .",
+        //   icon: "success",
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        //   width: 400,
+        //   padding: 15,
+        //   color : '#ffff',
+        //   background: '#3A6A7E',
+        //   });
+        this.toaterService.success("Utilisateur réactivé avec succée")
     }
 
   }

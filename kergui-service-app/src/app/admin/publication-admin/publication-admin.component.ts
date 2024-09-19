@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { PublicationService } from 'src/app/services/publication.service';
 import Swal from 'sweetalert2';
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class PublicationAdminComponent implements OnInit {
 loadingadmin: boolean = false;
-  constructor(public publicationservice : PublicationService){}
+  constructor(public publicationservice : PublicationService, private toasterService : ToastrService){}
   ngOnInit(): void {
     this.afficherPublication();
   }
@@ -49,19 +50,20 @@ if(result.isConfirmed){
     if( publicationArchiver){
       publicationArchiver.etat = 'archiver'
     }else{
-      Swal.fire({
-        title: "Publication archiver!",
-        text: "Cet publication a été archivé .",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-        width: 400,
-        padding: 15,
-        color : '#ffff',
-        background: '#3A6A7E',
-        });
-        console.log("offre demna", respons.data);
-    }
+      // Swal.fire({
+      //   title: "Publication archiver!",
+      //   text: "Cet publication a été archivé .",
+      //   icon: "success",
+      //   showConfirmButton: false,
+      //   timer: 1500,
+      //   width: 400,
+      //   padding: 15,
+      //   color : '#ffff',
+      //   background: '#3A6A7E',
+      //   });
+        // console.log("offre demna", respons.data);
+      this.toasterService.success("publication archivée avec succée")
+      }
   })
 }
   })

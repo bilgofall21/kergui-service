@@ -11,9 +11,9 @@ hr{
    h4{
     color: var(--kergui-blue);
       }
-     
-  
-  
+
+
+
   /* style baniere */
   .banner{
       background: url(src\assets\image\service.png);
@@ -22,7 +22,7 @@ hr{
       background-size: cover;
       background-position: center center;
       position: relative;
-  
+
   }
   #carouselcontainer{
       height: 80vh;
@@ -34,8 +34,8 @@ hr{
       width: 100%;
       height: 100%;
       /* background: rgba(0, 54, 104, 0.5); */
-      
-   
+
+
     }
   .banner h2{
       font-size: 40px;
@@ -45,17 +45,18 @@ hr{
       left: 50%;
       transform: translate(-50%, -50%);
       margin: 0;
-      
-      
+
+
   }
 
   /* style carte detail service */
 
   .searchbar .input-group{
     width: 50%;
-  
+
   }
- 
+
+
   .detailservicecontainer .titleService h5{
     color: var(--kergui-blue);
     font-size: 14px;
@@ -70,42 +71,42 @@ hr{
   .detailservicecontainer .card-body p{
     /* max-height: 5rem; */
     font-size: 15px;
-    
+
   }
   .detailservicecontainer a{
   font-size: 15px;
   color: black;
-  
+
   }
   .profilinfo .itemdetail{
 color: var(--kergui-blue);
 font-size: 16px;
   }
-  
+
   .detailservicecontainer .cardfooter{
     background-color: var(--kergui-blue);
     height: 8px;
   }
   .card{
-    width: 18rem;
+    width: 17rem;
   }
   .card-body{
     height: 6.5rem;
-    
+
     /* overflow: hidden; */
     text-overflow: ellipsis;
     /* overflow-y: auto; */
 }
- 
-  
+
+
   .validservice button{
     background: var(--kergui-green);
     color: white;
     font-size: 18px;
     border: none;
-    border-radius: 10px; 
+    border-radius: 10px;
     width: 25%;
-  
+
   }
 
 
@@ -165,7 +166,7 @@ font-size: 16px;
   }
   /* media deatail service card */
   @media screen and (max-width:570px) {
-  
+
     .card {
       margin: 0 auto;
       width: 20rem;
@@ -181,21 +182,21 @@ font-size: 16px;
     }
   }
   @media screen and (max-width:340px) {
-    
+
     .card {
       margin: 0 auto;
       width: 18rem;
     }
   }
   @media screen and (max-width:290px) {
-    
+
     .card {
       margin: 0 auto;
       width: 15rem;
     }
   }
   @media screen and (max-width:250px) {
-    
+
     .card {
       margin: 0 auto;
       width: 13rem;
@@ -205,14 +206,14 @@ font-size: 16px;
     }
   }
   @media screen and (max-width:235px) {
-    
+
     .pagiColor, .pagiColore  {
       font-size: 10px;
     }
-    
+
   }
   @media screen and (max-width:220px) {
-    
+
     .card {
       margin: 0 auto;
       width: 10rem;
@@ -223,23 +224,23 @@ font-size: 16px;
     .profilinfo .itemdetail {
       font-size: 9px;
     }
-    
-    
+
+
   }
   @media screen and (max-width:198px) {
-    
+
     .title h4{
       font-size: 14px;
     }
   }
 
   @media screen and (max-width:187px) {
-    
+
     .pagiColor, .pagiColore  {
       font-size: 9px;
     }
     .title h4{
       font-size: 12px;
     }
-    
+
   }

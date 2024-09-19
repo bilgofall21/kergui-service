@@ -13,7 +13,7 @@ import { UtulisateurService } from 'src/app/services/utulisateur.service';
 export class DetailServiceComponent implements OnInit {
   // listeEmployes! : any;
      // Attribut pour la pagination
-     articlesParPage = 4; // Nombre d'articles par page
+     articlesParPage = 8; // Nombre d'articles par page
      pageActuelle = 1; // Page actuelle
   userprofData: [] = [];
 
@@ -35,6 +35,7 @@ export class DetailServiceComponent implements OnInit {
   candidatprofession(): void{
     this.professionservice.GetUserByProfession(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{
       this.userprofData =data.data;
+      console.log('fffffffff', this.userprofData)
       const dataDetail = data.data;
       this.detailprofilservice.updateUserProfilData(dataDetail);
     })

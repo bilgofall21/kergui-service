@@ -169,6 +169,12 @@ h5{
 .searchbar  button{
     background-color: var(--kergui-blue);
   }
+  .searchbar input{
+    all: unset;
+    flex-grow: 1;
+    box-shadow: 3px 3px 10px -3px rgb(99, 97, 97);
+    padding: 5px 20px;
+  }
 
 
  /* style pagination debut */

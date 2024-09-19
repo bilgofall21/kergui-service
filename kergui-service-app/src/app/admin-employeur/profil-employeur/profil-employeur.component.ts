@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProfilServiceService } from 'src/app/services/profil-service.service';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
@@ -11,9 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class ProfilEmployeurComponent  implements OnInit {
   userProfile: any;
-constructor(private utilisateurservice : UtulisateurService,  private authentificationservice : AuthService, private profileservice : ProfilServiceService){}
+constructor(private utilisateurservice : UtulisateurService,  private authentificationservice : AuthService, private profileservice : ProfilServiceService, private toatrService : ToastrService){}
   ngOnInit(): void {
-    this.modifierProfil();
+    // this.modifierProfil();
     this.afficherProfil();
 
   }
@@ -42,37 +43,39 @@ constructor(private utilisateurservice : UtulisateurService,  private authentifi
       next: (response) => {
         // console.log("Élément modifié du profil", response);
         this.afficherProfil();
-        // this.profileservice.chargerProfilData(response.data);
+        this.profileservice.chargerProfilData(response.data);
 
         // Réinitialiser les champs du formulaire
         // Afficher une alerte de succès
-        Swal.fire({
-          icon: 'success',
-          title: 'Succès',
-          text: 'Le profil a été mis à jour avec succès.',
-          showConfirmButton: false,
-      timer: 1500,
-      width: 480,
-      padding: 10,
-      color : '#ffff',
-      background: '#3A6A7E',
-        });
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: 'Succès',
+      //     text: 'Le profil a été mis à jour avec succès.',
+      //     showConfirmButton: false,
+      // timer: 1500,
+      // width: 480,
+      // padding: 10,
+      // color : '#ffff',
+      // background: '#3A6A7E',
+      //   });
+      this.toatrService.success('profil mis à jour avec succès')
       },
       error: (error) => {
         console.error("Erreur lors de la modification du profil", error);
 
         // Afficher une alerte d'erreur
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur',
-          text: 'Une erreur est survenue lors de la mise à jour du profil. Veuillez réessayer.',
-          showConfirmButton: false,
-      timer: 1500,
-      width: 480,
-      padding: 10,
-      color : '#ffff',
-      background: '#3A6A7E',
-        });
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Erreur',
+      //     text: 'Une erreur est survenue lors de la mise à jour du profil. Veuillez réessayer.',
+      //     showConfirmButton: false,
+      // timer: 1500,
+      // width: 480,
+      // padding: 10,
+      // color : '#ffff',
+      // background: '#3A6A7E',
+      //   });
+      this.toatrService.warning('erreur lors de la modification du profil')
       }
     });
   }

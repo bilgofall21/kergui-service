@@ -77,7 +77,7 @@ deconnexion() : Observable<any>{
     catchError(error => {
       return of(error);
     })
-  );
+  ); 
 
 }
 

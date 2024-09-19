@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profil-candidat.component.css']
 })
 export class ProfilCandidatComponent implements OnInit {
-  constructor(private utilisateurservice : UtulisateurService,  private professionservice : ProfessionServiceService , private profileservice : ProfilServiceService){}
+  constructor(private utilisateurservice : UtulisateurService,  private professionservice : ProfessionServiceService , private profileservice : ProfilServiceService, private toasterService : ToastrService){}
   userProfile: any;
   ngOnInit(): void {
     // const userProfileString = localStorage.getItem('user_profile');
@@ -48,7 +49,7 @@ export class ProfilCandidatComponent implements OnInit {
     this.experienceProf = "";
     this.dateNaissance = "";
   }
-  
+
 
 
 
@@ -71,7 +72,7 @@ export class ProfilCandidatComponent implements OnInit {
       this.profession_id = profData.profession_id;;
       this.experienceProf = profData.experienceProf;
       this.dateNaissance = profData.dateNaissance;
-      
+
     })
   }
 
@@ -88,7 +89,7 @@ modifierProfil() :  void{
     let formData = new FormData();
     formData.append('prenom', this.prenom);
     formData.append('nom', this.nom);
-    formData.append('telephone', this.telephone);   
+    formData.append('telephone', this.telephone);
     formData.append('password', this.password);
     formData.append('lieu', this.lieu);
     formData.append('imageDeProfil', this.image);
@@ -104,37 +105,39 @@ modifierProfil() :  void{
         console.log("Élément modifié du profil", response);
         this.afficherProfil();
         this.profileservice.chargerProfilData(response.data);
-        
-   
-  
+
+
+
         // Afficher une alerte de succès
-        Swal.fire({
-          icon: 'success',
-          title: 'Succès',
-          text: 'Votre profil a été mis à jour avec succès!',
-          showConfirmButton: false,
-      timer: 1500,
-      width: 480,
-      padding: 10,
-      color : '#ffff',
-      background: '#3A6A7E',
-        });
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: 'Succès',
+      //     text: 'Votre profil a été mis à jour avec succès!',
+      //     showConfirmButton: false,
+      // timer: 1500,
+      // width: 480,
+      // padding: 10,
+      // color : '#ffff',
+      // background: '#3A6A7E',
+      //   });
+      this.toasterService.success('votre profil mis à jour avec succès')
       },
       error: (error) => {
         console.error("Erreur lors de la modification du profil", error);
-        
+
         // Afficher une alerte d'erreur
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur',
-          text: 'Une erreur s\'est produite lors de la mise à jour du profil.',
-          showConfirmButton: false,
-      timer: 1500,
-      width: 480,
-      padding: 10,
-      color : '#ffff',
-      background: '#3A6A7E',
-        });
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Erreur',
+      //     text: 'Une erreur s\'est produite lors de la mise à jour du profil.',
+      //     showConfirmButton: false,
+      // timer: 1500,
+      // width: 480,
+      // padding: 10,
+      // color : '#ffff',
+      // background: '#3A6A7E',
+      //   });
+      this.toasterService.warning('Erreur lors de le mise à jour du profil')
       }
     });
 }

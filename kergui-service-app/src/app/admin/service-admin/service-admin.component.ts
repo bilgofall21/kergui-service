@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { error } from 'jquery';
+import { ToastrService } from 'ngx-toastr';
 import { Profession } from 'src/app/models/profession';
 import { ProfessionServiceService } from 'src/app/services/profession-service.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ export class ServiceAdminComponent implements OnInit {
   selectedProfession: any;
   loadingadmin : boolean = false;
 
-  constructor(private professionService : ProfessionServiceService ){}
+  constructor(private professionService : ProfessionServiceService, private toastrService : ToastrService ){}
   ngOnInit(): void {
    this.recupAllProfession();
   }
@@ -62,67 +63,11 @@ this.loadingadmin = true;
     console.log("all profession",data);
      this.dataProfession = data;
      console.log("all profession",this.dataProfession);
+     this.loadingadmin = false;
    })
  }
 
 //  methode pour ajouter profession
-
-// ajouterPofession (): void{
-//   if (this.nom_prof !== '' && this.description !== '') {
-
-//    let formData = new FormData();
-//    formData.append('nom_prof', this.nom_prof);
-//    formData.append('description', this.description);
-//    formData.append('image', this.image);
-//     this.professionService.addProfession(formData).subscribe((dataprof : any) =>{
-//       console.log("ajout", formData);
-//       this.viderChamp();
-//       window.location.reload();
-//     },
-//     error =>{
-//       console.error('Erreur lors de l\'ajout :', error);
-//     }
-//     )
-//   }
-//   else{
-//     this.affichermessage('error', 'reverifiez', 'profession  ou Description Incorrecte');
-//   }
-// }
-
-// ajouterPofession(): void {
-//   if (this.nom_prof !== '' && this.description !== '') {
-//     let formData = new FormData();
-//     formData.append('nom_prof', this.nom_prof);
-//     formData.append('description', this.description);
-//     formData.append('image', this.image);
-
-//     this.professionService.addProfession(formData).subscribe(
-//       (dataprof: any) => {
-//         Swal.fire({
-//           icon: 'success',
-//           title: 'Bravo',
-//           text: 'Profession ajouté avec succès',
-//           showConfirmButton: false,
-//           timer: 1500
-//         });
-//         this.viderChamp();
-//         window.location.reload();
-//       },
-//       error => {
-//         console.error('Erreur lors de l\'ajout :', error);
-//         Swal.fire({
-//           icon: 'error',
-//           title: 'Erreur!',
-//           text: 'Une erreur est survenue lors de l\'ajout de la profession.',
-//           showConfirmButton: false,
-//           timer: 1500
-//         });
-//       }
-//     );
-//   } else {
-//     this.affichermessage('error', 'reverifiez', 'profession  ou description incorrecte');
-//   }
-// }
 
 ajouterPofession(): void {
   if (this.nom_prof !== '' && this.description !== '' && this.image) {
@@ -134,40 +79,20 @@ ajouterPofession(): void {
     this.professionService.addProfession(formData).subscribe(
       (response) => {
         this.recupAllProfession();
-        Swal.fire({
-          icon: 'success',
-          title: 'Bravo',
-          text: 'Profession ajoutée avec succès',
-          showConfirmButton: false,
-          timer: 1500,
-          width: 400,
-          padding: 10,
-          color: '#ffff',
-          background: '#3A6A7E'
-        });
-        console.log("voir ajou", response)
+this.toastrService.success('ajout reussi !', 'Ajouter', {timeOut : 1000})
+        // console.log("voir ajou", response)
         this.viderChamp();
-        // registerForm.reset();
       },
       error => {
-        console.error('Erreur lors de l\'ajout :', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur!',
-          text: 'Une erreur est survenue lors de l\'ajout de la profession.',
-          showConfirmButton: false,
-          timer: 1500,
-          width: 400,
-          padding: 15,
-          color: '#ffff',
-          background: '#3A6A7E'
-        });
+        this.toastrService.error('Erreur lors de l\'ajout :', error);
+
       }
     );
   } else {
     this.affichermessage('error', 'Attention', 'remplir les champs manquants');
   }
 }
+
 // methode pour empécher affichage par defaut message d'erreur
 
 
@@ -293,17 +218,9 @@ chargerProfession( formation : any){
           }
 
         );
-        Swal.fire({
-          title: "service supprimé!",
-          text: "Ce service a été supprimé .",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-          width: 400,
-          padding: 15,
-          color : '#ffff',
-          background: '#3A6A7E',
-          });
+       this.toastrService.success('suppression reussi !')
+      }else{
+        this.toastrService.warning('suppresion annulée');
       }
     }
     )

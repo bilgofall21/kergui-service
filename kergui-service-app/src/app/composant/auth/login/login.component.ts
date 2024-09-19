@@ -7,6 +7,7 @@ import { SelectOption } from 'src/app/models/select-option.model';
 import { Observable } from 'rxjs';
 import { NgForm, NgModel } from '@angular/forms';
 import { UtulisateurService } from 'src/app/services/utulisateur.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit{
   constructor( private authentification : AuthService ,
                private router : Router,
                private professionservice : ProfessionServiceService,
-               private utilisateurservice : UtulisateurService
+               private utilisateurservice : UtulisateurService,
+               private toasterrService : ToastrService
                ){}
                utilisateurConnecte : boolean = false;
   ngOnInit(): void {
@@ -93,40 +95,37 @@ connexion(event: Event): void {
     (user: any) => {
       this.currentConnexion = true;
       this.userfoundid = user.data;
-      // console.log("connexion status", user);
 
       localStorage.setItem('user_profile', JSON.stringify(user.data));
 
       if (user.token) {
         this.authentification.setLoggedIn(true);
-        this.affichermessage('success', 'Bienvenue ', user.data.prenom);
+        this.toasterrService.success('Connexion réussie, ' + user.data.prenom);
 
-        if (user.data.role == "admin" && user.data.statut == "activer") {
-          localStorage.setItem("dashboard_type", 'admina');
+        if (user.data.role === "admin" && user.data.statut === "activer") {
+          localStorage.setItem("dashboard_type", 'admin');
           localStorage.setItem('access_Token', user.token);
           this.router.navigate(['/admin']);
-        } else if (user.data.role == "candidat" && user.data.statut == "activer") {
+        } else if (user.data.role === "candidat" && user.data.statut === "activer") {
           localStorage.setItem("dashboard_type", 'candidat');
           localStorage.setItem('access_Token', user.token);
           this.router.navigate(['/admin-candidat']);
-        } else if (user.data.role == "employeur" && user.data.statut == "activer") {
+        } else if (user.data.role === "employeur" && user.data.statut === "activer") {
           localStorage.setItem("dashboard_type", 'employeur');
           localStorage.setItem('access_Token', user.token);
           this.router.navigate(['/admin-employeur']);
-        }
-        else {
-          this.affichermessage('error', 'Ce compte désactivé', 'désolé');
+        } else {
+          this.toasterrService.warning('Ce compte est désactivé, désolé.');
         }
       }
     },
     (error: any) => {
-      console.error('Erreur lors de la connexion :', error);
       this.currentConnexion = false;
-
-      this.affichermessage('error', 'Désolé', 'Une erreur s\'est produite lors de la connexion');
+      this.toasterrService.error('Désolé, une erreur s\'est produite lors de la connexion');
     }
   );
 }
+
 
 affichermessage(icone: any, message: string,user:string) {
   Swal.fire({
